@@ -105,7 +105,30 @@ function changeAddress(address)
 <body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
 <br>
 <%strip%>
-<%if $tpl_saved eq 'true'%>
+<%if $tpl_error eq 'true'%>
+<table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
+  <tr>
+    <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
+    <td class="BoxTop"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
+    <td><img src="<%$wwwroot%>img/box_corner02.gif" width="8" height="8"></td>
+  </tr>
+  <tr>
+    <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
+    <td width="100%">
+     <p class="SubheadlineYellow">Fehler</p>
+	 Die Rechnung konnte nicht erstellt werden. Bitte &uuml;berpr&uuml;fen Sie, ob f&uuml;r den gew&auml;hlten Zeitraum Saisonzeiten und Preise definiert sind.
+	 <p align="right"><a href="javascript:self.close();"><img src="<%$wwwroot%>img/button_schliessen.png" width="86" height="24" border="0"></a></p>
+    </td>
+   <td class="BoxRight"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td><img src="<%$wwwroot%>img/box_corner04.gif" width="8" height="8"></td>
+    <td class="BoxBottom"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
+    <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
+  </tr>
+</table>	 
+
+<%elseif $tpl_saved eq 'true'%>
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>

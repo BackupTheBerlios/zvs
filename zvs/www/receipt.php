@@ -1,29 +1,29 @@
 <?php
-/***************************************************************
-*  Copyright notice
-*  
-*  (c) 2003-2004 Christian Ehret (chris@ehret.name)
-*  All rights reserved
-*
-*  This script is part of the ZVS project. The ZVS project is 
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
+/**
+* Copyright notice
 * 
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*  A copy is found in the textfile GPL.txt and important notices to the license 
-*  from the author is found in LICENSE.txt distributed with these scripts.
-*
+*   (c) 2003-2004 Christian Ehret (chris@ehret.name)
+*   All rights reserved
 * 
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+*   This script is part of the ZVS project. The ZVS project is 
+*   free software; you can redistribute it and/or modify
+*   it under the terms of the GNU General Public License as published by
+*   the Free Software Foundation; either version 2 of the License, or
+*   (at your option) any later version.
+* 
+*   The GNU General Public License can be found at
+*   http://www.gnu.org/copyleft/gpl.html.
+*   A copy is found in the textfile GPL.txt and important notices to the license 
+*   from the author is found in LICENSE.txt distributed with these scripts.
+* 
+* 
+*   This script is distributed in the hope that it will be useful,
+*   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*   GNU General Public License for more details.
+* 
+*   This copyright notice MUST APPEAR in all copies of the script!
+*/
 
 /**
 * Show receipt
@@ -56,9 +56,9 @@ if ($request->GetVar('frm_action', 'post') == "save") {
     $smarty->assign('tpl_saved', 'draft'); 
     // do anything else than save
 } elseif ($request->GetVar('frm_action', 'post') == "deletedraft") {
-        $receipt->deletedraft($request->GetVar('frm_draftreceiptid', 'post'), true);
-		$location = $wwwroot . "checkopenbookings.php/bookid.".$request->GetVar('frm_bookid', 'post')."/checkopenbookings.php";
-        header("Location: $location");
+    $receipt->deletedraft($request->GetVar('frm_draftreceiptid', 'post'), true);
+    $location = $wwwroot . "checkopenbookings.php/bookid." . $request->GetVar('frm_bookid', 'post') . "/checkopenbookings.php";
+    header("Location: $location");
 } else {
     $smarty->assign('tpl_saved', 'false');
     $shortstay = false;
@@ -81,7 +81,13 @@ if ($request->GetVar('frm_action', 'post') == "save") {
         $smarty->assign('tpl_bookid', $bookids[0]);
         $smarty->assign('tpl_bookids', $bookids);
         foreach ($bookids as $bookid) {
-            $tmp = $receipt->get($bookid, $length_short_stay, $guestid);
+            $tmp = $receipt->get($bookid, $length_short_stay, $guestid); 
+            // something went wrong
+            if (!$tmp) {
+                $smarty->assign('tpl_error', 'true');
+                $smarty->display('receipt.tpl');
+                exit;
+            } 
             if ($receiptdata['data'] == "") {
                 $receiptdata['data'] = $tmp['data'];
             } else {
@@ -159,7 +165,14 @@ if ($request->GetVar('frm_action', 'post') == "save") {
                 $smarty->assign('tpl_bookids', $receiptdata['data']['bookid']);
                 $smarty->assign('tpl_draft', 'true');
             } else {
-                $receiptdata = $receipt->get($bookid, $length_short_stay, $guestid);
+                $receiptdata = $receipt->get($bookid, $length_short_stay, $guestid); 
+                // something went wrong
+                if (!$receiptdata) {
+                    $smarty->assign('tpl_error', 'true');
+                    $smarty->display('receipt.tpl');
+                    exit;
+                } 
+
                 $guestid = $receiptdata[data][guestid];
                 $load = false;
                 $smarty->assign('tpl_draft', 'false');
