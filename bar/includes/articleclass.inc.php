@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: articleclass.inc.php,v 1.3 2004/12/13 17:04:20 ehret Exp $
+* @version $Id: articleclass.inc.php,v 1.4 2004/12/14 10:38:55 ehret Exp $
 */
 class Article {
     /**
@@ -44,12 +44,13 @@ class Article {
     * 
     * @param boolean $withspecial get special or not
     * @param int $period period
+	* @param int $cat category
     * @return array articles
     * @access public 
     * @since 2004-01-06
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function getall($withspecial, $period)
+    function getall($withspecial, $period, $cat = -1)
     {
         global $gDatabase, $tbl_bararticle, $tbl_bararticlecat, $tbl_period, $request, $errorhandler, $articlerows;
         $article = array();
@@ -67,8 +68,11 @@ class Article {
         $query = "SELECT pk_bararticle_id, description, price, hotkey, fk_bararticlecat_id, bararticlecat
 		                 FROM $tbl_bararticle ba
 						 LEFT JOIN $tbl_bararticlecat bac ON pk_bararticlecat_id = fk_bararticlecat_id
-						 WHERE ISNULL(ba.deleted_date) AND fk_period_id = $period
-						 ORDER BY description, price  ";
+						 WHERE ISNULL(ba.deleted_date) AND fk_period_id = $period ";
+		if ($cat != -1) {
+		    $query .= "AND fk_bararticlecat_id = $cat ";
+		}						 
+		$query .= "ORDER BY description, price  ";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Article::getall()', $query);
