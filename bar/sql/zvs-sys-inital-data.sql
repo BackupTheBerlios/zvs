@@ -289,12 +289,18 @@ INSERT INTO _sequence_zvs_pk_tax_period_id (sequence) VALUES (4);
 INSERT INTO zvs_hotel (pk_hotel_id, hotel, hotel_code, description, database_schema) VALUES (1, 'ZVS', 'ZVS', NULL, 'zvs_hotel01');
 INSERT INTO _sequence_zvs_pk_hotel_id (sequence) VALUES (1);
 
+#
+# Dumping data for TABEL zvs_group
+#
+INSERT INTO zvs_group (pk_group_id, fk_hotel_id, name, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (1, 1, 'Administratoren', NOW(), 1, NULL, NULL, NULL, NULL);
+INSERT INTO zvs_group (pk_group_id, fk_hotel_id, name, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (2, 1, 'Barkeeper', NOW(), 1, NULL, NULL, NULL, NULL);
+INSERT INTO _sequence_zvs_pk_group_id (sequence) VALUES (2);
 
 #
 # Dumping data for TABLE zvs_user
 #
-INSERT INTO zvs_user (pk_user_id, fk_hotel_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (1, 1, 'Administrator', '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'N', 1, '2004-10-17 17:55:33', 1, NULL, NULL, NULL, NULL);
-INSERT INTO zvs_user (pk_user_id, fk_hotel_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (2, NULL, 'System', NULL, 'SYSTEM', '54b53072540eeeb8f8e9343e71f28176', 'Y', 2, '2003-08-20 19:02:48', 1, NULL, NULL, NULL, NULL);
+INSERT INTO zvs_user (pk_user_id, fk_hotel_id, fk_group_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (1, 1, 1, 'Administrator', '', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'N', 1, '2004-10-17 17:55:33', 1, NULL, NULL, NULL, NULL);
+INSERT INTO zvs_user (pk_user_id, fk_hotel_id, fk_group_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, deleted_date, fk_deleted_user_id) VALUES (2, NULL, 1, 'System', NULL, 'SYSTEM', '54b53072540eeeb8f8e9343e71f28176', 'Y', 2, '2003-08-20 19:02:48', 1, NULL, NULL, NULL, NULL);
 INSERT INTO _sequence_zvs_pk_user_id (sequence) VALUES (2);
 
 

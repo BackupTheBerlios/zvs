@@ -78,6 +78,17 @@ CREATE TABLE _sequence_zvs_pk_tax_period_id (
 ) TYPE=InnoDB CHECKSUM = 1;
 
 
+# --------------------------------------------------------
+
+#
+# Tabellenstruktur für Tabelle `_sequence_zvs_pk_group_id`
+#
+DROP TABLE IF EXISTS `_sequence_zvs_pk_group_id`;
+CREATE TABLE `_sequence_zvs_pk_group_id` (
+  `sequence` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`sequence`)
+) TYPE=InnoDB CHECKSUM=1 AUTO_INCREMENT=2 ;
+
 
 # --------------------------------------------------------
 #
@@ -237,6 +248,39 @@ CREATE TABLE zvs_hotel (
 ) TYPE=InnoDB CHECKSUM = 1;
 
 
+#
+# TABLE structure for TABLE zvs_group
+#
+DROP TABLE IF EXISTS zvs_group;
+CREATE TABLE zvs_group (
+  pk_group_id                INT(11)             NOT NULL,
+  fk_hotel_id                INT(11)                                      DEFAULT NULL,
+  name                   	 VARCHAR(50)         NOT NULL,
+  inserted_date              DATETIME            NOT NULL,
+  fk_inserted_user_id        INT(11)             NOT NULL,
+  updated_date               DATETIME                                     DEFAULT NULL,
+  fk_updated_user_id         INT(11)                                      DEFAULT NULL,
+  deleted_date               DATETIME                                     DEFAULT NULL,
+  fk_deleted_user_id         INT(11)                                      DEFAULT NULL,
+
+  PRIMARY KEY                (pk_group_id),
+
+  UNIQUE KEY                 fk_hotel_id_login                            (fk_hotel_id, login),
+
+  INDEX                      idx_fk_hotel_id                              (fk_hotel_id),
+  INDEX                      idx_fk_inserted_user_id                      (fk_inserted_user_id),
+  INDEX                      idx_fk_updated_user_id                       (fk_updated_user_id),
+  INDEX                      idx_fk_deleted_user_id                       (fk_deleted_user_id),
+
+  FOREIGN KEY                (fk_hotel_id) references zvs_hotel           (pk_hotel_id),
+  FOREIGN KEY                (fk_inserted_user_id) references zvs_user    (pk_user_id),
+  FOREIGN KEY                (fk_updated_user_id) references zvs_user     (pk_user_id),
+  FOREIGN KEY                (fk_deleted_user_id) references zvs_user     (pk_user_id)
+
+) TYPE=InnoDB CHECKSUM = 1;
+
+
+
 
 #
 # TABLE structure for TABLE zvs_user
@@ -245,6 +289,7 @@ DROP TABLE IF EXISTS zvs_user;
 CREATE TABLE zvs_user (
   pk_user_id                 INT(11)             NOT NULL,
   fk_hotel_id                INT(11)                                      DEFAULT NULL,
+  fk_group_id                INT(11)			 NOT NULL,				  
   lastname                   VARCHAR(50)         NOT NULL,
   firstname                  VARCHAR(50)                                  DEFAULT NULL,
   login                      VARCHAR(50)         NOT NULL,
@@ -260,8 +305,6 @@ CREATE TABLE zvs_user (
 
   PRIMARY KEY                (pk_user_id),
 
-  UNIQUE KEY                 fk_hotel_id_login                            (fk_hotel_id, login),
-
   INDEX                      idx_fk_hotel_id                              (fk_hotel_id),
   INDEX                      idx_fk_language_id                           (fk_language_id),
   INDEX                      idx_fk_inserted_user_id                      (fk_inserted_user_id),
@@ -269,12 +312,14 @@ CREATE TABLE zvs_user (
   INDEX                      idx_fk_deleted_user_id                       (fk_deleted_user_id),
   INDEX                      idx_locked                                   (locked),
   INDEX                      idx_lastname_firstname                       (lastname, firstname),
-
+  INDEX 					 idx_fk_group_id						      (fk_group_id),
+  
   FOREIGN KEY                (fk_hotel_id) references zvs_hotel           (pk_hotel_id),
   FOREIGN KEY                (fk_language_id) references zvs_language     (pk_language_id),
   FOREIGN KEY                (fk_inserted_user_id) references zvs_user    (pk_user_id),
   FOREIGN KEY                (fk_updated_user_id) references zvs_user     (pk_user_id),
-  FOREIGN KEY                (fk_deleted_user_id) references zvs_user     (pk_user_id)
+  FOREIGN KEY                (fk_deleted_user_id) references zvs_user     (pk_user_id),
+  FOREIGN KEY                (fk_group_id) references zvs_group     	  (pk_group_id)
 
 ) TYPE=InnoDB CHECKSUM = 1;
 
