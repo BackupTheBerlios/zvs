@@ -1,0 +1,350 @@
+/***************************************************************
+*  Copyright notice
+*  
+*  (c) 2003-2004 Christian Ehret (chris@ehret.name)
+*  All rights reserved
+*
+*  This script is part of the ZVS project. The ZVS project is 
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+* 
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*  A copy is found in the textfile GPL.txt and important notices to the license 
+*  from the author is found in LICENSE.txt distributed with these scripts.
+*
+* 
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
+
+/* GLOBALS .....................................................*/
+	
+body, TD{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+Textarea, Input, Select {
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+A {
+color: #666666;
+text-decoration : none;
+}
+
+A:Hover {
+color: #D91791;
+text-decoration : underline;
+}
+
+.MainNavBG{
+	background-color : #666666;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	color: #999999;
+}
+
+.DGrey{
+	background-color : #999999;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	color: #DCDCDC;
+}
+
+H1{
+	color: #D91791;
+	vertical-align : bottom;
+	padding-top : -9px;
+	padding-bottom : -12px;
+}
+
+
+
+A.NavActive{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight : bold;
+	color: White;
+	text-decoration : none;
+}
+
+A.NavActive:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight : bold;
+	color: White;
+	text-decoration : none;
+}
+
+A.NavInactive{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.NavInactive:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+.GNav{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 14px;
+	font-weight : bold;
+	color: #666666;
+	text-decoration : none;
+			padding-bottom : 4px;
+			padding-top : 4px;
+}
+
+.GNav A, .GNav A:Hover{
+	font-size: 14px;
+	font-weight : bold;
+	color: #666666;
+	text-decoration : none;
+}
+
+.GNavActive{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 14px;
+	font-weight : bold;
+	color: #D91791;
+	text-decoration : none;
+			padding-bottom : 4px;
+			padding-top : 4px;
+}
+
+.GNavActive A, .GNavActive A:Hover{
+	font-size: 14px;
+	font-weight : bold;
+	color: #D91791;
+	text-decoration : none;
+}
+
+Table.Box{
+	background-color : #FFF7D5;
+}
+Table.Calendar{
+background-color : #FFF7D5;
+/*
+	border : 1px solid #FFD940;
+	border-top : 1px solid #FFD940;
+	border-left : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	border-bottom : 1px solid #FFD940;
+	*/
+}
+.BoxTop{
+	border-top : 1px solid #FFD940;
+}
+.BoxLeft{
+	border-left : 1px solid #FFD940;
+}
+.BoxRight{
+	border-right : 1px solid #FFD940;
+}
+.BoxBottom{
+	border-bottom : 1px solid #FFD940;
+}
+.SubheadlineYellow{
+	font-size : 20px;
+	font-weight : normal;
+	color : #FFCD04;
+	padding-left : 8px;
+	padding-top : 0px;
+}
+.DividingLine{
+	background-image : url(dividingLine_Gray.png);
+	background-position : center;
+	background-repeat : repeat-x;	
+	height : 14px;
+}
+Input.Button100{
+	font-weight : bold;
+	width : 100%;
+	text-align : left;
+}
+
+TD.CalendarL0{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFFFFF;
+}
+
+TD.CalendarL1{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;	
+}
+TD.CalendarL1Header{
+	border-top : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+	font-weight : bold;
+	
+}
+
+TD.CalendarL1HeaderLeft{
+	border-top : 1px solid #FFD940;
+	border-left : 1px solid #FFD940;
+	border-right : 2px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+}
+
+TD.CalendarL1Left{
+	border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+	font-weight : bold;
+}
+
+TD.CalendarL0Left{
+	border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFFFFF;
+	font-weight : bold;
+}
+TD.CalendarRoom0{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+}
+
+TD.CalendarRoom1{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+}
+TD.ListL1{
+	border-bottom : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : White;
+}
+TD.ListL1Header{
+	border-bottom : 1px solid #FFD940;
+	border-top : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color :  White;
+}
+TD.ListL1Footer{
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : White;
+}
+TD.ListL0{
+	border-bottom : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+}
+TD.FrameBox{
+	border : 1px solid #FFD940;
+}
+TD.Headline{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 16px;
+	font-weight : bold;
+}
+TD.Sub2Headline{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 14px;
+	font-weight : bold;
+}
+TD.Shady{
+	background-color : #FFF2BD;
+}
+TD.White{
+	background-color : White;
+}
+TD.NavInactive{
+	border : 1px solid #FFD940;
+	background-color : #FFF2BD;
+	color: #999999;
+	padding-left : 6px;
+	padding-top : 1px;
+	padding-right : 6px;
+	padding-bottom : 1px;	
+}
+TD.NavActive{
+	border : 1px solid #FFD940;
+	background-color : #FFD940;
+	font-weight : bold;
+	padding-left : 6px;
+	padding-top : 1px;
+	padding-right : 6px;
+	padding-bottom : 1px;
+}
+.DefError{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 15px;
+	color: #FF4500;
+	text-decoration: none;
+	font-weight : bold;
+}
+TD.colorchooser{
+	border : 1px solid #FFD940;
+}
+
+OPTION.mar{background-color:maroon; color:white}
+OPTION.white{background-color:white; color:maroon}
+
+
+
+#dek {POSITION:absolute;VISIBILITY:hidden;Z-INDEX:200;}   
