@@ -43,35 +43,45 @@ CREATE TABLE `_sequence_zvs_pk_bought_id` (
   PRIMARY KEY  (`sequence`)
 ) TYPE=InnoDB CHECKSUM=1;
 
+
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `zvs_bararticle`
+# Tabellenstruktur für Tabelle `_sequence_zvs_pk_period_id`
 #
 
-CREATE TABLE `zvs_bararticle` (
-  `pk_bararticle_id` int(11) NOT NULL default '0',
-  `fk_bararticlecat_id` int(11) NOT NULL default '0',
-  `description` varchar(255) default NULL,
-  `price` decimal(10,2) NOT NULL default '0.00',
-  `hotkey` char(1) default NULL,
+CREATE TABLE `_sequence_zvs_pk_period_id` (
+  `sequence` int(11) NOT NULL auto_increment,
+  PRIMARY KEY  (`sequence`)
+) TYPE=InnoDB CHECKSUM=1;
+
+
+# --------------------------------------------------------
+#
+# Tabellenstruktur für Tabelle `zvs_period`
+#
+
+CREATE TABLE `zvs_period` (
+  `pk_period_id` int(11) NOT NULL default '0',
+  `period` varchar(50) NOT NULL default '',
+  `active` enum('Y','N') NOT NULL default 'N',
   `inserted_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `fk_inserted_user_id` int(11) NOT NULL default '0',
   `updated_date` datetime default NULL,
   `fk_updated_user_id` int(11) default NULL,
   `deleted_date` datetime default NULL,
   `fk_deleted_user_id` int(11) default NULL,
-  PRIMARY KEY  (`pk_bararticle_id`),
-  KEY `idx_pk_bararticle_id` (`pk_bararticle_id`),
+  PRIMARY KEY  (`pk_period_id`),
+  UNIQUE KEY `period` (`period`),
   KEY `idx_fk_inserted_user_id` (`fk_inserted_user_id`),
   KEY `idx_fk_updated_user_id` (`fk_updated_user_id`),
   KEY `idx_fk_deleted_user_id` (`fk_deleted_user_id`),
-  KEY `idx_fk_bararticlecat_id` (`fk_bararticlecat_id`),
-  CONSTRAINT `0_1690` FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `0_1691` FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `0_1692` FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `zvs_bararticle_ibfk_1` FOREIGN KEY (`fk_bararticlecat_id`) REFERENCES `zvs_bararticlecat` (`pk_bararticlecat_id`)
+  FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
 ) TYPE=InnoDB CHECKSUM=1;
+
+
 
 # --------------------------------------------------------
 
@@ -93,12 +103,48 @@ CREATE TABLE `zvs_bararticlecat` (
   KEY `idx_fk_inserted_user_id` (`fk_inserted_user_id`),
   KEY `idx_fk_updated_user_id` (`fk_updated_user_id`),
   KEY `idx_fk_deleted_user_id` (`fk_deleted_user_id`),
-  CONSTRAINT `zvs_bararticlecat_ibfk_1` FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `zvs_bararticlecat_ibfk_2` FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `zvs_bararticlecat_ibfk_3` FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
+  FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
 ) TYPE=InnoDB CHECKSUM=1;
 
 
+
+
+
+
+# --------------------------------------------------------
+
+#
+# Tabellenstruktur für Tabelle `zvs_bararticle`
+#
+
+CREATE TABLE `zvs_bararticle` (
+  `pk_bararticle_id` int(11) NOT NULL default '0',
+  `fk_bararticlecat_id` int(11) NOT NULL default '0',
+  `fk_period_id` int(11) NOT NULL default '0',
+  `description` varchar(255) default NULL,
+  `price` decimal(10,2) NOT NULL default '0.00',
+  `hotkey` char(1) default NULL,
+  `inserted_date` datetime NOT NULL default '0000-00-00 00:00:00',
+  `fk_inserted_user_id` int(11) NOT NULL default '0',
+  `updated_date` datetime default NULL,
+  `fk_updated_user_id` int(11) default NULL,
+  `deleted_date` datetime default NULL,
+  `fk_deleted_user_id` int(11) default NULL,
+  PRIMARY KEY  (`pk_bararticle_id`),
+  KEY `idx_pk_bararticle_id` (`pk_bararticle_id`),
+  KEY `idx_fk_inserted_user_id` (`fk_inserted_user_id`),
+  KEY `idx_fk_updated_user_id` (`fk_updated_user_id`),
+  KEY `idx_fk_deleted_user_id` (`fk_deleted_user_id`),
+  KEY `idx_fk_bararticlecat_id` (`fk_bararticlecat_id`),
+  KEY `idx_fk_period_id` (`fk_period_id`),
+  FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_bararticlecat_id`) REFERENCES `zvs_bararticlecat` (`pk_bararticlecat_id`),
+  FOREIGN KEY (`fk_period_id`) REFERENCES `zvs_period` (`pk_period_id`)
+) TYPE=InnoDB CHECKSUM=1;
 
 
 
@@ -144,10 +190,10 @@ CREATE TABLE `zvs_bought` (
   KEY `idx_fk_bararticle_id` (`fk_bararticle_id`),
   KEY `idx_fk_inserted_user_id` (`fk_inserted_user_id`),
   KEY `idx_fk_updated_user_id` (`fk_updated_user_id`),
-  CONSTRAINT `0_1694` FOREIGN KEY (`fk_barguest_id`) REFERENCES `zvs_barguest` (`pk_barguest_id`),
-  CONSTRAINT `0_1695` FOREIGN KEY (`fk_bararticle_id`) REFERENCES `zvs_bararticle` (`pk_bararticle_id`),
-  CONSTRAINT `0_1696` FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
-  CONSTRAINT `0_1697` FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
+  FOREIGN KEY (`fk_barguest_id`) REFERENCES `zvs_barguest` (`pk_barguest_id`),
+  FOREIGN KEY (`fk_bararticle_id`) REFERENCES `zvs_bararticle` (`pk_bararticle_id`),
+  FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
+  FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
 ) TYPE=InnoDB CHECKSUM=1;
 
 

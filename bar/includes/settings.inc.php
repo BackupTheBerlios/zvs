@@ -127,6 +127,7 @@ function setHotelDB()
     $tbl_barguest = $hoteltable . '.zvs_barguest';
     $tbl_bought = $hoteltable . '.zvs_bought';
     $tbl_bararticlecat = $hoteltable . '.zvs_bararticlecat';
+	$tbl_period = $hoteltable . '.zvs_period';
 } 
 
 $smarty->assign('wwwroot', $wwwroot);
