@@ -67,8 +67,8 @@ function checkout(setinactive)
 		document.pay.submit();
 	}
 }
-function openSpecial(){
-    F2 = window.open('<%$wwwroot%>addspecial.php/guestid.<%$tpl_theguestid%>/addspecial.php','addbarguest','width=400,height=240,left=0,top=0');
+function openSpecial(catid){
+    F2 = window.open('<%$wwwroot%>addspecial.php/guestid.<%$tpl_theguestid%>/catid.'+catid+'/addspecial.php','addbarguest','width=400,height=240,left=0,top=0');
     F2.focus();
 }
 function openedit(guestid){
@@ -243,7 +243,7 @@ function switchLayer(layername)
 						<%if $tpl_cat[divcat].articles[article].newline eq "true"%>
 						</tr><tr>
 						<%/if%>			
-						<td><button class="BarButton" <%if $tpl_cat[divcat].articles[article].hotkey neq ""%>accesskey="<%$tpl_cat[divcat].articles[article].hotkey%>"<%/if%> <%if $tpl_cat[divcat].articles[article].articleid eq "0"%>onclick="openSpecial();"<%else%>onfocus="submitform<%$tpl_cat[divcat].articlecatid%>(<%$tpl_cat[divcat].articles[article].articleid%>);"<%/if%>><%$tpl_cat[divcat].articles[article].description%><br><%$tpl_cat[divcat].articles[article].price%><%if $tpl_cat[divcat].articles[article].price neq ""%>&nbsp;EUR<%/if%><br><%if $tpl_cat[divcat].articles[article].hotkey neq ""%>ALT+<%$tpl_cat[divcat].articles[article].hotkey%><%else%>&nbsp;<%/if%></button></td>
+						<td><button class="BarButton" <%if $tpl_cat[divcat].articles[article].hotkey neq ""%>accesskey="<%$tpl_cat[divcat].articles[article].hotkey%>"<%/if%> <%if $tpl_cat[divcat].articles[article].articleid eq "0"%>onclick="openSpecial(<%$tpl_cat[divcat].articlecatid%>);"<%else%>onfocus="submitform<%$tpl_cat[divcat].articlecatid%>(<%$tpl_cat[divcat].articles[article].articleid%>);"<%/if%>><%$tpl_cat[divcat].articles[article].description%><br><%$tpl_cat[divcat].articles[article].price%><%if $tpl_cat[divcat].articles[article].price neq ""%>&nbsp;EUR<%/if%><br><%if $tpl_cat[divcat].articles[article].hotkey neq ""%>ALT+<%$tpl_cat[divcat].articles[article].hotkey%><%else%>&nbsp;<%/if%></button></td>
 					<%/section%>
 					</tr>
 				</table>
