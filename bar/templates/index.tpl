@@ -296,7 +296,9 @@ function switchLayer(layername)
 				<%if $tpl_guestarticles[0].articleid eq "0"%>
 				Es liegen keine Ums&auml;tze vor!
 				<br>
+				<%if $tpl_level ge 10%>
 				<button onclick="checkout(true);">weg</button>
+				<%/if%>
 				<%else%>				
 				<table border="0" cellpadding="3" cellspacing="0">
 				   <tr>
@@ -333,13 +335,13 @@ function switchLayer(layername)
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><%$tpl_guestarticles[guestarticle].price%>&nbsp;EUR</td>			  
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</td>	
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><a href="javascript:pay(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>')"><img src="<%$wwwroot%>img/icon_ok.gif" border="0" width="15" height="13" alt="bezahlt"></a></td>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><a href="javascript:storno(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>');"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="Storno"></a></td>		  
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_level ge 10%><a href="javascript:storno(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>');"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="Storno"></a><%/if%>&nbsp;</td>		  
 					</tr>
 				  <%/if%>
 				  <%/section%>
 				</table>
 				<br>
-				<button onclick="checkout(false);">bezahlt</button>&nbsp;<button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/receipt.php')">Bon</button>&nbsp;<button onclick="openbon();">Bon &uuml;ber Zeitraum</button>
+				<button onclick="checkout(false);">bezahlt</button>&nbsp;<%if $tpl_level ge 10%><button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/receipt.php')">Bon</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="openbon();">Bon &uuml;ber Zeitraum</button><%/if%>
 				<%/if%>
 				</form>
 			<%/if%>
