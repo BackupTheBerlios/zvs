@@ -1,0 +1,157 @@
+/* 
+    global.css audio objekte.de v.01
+
+   author: sascha schwartz 30.09.2001
+    ................................................................
+	this stylesheet defines the global 
+	colors, positions and fonts used 
+	in the site. 
+	
+	abreviations:
+	prev = preview
+	cat = category
+	
+*/
+/* GLOBALS .....................................................*/
+	
+body, TD{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+Textarea, Input, Select {
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+A {
+color: #999999;
+text-decoration : none;
+}
+
+A:Hover {
+color: #D91791;
+text-decoration : underline;
+}
+
+.MainNavBG{
+	background-color : #666666;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	color: #999999;
+}
+
+.HifiCol{
+	background-color : #D91791;
+}
+.TVCol{
+	background-color : #00A6AE;
+}
+.CDCol{
+	background-color : #FF8000;
+}
+.MMCol{
+	background-color : #0000CC;
+}
+.OFFICECol{
+	background-color : #00CC00;
+}
+.ZubCol{
+	background-color : #FFCC00;
+}
+
+A.Hifi{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.Hifi:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #D91791;
+	text-decoration : none;
+}
+
+A.TV{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.TV:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #00A6AE;
+	text-decoration : none;
+}
+
+A.CD{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.CD:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #FF8000;
+	text-decoration : none;
+}
+
+A.MM{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.MM:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #0000CC;
+	text-decoration : none;
+}
+
+A.OFFICE{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.OFFICE:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #00CC00;
+	text-decoration : none;
+}
+
+A.Zub{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #999999;
+	text-decoration : none;
+}
+
+A.Zub:HOVER{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 20px;
+	font-weight : bold;
+	color: #FFCC00;
+	text-decoration : none;
+}
