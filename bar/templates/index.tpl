@@ -80,7 +80,10 @@ function openbon(){
 	F4.focus();
 }
 
-
+    function openImport(){
+    F5 = window.open('<%$wwwroot%>importuser.php','importuser','width=270,height=190,left=0,top=0');
+    F5.focus();
+    }
 
 var isIE, isDOM;
 isIE = (document.all ? true : false);
@@ -150,7 +153,7 @@ function switchLayer(layername)
 			<p class="SubheadlineYellow">Gastliste</p>	
            <table border="0" cellspacing="0" cellpadding="0" valign="top" width="500" align="center">
              <tr>
-			 	<td valign="top" class="NavInactive" colspan="3"><a href="javascript:openWindow();" class="NavInactive">neuer Gast</a></td>
+			 	<td valign="top" class="NavInactive" colspan="6"><a href="javascript:openWindow();" class="NavInactive">neuer Gast</a><%if $tpl_import%>&nbsp;&nbsp;<a href="javascript:openImport();" class="NavInactive">ZVS Import</a><%/if%></td>
 			 </tr>
 			   <%section name=guest loop=$tpl_barguests%>
 	
@@ -158,13 +161,14 @@ function switchLayer(layername)
 			    	<tr>
 				 <%/if%>
 				 <%if $tpl_barguests[guest].guestid neq '0'%>
+  			 	<td class="colorchooser" bgcolor="<%$tpl_barguests[guest].bccolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0" alt="<%$tpl_barguests[guest].bookingcat%>"></td>
 			 	<td class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>" nowrap="nowrap" width="250">
 					<a href="javascript:openedit(<%$tpl_barguests[guest].guestid%>);"><img src="<%$wwwroot%>img/editnav.png" width="14" height="14" border="0" alt="Bearbeiten"></a>&nbsp;
 				  	<a href="<%$wwwroot%><%if $tpl_nav eq "sell"%>index.php<%else%>kassa.php<%/if%>/guestid.<%$tpl_barguests[guest].guestid%>/index.php" class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_barguests[guest].firstname%>&nbsp;<%$tpl_barguests[guest].lastname%>&nbsp;(<%$tpl_barguests[guest].sum%>&nbsp;EUR)</a>
 
 			   	</td>
 				<%else%>
-				<td class="NavInactive">&nbsp;</td>
+				<td class="NavInactive" colspan="2">&nbsp;</td>
 				<%/if%>
 				<%if $tpl_barguests[guest].endline eq 'true'%>		   
 			    	</tr>
@@ -213,7 +217,7 @@ function switchLayer(layername)
 		    <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
 		    <td width="100%">
 		<%if $tpl_theguestid neq "-1"%>	
-		        <p class="SubheadlineYellow">Verkauf an <%$tpl_theguest%> &nbsp;&nbsp;<a href="javascript:openedit(<%$tpl_theguestid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a></p>
+		        <table border="0" cellpadding="0" cellspacing="0"><tr><td class="colorchooser" bgcolor="<%$tpl_thebookingcat.color%>"><img src="<%$wwwroot%>img/spacer.gif" width="15" height="10" boder="0" alt="<%$tpl_thebookingcat.name%>"></td><td class="SubheadlineYellow">Verkauf an <%$tpl_theguest%> &nbsp;&nbsp;<a href="javascript:openedit(<%$tpl_theguestid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a></td></tr></table><br>
   					<%if $tpl_showlast eq "true"%>
 					<%$tpl_guestarticles[0].timestamp%>&nbsp;Uhr:&nbsp;
 					<b><%$tpl_guestarticles[0].num%>x</b>&nbsp;
@@ -290,7 +294,7 @@ function switchLayer(layername)
 			<%if $tpl_theguestid eq "-1"%>
 				<p class="SubheadlineYellow">Bitte einen Gast ausw&auml;hlen!</p>
 			<%else%>
-		        <p class="SubheadlineYellow">Abrechnung f&uuml;r <%$tpl_theguest%> &nbsp;&nbsp;<a href="javascript:openedit(<%$tpl_theguestid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a></p>
+		        <table border="0" cellpadding="0" cellspacing="0"><tr><td class="colorchooser" bgcolor="<%$tpl_thebookingcat.color%>"><img src="<%$wwwroot%>img/spacer.gif" width="15" height="10" boder="0" alt="<%$tpl_thebookingcat.name%>"></td><td class="SubheadlineYellow">Abrechnung f&uuml;r <%$tpl_theguest%> &nbsp;&nbsp;<a href="javascript:openedit(<%$tpl_theguestid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a></td></tr></table><br>
 				<form name="pay" id="pay" action="<%$wwwroot%>index.php/guestid.<%$tpl_theguestid%>/index.php" method="post">
 				<input type="hidden" name="frm_checkout" id="frm_checkout" value="false">
 				<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%$tpl_theguestid%>">

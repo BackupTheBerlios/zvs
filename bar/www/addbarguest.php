@@ -47,6 +47,7 @@ if ($request->GetVar('frm_firstname','post') !== $request->undefined) {
 	$smarty->assign('tpl_added','false');
 }
 
+$smarty -> assign('tpl_bookingcat', $barguest->getAllBookingcat());
 $smarty -> display('addbarguest.tpl');
 
 ?>

@@ -39,6 +39,7 @@ include_once("barguestclass.inc.php");
 $barguest = new Barguest;
 $theguestid = -1;
 $theguest = "";
+$thebookingcat = "";
 
 include_once('statisticsclass.inc.php');
 $statistics = New Statistics;
@@ -75,6 +76,7 @@ if ($request->GetVar('frm_articleid', 'post') !== $request->undefined) {
 if ($request->GetVar('guestid', 'get') !== $request->undefined) {
     $theguestid = $request->GetVar('guestid', 'get');
     $theguest = $barguest->getName($theguestid);
+	$thebookingcat = $barguest->getBookingcat($theguestid);
     include_once("articleclass.inc.php");
     $articlecls = New Article;
     //$articles = $articlecls->Getall(true);
@@ -114,6 +116,7 @@ if ($request->GetVar('guestid', 'get') !== $request->undefined) {
     $smarty->assign('tpl_guestarticles', $guestarticles);
 } 
 
+$smarty->assign('tpl_import', $usezvs);
 $smarty->assign('tpl_cat', $cats);
 $smarty->assign('tpl_thecat', $cat);
 $smarty->assign('tpl_selectedcat', $selectedcats);
@@ -122,6 +125,7 @@ $barguests = $barguest->getAll();
 
 $smarty->assign('tpl_barguests', $barguests);
 $smarty->assign('tpl_theguestid', $theguestid);
+$smarty->assign('tpl_thebookingcat', $thebookingcat);
 $smarty->assign('tpl_theguest', $theguest);
 
 $smarty->assign("tpl_title", "ZVS Barinterface");

@@ -57,6 +57,14 @@ function submit_onkeypress()
 				<td><input type="text" name="frm_lastname" id="frm_lastname" value="" onKeyPress="submit_onkeypress();"></td>
 			</tr>	
 			<tr>
+				<td><b>Buchungskategorie</b></td>
+				<td><select name="frm_bookingcat" id="frm_bookingcat">
+					<%section name=cat loop=$tpl_bookingcat%>
+					<option value="<%$tpl_bookingcat[cat].bookingcatid%>"><%$tpl_bookingcat[cat].name%></option>
+					<%/section%>
+				    </select></td>
+			</tr>
+			<tr>
 				<td colspan="2" align="right"><a href="javascript:check();"><img src="<%$wwwroot%>img/button_weiter.gif" width="73" height="24" border="0"></a></td>
 			</tr>		
 		</table>

@@ -42,7 +42,7 @@ $smarty -> assign("tpl_title", "Gast editieren");
 
 if ($request->GetVar('frm_firstname','post') !== $request->undefined) {
     $guestid = $request->GetVar('frm_guestid','post');
-    $barguest->update($guestid ,$request->GetVar('frm_firstname','post') ,$request->GetVar('frm_lastname','post') );
+    $barguest->update($guestid ,$request->GetVar('frm_firstname','post') ,$request->GetVar('frm_lastname','post'), $request->GetVar('frm_bookingcat','post') );
 	$smarty->assign('tpl_theguestid', $guestid);
 	$smarty->assign('tpl_added','true');
 } else {
@@ -51,7 +51,7 @@ if ($request->GetVar('frm_firstname','post') !== $request->undefined) {
 	$smarty -> assign("tpl_guestid", $guestid);
 	$smarty->assign("tpl_barguest", $barguest->GetNameSplit($guestid));
 }
-
+$smarty -> assign('tpl_bookingcat', $barguest->getAllBookingcat());
 $smarty -> display('editbarguest.tpl');
 
 ?>
