@@ -47,6 +47,10 @@ $month = $todaydate['mon'];
 $year = $todaydate['year'];
 $thedate = "$day.$month.$year";
 $theotherdate = "$day-$month-$year";
+$thestart1 = "$day.$month.$year";
+$theotherstart1 = "$day-$month-$year";
+$theend1 = "$day.$month.$year";
+$theotherend1 = "$day-$month-$year";
 
 $smarty->assign('tpl_dates', $barguest->getdates());
 $smarty->assign('tpl_cat', $cat->getall());
@@ -68,6 +72,47 @@ $smarty->assign('tpl_thecat2', $thecat2);
 $sess->SetVar('thecat2', $thecat2);
 $smarty->assign('tpl_thecat3', $thecat3);
 $sess->SetVar('thecat3', $thecat3);
+
+$from_clock1 = "0";
+$till_clock1 = "23";
+$from_clock2 = "0";
+$till_clock2 = "23";
+$from_clock3 = "0";
+$till_clock3 = "23";
+
+if ($request->GetVar('frm_from_clock1','post') !== $request->undefined) {
+    $from_clock1 = $request->GetVar('frm_from_clock1','post');
+}
+if ($request->GetVar('frm_till_clock1','post') !== $request->undefined) {
+    $till_clock1 = $request->GetVar('frm_till_clock1','post');
+}
+
+if ($request->GetVar('frm_from_clock2','post') !== $request->undefined) {
+    $from_clock2 = $request->GetVar('frm_from_clock2','post');
+}
+if ($request->GetVar('frm_till_clock2','post') !== $request->undefined) {
+    $till_clock2 = $request->GetVar('frm_till_clock2','post');
+}
+
+if ($request->GetVar('frm_from_clock3','post') !== $request->undefined) {
+    $from_clock3 = $request->GetVar('frm_from_clock3','post');
+}
+if ($request->GetVar('frm_till_clock3','post') !== $request->undefined) {
+    $till_clock3 = $request->GetVar('frm_till_clock3','post');
+}
+
+$smarty->assign('tpl_from_clock1', $from_clock1);
+$sess->SetVar('from_clock1', $from_clock1);
+$smarty->assign('tpl_till_clock1', $till_clock1);
+$sess->SetVar('till_clock1', $till_clock1);
+$smarty->assign('tpl_from_clock2', $from_clock2);
+$sess->SetVar('from_clock2', $from_clock2);
+$smarty->assign('tpl_till_clock2', $till_clock2);
+$sess->SetVar('till_clock2', $till_clock2);
+$smarty->assign('tpl_from_clock3', $from_clock3);
+$sess->SetVar('from_clock3', $from_clock3);
+$smarty->assign('tpl_till_clock3', $till_clock3);
+$sess->SetVar('till_clock3', $till_clock3);
 
 if ($request->GetVar('frm_start', 'post') !== $request->undefined) {
     $thestart = $request->GetVar('frm_start', 'post');
@@ -146,19 +191,19 @@ if ($what == 'thedate') {
     list($day, $month, $year) = split('[.]', $thedate);
     $thestart = "$year-$month-$day 00:00:00";
     $theend = "$year-$month-$day 23:59:59";
-    $smarty->assign('tpl_statistics', $statistics->get($thestart, $theend, $thecat1));
+    $smarty->assign('tpl_statistics', $statistics->get($thestart, $theend, $thecat1, $from_clock1, $till_clock1));
 } elseif ($what == 'timeline') {
     list($day, $month, $year) = split('[.]', $theend1);
     $theend1 = "$year-$month-$day 23:59:59";
     list($day, $month, $year) = split('[.]', $thestart1);
     $thestart1 = "$year-$month-$day 00:00:00";
-    $smarty->assign('tpl_statistics', $statistics->get($thestart1, $theend1, $thecat2));
+    $smarty->assign('tpl_statistics', $statistics->get($thestart1, $theend1, $thecat2, $from_clock2, $till_clock2));
 } else {
     list($month, $year) = split('[/]', $theend);
     $theend = "$year-$month-01 00:00:00";
     list($month, $year) = split('[/]', $thestart);
     $thestart = "$year-$month-01 00:00:00";
-    $smarty->assign('tpl_statistics', $statistics->get($thestart, $theend, $thecat3));
+    $smarty->assign('tpl_statistics', $statistics->get($thestart, $theend, $thecat3, $from_clock3, $till_clock3));
 } 
 
 $smarty->display('statistics.tpl');
