@@ -1,0 +1,8 @@
+---------------------------------
+ The ZVS licensing conditions
+ 2004, Christian Ehret (chris@ehret.name)
+ Document version 1.00, 17-10-2004
+---------------------------------
+
+The ZVS project is free software under the terms of the GNU General Public License.
+The GNU/GPL license is found in the file GPL.txt
