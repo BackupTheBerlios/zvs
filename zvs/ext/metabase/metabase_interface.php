@@ -2,7 +2,7 @@
 /*
  * metabase_interface.php
  *
- * @(#) $Header: /home/xubuntu/berlios_backup/github/tmp-cvs/zvs/Repository/zvs/ext/metabase/metabase_interface.php,v 1.2 2005/02/27 14:28:13 xaos Exp $
+ * @(#) $Header: /home/xubuntu/berlios_backup/github/tmp-cvs/zvs/Repository/zvs/ext/metabase/metabase_interface.php,v 1.3 2005/02/27 14:30:34 xaos Exp $
  *
  */
 
@@ -340,7 +340,7 @@ Function MetabaseError($database)
 {
 	global $metabase_databases;
 
-//	return($metabase_databases[$database]->Error());
+	return($metabase_databases[$database]->Error());
 }
 
 Function MetabaseSetErrorHandler($database,$function)
