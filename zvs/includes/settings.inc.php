@@ -75,6 +75,7 @@ include_once('Smarty.class.php');
 include_once('multilanguage.php');
 
 $smarty = new smartyML();
+//$smarty = new Smarty;
 // Configure Smarty
 $smarty -> template_dir = '../templates';
 $smarty -> compile_dir = '../templates_c';
@@ -93,9 +94,9 @@ global $gDatasource;
 global $gDatabase2;
 
 $gDatasource = array('Type' => 'mysql',
-    'Host' => localhost,//$mysqlhost,
-    'User' => root,//$mysqluser,
-    'Password' => xaos,//$mysqlpassword,
+    'Host' => $mysqlhost,
+    'User' => $mysqluser,
+    'Password' => $mysqlpassword,
     'IncludePath' => $metabasepath,
     'Persistent' => true,
     'Options' => array('UseTransactions' => 1,
