@@ -8,7 +8,7 @@
 CREATE TABLE `_sequence_zvs_pk_bararticle_id` (
   `sequence` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`sequence`)
-) TYPE=InnoDB CHECKSUM=1 AUTO_INCREMENT=238 ;
+) TYPE=InnoDB CHECKSUM=1;
 
 # --------------------------------------------------------
 
@@ -19,7 +19,7 @@ CREATE TABLE `_sequence_zvs_pk_bararticle_id` (
 CREATE TABLE `_sequence_zvs_pk_bararticlecat_id` (
   `sequence` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`sequence`)
-) TYPE=InnoDB CHECKSUM=1 AUTO_INCREMENT=7 ;
+) TYPE=InnoDB CHECKSUM=1;
 
 # --------------------------------------------------------
 
@@ -30,7 +30,7 @@ CREATE TABLE `_sequence_zvs_pk_bararticlecat_id` (
 CREATE TABLE `_sequence_zvs_pk_barguest_id` (
   `sequence` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`sequence`)
-) TYPE=InnoDB CHECKSUM=1 AUTO_INCREMENT=215 ;
+) TYPE=InnoDB CHECKSUM=1;
 
 # --------------------------------------------------------
 
@@ -41,7 +41,7 @@ CREATE TABLE `_sequence_zvs_pk_barguest_id` (
 CREATE TABLE `_sequence_zvs_pk_bought_id` (
   `sequence` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`sequence`)
-) TYPE=InnoDB CHECKSUM=1 AUTO_INCREMENT=4790 ;
+) TYPE=InnoDB CHECKSUM=1;
 
 # --------------------------------------------------------
 
@@ -98,6 +98,10 @@ CREATE TABLE `zvs_bararticlecat` (
   CONSTRAINT `zvs_bararticlecat_ibfk_3` FOREIGN KEY (`fk_deleted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
 ) TYPE=InnoDB CHECKSUM=1;
 
+
+
+
+
 # --------------------------------------------------------
 
 #
@@ -145,3 +149,5 @@ CREATE TABLE `zvs_bought` (
   CONSTRAINT `0_1696` FOREIGN KEY (`fk_inserted_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`),
   CONSTRAINT `0_1697` FOREIGN KEY (`fk_updated_user_id`) REFERENCES `zvs_system_bar`.`zvs_user` (`pk_user_id`)
 ) TYPE=InnoDB CHECKSUM=1;
+
+
