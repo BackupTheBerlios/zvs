@@ -109,7 +109,7 @@ if ($error != '') {
 function setHotelDB()
 {
     global $errorhandler, $gDatasource, $gDatabase, $request;
-    global $tbl_bararticle, $tbl_barguest, $tbl_bought, $tbl_bararticlecat;
+    global $tbl_bararticle, $tbl_barguest, $tbl_bought, $tbl_bararticlecat, $tbl_period;
 
     $hoteltable = $request->GetVar('schema', 'session')."_bar";
 
