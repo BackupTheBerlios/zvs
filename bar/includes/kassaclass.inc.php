@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.2 2004/11/03 16:33:52 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.3 2004/12/07 18:50:38 ehret Exp $
 */
 class Kassa {
     /**
@@ -51,12 +51,17 @@ class Kassa {
     */
     function get($guestid, $order)
     {
-        global $gDatabase2, $tbl_bararticle, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
+        global $gDatabase2, $tbl_bararticle, $tbl_user, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
         $article = array();
-        $query = "SELECT pk_bararticle_id, description, price, DATE_FORMAT( timestamp, '%d.%m.%Y, %H:%i' ), num, pk_bought_id " .
-        sprintf("FROM $tbl_bought
-				  		  LEFT JOIN $tbl_barguest ON $tbl_barguest.pk_barguest_id = $tbl_bought.fk_barguest_id
-				  	      LEFT JOIN $tbl_bararticle ON $tbl_bought.fk_bararticle_id = $tbl_bararticle.pk_bararticle_id
+        $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, 
+		          DATE_FORMAT( b.timestamp, '%d.%m.%Y, %H:%i' ), b.num, b.pk_bought_id, 
+				  u1.firstname, u1.lastname, DATE_FORMAT( b.inserted_date, '%d.%m.%Y, %H:%i' ), 
+				  u2.firstname, u2.lastname, DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i' )" .
+        sprintf("FROM $tbl_bought b
+				  		  LEFT JOIN $tbl_barguest bg ON bg.pk_barguest_id = b.fk_barguest_id
+				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
+						  LEFT JOIN $tbl_user u1 ON b.fk_inserted_user_id = u1.pk_user_id
+						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u1.pk_user_id
 						  WHERE pk_barguest_id = %s
 						  AND paid = %s 
 						  ORDER BY timestamp %s",
@@ -83,6 +88,10 @@ class Kassa {
                     'timestamp' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
                     'num' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
                     'boughtid' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
+					'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 6)." ".MetabaseFetchResult($gDatabase2, $result, $row, 7),
+                    'inserteddate' => MetabaseFetchResult($gDatabase2, $result, $row, 8),					
+					'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 9)." ".MetabaseFetchResult($gDatabase2, $result, $row, 10),
+                    'updateddate' => MetabaseFetchResult($gDatabase2, $result, $row, 11),					
                     'total' => number_format($total, 2, '.', ''),
                     'color' => $color
                     );
