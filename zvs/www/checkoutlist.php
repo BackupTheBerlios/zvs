@@ -38,7 +38,7 @@ include_once("../includes/default.inc.php");
 $auth->is_authenticated();
 include_once('checkoutclass.inc.php');
 if ($request->GetVar('list', 'get') == 'true') {
-    $smarty->assign("tpl_title", "Anwensenheitsliste");
+    $smarty->assign("tpl_title", "Anwesenheitsliste");
     $smarty->assign('tpl_nav', 'lists');
     $smarty->assign('tpl_subnav', 'checkout');
     $smarty->assign('tpl_checkout', 'false');
