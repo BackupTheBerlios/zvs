@@ -27,7 +27,9 @@
 		<a href="<%$wwwroot%>paytypes.php">Zahlungskategorieen verwalten</a>
 		<br>	
 		<a href="<%$wwwroot%>edituser.php">Benutzer verwalten</a>
-		<br>			
+		<br>	
+		<a href="<%$wwwroot%>editemployee.php">Mitarbeiter verwalten</a>
+		<br>					
 		<a href="<%$wwwroot%>systemsettings.php">Systemeinstellungen</a>
 		<br>
 		<a href="<%$wwwroot%>database.php">Datenbank</a>
