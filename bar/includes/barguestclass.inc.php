@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: barguestclass.inc.php,v 1.2 2004/11/03 16:33:52 ehret Exp $
+* @version $Id: barguestclass.inc.php,v 1.3 2004/12/07 18:48:05 ehret Exp $
 */
 class Barguest {
     /**
@@ -210,7 +210,7 @@ class Barguest {
         } else {
             $startyear = MetabaseFetchResult($gDatabase2, $result, 0, 0);
             $endyear = MetabaseFetchResult($gDatabase2, $result, 0, 1);
-            for ($year = $startyear; $year <= $endyear; ++$year) {
+            for ($year = $startyear; $year <= $endyear+1; ++$year) {
                 for ($i = 1; $i <= 12; $i++) {
                     $dates[$j] = $i . '/' . $year;
                     $j++;
