@@ -117,7 +117,7 @@
            <option value="F" <%if $tpl_gast.identification eq "F"%>selected<%/if%>>F&uuml;hrerschein</option>                   
         </select></td>
 	<td><strong>Ausweis-Nummer</strong></td>
-    <td><input name="frm_passport" type="text" id="frm_passport" size="30" value="<%$tpl_gast.passport%>"></td>´
+    <td><input name="frm_passport" type="text" id="frm_passport" size="30" value="<%$tpl_gast.passport%>"></td>
 	<td colspan="2">&nbsp;</td>
  </tr>
  <tr>            
