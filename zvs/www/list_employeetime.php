@@ -99,7 +99,7 @@ if ($request -> GetVar('frm_timetrackerid', 'post') !== $request -> undefined) {
         $smarty -> assign('tpl_addnew', 'true');
 		$smarty -> assign('tpl_editid', -1);
     } elseif ($request -> GetVar('frm_action', 'post') == 'del') {
-        //$room -> del($request -> GetVar('frm_roomid', 'post'));
+        $timetracker -> del($request -> GetVar('frm_timetrackerid', 'post'));
 		$smarty -> assign('tpl_editid', -1);		
     } elseif ($request -> GetVar('frm_timetrackerid', 'post') !== "") {
         $check = $timetracker -> saveupdate();

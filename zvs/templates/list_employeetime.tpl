@@ -10,9 +10,9 @@
 		document.select.submit();	
 	}
 	
-	function del(id, name) {
+	function del(id) {
 		var check;
-		check = confirm("Zimmer \""+ name +"\" wirklich löschen?");
+		check = confirm("Zeit wirklich löschen?");
 		if (check) {
 			document.select.frm_timetrackerid.value = id;
 			document.select.frm_action.value = "del";
@@ -73,7 +73,7 @@
 	<%if $tpl_theemployeeid eq -1%>
 		Bitte einen Mitarbeiter ausw&auml;hlen
 	<%else%>
-	<table border="0" cellspacing="0" cellpadding="3" width="650">
+	<table border="0" cellspacing="0" cellpadding="3" width="680">
 		<tr>
 				<td class="ListL1">
 		  			<strong>Kommen</strong>
@@ -267,6 +267,7 @@
 					  <a href="javascript:save(<%$tpl_list[list].timetracker_id%>);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
 				    <%else%>
 				      <a href="javascript:edit(<%$tpl_list[list].timetracker_id%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a>
+					  <a href="javascript:del(<%$tpl_list[list].timetracker_id%>);"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0"></a>
 					<%/if%>  
 					</td>				
 					<%/if%>
