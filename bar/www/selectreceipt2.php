@@ -49,10 +49,18 @@ $barguest = New Barguest;
 
 
 if ($request->GetVar('frm_start', 'get') !== $request->undefined) {
+    include_once('articlecatclass.inc.php');
+    $articlecat = New articlecat;
+
+    $allcats = $articlecat->getall();
+
+    for ($i = 0; $i < count($allcats); $i++) {
+        $cats[$i] = $allcats[$i]['articlecatid'];
+    } 
     $theguestid = $request->GetVar('frm_theguestid', 'get');
 	$start = $request->GetVar('frm_start', 'get');
 	$end = $request->GetVar('frm_end', 'get');
-    $guestarticles = $kassacls->getTimeline($theguestid, $start, $end, 'ASC');
+    $guestarticles = $kassacls->getTimeline($theguestid, $start, $end, 'ASC', $cats);
 	$smarty->assign('tpl_guestarticles', $guestarticles);
 
 }

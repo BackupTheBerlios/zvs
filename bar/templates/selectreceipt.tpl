@@ -38,7 +38,7 @@ function submit_onkeypress()
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
         <p class="SubheadlineYellow">Bon &uuml;ber Zeitraum erstellen</p>
-		<form name="timeline" id="timeline" method="get" action="<%$wwwroot%>receipt.php">
+		<form name="timeline" id="timeline" method="get" action="<%$wwwroot%>receipt.php/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt.php">
 		<input type="hidden" name="frm_theguestid" id="frm_theguestid" value="<%$tpl_theguestid%>">
 		<table border="0">
 			<tr>

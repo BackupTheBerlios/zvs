@@ -47,6 +47,10 @@ include_once('articlecatclass.inc.php');
 $articlecat = New articlecat;
 
 $cats = $articlecat->getall();
+
+for ($i=0; $i< count($cats); $i++){
+  $selectedcats[$i] = $cats[$i]['articlecatid'];
+}
 $smarty->assign('tpl_nextnum', count($cats)+1);
 
 $smarty->assign('tpl_showlast', 'false');
@@ -57,7 +61,6 @@ if ($request->GetVar('frm_cat', 'post') !== $request->undefined) {
 	$cat = "verkauf".$cats[0]['articlecatid'];
 }
 
-$smarty->assign('tpl_thecat', $cat);
 
 if ($request->GetVar('showlast','get') !== $request->undefined) {
     $smarty->assign('tpl_showlast', 'true');
@@ -86,22 +89,34 @@ if ($request->GetVar('guestid', 'get') !== $request->undefined) {
         $payids = $request->getVar('payid', 'post');
         for ($i = 0; $i < count($payids); ++$i) {
             $kassacls->pay($payids[$i]);
+			$cat = "abrechnung";
+			$selectedcats = $request->GetVar('frm_selectedcat','post');
         } 
         if ($request->GetVar('frm_setinactive', 'post') == "true") {
             $kassacls->checkout($theguestid, $request->GetVar('frm_setinactive', 'post'));
         } 
     } 
     if ($request->GetVar('frm_storno', 'post') == "true") {
+		$selectedcats = $request->GetVar('frm_selectedcat','post');
         $kassacls->storno($request->GetVar('frm_boughtid', 'post'));
+		$cat = "abrechnung";
     } 
     if ($request->GetVar('frm_pay', 'post') == "true") {
+		$selectedcats = $request->GetVar('frm_selectedcat','post');
         $kassacls->pay($request->GetVar('frm_boughtid', 'post'));
+		$cat = "abrechnung";
     } 
-    $guestarticles = $kassacls->get($theguestid, 'DESC');
+	if ($request->GetVar('frm_changecat', 'post') == "true") {
+		$selectedcats = $request->GetVar('frm_selectedcat','post');
+	    $cat = "abrechnung";
+	}
+    $guestarticles = $kassacls->get($theguestid, 'DESC', $selectedcats);
     $smarty->assign('tpl_guestarticles', $guestarticles);
 } 
 
 $smarty->assign('tpl_cat', $cats);
+$smarty->assign('tpl_thecat', $cat);
+$smarty->assign('tpl_selectedcat', $selectedcats);
 
 $barguests = $barguest->getAll();
 

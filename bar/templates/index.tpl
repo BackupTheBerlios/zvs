@@ -47,6 +47,11 @@ function pay(id, num, desc)
 		document.pay.submit();
 	}
 }
+function changecat()
+{
+	document.pay.frm_changecat.value = "true";
+	document.pay.submit();
+}
 function checkout(setinactive)
 {
 	var message;
@@ -71,7 +76,7 @@ function openedit(guestid){
     F3.focus();
 }
 function openbon(){
-	F4 = window.open('<%$wwwroot%>selectreceipt.php/guestid.<%$tpl_theguestid%>/receipt.php','bon','width=400,height=280,left=0,top=0');
+	F4 = window.open('<%$wwwroot%>selectreceipt.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt.php','bon','width=400,height=280,left=0,top=0');
 	F4.focus();
 }
 
@@ -232,7 +237,7 @@ function switchLayer(layername)
 				<button class="CalcButton" onClick="addNumber<%$tpl_cat[divcat].articlecatid%>(9);">9</button>&nbsp;
 				<button class="CalcButton" onClick="addNumber<%$tpl_cat[divcat].articlecatid%>(0);">0</button>&nbsp;
 				<button class="CalcButton" onClick="resetNumber<%$tpl_cat[divcat].articlecatid%>();">L</button>&nbsp;
-				<table border="0">
+				<table border="0" align="center">
 					<tr>
 					<%section name=article loop=$tpl_cat[divcat].articles%>
 						<%if $tpl_cat[divcat].articles[article].newline eq "true"%>
@@ -293,13 +298,21 @@ function switchLayer(layername)
 				<input type="hidden" name="frm_boughtid" id="frm_boughtid" value="">
 				<input type="hidden" name="frm_storno" id="frm_storno" value="false">
 				<input type="hidden" name="frm_pay" id="frm_pay" value="false">
+				<input type="hidden" name="frm_changecat" id="frm_changecat" value="false">
 				<%if $tpl_guestarticles[0].articleid eq "0"%>
+				<%section name=cat loop=$tpl_cat%>
+				<input type="checkbox" name="frm_selectedcat[]" id="frm_selectedcat[]" value="<%$tpl_cat[cat].articlecatid%>" <%section name=thecat loop=$tpl_selectedcat%><%if $tpl_selectedcat[thecat] eq $tpl_cat[cat].articlecatid%>checked="checked"<%/if%><%/section%> onClick="changecat();"><%$tpl_cat[cat].articlecat%>&nbsp;
+				<%/section%>
+				<br>					
 				Es liegen keine Ums&auml;tze vor!
 				<br>
 				<%if $tpl_level ge 10%>
 				<button onclick="checkout(true);">weg</button>
 				<%/if%>
-				<%else%>				
+				<%else%>	
+				<%section name=cat loop=$tpl_cat%>
+				<input type="checkbox" name="frm_selectedcat[]" id="frm_selectedcat[]" value="<%$tpl_cat[cat].articlecatid%>" <%section name=thecat loop=$tpl_selectedcat%><%if $tpl_selectedcat[thecat] eq $tpl_cat[cat].articlecatid%>checked="checked"<%/if%><%/section%> onClick="changecat();"><%$tpl_cat[cat].articlecat%>&nbsp;
+				<%/section%>			
 				<table border="0" cellpadding="3" cellspacing="0">
 				   <tr>
 				      <td class="ListL1Header">&nbsp;</td>
@@ -360,7 +373,7 @@ function switchLayer(layername)
 				  <%/section%>
 				</table>
 				<br>
-				<button onclick="checkout(false);">bezahlt</button>&nbsp;<%if $tpl_level ge 10%><button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/receipt.php')">Bon</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="openbon();">Bon &uuml;ber Zeitraum</button><%/if%>
+				<button onclick="checkout(false);">bezahlt</button>&nbsp;<%if $tpl_level ge 10%><button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt.php')">Bon</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="openbon();">Bon &uuml;ber Zeitraum</button><%/if%>
 				<%/if%>
 				</form>
 			<%/if%>
