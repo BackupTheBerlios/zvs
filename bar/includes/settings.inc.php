@@ -128,7 +128,7 @@ function setHotelDB()
     $tbl_bought = $hoteltable . '.zvs_bought';
     $tbl_bararticlecat = $hoteltable . '.zvs_bararticlecat';
     $tbl_period = $hoteltable . '.zvs_period';
-	$tbl_bookingcat = $hoteltable . '.zvs_bookingcat';
+	$tbl_bookingcat = $hoteltable . '.zvs_barbookingcat';
 } 
 
 function setZVSHotelDB()

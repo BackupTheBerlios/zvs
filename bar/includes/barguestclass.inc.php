@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: barguestclass.inc.php,v 1.4 2004/12/14 17:28:35 ehret Exp $
+* @version $Id: barguestclass.inc.php,v 1.5 2004/12/14 18:07:14 ehret Exp $
 */
 class Barguest {
     /**
@@ -459,7 +459,7 @@ class Barguest {
                             MetabaseFetchResult($gDatabase, $result, 0, 0)
                             );
                     } else {
-                        $name = "zvs_pk_bookingcat_id";
+                        $name = "zvs_pk_barbookingcat_id";
                         $sequence = MetabaseGetSequenceNextValue($gDatabase, $name, &$bookingcatid);
                         $query = sprintf("INSERT INTO $tbl_bookingcat
 										  (pk_bookingcat_id, fk_zvsbookingcat_id, bookingcat, color, inserted_date, fk_inserted_user_id)
