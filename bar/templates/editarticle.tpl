@@ -53,29 +53,49 @@
 	<input type="hidden" name="frm_theperiodid" id="frm_theperiodid" value="<%$tpl_theperiod%>">
     <p class="SubheadlineYellow">Artikel verwalten</p>
 	<table border="0">
-	<tr>
-	<td>
-	<select name="frm_period" id="frm_period" onchange="document.article.frm_action.value='changeperiod';document.article.submit();">
-	<option value="-1">neue Preisliste erstellen</option>
-	<%section name="period" loop=$tpl_period%>
-    <option value="<%$tpl_period[period].periodid%>" <%if $tpl_period[period].periodid eq $tpl_theperiod%>selected="selected"<%/if%>><%$tpl_period[period].period%></option>
-	<%/section%>
-	</select></td>
-	<td>Bezeichnung:&nbsp;<input type="text" name="frm_perioddesc" id="frm_perioddesc" maxlength="50" size="20" value="<%$tpl_selectedPeriod.period%>"></td>
-	<td><%if $tpl_selectedPeriod.active%><input type="hidden" name="frm_periodact" id="frm_periodact" value="true"> <%/if%>aktuell:&nbsp;<input type="checkbox" name="frm_periodact<%if $tpl_selectedPeriod.active%>_dummy<%/if%>" id="frm_periodact<%if $tpl_selectedPeriod.active%>_dummy<%/if%>" value="true" <%if $tpl_selectedPeriod.active%>checked="checked" disabled="disabled"<%/if%>></td>
-	<%if $tpl_theperiod eq -1%><td>
-	<select name="frm_cpyperiod" id="frm_cpyperiod">
-	<option value="-1">keine Artikel kopieren</option>
-	<%section name="period" loop=$tpl_period%>
-    <option value="<%$tpl_period[period].periodid%>"><%$tpl_period[period].period%></option>
-	<%/section%>
-	</select>	
-	</td>
-	<%else%>
-	<td><input type="hidden" name="frm_cpyperiod" id="frm_cpyperiod" value="-1"></td>
-	<%/if%>
-	<td><a href="javascript:saveperiod();"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a></td>
-	</tr>
+		<tr>
+			<td>
+				<select name="frm_period" id="frm_period" onchange="document.article.frm_action.value='changeperiod';document.article.submit();">
+				<option value="-1">neue Preisliste erstellen</option>
+				<%section name="period" loop=$tpl_period%>
+			    <option value="<%$tpl_period[period].periodid%>" <%if $tpl_period[period].periodid eq $tpl_theperiod%>selected="selected"<%/if%>><%$tpl_period[period].period%></option>
+				<%/section%>
+				</select>
+			</td>
+			<td>
+				Bezeichnung:&nbsp;<input type="text" name="frm_perioddesc" id="frm_perioddesc" maxlength="50" size="20" value="<%$tpl_selectedPeriod.period%>">
+			</td>
+			<td>
+				<%if $tpl_selectedPeriod.active%><input type="hidden" name="frm_periodact" id="frm_periodact" value="true"> <%/if%>aktuell:&nbsp;<input type="checkbox" name="frm_periodact<%if $tpl_selectedPeriod.active%>_dummy<%/if%>" id="frm_periodact<%if $tpl_selectedPeriod.active%>_dummy<%/if%>" value="true" <%if $tpl_selectedPeriod.active%>checked="checked" disabled="disabled"<%/if%>>
+			</td>
+			<%if $tpl_theperiod eq -1%>
+			<td>
+				<select name="frm_cpyperiod" id="frm_cpyperiod">
+					<option value="-1">keine Artikel kopieren</option>
+					<%section name="period" loop=$tpl_period%>
+				    <option value="<%$tpl_period[period].periodid%>"><%$tpl_period[period].period%></option>
+					<%/section%>
+				</select>	
+			</td>
+			<%else%>
+			<td>
+				<input type="hidden" name="frm_cpyperiod" id="frm_cpyperiod" value="-1">&nbsp;
+			</td>
+			<%/if%>
+			<td>
+				<a href="javascript:saveperiod();"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5">Artikelkategorie:&nbsp;
+				<select name="frm_thecat" id="frm_thecat"  onchange="document.article.frm_action.value='changeperiod';document.article.submit();">
+				<option value="-1">alle</option>
+				<%section name=cat loop=$tpl_cat%>
+				<option value="<%$tpl_cat[cat].articlecatid%>" <%if $tpl_thecat eq $tpl_cat[cat].articlecatid%>selected<%/if%>><%$tpl_cat[cat].articlecat%></option>
+	  			<%/section%>
+				</select>
+			</td>
+		</tr>
 	</table>
 	<br>
 		<input type="hidden" name="frm_articleid" id="frm_articleid" value="0">
