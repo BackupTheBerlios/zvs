@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.3 2004/12/07 18:50:38 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.4 2004/12/07 21:26:21 ehret Exp $
 */
 class Kassa {
     /**
@@ -128,24 +128,27 @@ class Kassa {
     */
     function getTimeline($guestid, $start, $end, $order)
     {
-        global $gDatabase2, $tbl_bararticle, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
+        global $gDatabase2, $tbl_bararticle, $tbl_user, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
         $article = array();
         list($day, $month, $year) = split('.', $start);
-        $query = "SELECT pk_bararticle_id, description, price, DATE_FORMAT( timestamp, '%d.%m.%Y, %H:%i' ), num, pk_bought_id, paid,
-				  DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i Uhr' )
+        $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, DATE_FORMAT( b.timestamp, '%d.%m.%Y, %H:%i' ), num, pk_bought_id, paid,
+				  DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i Uhr' ), u2.firstname, u2.lastname,
+				  DATE_FORMAT( b.inserted_date, '%d.%m.%Y, %H:%i Uhr' ), u1.firstname, u1.lastname 
                  FROM $tbl_bought b
-				  		  LEFT JOIN $tbl_barguest ON $tbl_barguest.pk_barguest_id = b.fk_barguest_id
-				  	      LEFT JOIN $tbl_bararticle ON b.fk_bararticle_id = $tbl_bararticle.pk_bararticle_id
-						  WHERE pk_barguest_id = $guestid ";
+				  		  LEFT JOIN $tbl_barguest bg ON bg.pk_barguest_id = b.fk_barguest_id
+				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
+						  LEFT JOIN $tbl_user u1 ON b.fk_inserted_user_id = u1.pk_user_id
+						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u2.pk_user_id
+						  WHERE bg.pk_barguest_id = $guestid ";
         if ($start !== "") {
             list($day, $month, $year) = split('[.]', $start);
-            $query .= "AND UNIX_TIMESTAMP(timestamp) >= " . mktime(0, 0, 0, $month, $day, $year) . " ";
+            $query .= "AND UNIX_TIMESTAMP(b.timestamp) >= " . mktime(0, 0, 0, $month, $day, $year) . " ";
         } 
         if ($end !== "") {
             list($day, $month, $year) = split('[.]', $end);
-            $query .= "AND UNIX_TIMESTAMP(timestamp) <= " . mktime(0, 0, 0, $month, $day + 1, $year) . " ";
+            $query .= "AND UNIX_TIMESTAMP(b.timestamp) <= " . mktime(0, 0, 0, $month, $day + 1, $year) . " ";
         } 
-        $query .= "ORDER BY timestamp " . $order;
+        $query .= "ORDER BY b.timestamp " . $order;
 
         $result = MetabaseQuery($gDatabase2, $query);
         if (!$result) {
@@ -175,6 +178,9 @@ class Kassa {
                     'boughtid' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
                     'paid' => MetabaseFetchBooleanResult($gDatabase2, $result, $row, 6),
 					'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 7),					
+					'updateduser' => MetabaseFetchResult($gDatabase2, $result, $row, 8)." ".MetabaseFetchResult($gDatabase2, $result, $row, 9),	
+					'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 10),					
+					'inserteduser' => MetabaseFetchResult($gDatabase2, $result, $row, 11)." ".MetabaseFetchResult($gDatabase2, $result, $row, 12),	
                     'total1' => number_format($total, 2, '.', ''),
                     'total2' => number_format($paid, 2, '.', ''),
                     'color' => $color
