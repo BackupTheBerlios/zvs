@@ -44,7 +44,7 @@
 	function saveuser(id){
 	   document.user.frm_userid.value=id;	
 	   doChallengeResponse();
-		document.user.submit();
+	   //document.user.submit();
 	}
 	
 	function neu(){
