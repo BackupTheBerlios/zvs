@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: userclass.inc.php,v 1.2 2004/11/03 16:33:52 ehret Exp $
+* @version $Id: userclass.inc.php,v 1.3 2004/12/07 13:42:13 ehret Exp $
 */
 class User {
     /**
@@ -49,19 +49,21 @@ class User {
     */
     function getall()
     {
-        global $gDatabase2, $tbl_user, $request, $errorhandler;
+        global $gDatabase2, $tbl_user, $tbl_group, $request, $errorhandler;
 
         $user = array();
-        $query = sprintf("SELECT pk_user_id, lastname, firstname, login 
-		                 FROM $tbl_user 
-						 WHERE fk_hotel_id = %s 
-						 AND ISNULL(deleted_date)
-						 ORDER BY lastname ",
+        $query = sprintf("SELECT u.pk_user_id, u.lastname, u.firstname, u.login,
+						 g.pk_group_id, g.name
+		                 FROM $tbl_user u
+						 LEFT JOIN $tbl_group g ON (u.fk_group_id = g.pk_group_id)
+						 WHERE u.fk_hotel_id = %s 
+						 AND ISNULL(u.deleted_date)
+						 ORDER BY u.lastname ",
             $request -> GetVar('hotelid', 'session')
             );
         $result = MetabaseQuery($gDatabase2, $query);
         if (!$result) {
-            $errorhandler -> display('SQL', 'Guest::quickinsert()', $query);
+            $errorhandler -> display('SQL', 'User::getall()', $query);
         } else {
             $row = 0;
             for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase2, $result)) == 0; ++$row) {
@@ -74,6 +76,8 @@ class User {
                     'lastname' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
                     'firstname' => MetabaseFetchResult($gDatabase2, $result, $row, 2),
                     'login' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
+					'group' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
+					'groupid' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
                     'color' => $color
                     );
             } 
@@ -81,6 +85,50 @@ class User {
         return $user;
     } 
 
+	
+    /**
+    * Category::getallgroups()
+    * 
+    * This function returns all groups.
+    * 
+    * @return array groups
+    * @access public 
+	* @since 2004-12-07
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function getallgroups()
+    {
+        global $gDatabase2, $tbl_group, $request, $errorhandler;
+
+        $group = array();
+        $query = sprintf("SELECT pk_group_id, name
+		                 FROM $tbl_group 
+						 WHERE fk_hotel_id = %s 
+						 AND ISNULL(deleted_date)
+						 ORDER BY name ",
+            $request -> GetVar('hotelid', 'session')
+            );
+        $result = MetabaseQuery($gDatabase2, $query);
+        if (!$result) {
+            $errorhandler -> display('SQL', 'User::getallgroups()', $query);
+        } else {
+            $row = 0;
+            for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase2, $result)) == 0; ++$row) {
+                $color = 0;
+                if ($row % 2 <> 0) {
+                    $color = 1;
+                } 
+
+                $group[$row] = array ('groupid' => MetabaseFetchResult($gDatabase2, $result, $row, 0),
+                    'name' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
+                    'color' => $color
+                    );
+            } 
+        } 
+        return $group;
+    } 
+	
+	
     /**
     * User::saveupdate()
     * 
@@ -99,6 +147,7 @@ class User {
         if ($userid !== '0') {
             $query = sprintf("UPDATE $tbl_user SET 
 							 fk_hotel_id = %s,
+							 fk_group_id = %s,
 			                 lastname = %s, 
 							 firstname = %s,
 							 login = %s,
@@ -109,6 +158,7 @@ class User {
 							 fk_updated_user_id = %s 
 							 WHERE pk_user_id = %s ",
 				$request -> GetVar('hotelid', 'session'),
+				$request -> GetVar('frm_group', 'post'),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_last', 'post')),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_first', 'post')),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_login', 'post')),
@@ -122,10 +172,11 @@ class User {
             $name = "zvs_pk_user_id";
             $sequence = MetabaseGetSequenceNextValue($gDatabase2, $name, &$userid);
             $query = sprintf("INSERT INTO $tbl_user
-			                  (pk_user_id, fk_hotel_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
-							  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
+			                  (pk_user_id, fk_hotel_id, fk_group_id, lastname, firstname, login, password, locked, fk_language_id, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
+							  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
 				$userid,
 				$request -> GetVar('hotelid', 'session'),
+				$request -> GetVar('frm_group', 'post'),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_last', 'post')),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_first', 'post')),
                 MetabaseGetTextFieldValue($gDatabase2, $request -> GetVar('frm_login', 'post')),

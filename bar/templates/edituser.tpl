@@ -74,7 +74,7 @@
 		<table border="0" cellspacing="0" cellpadding="3" width="300">
 		   <%if $tpl_addnew eq 'true'%>
 			<tr>
-				<td class="ListL1" colspan="3">
+				<td class="ListL1" colspan="5">
 					<table border="0" cellpadding="3" cellspacing="0">
 						<tr>
 							<td><b>Vorname:</b> </td>
@@ -91,26 +91,42 @@
 						<tr>
 							<td><b>Passwort:</b> </td>
 							<td><input type="password" name="frm_pass" id="frm_pass" value=""></td>
+						</tr>
+						<tr>
+							<td><b>Gruppe:</b></td>
+							<td>
+							<select name="frm_group" id="frm_group">
+							<%section name=group loop=$tpl_group%>
+								<option value="<%$tpl_group[group].groupid%>"><%$tpl_group[group].name%></option>
+							<%/section%>
+							</select>
+							</td>
 						</tr>						
 						<tr>
 						<td colspan="2" align="right"><a href="javascript:saveuser(0);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
 						</td>
 					</table>		  		</td>				
-				<td class="ListL1">&nbsp;</td>
 		   </tr>
 		   <%else%>
 			<tr>
-				<td colspan="3">		  		
+				<td colspan="5">		  		
 		  			<a href="javascript:neu();"><img src="<%$wwwroot%>img/button_neu.gif" width="56" height="24" border="0"></a>
 		  		</td>
 		  	</tr>		   
 		   <%/if%>
-
+				<tr>
+					<td class="ListL1"><b>Nachname</b></td>
+					<td class="ListL1"><b>Vorname</b></td>
+					<td class="ListL1"><b>Gruppe</b></td>
+					<td class="ListL1">&nbsp;</td>
+					<td class="ListL1">&nbsp;</td>
+				</tr>
 			<%section name=user loop=$tpl_user%>
 				<%if $tpl_editid neq $tpl_user[user].userid%>
 				<tr>
 					<td class="ListL<%$tpl_user[user].color%>"><%$tpl_user[user].lastname%>&nbsp;</td>
 					<td class="ListL<%$tpl_user[user].color%>"><%$tpl_user[user].firstname%>&nbsp;</td>
+					<td class="ListL<%$tpl_user[user].color%>"><%$tpl_user[user].group%></td>
 					<td class="ListL<%$tpl_user[user].color%>">
 					<a href="javascript:edituser(<%$tpl_user[user].userid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a>
  					</td>
@@ -119,7 +135,7 @@
 				</tr>
 				<%else%>
 				<tr>
-					<td class="ListL<%$tpl_user[user].color%>" colspan="4">
+					<td class="ListL<%$tpl_user[user].color%>" colspan="5">
 					<table border="0" cellpadding="3" cellspacing="0">
 						<tr>
 							<td><b>Vorname:</b> </td>
@@ -136,9 +152,17 @@
 						<tr>
 							<td><b>Passwort:</b> </td>
 							<td><input type="password" name="frm_pass" id="frm_pass" value=""></td>
-						</tr>						
+						</tr>				
 						<tr>
-						<td colspan="2" align="right"><a href="javascript:saveuser(<%$tpl_user[user].userid%>);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
+							<td><b>Gruppe:</b></td>
+							<td><select name="frm_group" id="frm_group">
+							<%section name=group loop=$tpl_group%>
+								<option value="<%$tpl_group[group].groupid%>" <%if $tpl_group[group].groupid eq $tpl_user[user].groupid%>selected="selected"<%/if%>><%$tpl_group[group].name%></option>
+							<%/section%>
+							</select></td>
+						</tr>		
+						<tr>
+						<td colspan="4" align="right"><a href="javascript:saveuser(<%$tpl_user[user].userid%>);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
 						</td>
 					</table>
 					</td>

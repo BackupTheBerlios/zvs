@@ -41,6 +41,7 @@ $smarty -> assign("tpl_title", "Benutzerverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
 $smarty -> assign('tpl_subnav', 'edituser');
 $smarty -> assign("tpl_challenge", session_id());
+$smarty -> assign('tpl_group', $user->getallgroups());
 
 if ($request -> GetVar('frm_userid', 'post') !== $request -> undefined) {
     if ($request -> GetVar('frm_action', 'post') == 'edit') {
