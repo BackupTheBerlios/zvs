@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: barguestclass.inc.php,v 1.5 2004/12/14 18:07:14 ehret Exp $
+* @version $Id: barguestclass.inc.php,v 1.6 2004/12/14 18:58:59 ehret Exp $
 */
 class Barguest {
     /**
@@ -530,7 +530,9 @@ class Barguest {
                         $query = sprintf("UPDATE $tbl_barguest 
 										  SET firstname = %s, 
 										  lastname = %s,
-										  fk_bookingcat_id = %s
+										  fk_bookingcat_id = %s,
+										  deleted_date = NULL,
+										  fk_deleted_user_id = NULL
 										  WHERE pk_barguest_id = %s",
                             MetabaseGetTextFieldValue($gDatabase, MetabaseFetchResult($gZVSDatabase, $zvsresult, $row, 1)),
                             MetabaseGetTextFieldValue($gDatabase, MetabaseFetchResult($gZVSDatabase, $zvsresult, $row, 2)),
