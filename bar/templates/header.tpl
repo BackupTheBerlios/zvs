@@ -46,9 +46,11 @@
              <tr>
                <td class="<%if $tpl_nav eq "sell"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>index.php" class="<%if $tpl_nav eq "sell"%>NavActive<%else%>NavInactive<%/if%>">Verkauf</a></td>
 			   <!--<td class="<%if $tpl_nav eq "kassa"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>kassa.php" class="<%if $tpl_nav eq "kassa"%>NavActive<%else%>NavInactive<%/if%>">Kassa</a></td>-->
+			   <%if $tpl_level ge 10%>
 			   <td class="<%if $tpl_nav eq "archive"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>archive.php" class="<%if $tpl_nav eq "archive"%>NavActive<%else%>NavInactive<%/if%>">Archiv</a></td>			   
                <td class="<%if $tpl_nav eq "settings"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>settings.php" class="<%if $tpl_nav eq "settings"%>NavActive<%else%>NavInactive<%/if%>">Einstellungen</a></td>
 			   <td class="<%if $tpl_nav eq "statistics"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>statistics.php" class="<%if $tpl_nav eq "statistics"%>NavActive<%else%>NavInactive<%/if%>">Statistiken</a></td>
+			   <%/if%>
 			   <td class="<%if $tpl_nav eq "logout"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>logout.php" class="<%if $tpl_nav eq "logout"%>NavActive<%else%>NavInactive<%/if%>">Abmelden</a></td>
 			 </tr>
            </table>
