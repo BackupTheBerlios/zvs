@@ -34,7 +34,7 @@
 * 
 * @author Christian Ehret <chris@uffbasse.de> 
 * @since 2004-06-05
-* @version $Id: guestlistclass.inc.php,v 1.1 2004/11/03 14:46:53 ehret Exp $
+* @version $Id: guestlistclass.inc.php,v 1.2 2005/03/14 16:10:35 ehret Exp $
 */
 class Guestlist {
     /**
@@ -50,22 +50,26 @@ class Guestlist {
     */
     function get($bcat)
     {
-        global $gDatabase, $tbl_booking, $tbl_guest, $tbl_room, $tbl_booking_detail, $tbl_bookingcat, $tbl_booking_detail_guest, $errorhandler;
+        global $gDatabase, $tbl_booking, $tbl_guest, $tbl_address, $tbl_guest_address, $tbl_room, $tbl_booking_detail, $tbl_bookingcat, $tbl_booking_detail_guest, $errorhandler;
 
         $guests = array();
         $query = "SELECT b.pk_booking_id, b.fk_guest_id, g.firstname, g.lastname, 
 		                  DATE_FORMAT(b.start_date, '%d.%m.%Y'), 
 				 		  DATE_FORMAT(b.end_date, '%d.%m.%Y'), 
 				 		  bd.pk_booking_detail_id, r.room, bc.bookingcat,
-						  b.persons, b.children, b.children2, b.children3, b.booking_type " .
+						  b.persons, b.children, b.children2, b.children3, b.booking_type,
+						  a.email " .
         sprintf("FROM $tbl_booking b, $tbl_guest g, $tbl_booking_detail bd
 				 		  LEFT JOIN $tbl_room r ON r.pk_room_id = bd.fk_room_id
 						  LEFT JOIN $tbl_bookingcat bc ON b.fk_bookingcat_id = bc.pk_bookingcat_id
+						  LEFT JOIN $tbl_guest_address ga ON ga.pk_fk_guest_id = g.pk_guest_id AND default_address = %s
+						  LEFT JOIN $tbl_address a ON ga.pk_fk_address_id = a.pk_address_id
 						  WHERE b.checked_in = %s 
 						  AND b.checked_out = %s
 						  AND g.pk_guest_id = b.fk_guest_id 
 						  AND b.pk_booking_id = bd.fk_booking_id 
 						  AND ISNULL(b.deleted_date) ",
+			MetabaseGetBooleanFieldValue($gDatabase, true),						  
             MetabaseGetBooleanFieldValue($gDatabase, true),
             MetabaseGetBooleanFieldValue($gDatabase, false)
             );
@@ -109,6 +113,7 @@ class Guestlist {
                     'children2' => MetabaseFetchResult($gDatabase, $result, $row, 11),
                     'children3' => MetabaseFetchResult($gDatabase, $result, $row, 12),
                     'bookingtype' => $bookingtype,
+					'email' => MetabaseFetchResult($gDatabase, $result, $row, 14),
                     'color' => $color
                     );
                 $person += MetabaseFetchResult($gDatabase, $result, $row, 9);
@@ -154,17 +159,19 @@ class Guestlist {
     */
     function getlist($start, $end, $bcat)
     {
-        global $gDatabase, $tbl_booking, $tbl_guest, $tbl_room, $tbl_booking_detail, $tbl_bookingcat, $tbl_booking_detail_guest, $errorhandler;
+        global $gDatabase, $tbl_booking, $tbl_guest, $tbl_guest_address, $tbl_address, $tbl_room, $tbl_booking_detail, $tbl_bookingcat, $tbl_booking_detail_guest, $errorhandler;
 
         $guests = array();
         $query = "SELECT b.pk_booking_id, b.fk_guest_id, g.firstname, g.lastname, 
 		                  DATE_FORMAT(b.start_date, '%d.%m.%Y'), 
 				 		  DATE_FORMAT(b.end_date, '%d.%m.%Y'), 
 				 		  bd.pk_booking_detail_id, r.room, bc.bookingcat,
-						  b.persons, b.children, b.children2, b.children3, b.booking_type " .
+						  b.persons, b.children, b.children2, b.children3, b.booking_type, a.email " .
         sprintf("FROM $tbl_booking b, $tbl_guest g, $tbl_booking_detail bd
 				 		  LEFT JOIN $tbl_room r ON r.pk_room_id = bd.fk_room_id
 						  LEFT JOIN $tbl_bookingcat bc ON b.fk_bookingcat_id = bc.pk_bookingcat_id
+						  LEFT JOIN $tbl_guest_address ga ON ga.pk_fk_guest_id = g.pk_guest_id AND default_address = %s
+						  LEFT JOIN $tbl_address a ON ga.pk_fk_address_id = a.pk_address_id						  
 						  WHERE ((UNIX_TIMESTAMP(b.start_date) BETWEEN %s AND %s) 
 						  OR (UNIX_TIMESTAMP(b.end_date) BETWEEN %s AND %s)
 						  OR (%s BETWEEN UNIX_TIMESTAMP(b.start_date) AND UNIX_TIMESTAMP(b.end_date))
@@ -172,6 +179,7 @@ class Guestlist {
 						  AND g.pk_guest_id = b.fk_guest_id 
 						  AND b.pk_booking_id = bd.fk_booking_id 
 						  AND ISNULL(b.deleted_date) ",
+			MetabaseGetBooleanFieldValue($gDatabase, true),
             MetabaseGetTextFieldValue($gDatabase, $start),
             MetabaseGetTextFieldValue($gDatabase, $end),
             MetabaseGetTextFieldValue($gDatabase, $start),
@@ -218,6 +226,7 @@ class Guestlist {
                     'children1' => MetabaseFetchResult($gDatabase, $result, $row, 10),
                     'children2' => MetabaseFetchResult($gDatabase, $result, $row, 11),
                     'children3' => MetabaseFetchResult($gDatabase, $result, $row, 12),
+					'email' => MetabaseFetchResult($gDatabase, $result, $row, 14),
                     'bookingtype' => $bookingtype,
                     'color' => $color
                     );
