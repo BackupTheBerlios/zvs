@@ -2,27 +2,27 @@
 /**
 * Copyright notice
 * 
-*              (c) 2003-2004 Christian Ehret (chris@ehret.name)
-*              All rights reserved
+*                 (c) 2003-2004 Christian Ehret (chris@ehret.name)
+*                 All rights reserved
 * 
-*              This script is part of the ZVS project. The ZVS project is 
-*              free software; you can redistribute it and/or modify
-*              it under the terms of the GNU General Public License as published by
-*              the Free Software Foundation; either version 2 of the License, or
-*              (at your option) any later version.
+*                 This script is part of the ZVS project. The ZVS project is 
+*                 free software; you can redistribute it and/or modify
+*                 it under the terms of the GNU General Public License as published by
+*                 the Free Software Foundation; either version 2 of the License, or
+*                 (at your option) any later version.
 * 
-*              The GNU General Public License can be found at
-*              http://www.gnu.org/copyleft/gpl.html.
-*              A copy is found in the textfile GPL.txt and important notices to the license 
-*              from the author is found in LICENSE.txt distributed with these scripts.
+*                 The GNU General Public License can be found at
+*                 http://www.gnu.org/copyleft/gpl.html.
+*                 A copy is found in the textfile GPL.txt and important notices to the license 
+*                 from the author is found in LICENSE.txt distributed with these scripts.
 * 
 * 
-*              This script is distributed in the hope that it will be useful,
-*              but WITHOUT ANY WARRANTY; without even the implied warranty of
-*              MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*              GNU General Public License for more details.
+*                 This script is distributed in the hope that it will be useful,
+*                 but WITHOUT ANY WARRANTY; without even the implied warranty of
+*                 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*                 GNU General Public License for more details.
 * 
-*              This copyright notice MUST APPEAR in all copies of the script!
+*                 This copyright notice MUST APPEAR in all copies of the script!
 */
 
 /**
@@ -34,7 +34,7 @@
 * 
 * @since 2004-10-05
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: timetrackerclass.inc.php,v 1.1 2004/11/03 14:52:52 ehret Exp $
+* @version $Id: timetrackerclass.inc.php,v 1.2 2004/11/04 14:36:38 ehret Exp $
 */
 class Timetracker {
     // property global difference
@@ -249,7 +249,7 @@ class Timetracker {
         $dates = array();
         $j = 0;
         $query = "SELECT DATE_FORMAT(min( start_date  ) ,'%Y'),  DATE_FORMAT(max( start_date  ),'%Y')  
-		                 FROM $tbl_timetracker  ";
+		                 FROM $tbl_timetracker  WHERE start_date != 0000 AND ISNULL(deleted_date)";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Timetracker::getdates()', $query);
@@ -312,6 +312,7 @@ class Timetracker {
 						 END						 			 
 		                 FROM $tbl_timetracker  
 						 WHERE fk_employee_id = $userid 
+						 AND ISNULL(deleted_date)
 						 AND (UNIX_TIMESTAMP(end_date) BETWEEN " . MetabaseGetTextFieldValue($gDatabase, $start) . " AND " . MetabaseGetTextFieldValue($gDatabase, $end) . ")";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
@@ -377,10 +378,13 @@ class Timetracker {
         if ($timetrackerid !== '0') {
             $query = sprintf("UPDATE $tbl_timetracker SET 
 							   start_date = %s, 
-							   end_date = %s
+							   end_date = %s,
+							   updated_date = NOW(),
+							   fk_updated_user_id = %s
 							   WHERE pk_timetracker_id = %s ",
                 MetabaseGetTextFieldValue($gDatabase, $start),
                 MetabaseGetTextFieldValue($gDatabase, $end),
+                $request->GetVar('frm_employee', 'post'),
                 $timetrackerid
                 );
         } else { // new
@@ -422,7 +426,7 @@ class Timetracker {
         $query = "SELECT DATE_FORMAT(tt.start_date, '%d.%m.%Y %H:%i' ), e.lastname, e.firstname
 		                 FROM $tbl_timetracker tt
 						 LEFT JOIN $tbl_employee e ON tt.fk_employee_id = e.pk_employee_id
-						 WHERE ISNULL(tt.end_date)
+						 WHERE ISNULL(tt.end_date) AND ISNULL(tt.deleted_date)
 						 ORDER BY tt.start_date";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
@@ -430,9 +434,9 @@ class Timetracker {
         } else {
             $row = 0;
             for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase, $result)) == 0; ++$row) {
-                $color = 1;
+                $color = 0;
                 if ($row % 2 <> 0) {
-                    $color = 0;
+                    $color = 1;
                 } 
                 $employees[$row] = array ('start_date' => MetabaseFetchResult($gDatabase, $result, $row, 0),
                     'lastname' => MetabaseFetchResult($gDatabase, $result, $row, 1),
@@ -441,5 +445,32 @@ class Timetracker {
             } 
         } 
         return $employees;
+    } 
+
+    /**
+    * Timetracker::del()
+    * 
+    * delete a timespan
+    * 
+    * @access public 
+    * @since 2004-11-04
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function del($timetrackerid)
+    {
+        global $gDatabase, $request, $tbl_timetracker, $errorhandler;
+
+        $query = sprintf("UPDATE $tbl_timetracker SET 
+							   deleted_date = NOW(), 
+							   fk_deleted_user_id = %s
+							   WHERE pk_timetracker_id = %s ",
+            $request->GetVar('frm_employee', 'post'),
+            $timetrackerid
+            );
+
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Timetracker::del()', $query);
+        } 
     } 
 } 
