@@ -7,4 +7,8 @@ Import default data from zvs-sys-inital-data.sql to this database - if you do no
 Create a database for hotel data, e.g. zvs_hotel01
 Import hotel tables from zvs-hot-structure.sql to this database - please make sure, that if you did not name the system database 'zvs_system' that you have to replace the name in this sql file.
 
+Copy default.inc.php.sample in the default dir to default.inc.php and change to your system settings
+Copy default2.inc.php.sample in the default dir to default2.inc.php and change to your system settings
+
+
 Login as admin with the password admin and start with all the configuration
