@@ -309,6 +309,10 @@ function switchLayer(layername)
 					  <td class="ListL1Header"><b>Preis</b></td>
 					  <td class="ListL1Header"><b>Total</b></td>
 					  <td class="ListL1Header" colspan="2">&nbsp;</td>
+					  <%if $tpl_level ge 10%>
+					  <td class="ListL1Header" colspan="2"><b>Erstellt</b></td>					  
+					  <td class="ListL1Header" colspan="2"><b>Letzte &Auml;nderung</b></td>					  
+					  <%/if%>
 				   </tr>
 				  <%section name=guestarticle loop=$tpl_guestarticles%>		
 				  <%if $smarty.section.guestarticle.last%>		   
@@ -316,6 +320,12 @@ function switchLayer(layername)
 				   	<td colspan="4" align="right" class="ListL1Footer"><b>Summe:</b></td>
 					<td class="ListL1Footer" align="right"><b><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</b></td>
 					<td class="ListL1Footer" colspan="3">&nbsp;</td>
+ 				  	<%if $tpl_level ge 10%>
+					<td class="ListL1Footer">von</td>
+					<td class="ListL1Footer">am</td>
+					<td class="ListL1Footer">von</td>
+					<td class="ListL1Footer">am</td>
+					<%/if%>
 				   </tr>	
 				  <%/if%>	
 				  <%/section%>	
@@ -325,6 +335,9 @@ function switchLayer(layername)
 				   	<td colspan="4" align="right" class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer"><b>Summe:</b></td>
 					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" align="right"><b><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</b></td>
 					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" colspan="3">&nbsp;</td>
+					<%if $tpl_level ge 10%>
+					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" colspan="4">&nbsp;</td>
+					<%/if%>
 				   </tr>		  
 				  <%else%>
 					<tr>
@@ -336,6 +349,12 @@ function switchLayer(layername)
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</td>	
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><a href="javascript:pay(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>')"><img src="<%$wwwroot%>img/icon_ok.gif" border="0" width="15" height="13" alt="bezahlt"></a></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_level ge 10%><a href="javascript:storno(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>');"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="Storno"></a><%/if%>&nbsp;</td>		  
+					  <%if $tpl_level ge 10%>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].inserted%></td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].inserteddate%></td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].updated%></td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].updateddate%></td>
+					  <%/if%>
 					</tr>
 				  <%/if%>
 				  <%/section%>
