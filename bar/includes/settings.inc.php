@@ -54,6 +54,7 @@ session_start();
 // systemtables
 $tbl_country = $systemtable . '.zvs_country';
 $tbl_user = $systemtable . '.zvs_user';
+$tbl_group = $systemtable . '.zvs_group';
 $tbl_default = $systemtable . '.zvs_default';
 $tbl_hotel = $systemtable . '.zvs_hotel';
 $tbl_hotel_default = $systemtable . '.zvs_hotel_default';
