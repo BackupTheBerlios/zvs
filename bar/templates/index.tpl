@@ -350,10 +350,10 @@ function switchLayer(layername)
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><a href="javascript:pay(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>')"><img src="<%$wwwroot%>img/icon_ok.gif" border="0" width="15" height="13" alt="bezahlt"></a></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_level ge 10%><a href="javascript:storno(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>');"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="Storno"></a><%/if%>&nbsp;</td>		  
 					  <%if $tpl_level ge 10%>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].inserted%></td>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].inserteddate%></td>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].updated%></td>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].updateddate%></td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].inserted%>&nbsp;</td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_guestarticles[guestarticle].inserteddate neq ""%><%$tpl_guestarticles[guestarticle].inserteddate%>&nbsp;Uhr<%/if%>&nbsp;</td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].updated%>&nbsp;</td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_guestarticles[guestarticle].updateddate neq ""%><%$tpl_guestarticles[guestarticle].updateddate%>&nbsp;Uhr<%/if%>&nbsp;</td>
 					  <%/if%>
 					</tr>
 				  <%/if%>
