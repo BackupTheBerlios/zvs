@@ -1357,6 +1357,8 @@ CREATE TABLE zvs_timetracker (
   fk_updated_user_id         INT(11)                                      DEFAULT NULL,
   deleted_date               DATETIME                                     DEFAULT NULL,
   fk_deleted_user_id         INT(11)                                      DEFAULT NULL,
+  cleared_date				 DATETIME									  DEFAULT NULL,
+  fk_cleared_user_id         INT(11)									  DEFAULT NULL,
 
   PRIMARY KEY                (pk_timetracker_id),
 
@@ -1364,11 +1366,12 @@ CREATE TABLE zvs_timetracker (
   INDEX                      idx_fk_inserted_user_id                      (fk_inserted_user_id),
   INDEX                      idx_fk_updated_user_id                       (fk_updated_user_id),
   INDEX                      idx_fk_deleted_user_id                       (fk_deleted_user_id),
+  INDEX                      idx_fk_cleared_user_id                       (fk_cleared_user_id),
 
   FOREIGN KEY                (fk_employee_id) references zvs_system.zvs_employee      (pk_employee_id),
   FOREIGN KEY                (fk_inserted_user_id) references zvs_system.zvs_employee (pk_employee_id),
   FOREIGN KEY                (fk_updated_user_id) references zvs_system.zvs_employee (pk_employee_id),
-  FOREIGN KEY                (fk_deleted_user_id) references zvs_system.zvs_employee (pk_employee_id)
-    
+  FOREIGN KEY                (fk_deleted_user_id) references zvs_system.zvs_employee (pk_employee_id),
+  FOREIGN KEY                (fk_cleared_user_id) references zvs_system.zvs_user (pk_user_id)    
 ) TYPE=InnoDB CHECKSUM = 1;
 
