@@ -103,12 +103,7 @@ $smarty -> assign('tpl_navstep', $request -> GetVar('step', 'get'));
 $smarty -> assign('tpl_navmonth', $month);
 $smarty -> assign('tpl_navyear', $year);
 $smarty -> assign('tpl_view', $view);
-// assign 20 years
-$years = array();
-for ($i = 0; $i < 18; ++$i) {
-    $years[$i] = $todaydate['year'] + $i;
-} 
-$smarty -> assign('tpl_years', $years);
+$smarty -> assign('tpl_years', $cal->getdates());
 // get categories
 $smarty -> assign('tpl_bcat', $bcat -> get());
 // get rooms
