@@ -135,6 +135,7 @@ function setZVSHotelDB()
 {
     global $errorhandler, $gZVSDatabase, $request;
     global $tbl_zvs_bookingcat, $tbl_zvs_guest, $tbl_zvs_booking, $tbl_zvs_booking_detail;
+	global $zvsmysqlhost, $zvsmysqlpassword, $zvsmysqluser, $metabasepath;
 
     $hoteltable = $request->GetVar('schema', 'session');
     $gZVSDatasource = array('Type' => 'mysql',
