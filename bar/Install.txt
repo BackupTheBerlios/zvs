@@ -1,0 +1,10 @@
+Installation:
+
+Create a database for system data, e.g. zvs_system_bar - if you use ZVS and want the same users for bar and zvs you can use the zvs_system database
+Import system tables from zvs_sys-structure.sql to this database
+Import default data from zvs-sys-inital-data.sql to this database 
+
+Create a database for bar data, e.g. zvs_bar01
+Import bar tables from zvs-bar-structure.sql to this database - please make sure, that if you did not name the system database 'zvs_system_bar' that you have to replace the name in this sql file.
+
+Login as admin with the password admin and start with all the configuration
