@@ -130,5 +130,6 @@ function setHotelDB()
 } 
 
 $smarty->assign('wwwroot', $wwwroot);
+$smarty->assign('tpl_level', $request->GetVar('level','session'));
 
 ?>

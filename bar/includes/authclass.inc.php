@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: authclass.inc.php,v 1.2 2004/11/03 16:33:52 ehret Exp $
+* @version $Id: authclass.inc.php,v 1.3 2004/12/07 18:10:47 ehret Exp $
 */
 
 class auth {
@@ -78,7 +78,7 @@ class auth {
     */
     function auth_validatelogin()
     {
-        global $gDatabase2, $tbl_user, $tbl_hotel, $uid, $firstname, $request, $sess, $smarty, $errorhandler;
+        global $gDatabase2, $tbl_user, $tbl_group, $tbl_hotel, $uid, $firstname, $request, $sess, $smarty, $errorhandler;
         $auth_challenge = session_id();
         $auth_username = $request -> GetVar('username', 'post');
         $auth_password = $request -> GetVar('password', 'post');
@@ -86,12 +86,14 @@ class auth {
 
         $this -> auth["uname"] = $auth_username; ## This provides access for "loginform.ihtml"
         $query = sprintf("SELECT u.pk_user_id, u.password, u.firstname, u.lastname, 
-		                  u.login, u.fk_hotel_id, h.database_schema, h.hotel_code 
-						  FROM $tbl_user u, $tbl_hotel h 
+		                  u.login, u.fk_hotel_id, h.database_schema, h.hotel_code, g.level 
+						  FROM $tbl_user u
+						  LEFT JOIN $tbl_hotel h ON (u.fk_hotel_id = h.pk_hotel_id)
+						  LEFT JOIN $tbl_group g ON (u.fk_group_id = g.pk_group_id)
 						  WHERE u.login = %s 
 						  AND u.locked = %s 
-						  AND ISNULL(deleted_date)
-						  AND u.fk_hotel_id = h.pk_hotel_id ",
+						  AND ISNULL(u.deleted_date)
+						  ",
             MetabaseGetTextFieldValue($gDatabase2, addslashes($auth_username)),
             MetabaseGetBooleanFieldValue($gDatabase2, false)
             );
@@ -109,6 +111,7 @@ class auth {
                     $hotelid = MetabaseFetchResult($gDatabase2, $result, 0, 5);
                     $schema = MetabaseFetchResult($gDatabase2, $result, 0, 6);
                     $hotel_code = MetabaseFetchResult($gDatabase2, $result, 0, 7);
+					$level = MetabaseFetchResult($gDatabase2, $result, 0, 8);
                 } 
             } 
         } 
@@ -126,6 +129,7 @@ class auth {
                 $sess -> SetVar("hotelid", $hotelid);
                 $sess -> SetVar("schema", $schema);
                 $sess -> SetVar("hotel_code", $hotel_code);
+				$sess -> SetVar("level", $level);
                 return $uid;
             } 
         } 
@@ -141,6 +145,7 @@ class auth {
             $sess -> SetVar("hotelid", $hotelid);
             $sess -> SetVar("schema", $schema);
             $sess -> SetVar("hotel_code", $hotel_code);
+			$sess -> SetVar("level", $level);
             return $uid;
         } 
     } 
