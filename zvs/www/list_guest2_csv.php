@@ -122,11 +122,11 @@ if ($what == 'thedate') {
 $children1 = $request->GetVar('children1', 'session');
 $children2 = $request->GetVar('children2', 'session');
 $children3 = $request->GetVar('children3', 'session');
-$tpl = "\"Zimmer:\";\"Nachname:\";\"Vorname:\";\"von:\";\"bis:\";\"Buchungskategorie:\";\"Buchungsstatus:\";\"Erwachsene:\";\"$children1:\";\"$children2:\";\"$children3:\";
+$tpl = "\"Zimmer:\";\"Nachname:\";\"Vorname:\";\"Email:\";\"von:\";\"bis:\";\"Buchungskategorie:\";\"Buchungsstatus:\";\"Erwachsene:\";\"$children1:\";\"$children2:\";\"$children3:\";
 ";
 
 for ($i = 0; $i < count($statarr); $i++) {
-    $tpl .= $statarr[$i]['room'] . ";" . $statarr[$i]['lastname'] . ";" . $statarr[$i]['firstname'] . ";" . $statarr[$i]['startdate'] . ";" . $statarr[$i]['enddate'] . ";" . $statarr[$i]['bookingcat'] . ";" . $statarr[$i]['bookingtype'] . ";" . $statarr[$i]['person'] . ";" . $statarr[$i]['children1'] . ";" . $statarr[$i]['children2'] . ";" . $statarr[$i]['children3'] . ";
+    $tpl .= $statarr[$i]['room'] . ";" . $statarr[$i]['lastname'] . ";" . $statarr[$i]['firstname'] . ";" . $statarr[$i]['email'] .";" . $statarr[$i]['startdate'] . ";" . $statarr[$i]['enddate'] . ";" . $statarr[$i]['bookingcat'] . ";" . $statarr[$i]['bookingtype'] . ";" . $statarr[$i]['person'] . ";" . $statarr[$i]['children1'] . ";" . $statarr[$i]['children2'] . ";" . $statarr[$i]['children3'] . ";
 ";
 } 
 // show CSV

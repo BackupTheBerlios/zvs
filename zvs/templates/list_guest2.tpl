@@ -177,6 +177,7 @@
 				<td class="ListL1Header"><b>Zimmer</b></td>
 			    <td class="ListL1Header"><b>Nachname</b></td>				
 			    <td class="ListL1Header"><b>Vorname</b></td>
+				<td class="ListL1Header"><b>Email</b></td>				
 				<td class="ListL1Header"><b>von</b></td>
 				<td class="ListL1Header"><b>bis</b></td>
 				<td class="ListL1Header"><b>Buchungskategorie</b></td>
@@ -217,6 +218,9 @@
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].firstname%>
 				</td>
+				<td class="ListL<%$tpl_guests[guest].color%>">
+					  <%$tpl_guests[guest].email%>&nbsp;
+				</td>				
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].startdate%>
 				</td>
