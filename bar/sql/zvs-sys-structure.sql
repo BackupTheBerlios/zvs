@@ -254,6 +254,7 @@ CREATE TABLE zvs_hotel (
 DROP TABLE IF EXISTS zvs_group;
 CREATE TABLE zvs_group (
   pk_group_id                INT(11)             NOT NULL,
+  level 					 INT(11)             NOT NULL, 
   fk_hotel_id                INT(11)                                      DEFAULT NULL,
   name                   	 VARCHAR(50)         NOT NULL,
   inserted_date              DATETIME            NOT NULL,
