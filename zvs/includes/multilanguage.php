@@ -39,7 +39,8 @@
       //     $smarty->loadTranslationTable() to load custom translation tables
       $this->language = new ngLanguage($locale); // create a new language object
       $GLOBALS['_NG_LANGUAGE_'] =& $this->language;
-      $this->register_prefilter("smarty_prefilter_i18n");
+      //$this->register_prefilter("smarty_prefilter_i18n");
+      $this->register_outputfilter("smarty_prefilter_i18n"); //this change makes it possible even to translate dynamic data e.g. options because translation is done after compilation of template [xaos, 20050206]
     }
 
     function fetch($_smarty_tpl_file, $_smarty_cache_id = null, $_smarty_compile_id = null, $_smarty_display = false) {
