@@ -21,7 +21,7 @@ function save()
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-      <p class="SubheadlineYellow">Notizen <%if $tpl_gast.lastname neq ""%>zu: <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></p>
+      <p class="SubheadlineYellow">##NOTICE## <%if $tpl_gast.lastname neq ""%>zu: <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></p>
 			<table border="0" cellpadding="4" cellspacing="0">
 			  <tr>
 			    <td>

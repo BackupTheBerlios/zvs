@@ -11,7 +11,7 @@
         <td class="BoxTop" colspan="2"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     </tr>
     <tr>
-        <td align="center"><a href="mailto:chris@ehret.name">&copy; 2003 - 2004 by Christian Ehret</a></td>
+        <td align="center"><a href="mailto:chris@ehret.name">&copy; 2003 - 2005 by Christian Ehret</a></td>
     </tr>
 </table>
 </td>

@@ -34,17 +34,17 @@
         <p  class="SubheadlineYellow">Gast suchen</p>
    		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
-               <td><strong>Vorname</strong></td>
+               <td><strong>##FIRSTNAME##</strong></td>
                <td><input name="frm_firstname" type="text" id="frm_firstname" size="30" value="<%$tpl_firstname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
              <tr>
-               <td><strong>Nachname</strong></td>
+               <td><strong>##LASTNAME##</strong></td>
                <td><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_lastname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
 			 <tr>
 			  <td class="DefText">&nbsp;</td>
 			  <td align=right>
-			  <a href="javascript:document.search.submit();"><img src="<%$wwwroot%>img/button_search.png" width="73" height="24" alt="Suchen" border="0" id="loginfrm"></a>
+			  <a href="javascript:document.search.submit();"><img src="<%$wwwroot%>img/button_search.png" width="73" height="24" alt="##SEARCH##" border="0" id="loginfrm"></a>
 			  </td>
 			 </tr>
         </table>
@@ -70,7 +70,7 @@
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
 		<p class="SubheadlineYellow">neuen Gast erfassen</p>
-        <a href="<%$wwwroot%>editgast.php"><img src="<%$wwwroot%>img/button_neu.gif" width="56" height="24" alt="Suchen" border="0" id="loginfrm"></a>
+        <a href="<%$wwwroot%>editgast.php"><img src="<%$wwwroot%>img/button_neu.gif" width="56" height="24" alt="##SEARCH##" border="0" id="loginfrm"></a>
     </td>
    <td class="BoxRight"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
   </tr>
@@ -98,21 +98,21 @@
    		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td class="ListL1Header">&nbsp;</td>
-               <td class="ListL1Header"><strong>Nachname</strong></td>
-               <td class="ListL1Header"><strong>Vorname</strong></td>
-               <td class="ListL1Header"><strong>Geschlecht</strong></td>
-               <td class="ListL1Header"><strong>Firma</strong></td>
-               <td class="ListL1Header"><strong>Addresse</strong></td>
-               <td class="ListL1Header"><strong>PLZ</strong></td>
-               <td class="ListL1Header"><strong>Ort</strong></td>
-               <td class="ListL1Header"><strong>Land</strong></td>
-               <td class="ListL1Header"><strong>letzte<br>Buchung</strong></td>
-               <td class="ListL1Header"><strong>letzter<br>Aufenthalt</strong></td>
+               <td class="ListL1Header"><strong>##LASTNAME##</strong></td>
+               <td class="ListL1Header"><strong>##FIRSTNAME##</strong></td>
+               <td class="ListL1Header"><strong>##GENDER##</strong></td>
+               <td class="ListL1Header"><strong>##COMPANY##</strong></td>
+               <td class="ListL1Header"><strong>##ADRESS##</strong></td>
+               <td class="ListL1Header"><strong>##POSTAL_CODE_SHORT##</strong></td>
+               <td class="ListL1Header"><strong>##CITY##</strong></td>
+               <td class="ListL1Header"><strong>##COUNTRY##</strong></td>
+               <td class="ListL1Header"><strong>##LAST##<br>##BOOKING##</strong></td>
+               <td class="ListL1Header"><strong>##LAST2##<br>##STAY##</strong></td>
                <td class="ListL1Header">&nbsp;</td>
              </tr>
              <%section name=res loop=$tpl_result%>
              <tr>
-               <td class="ListL<%$tpl_result[res].color%>"><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_result[res].guestid%>"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="Anzeigen"></a></td>
+               <td class="ListL<%$tpl_result[res].color%>"><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_result[res].guestid%>"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="##SHOW##"></a></td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].lastname%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].firstname%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].gender%>&nbsp;</td>
@@ -123,11 +123,11 @@
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].country_name%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].last_booking%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].last_stay%>&nbsp;</td>
-               <td class="ListL<%$tpl_result[res].color%>"><a href="<%$wwwroot%>editgast.php/guestid.<%$tpl_result[res].guestid%>"><img src="<%$wwwroot%>img/icon_antwort.gif" width="19" height="16" border="0" alt="Editieren"></a></td>
+               <td class="ListL<%$tpl_result[res].color%>"><a href="<%$wwwroot%>editgast.php/guestid.<%$tpl_result[res].guestid%>"><img src="<%$wwwroot%>img/icon_antwort.gif" width="19" height="16" border="0" alt="##EDIT##"></a></td>
              </tr>
              <%sectionelse%>
              <tr>
-               <td class="DefText" colspan="4">keine Eintr&auml;ge gefunden</td>
+               <td class="DefText" colspan="4">##NO_ENTRYS##</td>
              <%/section%>
 
         </table>

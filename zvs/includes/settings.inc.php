@@ -40,7 +40,7 @@ ini_set('magic_quotes_runtime', false);
 ini_set('magic_quotes_sybase', false);
 ini_set('session.cookie_lifetime', 0);
 
-$metabasepath = $instpath . 'metabase';
+$metabasepath = $instpath . '/ext/metabase';
 $fontpath = $instpath . '/ext/fpdf/font/';
 
 
@@ -93,9 +93,9 @@ global $gDatasource;
 global $gDatabase2;
 
 $gDatasource = array('Type' => 'mysql',
-    'Host' => $mysqlhost,
-    'User' => $mysqluser,
-    'Password' => $mysqlpassword,
+    'Host' => localhost,//$mysqlhost,
+    'User' => root,//$mysqluser,
+    'Password' => xaos,//$mysqlpassword,
     'IncludePath' => $metabasepath,
     'Persistent' => true,
     'Options' => array('UseTransactions' => 1,
