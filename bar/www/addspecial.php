@@ -55,6 +55,7 @@ if ($request->GetVar('frm_description', 'post') !== $request->undefined) {
 } else {
 	$smarty->assign('tpl_articles', $article->getList());
     $smarty->assign("tpl_theguestid", $request->GetVar('guestid', get));
+    $smarty->assign("tpl_catid", $request->GetVar('catid', get));	
     $smarty->assign('tpl_added', 'false');
 } 
 

@@ -57,6 +57,7 @@ function submit_onkeypress()
         <p class="SubheadlineYellow">Sonderverkauf</p>
 		<form name="addspecial" id="addspecial" method="post" action="<%$SCRIPT_NAME%>">
 		<input type="hidden" name="frm_theguestid" id="frm_theguestid" value="<%$tpl_theguestid%>">
+		<input type="hidden" name="frm_catid" id="frm_catid" value="<%$tpl_catid%>">		
 		<table border="0">
 			<tr>
 				<td><b>Anzahl:</b></td>
