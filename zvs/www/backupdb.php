@@ -30,8 +30,7 @@
 * 
 * Calendar
 * 
-* @since 2004-03-23
-* @author Christian Ehret <chris@ehret.name> 
+* 03/23/2004 by Christian Ehret chris@uffbasse.de
 */
 $nocachecontrol = true;
 
@@ -41,15 +40,22 @@ $auth->is_authenticated();
 
 $database = $request->getVar('database','get');
 $filename = $database."_".date("Ymd").".sql";
+$tmppath = getenv('TEMP')."/".$database."_".time().".sql";
+set_time_limit(0);
 
-$execstring = $mysqldump ." --comments=0 --single-transaction --opt --databases $database -u $mysqluser --password=\"$mysqlpassword\"  --no-create-db";
+$execstring = $mysqldump ." --comments=0 --single-transaction --opt --databases $database -u $mysqluser --password=\"$mysqlpassword\"  --no-create-db > $tmppath";
 $output = shell_exec($execstring);
-
-
 
 header("Cache-control: private");
 header("Content-type: application/txt");
 header("Content-Disposition: attachment; filename=\"$filename\"");
+$handle = fopen ($tmppath, "r");
+while (!feof($handle)) {
+   $buffer = fgets($handle, 4096);
+   echo $buffer;
+}
+fclose($handle); 
 
-echo $output;
+unlink($tmppath);
+
 ?>
