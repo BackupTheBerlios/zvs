@@ -200,6 +200,8 @@
 				</tr>
 			<%/section%>
 		</table>
+		<br>
+		<img src="<%$wwwroot%>statisticsgraph.php/what.<%$tpl_what%>/thedate.<%$tpl_thedate%>/theend.<%$tpl_theend%>/thestart.<%$tpl_thestart%>/theend1.<%$tpl_end1%>/thestart1.<%$tpl_start1%>/statisticsgraph.php">
     </td>
    <td class="BoxRight"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
   </tr>
