@@ -63,8 +63,11 @@ if ($request->GetVar('frm_cat3', 'post') !== $request->undefined) {
     $thecat3 = $request->GetVar('frm_cat3', 'post');
 } 
 $smarty->assign('tpl_thecat1', $thecat1);
+$sess->SetVar('thecat1', $thecat1);
 $smarty->assign('tpl_thecat2', $thecat2);
+$sess->SetVar('thecat2', $thecat2);
 $smarty->assign('tpl_thecat3', $thecat3);
+$sess->SetVar('thecat3', $thecat3);
 
 if ($request->GetVar('frm_start', 'post') !== $request->undefined) {
     $thestart = $request->GetVar('frm_start', 'post');
@@ -122,15 +125,21 @@ if ($request->GetVar('frm_what', 'post') !== $request->undefined) {
 } 
 
 $smarty->assign('tpl_what', $what);
+$sess->SetVar('what', $what);
 $smarty->assign('tpl_theotherdate', $theotherdate);
 $smarty->assign('tpl_thedate', $thedate);
+$sess->SetVar('thedate',$thedate);
 $smarty->assign('tpl_theotherend', $theotherend);
 $smarty->assign('tpl_theend', $theend);
+$sess->SetVar('theend', $theend);
 $smarty->assign('tpl_theotherstart', $theotherstart);
 $smarty->assign('tpl_thestart', $thestart);
+$sess->SetVar('thestart', $thestart);
 $smarty->assign('tpl_start1', $thestart1);
+$sess->SetVar('thestart1', $thestart1);
 $smarty->assign('tpl_theotherstart1', $theotherstart1);
 $smarty->assign('tpl_end1', $theend1);
+$sess->SetVar('theend1', $theend1);
 $smarty->assign('tpl_theotherend1', $theotherend1);
 
 if ($what == 'thedate') {
