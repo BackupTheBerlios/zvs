@@ -1,8 +1,9 @@
 <%strip%>
 <%include file=header.tpl%>
+<br>
 <form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
 <input name="frm_newstart" id="frm_newstart" type="hidden" value="false">
-<table width="90%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
+<table width="450" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
     <td class="BoxTop"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
