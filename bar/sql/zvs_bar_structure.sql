@@ -1,14 +1,3 @@
-# phpMyAdmin SQL Dump
-# version 2.5.3
-# http://www.phpmyadmin.net
-#
-# Host: localhost
-# Erstellungszeit: 11. November 2004 um 12:02
-# Server Version: 4.0.18
-# PHP-Version: 4.3.5
-# 
-# Datenbank: `zvs_hotel01_bar`
-# 
 
 # --------------------------------------------------------
 
