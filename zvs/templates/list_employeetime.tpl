@@ -70,9 +70,11 @@
 	<%/section%>
 	</select>
 	<br><br>
+<%/strip%>
 	<%if $tpl_theemployeeid eq -1%>
 		Bitte einen Mitarbeiter ausw&auml;hlen
 	<%else%>
+	<%strip%>
 	<table border="0" cellspacing="0" cellpadding="3" width="680">
 		<tr>
 				<td class="ListL1">
@@ -87,8 +89,10 @@
 				<td class="ListL1">
 					<strong>&nbsp;</strong>
 				</td>
-		   </tr>				   
+		   </tr>
+		   <%/strip%>				   
 		   <%if $tpl_addnew eq 'true'%>
+		   <%strip%>
 			<tr>
 				<td class="ListL0">
 <input type="text" name="frm_thestart" id="frm_thestart" size="10" maxlength="10"  value="">
@@ -165,7 +169,9 @@
 					<a href="javascript:save(0);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
 				</td>
 		   </tr>
+		   <%/strip%>
 		   <%else%>
+		   <%strip%>
 			<tr>
 				<td class="ListL0" colspan="3">
 					<strong>&nbsp;</strong>
@@ -174,11 +180,15 @@
 		  			<a href="javascript:neu();"><img src="<%$wwwroot%>img/button_neu.gif" width="56" height="24" border="0"></a>
 		  		</td>
 		  	</tr>		   
+		   <%/strip%>
 		   <%/if%>		   
 			<%section name=list loop=$tpl_list%>
+		   <%strip%>
 				<tr>
 				    <td class="ListL<%$tpl_list[list].color%>">
+					<%/strip%>
 					<%if $tpl_editid eq $tpl_list[list].timetracker_id%>
+					<%strip%>
 <input type="text" name="frm_thestart" id="frm_thestart" size="10" maxlength="10"  value="<%if $tpl_list[list].start_date_only neq "00.00.0000"%><%$tpl_list[list].start_date_only%><%/if%>">
 					<%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -212,14 +222,19 @@
     </script>
     <%strip%>
 	&nbsp;<input type="text" name="frm_starttime" id="frm_starttime" value="<%$tpl_list[list].start_time%>" size="5">
+					<%/strip%>
 					<%else%>
+					<%strip%>
 					<%$tpl_list[list].start_date%>&nbsp;
+					<%/strip%>
 					<%/if%>
+					<%strip%>
 					</td>	
 
 					<td class="ListL<%$tpl_list[list].color%>">
-	
+	<%/strip%>
 	<%if $tpl_editid eq $tpl_list[list].timetracker_id%>
+	<%strip%>
 <input type="text" name="frm_theend" id="frm_theend" size="10" maxlength="10"  value="<%if $tpl_list[list].end_date_only neq "00.00.0000"%><%$tpl_list[list].end_date_only%><%/if%>">
 					<%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -253,10 +268,13 @@
     </script>
     <%strip%>
 	&nbsp;<input type="text" name="frm_endtime" id="frm_endtime" value="<%$tpl_list[list].end_time%>" size="5">
-
+	<%/strip%>
 					<%else%>
+					<%strip%>
 					<%$tpl_list[list].end_date%>&nbsp;
+					<%/strip%>
 					<%/if%>
+					<%strip%>
 					</td>
 					<td class="ListL<%$tpl_list[list].color%>"><%$tpl_list[list].diff%>&nbsp;</td>	
 					<%if $smarty.section.list.last%>
@@ -272,9 +290,13 @@
 					</td>				
 					<%/if%>
 				</tr>
+		   <%/strip%>
 			<%/section%>
+			<%strip%>
 		</table>
+		<%/strip%>
 	<%/if%>	
+	<%strip%>
     </td>
    <td class="BoxRight"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
   </tr>

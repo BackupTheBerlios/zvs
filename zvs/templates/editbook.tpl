@@ -74,30 +74,40 @@ function openWindow(url, windowname)
   detailsWindow.focus();
 }
 
+<%if $tpl_step eq "90"%>
+
+  function submit_onkeypress()
+  {
+    if(window.event.keyCode==13)
+    {
+   	  setstep(91);
+    }
+  }
+
+<%/if%>
 //-->
 </script>
 <%strip%>
 </HEAD>
 <body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
-<%if $tpl_checkedin eq "true"%>
 <%/strip%>
+<%if $tpl_checkedin eq "true"%>
 <script language="JavaScript">
 <!--
 	window.opener.location.replace('<%$wwwroot%>checkinlist.php');
 	self.close();
 //-->
 </script>
-<%strip%>
 <%elseif $tpl_checkedout eq "true"%>
-<%/strip%>
+
 <script language="JavaScript">
 <!--
 	window.opener.location.replace('<%$wwwroot%>checkoutlist.php');
 	self.close();
 //-->
 </script>
-<%strip%>
 <%else%>
+<%strip%>
 <br>
 <form name="book" id="book" action="<%$wwwroot%>editbook.php" method="post">
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
@@ -126,9 +136,13 @@ function openWindow(url, windowname)
 	 <input type="hidden" name="frm_addPosEscortid" id="frm_addPosEscortid" value="">
 	 <input type="hidden" name="frm_addressid" id="frm_addressid" value="<%$tpl_bookdata.addressid%>">
 	 <input type="hidden" name="frm_guestid" id="frm_guestid" value="<%$tpl_bookdata.gastid%>">
+<%/strip%>     
      <%if $tpl_step eq "10"%>
+	 <%strip%>
      Buchung erfolgreich gel&ouml;scht!
+	 <%/strip%>
      <%elseif $tpl_step eq "91"%>
+     <%strip%>
 	       <p class="SubheadlineYellow">gefundene G&auml;ste</p>
        		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
@@ -155,24 +169,9 @@ function openWindow(url, windowname)
              <%/section%>
 
         </table>
+     <%/strip%>
      <%elseif $tpl_step eq "90"%>
-<%/strip%>	 
-<script language="javascript"  type="text/javascript">
-
-<!--
-
-  function submit_onkeypress()
-  {
-    if(window.event.keyCode==13)
-    {
-   	  setstep(91);
-    }
-  }
-
-// -->
-
-</script>	 
-<%strip%>
+     <%strip%>
 	  <p class="SubheadlineYellow">Gast suchen</p>
 		<table width="100%" border="0" cellpadding="4" cellspacing="0">
        		<%if $tpl_notfound eq 'true'%>
@@ -189,7 +188,9 @@ function openWindow(url, windowname)
                <td><input name="frm_nachname" type="text" id="frm_nachname" size="30" value="<%$tpl_nachname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
         </table>
+     <%/strip%>
      <%else%>
+     <%strip%>
 	 <table border="0" width="100%">
 	 <tr>
 	 	<td>
@@ -269,7 +270,7 @@ function openWindow(url, windowname)
        </tr>
        <tr>
          <td class="ListL1"><strong>Belegungsart:</strong></td>
-         <td class="ListL1"><%if $tpl_step eq "edittype"%><select name="frm_bookingtype" id="frm_bookingtype"  onChange="CheckForReservation(this.selectedIndex);">
+         <td class="ListL1"><%/strip%><%if $tpl_step eq "edittype"%><%strip%><select name="frm_bookingtype" id="frm_bookingtype"  onChange="CheckForReservation(this.selectedIndex);">
           <option value="P" <%if $tpl_bookdata.bookingtype eq 'P'%>selected<%/if%>>Abgerechnet</option>
           <option value="B" <%if $tpl_bookdata.bookingtype eq 'B'%>selected<%/if%>>Buchung</option>
           <option value="R" <%if $tpl_bookdata.bookingtype eq 'R'%>selected<%/if%>>Reservierung</option>
@@ -278,7 +279,7 @@ function openWindow(url, windowname)
           <td class="ListL1">
           <div id="reservationduration" style="position:relative; left:0px; top:0px; width:130px; height:25px; z-index:1; visibility: <%if $tpl_bookdata.bookingtype eq 'R'%>show<%else%>hidden<%/if%>;">
            <strong>bis:</strong> <input name="frm_reservationduration" type="text" id="frm_reservationduration" size="10" value="<%if $tpl_bookdata.reservationuntil eq "00.00.0000"%><%$tpl_reservationduration%><%else%><%$tpl_bookdata.reservationuntil%><%/if%>">
-            <%/strip%>
+    <%/strip%>   
     <script language="JavaScript" type="text/javascript">
     <!--
         function calendar1Callback(date, month, year)
@@ -310,10 +311,9 @@ function openWindow(url, windowname)
           calendar1.setOffsetY(-220);
     //-->
     </script>
-    <%strip%>
     </div>
 
-          <%else%><%$tpl_bookdata.bookingtypename%> <%if $tpl_bookdata.bookingtype eq 'R'%>&nbsp;bis <%$tpl_bookdata.reservationuntil%><%/if%></td><td class="ListL1">&nbsp;<%/if%></td>
+          <%else%><%$tpl_bookdata.bookingtypename%> <%if $tpl_bookdata.bookingtype eq 'R'%>&nbsp;bis <%$tpl_bookdata.reservationuntil%><%/if%></td><td class="ListL1">&nbsp;<%/if%><%strip%></td>
           <td class="ListL1"><%if $tpl_step eq "edittype"%><a href="javascript:setstep('savetype');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('edittype');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
       </tr>
       <tr>
@@ -433,8 +433,9 @@ function openWindow(url, windowname)
 	 </table>
 
      <br>
+      <%/strip%>
         <%/if%>
-
+       <%strip%>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td><%if $tpl_checkin neq "true" and $tpl_checkout neq "true" and ($tpl_step eq "0" or $tpl_step eq "")%><a href="javascript:setstep('del');"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="L&ouml;schen"></a><%else%><%if $tpl_checkin eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkin');"><img src="<%$wwwroot%>img/button_checkin.png" border="0" width="74" height="24" alt="Check in"></a><%elseif $tpl_checkout eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkout');"><img src="<%$wwwroot%>img/button_checkout.png" border="0" width="80" height="24" alt="Check out"></a><%else%>&nbsp;<%/if%><%/if%></td>
@@ -458,7 +459,9 @@ function openWindow(url, windowname)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>
+<%/strip%>
         <%if ($tpl_step eq '90' and $tpl_notfound eq 'true') or $tpl_step eq '91'%>
+		<%strip%>
         <br>
         <input type="hidden" name="frm_escort" id="frm_escort" value="true">
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
@@ -514,7 +517,8 @@ function openWindow(url, windowname)
              </tr>
              <tr>
                <td><strong>Geburtsdatum</strong></td>
-               <td><input name="frm_date_of_birth" type="text" id="frm_date_of_birth" size="10" value=""><%/strip%>
+               <td><input name="frm_date_of_birth" type="text" id="frm_date_of_birth" size="10" value="">
+    <%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         /**
@@ -546,7 +550,8 @@ function openWindow(url, windowname)
         calendar1 = new dynCalendar('calendar1', 'calendar1Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y"> erinnern</td></td>
+	<%strip%>
+     &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y"> erinnern</td></td>
 	<td><strong>Geburtsort</strong></td>
 	<td><input type="text" name="frm_birthplace" id="frm_birthplace" size="30" value=""></td>
 	<td colspan="2">&nbsp;</td>
@@ -575,8 +580,9 @@ function openWindow(url, windowname)
  	<td><strong>Ausstellungsbeh&ouml;rde</strong></td>
 	<td><input name="frm_agency" type="text" id="frm_agency" size="30" value=""></td>
 	<td><strong>Ausstellungsdatum</strong></td>
-	<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value=""><%/strip%>
-    <script language="JavaScript" type="text/javascript">
+	<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value="">
+    <%/strip%>
+	<script language="JavaScript" type="text/javascript">
     <!--
         /**
         * Example callback function
@@ -608,7 +614,8 @@ function openWindow(url, windowname)
         calendar2 = new dynCalendar('calendar2', 'calendar2Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%></td>
+	<%strip%>
+</td>
 	<td colspan="2"><input type="checkbox" name="frm_status" id="frm_status" value="Y"> <strong>Stammgast</strong></td>
 
                
@@ -630,9 +637,9 @@ function openWindow(url, windowname)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>
-        <%/if%>
+<%/strip%> <%/if%>
 </form>
 </body>
+
 <%/if%>
-<%/strip%>
 </html>

@@ -44,8 +44,8 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-        <p class="SubheadlineYellow">Zimmerplan (<%if $tpl_view eq "type"%>Belegungsart<%else%>Buchungskategorien<%/if%>) <%$tpl_monthname%>&nbsp;<%$tpl_year%>&nbsp;&nbsp;
-        <a href="<%$wwwroot%>calendarpdf.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%><%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" target='_blank'><img src="<%$wwwroot%>img/pdf.gif" hight="16" width="16" alt="PDF Version" border="0"></a></p>
+        <p class="SubheadlineYellow">##ROOMPLAN## (<%if $tpl_view eq "type"%>##TYPE_OF_ALLOCATION##<%else%>##CATEGORIES_OF_BOOKING##<%/if%>) <%$tpl_monthname%>&nbsp;<%$tpl_year%>&nbsp;&nbsp;
+        <a href="<%$wwwroot%>calendarpdf.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%><%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" target='_blank'><img src="<%$wwwroot%>img/pdf.gif" hight="16" width="16" alt="##PDF_VERSION##" border="0"></a></p>
         <table border="0">
         <tr>
         <%if $tpl_view eq "type"%>
@@ -56,7 +56,7 @@
             <td>Buchung</td>
             <td>&nbsp;</td>
             <td class="colorchooser" bgcolor="<%$tpl_colorR%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" boder="0"></td>
-            <td>Reservierung <td valign="right"><%if $tpl_numoldres > 0%>(<a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php');"><%$tpl_numoldres%>&nbsp;abgelaufene Reservierung<%if $tpl_numoldres > 1%>en<%/if%></a>)<%/if%></td></td>
+            <td>Reservierung <td valign="right"><%if $tpl_numoldres > 0%>(<a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php');"><%$tpl_numoldres%>&nbsp;##EXPIRED_BOOKING##<%if $tpl_numoldres > 1%>en<%/if%></a>)<%/if%></td></td>
             <td>&nbsp;</td>
         <%else%>
             <%section name=bcat loop=$tpl_bcat%>
@@ -73,21 +73,21 @@
         <input type="hidden" name="frm_view" id="frm_view" value="<%$tpl_view%>">
         <table width="100%" boder="0">
         <tr>
-          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_prev.png" border="0" height="24" width="28" alt="ganzer Monat zur&uuml;ck"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfprev.png" border="0" height="24" width="28" alt="halber Monat zur&uuml;ck"></a></td>
+          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_prev.png" border="0" height="24" width="28" alt="''##HOLE_MONTH_BACK##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfprev.png" border="0" height="24" width="28" alt="##HALF_MONTH_BACK"></a></td>
           <td align="center">
              <select name="month" id="month" onChange="javascript:document.choosedate.submit();">
-               <option value="1" <%if $tpl_dropdownmonth eq "Januar"%>selected<%/if%>>Januar</option>
-               <option value="2" <%if $tpl_dropdownmonth eq "Februar"%>selected<%/if%>>Februar</option>
-               <option value="3" <%if $tpl_dropdownmonth eq "M&auml;rz"%>selected<%/if%>>M&auml;rz</option>
-               <option value="4" <%if $tpl_dropdownmonth eq "April"%>selected<%/if%>>April</option>
-               <option value="5" <%if $tpl_dropdownmonth eq "Mai"%>selected<%/if%>>Mai</option>
-               <option value="6" <%if $tpl_dropdownmonth eq "Juni"%>selected<%/if%>>Juni</option>
-               <option value="7" <%if $tpl_dropdownmonth eq "Juli"%>selected<%/if%>>Juli</option>
-               <option value="8" <%if $tpl_dropdownmonth eq "August"%>selected<%/if%>>August</option>
-               <option value="9" <%if $tpl_dropdownmonth eq "September"%>selected<%/if%>>September</option>
-               <option value="10" <%if $tpl_dropdownmonth eq "Oktober"%>selected<%/if%>>Oktober</option>
-               <option value="11" <%if $tpl_dropdownmonth eq "November"%>selected<%/if%>>November</option>
-               <option value="12" <%if $tpl_dropdownmonth eq "Dezember"%>selected<%/if%>>Dezember</option>
+               <option value="1" <%if $tpl_dropdownmonth eq "Januar"%>selected<%/if%>>##JANUARY##</option>
+               <option value="2" <%if $tpl_dropdownmonth eq "Februar"%>selected<%/if%>>##FEBRUARY##</option>
+               <option value="3" <%if $tpl_dropdownmonth eq "M&auml;rz"%>selected<%/if%>>##MARCH##</option>
+               <option value="4" <%if $tpl_dropdownmonth eq "April"%>selected<%/if%>>##APRIL##</option>
+               <option value="5" <%if $tpl_dropdownmonth eq "Mai"%>selected<%/if%>>##MAY##</option>
+               <option value="6" <%if $tpl_dropdownmonth eq "Juni"%>selected<%/if%>>##JUNE##</option>
+               <option value="7" <%if $tpl_dropdownmonth eq "Juli"%>selected<%/if%>>##JULY##</option>
+               <option value="8" <%if $tpl_dropdownmonth eq "August"%>selected<%/if%>>##AUGUST##</option>
+               <option value="9" <%if $tpl_dropdownmonth eq "September"%>selected<%/if%>>##SEPTEMBER##</option>
+               <option value="10" <%if $tpl_dropdownmonth eq "Oktober"%>selected<%/if%>>##OCTOBER##</option>
+               <option value="11" <%if $tpl_dropdownmonth eq "November"%>selected<%/if%>>##NOVEMBER##</option>
+               <option value="12" <%if $tpl_dropdownmonth eq "Dezember"%>selected<%/if%>>##DECEMBER##</option>
              </select>&nbsp;
              <select name="year" id="year" onChange="javascript:document.choosedate.submit();">
                <%section name=y loop=$tpl_years%>
@@ -95,7 +95,7 @@
                <%/section%>
             </select>
           </td>
-          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="halber Monat weiter"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="ganzer Monat weiter"></a></td>
+          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="##HALF_MONTH_NEXT##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="HOLE_MONTH_NEXT"></a></td>
         </tr>
         </table>
         </form>

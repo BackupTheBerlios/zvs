@@ -2,7 +2,6 @@
 <%include file=header.tpl%>
 <%/strip%>
 <DIV ID="dek"></DIV>
-<%/strip%> 
 <script language="JavaScript" type="text/javascript">
 <!--
 

@@ -73,8 +73,10 @@
 					&nbsp;
 				</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">&nbsp;</td>
-		   </tr>		
+		   </tr>
+		   <%/strip%>
 		   <%if $tpl_addnew eq 'true'%>
+		   <%strip%>
 			<tr>
 				<td class="ListL1">
 		  			<input type="text" name="frm_name" id="frm_name" maxlength="128" size="50">&nbsp;
@@ -153,8 +155,10 @@
 				</td>
 				<td class="ListL1">&nbsp;</td>
 		   </tr>
+		   <%/strip%>
             <%/if%>
 			<%section name=season loop=$tpl_season%>
+			<%strip%>
 			<tr>
 				<td class="ListL<%$tpl_season[season].color%>">
 					<%if $tpl_editid eq $tpl_season[season].seasonid%>
@@ -164,7 +168,9 @@
 					<%/if%>
 				</td>
 				<td class="ListL<%$tpl_season[season].color%>" nowrap>
+				<%/strip%>
 					<%if $tpl_editid eq $tpl_season[season].seasonid%>
+					<%strip%>
 <input type="text" name="frm_start" id="frm_start" size="10" maxlength="10"  value="<%if $tpl_season[season].start_date neq "00.00.0000"%><%$tpl_season[season].start_date%><%/if%>">
 					<%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -196,13 +202,15 @@
         calendar1 = new dynCalendar('calendar1', 'calendar1Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%>
 					<%else%>
 					    <%$tpl_season[season].start_date%>
 					<%/if%>
+			    <%strip%>
 				</td>
 				<td class="ListL<%$tpl_season[season].color%>" nowrap>
+				<%/strip%>
 					<%if $tpl_editid eq $tpl_season[season].seasonid%>
+					<%strip%>
 				<input type="text" name="frm_end" id="frm_end" size="10" maxlength="10" value="<%if $tpl_season[season].end_date neq "00.00.0000"%><%$tpl_season[season].end_date%><%/if%>">
 					<%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -234,11 +242,11 @@
         calendar2 = new dynCalendar('calendar2', 'calendar2Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%>
 
 					<%else%>
 					  <%$tpl_season[season].end_date%>&nbsp;
 					<%/if%>
+				<%strip%>
 				</td>
 				<td class="ListL<%$tpl_season[season].color%>">
 				<%if $tpl_editid eq $tpl_season[season].seasonid%>
@@ -253,7 +261,9 @@
 					<%/if%>&nbsp;
 				</td>
 			</tr>
+			<%/strip%>
 			<%/section%>
+			<%strip%>
 		</table>
 		</form>
     </td>

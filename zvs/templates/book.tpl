@@ -96,7 +96,9 @@ function CheckForReservation(argValue)
      <input type="hidden" name="frm_navyear" id="frm_navyear" value="<%$tpl_navyear%>">
      <input type="hidden" name="frm_navstep" id="frm_navstep" value="<%$tpl_navstep%>">
      <input type="hidden" name="frm_bookid" id="frm_bookid" value="<%$tpl_bookid%>">
+	 <%/strip%>
      <%if $tpl_step eq "2"%>
+	 <%strip%>
      <input type="hidden" name="frm_step" id="frm_step" value="3">
      <input type="hidden" name="frm_days" id="frm_days" value="<%$tpl_days%>">
      <input type="hidden" name="frm_cat" id="frm_cat" value="<%$tpl_cat%>">
@@ -131,7 +133,9 @@ function CheckForReservation(argValue)
              </tr>
        		<%/if%>
         </table>
+	 <%/strip%>
      <%elseif $tpl_step eq "3"%>
+     <%strip%>
           <input type="hidden" name="frm_step" id="frm_step" value="4">
           <input type="hidden" name="frm_days" id="frm_days" value="<%$tpl_days%>">
           <input type="hidden" name="frm_cat" id=frm_cat" value="<%$tpl_cat%>">
@@ -189,8 +193,9 @@ function CheckForReservation(argValue)
 			</tr>
         </table>
 		
-	   
+	 <%/strip%>  
      <%elseif $tpl_step eq "4"%>
+	 <%strip%>
      <b>Buchung erfolgreich abgeschlossen:</b>
 	 <br>
 	 <table border="0" cellpadding="0" cellspacing="0">
@@ -240,8 +245,10 @@ function CheckForReservation(argValue)
 
 
  	 <br><br>
+	 <%/strip%>
  	 <%if $tpl_emailconfirmation neq ""%><a href="<%$tpl_emailconfirmation%>" target="_blank"><img src="<%$wwwroot%>img/button_emailbest.png" border="0" width="120" height="24" alt="eMail Best&auml;stigung"></a><%else%>&nbsp;<%/if%>
      <%else%>
+	 <%strip%>
      <input type="hidden" name="frm_step" id="frm_step" value="2">
      <table border="0">
      <tr>
@@ -376,7 +383,9 @@ function CheckForReservation(argValue)
 		<td colspan="2"><b>Bemerkung:</b><br><textarea name="frm_description" id="frm_description" cols="50" rows="5"></textarea></td>
        </tr>
        </table>
+	   <%/strip%>
        <%/if%>
+	   <%strip%>
         </form>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>

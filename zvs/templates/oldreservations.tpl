@@ -61,6 +61,7 @@ function submitform(id)
 			   <td class="ListL1"><strong>l&ouml;schen</strong></td>
 			   <td class="ListL1"><strong>verl&auml;ngern</strong></td>
               </tr>
+              <%/strip%>
               <%section name=res loop=$tpl_oldreservations%>
                <tr>
                  <td class="ListL<%$tpl_oldreservations[res].color%>"><%if $tpl_oldreservations[res].salutation neq "n/a"%><%$tpl_oldreservations[res].salutation%>&nbsp;<%/if%><%if $tpl_oldreservations[res].academictitle neq ""%><%$tpl_oldreservations[res].academictitle %>&nbsp;<%/if%><%$tpl_oldreservations[res].firstname %>&nbsp;<%$tpl_oldreservations[res].lastname %></td>
@@ -68,7 +69,7 @@ function submitform(id)
 				 <td class="ListL<%$tpl_oldreservations[res].color%>"><%$tpl_oldreservations[res].enddate%></td>
 				 <td class="ListL<%$tpl_oldreservations[res].color%>"><a href="<%$wwwroot%>oldreservations.php//month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/navstep.<%$tpl_navstep%><%/if%>/del.<%$tpl_oldreservations[res].bookingid%>/oldreservations.php"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="Reservierung l&ouml;schen"></a></td>
 				 <td class="ListL<%$tpl_oldreservations[res].color%>"><input name="frm_reservationduration<%$tpl_oldreservations[res].bookingid%>" type="text" id="frm_reservationduration<%$tpl_oldreservations[res].bookingid%>" size="10" value="<%$tpl_reservationduration%>">
-              <%/strip%>
+
     <script language="JavaScript" type="text/javascript">
     <!--
         /**
@@ -103,13 +104,14 @@ function submitform(id)
         calendar<%$tpl_oldreservations[res].bookingid%>.setOffsetY(-140);
     //-->
     </script>
-    <%strip%><input type="button" value="verl&auml;ngern" onclick="submitform('<%$tpl_oldreservations[res].bookingid%>');"></td>
+			   <input type="button" value="verl&auml;ngern" onclick="submitform('<%$tpl_oldreservations[res].bookingid%>');"></td>
               <tr>
 			  <%sectionelse%>
 			  <tr>
 			  	<td class="ListL0" colspan="5">Es liegen keine abgelaufenen Reservierungen vor</td>
 			  </tr>
               <%/section%>
+		      <%strip%>
             </table>	
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>

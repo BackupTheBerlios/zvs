@@ -104,8 +104,8 @@ function changeAddress(address)
 </HEAD>
 <body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
 <br>
-<%strip%>
 <%if $tpl_error eq 'true'%>
+<%strip%>
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
@@ -127,8 +127,9 @@ function changeAddress(address)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>	 
-
+<%/strip%>
 <%elseif $tpl_saved eq 'true'%>
+<%strip%>
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
@@ -150,7 +151,9 @@ function changeAddress(address)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>	 
+<%/strip%>
 <%elseif $tpl_saved eq 'draft'%>
+<%strip%>
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
@@ -172,7 +175,9 @@ function changeAddress(address)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>	
+<%/strip%>
 <%else%>
+<%strip%>
 <form name="receipt" id="receipt" action="<%$wwwroot%>receipt.php" method="post">
 <input type="hidden" name="frm_bookid" id="frm_bookid" value="<%$tpl_bookid%>">
 	<%section name=id loop=$tpl_bookids%>
@@ -247,9 +252,10 @@ function changeAddress(address)
         calendar1 = new dynCalendar('calendar1', 'calendar1Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%> 
+
 		<br>
 		<%section name=id loop=$tpl_receiptdata.data.start_date%>
+    <%strip%> 
 		<br>
 		<b>Aufenthalt vom</b> <input type="text" id="frm_start_<%$smarty.section.id.index%>" name="frm_start_<%$smarty.section.id.index%>" size="10" value="<%$tpl_receiptdata.data.start_date[id]%>"><%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -317,8 +323,8 @@ function changeAddress(address)
         calendar3<%$smarty.section.id.index%> = new dynCalendar('calendar3<%$smarty.section.id.index%>', 'calendar3<%$smarty.section.id.index%>Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%> 
 	<%/section%>	
+    <%strip%> 
 	<br><br>
 	<%if $tpl_changed neq 'true' && $tpl_receiptdata.data.pauscherror neq ''%>
 	<p class="DefError"><%$tpl_receiptdata.data.pauscherror%></p>
@@ -342,7 +348,9 @@ function changeAddress(address)
 				<td class="ListL1"><b>Netto-Gesamt</b></td>
 				<td class="ListL1"><b>Brutto-Gesamt</b></td>
 			</tr>
+			<%/strip%>
 			<%section name=items loop=$tpl_receiptdata.items%>
+			<%strip%>
 				<tr>
 				<td class="ListL<%$tpl_receiptdata.items[items].color%>"><a href="javascript:add(<%$smarty.section.items.rownum%>);"><img src="<%$wwwroot%>img/shutter_plus.gif" border="0" width="13" height="13" alt="hinzuf&uuml;gen"></a><%if $tpl_allowdelete eq 'true'%><a href="javascript:del(<%$smarty.section.items.rownum%>);"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="l&ouml;schen"></a><%/if%></td>
 				<td class="ListL<%$tpl_receiptdata.items[items].color%>">
@@ -361,7 +369,9 @@ function changeAddress(address)
 					</td>
 					<td class="ListL<%$tpl_receiptdata.items[items].color%>" align="right"><%$tpl_receiptdata.items[items].netto%>&nbsp;EUR</td>
 					<td class="ListL<%$tpl_receiptdata.items[items].color%>" align="right"><%$tpl_receiptdata.items[items].brutto%>&nbsp;EUR</td>				</tr>
+					<%/strip%>
 			<%/section%>
+			<%strip%>
 				<tr>
 					<td colspan="6" class="ListL<%$tpl_nextcolor%>">&nbsp;</td>
 					<td class="ListL<%$tpl_nextcolor%>" align="right"><%$tpl_receiptdata.data.price_netto_total%>&nbsp;EUR</td>
@@ -403,6 +413,6 @@ function changeAddress(address)
   </tr>
 </table>
 </form>
-<%/if%>
 <%/strip%>
+<%/if%>
 </body>
