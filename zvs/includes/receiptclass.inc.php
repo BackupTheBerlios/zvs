@@ -34,7 +34,7 @@
 * 
 * @since 2004-02-04
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: receiptclass.inc.php,v 1.2 2004/11/14 17:43:29 ehret Exp $
+* @version $Id: receiptclass.inc.php,v 1.3 2004/12/05 19:47:54 ehret Exp $
 */
 class receipt {
     /**
@@ -1963,7 +1963,7 @@ class receipt {
         } else {
             $startyear = MetabaseFetchResult($gDatabase, $result, 0, 0);
             $endyear = MetabaseFetchResult($gDatabase, $result, 0, 1);
-            for ($year = $startyear; $year <= $endyear; ++$year) {
+            for ($year = $startyear; $year <= $endyear+1; ++$year) {
                 for ($i = 1; $i <= 12; $i++) {
                     $dates[$j] = $i . '/' . $year;
                     $j++;
