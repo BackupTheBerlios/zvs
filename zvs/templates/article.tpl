@@ -12,7 +12,7 @@
 	
 	function delart(id, name) {
 		var check;
-		check = confirm("Artikel \""+ name +"\" wirklich löschen?\n");
+		check = confirm("##ARTICLE## \""+ name +"\" ##REALLY_DELETE##?\n");
 		if (check) {
 			document.article.frm_articleid.value = id;
 			document.article.frm_action.value = "del";
@@ -43,7 +43,7 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-    <p class="SubheadlineYellow">Artikel verwalten</p>
+    <p class="SubheadlineYellow">##ARTICLE## ##ADMINISTER##</p>
 		<form id="article" name="article" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_articleid" id="frm_articleid" value="0">
 		<input type="hidden" name="frm_action" id="frm_action" value="new">
@@ -57,16 +57,16 @@
 		   <%/if%>		
 			<tr>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Bezeichnung</strong>
+		  			<strong>##DESCRIPTION##</strong>
 		  		</td>			
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Nettopreis</strong>
+		  			<strong>##NET_PRICE##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>MwSt</strong>
+		  			<strong>##VAT_SHORT##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Brutto</strong>
+		  			<strong>##GROSS##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
 					&nbsp;
@@ -152,3 +152,4 @@
 <%include file=footer.tpl%>
 <%/strip%>
 
+// 

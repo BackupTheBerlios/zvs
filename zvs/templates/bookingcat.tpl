@@ -47,7 +47,7 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-    <p class="SubheadlineYellow">Buchungskategorien verwalten</p>
+    <p class="SubheadlineYellow">##ADMINISTER_BOOKING_CATEGORYS##</p>
 		<form id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_bcatid" id="frm_bcatid" value="0">
 		<input type="hidden" name="frm_action" id="frm_action" value="new">
@@ -61,16 +61,16 @@
 		   <%/if%>		
 			<tr>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Bezeichnung</strong>
+		  			<strong>##LABEL##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Farbe</strong>
+		  			<strong>##COLOR##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Beschreibung</strong>
+		  			<strong>##DESCRIPTION##</strong>
 		  		</td>
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
-		  			<strong>Dauer</strong>
+		  			<strong>##DURATION##</strong>
 		  		</td>				
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
 					&nbsp;

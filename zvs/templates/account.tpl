@@ -19,7 +19,7 @@
 	    <td class="ListL1Header" width="80"><strong>Datum</strong></td>
 	    <td class="ListL1Header" width="300"><strong>Beschreibung</strong></td>
 	    <td class="ListL1Header" width="80"><strong>Betrag</strong></td>
-		<td class="ListL1Header"><strong>Buchung</strong></td>
+		<td class="ListL1Header"><strong>##BOOKING##</strong></td>
 		<td class="ListL1Header" width="150">&nbsp;</td> 
 	  </tr>
 	  <tr>
@@ -38,7 +38,7 @@
 		 </td>
 		 </tr>
 		 <tr>
-		 <td>Zahlungseingang:</td>
+		 <td>##PAYMENT_ENTRY##:</td>
 		 <td>
 	<input name="frm_date_payment" type="text" id="frm_date_payment" size="10" value="<%$tpl_thedate%>"><%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -94,7 +94,7 @@
 		<%section name=book loop=$tpl_openbookings%>
 			<option value="<%$tpl_openbookings[book].bookingid%>" class="<%if $tpl_openbookings[book].receipt neq ""%>mar<%else%>white<%/if%>"><%$tpl_openbookings[book].room%>:&nbsp;<%$tpl_openbookings[book].referenceid%>&nbsp;(<%$tpl_openbookings[book].start%>&nbsp;-&nbsp;<%$tpl_openbookings[book].end%>)</option>
 		<%sectionelse%>
-			<option>keine Buchungen vorhanden</option>
+			<option>##NO_BOOKINGS##</option>
 		<%/section%>
 		</select></td>
 		<td class="ListL0"><a href="javascript:document.account.submit();"><img src="<%$wwwroot%>img\button_kassa.png" width="73" heigh="24" border="0"></a></td>
@@ -109,7 +109,7 @@
        </tr>
      <%sectionelse%>
        <tr>
-          <td class="ListL1" colspan="5">Es liegen keine Ums&auml;tze vor</td>
+          <td class="ListL1" colspan="5">##NO_SALES##</td>
        </tr>
      <%/section%>
      </table>

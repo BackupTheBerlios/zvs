@@ -88,7 +88,7 @@ function changePP(arg)
 	</script>
 	<%strip%>
 	<%/if%>
-    <p class="SubheadlineYellow">Artikel ausw&auml;hlen</p>
+    <p class="SubheadlineYellow">##ARTICLE## ##TO_CHOOSE##</p>
 		<form id="article" name="article" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_id" id="frm_id" value="<%$tpl_id%>">
 		<input type="hidden" name="frm_action" id="frm_action" value="add">
@@ -111,9 +111,9 @@ function changePP(arg)
 		<tr>
 			<td colspan="2">
 				<div id="ppoptions" style="position:relative; left:0px; top:0px; width:200px; height:25px; z-index:1; visibility: hidden;">
-								<input type="checkbox" name="frm_included" id="frm_included" value="yes" checked="checked"> im Preis enthalten
+								<input type="checkbox" name="frm_included" id="frm_included" value="yes" checked="checked"> ##INCLUDED_IN_PRICE##
 								<br>
-								<input type="checkbox" name="frm_person" id="frm_person" value="true" onclick="check();"> Erwachsene
+								<input type="checkbox" name="frm_person" id="frm_person" value="true" onclick="check();"> ##ADULT##
 								<br>
 								<input type="checkbox" name="frm_children" id="frm_children" value="true" onclick="check();" > <%$tpl_children_field1%>
 								<br>

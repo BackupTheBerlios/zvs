@@ -39,7 +39,7 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-     <p class="SubheadlineYellow">Zahlungseingang f&uuml;r <%$tpl_bookdate.bookingreferenceid%>&nbsp;(<%$tpl_bookdate.start%>&nbsp;-&nbsp;<%$tpl_bookdate.end%>)</p>
+     <p class="SubheadlineYellow">##PAYMENT_ENTRY## ##FOR## <%$tpl_bookdate.bookingreferenceid%>&nbsp;(<%$tpl_bookdate.start%>&nbsp;-&nbsp;<%$tpl_bookdate.end%>)</p>
 <form name="account" id="account" action="<%$SCRIPTNAME%>" method="post">
 	<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%$tpl_guestid%>">
 	<input type="hidden" name="frm_bookingid" id="frm_bookingid" value="<%$tpl_bookingid%>">
@@ -50,8 +50,8 @@
 	<%/section%>	
      <table boder="0" cellspacing="0" cellpadding="3" border="0" width="650">
       <tr>
-	    <td class="ListL1Header" width="300"><strong>Beschreibung</strong></td>
-	    <td class="ListL1Header" width="80"><strong>Betrag</strong></td>
+	    <td class="ListL1Header" width="300"><strong>##DESCRIPTION##</strong></td>
+	    <td class="ListL1Header" width="80"><strong>##AMOUNT##</strong></td>
 		<td class="ListL1Header" width="150">&nbsp;</td> 
 	  </tr>
 	  <tr>
@@ -59,7 +59,7 @@
 			<table border="0">
 			<tr>
 			  <td>
-		Zahlungskategorie:</td>
+		##PAYMENT_CATEGORY##:</td>
 		<td>
 		 <select name="frm_paycat" id="frm_paycat">
 		 <%section name=pcat loop=$tpl_pcats%>
@@ -69,7 +69,7 @@
 		 </td>
 		 </tr>
 		 <tr>
-		 <td>Zahlungseingang:</td>
+		 <td>##PAYMENT_ENTRY##:</td>
 		 <td>
 	<input name="frm_date_payment" type="text" id="frm_date_payment" size="10" value="<%$tpl_thedate%>"><%/strip%>
     <script language="JavaScript" type="text/javascript">
@@ -117,7 +117,7 @@
 	 <%section name="i" loop="$tpl_bookings"%>
  		<%if $tpl_bookingid neq $tpl_bookings[i].bookid%>
 	 	<%if $smarty.section.i.index eq 0 %>
-			<b>Status folgender Buchungen zus&auml;tzlich setzen:</b><br>
+			<b>##SET_STATUS_OF_ADDITIONAL_BOOKINGS##:</b><br>
 		<%/if%>
 			<input type="checkbox" name="frm_bookings[]" id="frm_bookings[]" value="<%$tpl_bookings[i].bookid%>" checked="checked"> <%$tpl_bookings[i].bookingreferenceid%>&nbsp;(<%$tpl_bookings[i].start%>&nbsp;-&nbsp;<%$tpl_bookings[i].end%>)<br>
 		<%/if%> 

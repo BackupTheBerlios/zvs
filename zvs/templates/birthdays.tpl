@@ -34,7 +34,7 @@
 			<%section name=guest loop=$tpl_guests%>
 			<tr>
 				<td class="ListL<%$tpl_guests[guest].color%>" valign="top">
-					<a href="javascript:window.opener.location.replace('<%$wwwroot%>showgast.php/guestid.<%$tpl_guests[guest].guestid%>');window.opener.focus();"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="Anzeigen"></a>
+					<a href="javascript:window.opener.location.replace('<%$wwwroot%>showgast.php/guestid.<%$tpl_guests[guest].guestid%>');window.opener.focus();"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="##TO_SHOW##"></a>
 				</td>
 				<td class="ListL<%$tpl_guests[guest].color%>" valign="top">
 					  <%$tpl_guests[guest].birthday%>
@@ -48,7 +48,7 @@
 			</tr>
 			<%sectionelse%>
 			<tr>
-			    <td colspan="11">keine Eintr&auml;ge</td>
+			    <td colspan="11">##NO_ENTRYS##</td>
 			</tr>
 			<%/section%>
 		</table>

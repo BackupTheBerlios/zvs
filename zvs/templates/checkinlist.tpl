@@ -19,13 +19,13 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-    <p class="SubheadlineYellow">Check In</p>
+    <p class="SubheadlineYellow">##CHECK_IN##</p>
     	<table border="0" cellspacing="0" cellpadding="3" width="500">
 			<tr>
-			    <td class="ListL1Header"><b>Vorname</b></td>
-				<td class="ListL1Header"><b>Nachname</b></td>
-				<td class="ListL1Header"><b>von</b></td>
-				<td class="ListL1Header"><b>bis</b></td>
+			    <td class="ListL1Header"><b>##FIRSTNAME##</b></td>
+				<td class="ListL1Header"><b>##LASTNAME##</b></td>
+				<td class="ListL1Header"><b>##FROM##</b></td>
+				<td class="ListL1Header"><b>##UNTIL##</b></td>
 				<td class="ListL1Header">&nbsp;</td>
 			</tr>
 			<%section name=guest loop=$tpl_guests%>
@@ -48,7 +48,7 @@
 			</tr>
 			<%sectionelse%>
 			<tr>
-			    <td colspan="5">keine Eintr&auml;ge</td>
+			    <td colspan="5">##NO_ENTRYS##</td>
 			</tr>
 			<%/section%>
 		</table>

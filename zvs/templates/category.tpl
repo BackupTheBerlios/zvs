@@ -12,7 +12,7 @@
 	
 	function delcat(id, name) {
 		var check;
-		check = confirm("Kategorie \""+ name +"\" wirklich löschen?");
+		check = confirm("##CATEGORY## \""+ name +"\" ##REALLY_DELETE##?");
 		if (check) {
 			document.cat.frm_catid.value = id;
 			document.cat.frm_action.value = "del";
@@ -43,7 +43,7 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-    <p class="SubheadlineYellow">Gastkategorien verwalten</p>
+    <p class="SubheadlineYellow">##ADMINISTER_GUEST_CATEGORYS##</p>
 		<form id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_catid" id="frm_catid" value="0">
 		<input type="hidden" name="frm_action" id="frm_action" value="new">
