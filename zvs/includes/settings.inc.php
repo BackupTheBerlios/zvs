@@ -72,12 +72,14 @@ include_once("defaultdataclass.inc.php");
 $defaultdata = new DefaultData;
 // Smarty Templating
 include_once('Smarty.class.php');
-$smarty = new Smarty;
+include_once('multilanguage.php');
+
+$smarty = new smartyML();
 // Configure Smarty
 $smarty -> template_dir = '../templates';
 $smarty -> compile_dir = '../templates_c';
 $smarty -> compile_check = true;
-$smarty -> force_compile = false;
+$smarty -> force_compile = true;
 $smarty -> debugging = false;
 $smarty -> cache_dir = '../cache';
 $smarty -> caching = false;
