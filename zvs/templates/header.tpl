@@ -88,7 +88,7 @@
 			   <td valign="top" class="<%if $tpl_subnav eq "guestlist2"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_guest2.php" class="<%if $tpl_subnav eq "guestlist2"%>NavActive<%else%>NavInactive<%/if%>">##ATTENDANCE_LIST## 2</a></td>			   
 			   <td valign="top" class="<%if $tpl_subnav eq "roomchange"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_roomchange.php" class="<%if $tpl_subnav eq "roomchange"%>NavActive<%else%>NavInactive<%/if%>">##CHANGE_OF_ROOM##</a></td>			   			   
 			   <td valign="top" class="<%if $tpl_subnav eq "birthday"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_birthday.php" class="<%if $tpl_subnav eq "birthday"%>NavActive<%else%>NavInactive<%/if%>">##BIRTHDAY_LIST##</a></td>			   			   			   
-			   <td valign="top" class="<%if $tpl_subnav eq "employeetime"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_employeetime.php" class="<%if $tpl_subnav eq "employeetime"%>NavActive<%else%>NavInactive<%/if%>">##EMPLOYEES_TIMES=Mitarbeiterzeiten##</a></td>			   			   			   			   
+			   <td valign="top" class="<%if $tpl_subnav eq "employeetime"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_employeetime.php" class="<%if $tpl_subnav eq "employeetime"%>NavActive<%else%>NavInactive<%/if%>">##EMPLOYEES_TIMES##</a></td>			   			   			   			   
 			   <td valign="top" class="<%if $tpl_subnav eq "employee"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>list_employee.php" class="<%if $tpl_subnav eq "employee"%>NavActive<%else%>NavInactive<%/if%>">##EMPLOYEES##</a></td>			   			   			   			   			   
              </tr>
            </table>		  
