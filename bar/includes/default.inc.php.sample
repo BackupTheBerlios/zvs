@@ -32,9 +32,13 @@ $mysqldump = 'C:\mysql\bin\mysqldump.exe';
 $mysqlhost = "localhost";
 $mysqluser = "user"; 
 $mysqlpassword = "pass";
-$systemtable = 'zvs_system';
-
 $systemtable = 'zvs_system_bar';
+
+$usezvs = true;
+$zvsmysqlhost = "localhost";
+$zvsmysqluser = "user"; 
+$zvsmysqlpassword = "pass";
+$zvssystemtable = 'zvs_system';
 
 
 $namerows = 6;
