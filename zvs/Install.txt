@@ -1,0 +1,10 @@
+Installation:
+
+Create a database for system data, e.g. zvs_system
+Import system tables from zvs_sys-structure.sql to this database
+Import default data from zvs-sys-inital-data.sql to this database - if you do not want to name the hotel database zvs_hotel01 please change this name in the sql file
+
+Create a database for hotel data, e.g. zvs_hotel01
+Import hotel tables from zvs-hot-structure.sql to this database - please make sure, that if you did not name the system database 'zvs_system' that you have to replace the name in this sql file.
+
+Login as admin with the password admin and start with all the configuration
