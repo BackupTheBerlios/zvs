@@ -34,7 +34,7 @@
 * 
 * @since 2004-10-05
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: timetrackerclass.inc.php,v 1.3 2004/11/06 19:31:51 ehret Exp $
+* @version $Id: timetrackerclass.inc.php,v 1.4 2004/12/05 19:59:46 ehret Exp $
 */
 class Timetracker {
     // property global difference
@@ -256,7 +256,7 @@ class Timetracker {
         } else {
             $startyear = MetabaseFetchResult($gDatabase, $result, 0, 0);
             $endyear = MetabaseFetchResult($gDatabase, $result, 0, 1);
-            for ($year = $startyear; $year <= $endyear; ++$year) {
+            for ($year = $startyear; $year <= $endyear+1; ++$year) {
                 for ($i = 1; $i <= 12; $i++) {
                     $dates[$j] = $i . '/' . $year;
                     $j++;

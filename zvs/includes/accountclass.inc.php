@@ -34,7 +34,7 @@
 * 
 * @since 2004-03-10
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: accountclass.inc.php,v 1.1 2004/11/03 14:37:59 ehret Exp $
+* @version $Id: accountclass.inc.php,v 1.2 2004/12/05 19:56:16 ehret Exp $
 */
 class account {
     /**
@@ -533,7 +533,7 @@ class account {
         } else {
             $startyear = MetabaseFetchResult($gDatabase, $result, 0, 0);
             $endyear = MetabaseFetchResult($gDatabase, $result, 0, 1);
-            for ($year = $startyear; $year <= $endyear; ++$year) {
+            for ($year = $startyear; $year <= $endyear+1; ++$year) {
                 for ($i = 1; $i <= 12; $i++) {
                     $dates[$j] = $i . '/' . $year;
                     $j++;
