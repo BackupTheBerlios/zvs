@@ -326,3 +326,5 @@ INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, st
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (17, 'hotel_email', 'Hotel eMail', 'string', 'wiesenhof@tirol.com', NULL, '2004-07-10 20:23:53', NULL, 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (18, 'birthday_days', 'Anzahl der Tage für Geburtstagserinnerung', 'int', NULL, 5, NULL, NULL, 'Y');
 INSERT INTO _sequence_zvs_pk_default_id (sequence) VALUES (18);
+
+INSERT INTO zvs_barbookingcat (pk_bookingcat_id, fk_zvsbookingcat_id, bookingcat, color, inserted_date, fk_inserted_user_id) VALUES (0, 0, 'nicht zugeordnet', '#FFFFFF', NOW(), 1);
