@@ -37,7 +37,7 @@
 <td valign="top">
 <table border="0" class="Box" width="100%" cellspacing="0" cellpadding="0">
     <tr>
-        <td rowspan="2"><%if $tpl_level ge 10%><%if $tpl_sum neq ""%>Tagesumsatz: <%$tpl_sum%>&nbsp;EUR<%/if%><%/if%><img src="<%$wwwroot%>img/spacer.gif" boder="0" width="100" height="1"></td>
+        <td rowspan="2"><%if $tpl_loggedin neq " "%>Angemeldet als: <%$tpl_loggedin%><%/if%><%if $tpl_level ge 10%><%if $tpl_sum neq ""%>&nbsp;&nbsp;&nbsp;Tagesumsatz: <%$tpl_sum%>&nbsp;EUR<%/if%><%/if%><img src="<%$wwwroot%>img/spacer.gif" boder="0" width="100" height="1"></td>
         <td align="right"><%$smarty.now|date_format:"%A, %d. %B %Y"%>&nbsp;</td>
 	</tr>
 	</tr>
