@@ -82,10 +82,16 @@ if ($request->GetVar('frm_employee', 'post') !== $request->undefined) {
 	$employeeid = -1;
 }
 
+if ($request->GetVar('frm_type', 'post') !== $request->undefined) {
+    $thetype = $request->GetVar('frm_type', 'post');
+} else {
+    $thetype = "all";
+} 
+
 $smarty->assign('tpl_theemployeeid', $employeeid);
 $smarty->assign('tpl_theend', $theend);
 $smarty->assign('tpl_thestart', $thestart);
-
+$smarty->assign('tpl_thetype', $thetype);
 $smarty->assign("tpl_title", "Mitarbeiter Zeiten");
 $smarty->assign('tpl_nav', 'lists');
 $smarty->assign('tpl_subnav', 'employeetime');
@@ -110,11 +116,23 @@ if ($request -> GetVar('frm_timetrackerid', 'post') !== $request -> undefined) {
 } 
 
 if ($employeeid !== -1) {
+	if ($request->GetVar('frm_action', 'post') == 'clear') {
+	    $ids = $request->GetVar('frm_cleared','post');
+		for ($i=0; $i < count($ids); $i++){
+			$timetracker->clear($ids[$i]);
+		}
+	}
 	list($month, $year) = split('[/]', $theend);
     $theend = mktime(0, 0, 0, $month, 1, $year);
     list($month, $year) = split('[/]', $thestart);
     $thestart = mktime(0, 0, 0, $month, 1, $year);
-    $smarty->assign('tpl_list', $timetracker->gettimes($employeeid, $thestart, $theend));
+	$times = $timetracker->gettimes($employeeid, $thestart, $theend, true, $thetype);
+	if (count($times) > 1) {
+	    $smarty->assign('tpl_list', $times);
+	} else {
+		$smarty->assign('tpl_noresult', true);
+	}
+    
 }
 $smarty->assign('tpl_employee', $employee->getall());
 $smarty->assign('tpl_dates', $timetracker->getdates());

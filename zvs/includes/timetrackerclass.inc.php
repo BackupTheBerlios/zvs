@@ -2,27 +2,27 @@
 /**
 * Copyright notice
 * 
-*                 (c) 2003-2004 Christian Ehret (chris@ehret.name)
-*                 All rights reserved
+*                   (c) 2003-2004 Christian Ehret (chris@ehret.name)
+*                   All rights reserved
 * 
-*                 This script is part of the ZVS project. The ZVS project is 
-*                 free software; you can redistribute it and/or modify
-*                 it under the terms of the GNU General Public License as published by
-*                 the Free Software Foundation; either version 2 of the License, or
-*                 (at your option) any later version.
+*                   This script is part of the ZVS project. The ZVS project is 
+*                   free software; you can redistribute it and/or modify
+*                   it under the terms of the GNU General Public License as published by
+*                   the Free Software Foundation; either version 2 of the License, or
+*                   (at your option) any later version.
 * 
-*                 The GNU General Public License can be found at
-*                 http://www.gnu.org/copyleft/gpl.html.
-*                 A copy is found in the textfile GPL.txt and important notices to the license 
-*                 from the author is found in LICENSE.txt distributed with these scripts.
+*                   The GNU General Public License can be found at
+*                   http://www.gnu.org/copyleft/gpl.html.
+*                   A copy is found in the textfile GPL.txt and important notices to the license 
+*                   from the author is found in LICENSE.txt distributed with these scripts.
 * 
 * 
-*                 This script is distributed in the hope that it will be useful,
-*                 but WITHOUT ANY WARRANTY; without even the implied warranty of
-*                 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*                 GNU General Public License for more details.
+*                   This script is distributed in the hope that it will be useful,
+*                   but WITHOUT ANY WARRANTY; without even the implied warranty of
+*                   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*                   GNU General Public License for more details.
 * 
-*                 This copyright notice MUST APPEAR in all copies of the script!
+*                   This copyright notice MUST APPEAR in all copies of the script!
 */
 
 /**
@@ -34,11 +34,13 @@
 * 
 * @since 2004-10-05
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: timetrackerclass.inc.php,v 1.4 2004/12/05 19:59:46 ehret Exp $
+* @version $Id: timetrackerclass.inc.php,v 1.5 2004/12/13 23:17:55 ehret Exp $
 */
 class Timetracker {
     // property global difference
-    var $gdiff = 0;
+    var $gdiff = 0; 
+    // property global difference of not cleared times
+    var $gdiffnoncleared = 0;
 
     /**
     * Timetracker::calcDateDiff()
@@ -47,14 +49,18 @@ class Timetracker {
     * 
     * @param timestamp $start start date
     * @param timestamp $end end date
+    * @param timestamp $cleared cleared date
     * @return string time difference
     * @access public 
     * @since 2004-10-08
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function calcDateDiff($start, $end)
+    function calcDateDiff($start, $end, $cleared)
     {
         $diff = abs($end - $start);
+        if ($cleared !== -1) {
+            $this->gdiffnoncleared += $diff;
+        } 
         $this->gdiff += $diff;
         $seconds = 0;
         $hours = 0;
@@ -89,14 +95,20 @@ class Timetracker {
     * This function returns the salary for one user in the showed time period.
     * 
     * @param  $uid user id
+    * @param boolean $cleared show all or non cleared
     * @return string salary
     * @access public 
     * @since 2004-10-17
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function getSalary($uid)
+    function getSalary($uid, $cleared = false)
     {
         global $gDatabase, $tbl_employee, $errorhandler;
+		if (!$cleared) {
+		    $diff = $this->gdiff;
+		} else {
+			$diff = $this->gdiffnoncleared;
+		}
         $query = sprintf("SELECT salary 
 		                 FROM $tbl_employee
 						 WHERE pk_employee_id = %s ",
@@ -109,7 +121,7 @@ class Timetracker {
             if (MetabaseNumberOfRows($gDatabase, $result) == 0) {
                 return 0;
             } else {
-                return round(MetabaseFetchResult($gDatabase, $result, 0, 0) * $this->gdiff / 3600, 2);
+                return round(MetabaseFetchResult($gDatabase, $result, 0, 0) * $diff / 3600, 2);
             } 
         } 
     } 
@@ -119,14 +131,19 @@ class Timetracker {
     * 
     * This function returns the difference between two timestamps.
     * 
+    * @param boolean $cleared show all or non cleared
     * @return string formated time difference
     * @access public 
     * @since 2004-10-08
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function Diff()
+    function Diff($cleared = false)
     {
-        $diff = $this->gdiff;
+        if ($cleared) {
+            $diff = $this->gdiffnoncleared;
+        } else {
+            $diff = $this->gdiff;
+        } 
         $seconds = 0;
         $hours = 0;
         $minutes = 0;
@@ -256,7 +273,7 @@ class Timetracker {
         } else {
             $startyear = MetabaseFetchResult($gDatabase, $result, 0, 0);
             $endyear = MetabaseFetchResult($gDatabase, $result, 0, 1);
-            for ($year = $startyear; $year <= $endyear+1; ++$year) {
+            for ($year = $startyear; $year <= $endyear + 1; ++$year) {
                 for ($i = 1; $i <= 12; $i++) {
                     $dates[$j] = $i . '/' . $year;
                     $j++;
@@ -275,12 +292,13 @@ class Timetracker {
     * @param date $start start date
     * @param date $end end date
     * @param boolean $showsum show sum
+	* @param string $type all = show all, cleared = show cleared, open = show non cleared
     * @return array times
     * @access public 
     * @since 2004-10-07
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function gettimes($userid, $start, $end, $showsum = true)
+    function gettimes($userid, $start, $end, $showsum = true, $type = 'all')
     {
         global $gDatabase, $tbl_timetracker, $request, $errorhandler;
 
@@ -309,12 +327,18 @@ class Timetracker {
 						   DATE_FORMAT(NOW(), '%H:%i:%s' )
 						 ELSE 
 						   DATE_FORMAT(end_date, '%H:%i:%s' )
-						 END						 			 
+						 END,
+						 DATE_FORMAT(cleared_date, '%d.%m.%Y' )						 			 
 		                 FROM $tbl_timetracker  
 						 WHERE fk_employee_id = $userid 
 						 AND ISNULL(deleted_date)
-						 AND (UNIX_TIMESTAMP(end_date) BETWEEN " . MetabaseGetTextFieldValue($gDatabase, $start) . " AND " . MetabaseGetTextFieldValue($gDatabase, $end) . ")
-						 ORDER BY start_date";
+						 AND (UNIX_TIMESTAMP(end_date) BETWEEN " . MetabaseGetTextFieldValue($gDatabase, $start) . " AND " . MetabaseGetTextFieldValue($gDatabase, $end) . ") ";
+		if ($type == 'cleared') {
+		    $query .= "AND NOT ISNULL(cleared_date) ";
+		}elseif ($type == 'open') {
+			$query .= "AND ISNULL(cleared_date) ";
+		}		 
+		$query .= "ORDER BY start_date";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Timetracker::gettimes()', $query);
@@ -327,12 +351,13 @@ class Timetracker {
                 } 
                 $dates[$row] = array ('start_date' => MetabaseFetchResult($gDatabase, $result, $row, 0),
                     'end_date' => MetabaseFetchResult($gDatabase, $result, $row, 1),
-                    'diff' => $this->calcDateDiff(strtotime(MetabaseFetchResult($gDatabase, $result, $row, 2)), strtotime(MetabaseFetchResult($gDatabase, $result, $row, 3))),
+                    'diff' => $this->calcDateDiff(strtotime(MetabaseFetchResult($gDatabase, $result, $row, 2)), strtotime(MetabaseFetchResult($gDatabase, $result, $row, 3)), strtotime(MetabaseFetchResult($gDatabase, $result, $row, 9))),
                     'timetracker_id' => MetabaseFetchResult($gDatabase, $result, $row, 4),
                     'start_date_only' => MetabaseFetchResult($gDatabase, $result, $row, 5),
                     'start_time' => MetabaseFetchResult($gDatabase, $result, $row, 6),
                     'end_date_only' => MetabaseFetchResult($gDatabase, $result, $row, 7),
                     'end_time' => MetabaseFetchResult($gDatabase, $result, $row, 8),
+                    'cleared' => MetabaseFetchResult($gDatabase, $result, $row, 9),
                     'color' => $color);
             } 
 
@@ -342,12 +367,15 @@ class Timetracker {
             } 
             if ($showsum) {
                 $diff = $this->Diff() . " (" . $this->getSalary($userid) . " EUR)";
+                $diff2 = $this->Diff(true) . " (" . $this->getSalary($userid, true) . " EUR)";
             } else {
                 $diff = $this->Diff();
+                $diff2 = $this->Diff(true);
             } 
             $dates[$row] = array('start_date' => '',
                 'end_date' => '',
                 'diff' => $diff,
+                'diff2' => $diff2,
                 'color' => $color);
         } 
         return $dates;
@@ -472,6 +500,33 @@ class Timetracker {
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Timetracker::del()', $query);
+        } 
+    } 
+
+    /**
+    * Timetracker::clear()
+    * 
+    * mark a timespan as cleared
+    * 
+    * @access public 
+    * @since 2004-11-04
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function clear($timetrackerid)
+    {
+        global $gDatabase, $request, $tbl_timetracker, $errorhandler;
+
+        $query = sprintf("UPDATE $tbl_timetracker SET 
+							   cleared_date = NOW(), 
+							   fk_cleared_user_id = %s
+							   WHERE pk_timetracker_id = %s ",
+            $request->GetVar('uid', 'session'),
+            $timetrackerid
+            );
+
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Timetracker::clear()', $query);
         } 
     } 
 } 
