@@ -1,6 +1,6 @@
 <%strip%>
 <%include file=header.tpl%>
-<form name="myform" id="myform" action="<%$wwwroot%>/index.php" method="post">
+<form name="myform" id="myform" action="<%$wwwroot%>index.php" method="post">
 <table width="98%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
