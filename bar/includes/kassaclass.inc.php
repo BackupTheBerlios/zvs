@@ -1,29 +1,29 @@
 <?php
-/***************************************************************
-*  Copyright notice
-*  
-*  (c) 2003-2004 Christian Ehret (chris@ehret.name)
-*  All rights reserved
-*
-*  This script is part of the ZVS project. The ZVS project is 
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
+/**
+* Copyright notice
 * 
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*  A copy is found in the textfile GPL.txt and important notices to the license 
-*  from the author is found in LICENSE.txt distributed with these scripts.
-*
+*      (c) 2003-2004 Christian Ehret (chris@ehret.name)
+*      All rights reserved
 * 
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+*      This script is part of the ZVS project. The ZVS project is 
+*      free software; you can redistribute it and/or modify
+*      it under the terms of the GNU General Public License as published by
+*      the Free Software Foundation; either version 2 of the License, or
+*      (at your option) any later version.
+* 
+*      The GNU General Public License can be found at
+*      http://www.gnu.org/copyleft/gpl.html.
+*      A copy is found in the textfile GPL.txt and important notices to the license 
+*      from the author is found in LICENSE.txt distributed with these scripts.
+* 
+* 
+*      This script is distributed in the hope that it will be useful,
+*      but WITHOUT ANY WARRANTY; without even the implied warranty of
+*      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*      GNU General Public License for more details.
+* 
+*      This copyright notice MUST APPEAR in all copies of the script!
+*/
 
 /**
 * class Kassa
@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.4 2004/12/07 21:26:21 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.5 2004/12/13 13:22:01 ehret Exp $
 */
 class Kassa {
     /**
@@ -44,15 +44,29 @@ class Kassa {
     * 
     * @param number $guestid guest id
     * @param string $order order desc or asc
+    * @param array $cats categories
     * @return array articles
     * @access public 
     * @since 2004-01-06
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function get($guestid, $order)
+    function get($guestid, $order, $cats = array())
     {
         global $gDatabase2, $tbl_bararticle, $tbl_user, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
         $article = array();
+        if (count($cats) > 0) {
+            $catstr = "AND ba.fk_bararticlecat_id IN (";
+            for ($i = 0; $i < count($cats); $i++) {
+                if ($i > 0) {
+                    $catstr .= ", ";
+                } 
+                $catstr .= $cats[$i];
+            } 
+            $catstr .= ")";
+        } else {
+            return array();
+        } 
+
         $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, 
 		          DATE_FORMAT( b.timestamp, '%d.%m.%Y, %H:%i' ), b.num, b.pk_bought_id, 
 				  u1.firstname, u1.lastname, DATE_FORMAT( b.inserted_date, '%d.%m.%Y, %H:%i' ), 
@@ -64,6 +78,7 @@ class Kassa {
 						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u1.pk_user_id
 						  WHERE pk_barguest_id = %s
 						  AND paid = %s 
+						  $catstr
 						  ORDER BY timestamp %s",
             $guestid,
             MetabaseGetBooleanFieldValue($gDatabase2, false),
@@ -88,10 +103,10 @@ class Kassa {
                     'timestamp' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
                     'num' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
                     'boughtid' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
-					'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 6)." ".MetabaseFetchResult($gDatabase2, $result, $row, 7),
-                    'inserteddate' => MetabaseFetchResult($gDatabase2, $result, $row, 8),					
-					'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 9)." ".MetabaseFetchResult($gDatabase2, $result, $row, 10),
-                    'updateddate' => MetabaseFetchResult($gDatabase2, $result, $row, 11),					
+                    'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 6) . " " . MetabaseFetchResult($gDatabase2, $result, $row, 7),
+                    'inserteddate' => MetabaseFetchResult($gDatabase2, $result, $row, 8),
+                    'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 9) . " " . MetabaseFetchResult($gDatabase2, $result, $row, 10),
+                    'updateddate' => MetabaseFetchResult($gDatabase2, $result, $row, 11),
                     'total' => number_format($total, 2, '.', ''),
                     'color' => $color
                     );
@@ -121,15 +136,28 @@ class Kassa {
     * @param date $start start date
     * @param date $end end date
     * @param string $order order desc or asc
+    * @param array $cats categories
     * @return array articles
     * @access public 
     * @since 2004-01-06
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function getTimeline($guestid, $start, $end, $order)
+    function getTimeline($guestid, $start, $end, $order, $cats = array())
     {
         global $gDatabase2, $tbl_bararticle, $tbl_user, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
         $article = array();
+        if (count($cats) > 0) {
+            $catstr = "AND ba.fk_bararticlecat_id IN (";
+            for ($i = 0; $i < count($cats); $i++) {
+                if ($i > 0) {
+                    $catstr .= ", ";
+                } 
+                $catstr .= $cats[$i];
+            } 
+            $catstr .= ")";
+        } else {
+            return array();
+        } 
         list($day, $month, $year) = split('.', $start);
         $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, DATE_FORMAT( b.timestamp, '%d.%m.%Y, %H:%i' ), num, pk_bought_id, paid,
 				  DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i Uhr' ), u2.firstname, u2.lastname,
@@ -139,7 +167,8 @@ class Kassa {
 				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
 						  LEFT JOIN $tbl_user u1 ON b.fk_inserted_user_id = u1.pk_user_id
 						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u2.pk_user_id
-						  WHERE bg.pk_barguest_id = $guestid ";
+						  WHERE bg.pk_barguest_id = $guestid 
+						  $catstr ";
         if ($start !== "") {
             list($day, $month, $year) = split('[.]', $start);
             $query .= "AND UNIX_TIMESTAMP(b.timestamp) >= " . mktime(0, 0, 0, $month, $day, $year) . " ";
@@ -177,10 +206,10 @@ class Kassa {
                     'num' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
                     'boughtid' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
                     'paid' => MetabaseFetchBooleanResult($gDatabase2, $result, $row, 6),
-					'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 7),					
-					'updateduser' => MetabaseFetchResult($gDatabase2, $result, $row, 8)." ".MetabaseFetchResult($gDatabase2, $result, $row, 9),	
-					'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 10),					
-					'inserteduser' => MetabaseFetchResult($gDatabase2, $result, $row, 11)." ".MetabaseFetchResult($gDatabase2, $result, $row, 12),	
+                    'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 7),
+                    'updateduser' => MetabaseFetchResult($gDatabase2, $result, $row, 8) . " " . MetabaseFetchResult($gDatabase2, $result, $row, 9),
+                    'inserted' => MetabaseFetchResult($gDatabase2, $result, $row, 10),
+                    'inserteduser' => MetabaseFetchResult($gDatabase2, $result, $row, 11) . " " . MetabaseFetchResult($gDatabase2, $result, $row, 12),
                     'total1' => number_format($total, 2, '.', ''),
                     'total2' => number_format($paid, 2, '.', ''),
                     'color' => $color
@@ -197,7 +226,7 @@ class Kassa {
                 'num' => "",
                 'boughtid' => "",
                 'paid' => "",
-				'updated' => "",
+                'updated' => "",
                 'total1' => number_format($sum, 2, '.', ''),
                 'total2' => number_format($sum2, 2, '.', ''),
                 'color' => $color
@@ -210,7 +239,7 @@ class Kassa {
                 'num' => "",
                 'boughtid' => "",
                 'paid' => "",
-				'updated' => "",
+                'updated' => "",
                 'total1' => number_format($sum, 2, '.', ''),
                 'total2' => "",
                 'color' => $color
