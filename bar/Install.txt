@@ -7,4 +7,6 @@ Import default data from zvs-sys-inital-data.sql to this database
 Create a database for bar data, e.g. zvs_bar01
 Import bar tables from zvs-bar-structure.sql to this database - please make sure, that if you did not name the system database 'zvs_system_bar' that you have to replace the name in this sql file.
 
+Copy default.inc.php.sample in the default dir to default.inc.php and change to your system settings
+
 Login as admin with the password admin and start with all the configuration
