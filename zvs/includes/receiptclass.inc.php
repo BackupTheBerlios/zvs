@@ -34,7 +34,7 @@
 * 
 * @since 2004-02-04
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: receiptclass.inc.php,v 1.1 2004/11/03 14:50:18 ehret Exp $
+* @version $Id: receiptclass.inc.php,v 1.2 2004/11/14 17:43:29 ehret Exp $
 */
 class receipt {
     /**
@@ -46,7 +46,7 @@ class receipt {
     * @param number $bookingid booking id
     * @param number $length_short_stay length of short stay
     * @param number $guestid guest id
-    * @return array receipt
+    * @return array receipt return false if something went wrong e.g. season is not defined
     * @since 2004-02-04
     * @author Christian Ehret <chris@uffbasse.de> 
     */
@@ -69,6 +69,7 @@ class receipt {
         } else {
             $price_type = MetabaseFetchResult($gDatabase, $result, 0, 0);
         } 
+
         // normal price type (per Person)
         if ($price_type == 'N') {
             $personlocation = -1;
@@ -173,10 +174,11 @@ class receipt {
 							AND p.fk_season_id = s.pk_season_id 
 							AND ISNULL(p.deleted_date)
 				";
+
             $result = MetabaseQuery($gDatabase, $query);
             if (!$result) {
                 $errorhandler->display('SQL', 'Receipt::get()', $query);
-            } else {
+            } elseif (MetabaseNumberOfRows($gDatabase, $result) <> 0) {
                 $bcdays = MetabaseFetchResult($gDatabase, $result, 0, 32);
                 $roomcatid = MetabaseFetchResult($gDatabase, $result, 0, 30);
                 $realdays = MetabaseFetchResult($gDatabase, $result, 0, 10);
@@ -615,7 +617,10 @@ class receipt {
                 } 
                 $receipt[data][price_netto_total] = number_format($receipt[data][price_netto_total], 2, '.', '');
                 $receipt[data][price_total] = number_format($receipt[data][price_total], 2, '.', '');
-            } 
+            } else {
+				return false;
+				exit;
+			}
             // advanced price type
         } else {
             $query = "SELECT 
@@ -1846,7 +1851,7 @@ class receipt {
 					  AND a.on_receipt = " . MetabaseGetBooleanFieldValue($gDatabase, false);
         $result2 = MetabaseQuery($gDatabase, $query);
         if (!$result2) {
-            $errorhandler->display('SQL', 'Receipt::getCommision()', $query);
+            $errorhandler->display('SQL', 'Receipt::getCommission()', $query);
         } else {
             $commission = array();
             if (MetabaseNumberOfRows($gDatabase, $result2) > 0) {
