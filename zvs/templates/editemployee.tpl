@@ -33,7 +33,7 @@
 	
 	function deluser(id, name) {
 		var check;
-		check = confirm("Benutzer \""+ name +"\" wirklich löschen?");
+		check = confirm("##USER## \""+ name +"\" ##REALLY_DELETE##?");
 		if (check) {
 			document.user.frm_userid.value = id;
 			document.user.frm_action.value = "del";
@@ -65,7 +65,7 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-    <p class="SubheadlineYellow">Mitarbeiter verwalten</p>
+    <p class="SubheadlineYellow">##ADMINISTER_EMPLOYEES##</p>
 		<form id="user" name="user" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_userid" id="frm_userid" value="0">
 		<input type="hidden" name="frm_action" id="frm_action" value="new">
@@ -77,23 +77,23 @@
 				<td class="ListL1" colspan="3">
 					<table border="0" cellpadding="3" cellspacing="0">
 						<tr>
-							<td><b>Vorname:</b> </td>
+							<td><b>##FIRSTNAME##:</b> </td>
 							<td><input type="text" name="frm_first" id="frm_first" value=""></td>
 						</tr>
 						<tr>
-							<td><b>Nachname:</b> </td>
+							<td><b>##LASTNAME##:</b> </td>
 							<td><input type="text" name="frm_last" id="frm_last" value=""></td>
 						</tr>
 						<tr>
-							<td><b>Login:</b> </td>
+							<td><b>##LOGIN##:</b> </td>
 							<td><input type="text" name="frm_login" id="frm_login" value=""></td>
 						</tr>
 						<tr>
-							<td><b>Passwort:</b> </td>
+							<td><b>##PASSWORD##:</b> </td>
 							<td><input type="password" name="frm_pass" id="frm_pass" value=""></td>
 						</tr>	
 						<tr>
-							<td><b>Stundensatz:</b> </td>
+							<td><b>##HOURLY_WAGE_RATE##:</b> </td>
 							<td><input type="text" name="frm_salary" id="frm_salary" value=""></td>
 						</tr>													
 						<tr>
@@ -126,23 +126,23 @@
 					<td class="ListL<%$tpl_user[user].color%>" colspan="4">
 					<table border="0" cellpadding="3" cellspacing="0">
 						<tr>
-							<td><b>Vorname:</b> </td>
+							<td><b>##FIRSTNAME##:</b> </td>
 							<td><input type="text" name="frm_first" id="frm_first" value="<%$tpl_user[user].firstname%>"></td>
 						</tr>
 						<tr>
-							<td><b>Nachname:</b> </td>
+							<td><b>##LASTNAME##:</b> </td>
 							<td><input type="text" name="frm_last" id="frm_last" value="<%$tpl_user[user].lastname%>"></td>
 						</tr>
 						<tr>
-							<td><b>Login:</b> </td>
+							<td><b>##LOGIN##:</b> </td>
 							<td><input type="text" name="frm_login" id="frm_login" value="<%$tpl_user[user].login%>"></td>
 						</tr>
 						<tr>
-							<td><b>Passwort:</b> </td>
+							<td><b>##PASSWORD##:</b> </td>
 							<td><input type="password" name="frm_pass" id="frm_pass" value=""></td>
 						</tr>	
 						<tr>
-							<td><b>Stundensatz:</b> </td>
+							<td><b>##HOURLY_WAGE_RATE##:</b> </td>
 							<td><input type="text" name="frm_salary" id="frm_salary" value="<%$tpl_user[user].salary%>"></td>
 						</tr>												
 						<tr>

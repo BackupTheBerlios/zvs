@@ -53,11 +53,11 @@ function save()
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-      <p class="SubheadlineYellow">Kategorie(n) <%if $tpl_gast.nachname neq ""%>von: <%$tpl_gast.nachname%>, <%$tpl_gast.vorname%><%/if%></p>
+      <p class="SubheadlineYellow">##CATEGORY_PLURAL## <%if $tpl_gast.nachname neq ""%>von: <%$tpl_gast.nachname%>, <%$tpl_gast.vorname%><%/if%></p>
 			<table border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td>&nbsp;</td>
-               <td colspan="2"><strong>Kategorie</strong></td>
+               <td colspan="2"><strong>##CATEGORY##</strong></td>
               </tr>
               <%section name=cat loop=$tpl_category%>
                <tr>

@@ -22,11 +22,11 @@
     <p class="SubheadlineYellow">Check Out</p>
     	<table border="0" cellspacing="0" cellpadding="3" width="500">
 			<tr>
-				<td class="ListL1Header"><b>Zimmer</b></td>
-			    <td class="ListL1Header"><b>Vorname</b></td>
-				<td class="ListL1Header"><b>Nachname</b></td>
-				<td class="ListL1Header"><b>von</b></td>
-				<td class="ListL1Header"><b>bis</b></td>
+				<td class="ListL1Header"><b>##ROOM##</b></td>
+			    <td class="ListL1Header"><b>##FIRSTNAME##</b></td>
+				<td class="ListL1Header"><b>##LASTNAME##</b></td>
+				<td class="ListL1Header"><b>##FROM##</b></td>
+				<td class="ListL1Header"><b>##UNTIL##</b></td>
 				<td class="ListL1Header">&nbsp;</td>
 			</tr>
 			<%section name=guest loop=$tpl_guests%>
@@ -47,12 +47,12 @@
 					  <%$tpl_guests[guest].enddate%>
 				</td>
 				<td class="ListL<%$tpl_guests[guest].color%>">
-					<%if $tpl_checkout eq 'true'%><a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkout.true');"><img src="<%$wwwroot%>img/checkout.png" border="0" width="16" height="13" alt="Check out"></a><%else%>&nbsp;<%/if%>
+					<%if $tpl_checkout eq 'true'%><a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkout.true');"><img src="<%$wwwroot%>img/checkout.png" border="0" width="16" height="13" alt="##CHECK_OUT##"></a><%else%>&nbsp;<%/if%>
 				</td>
 			</tr>
 			<%sectionelse%>
 			<tr>
-			    <td colspan="5">keine Eintr&auml;ge</td>
+			    <td colspan="5">##NO_ENTRYS##</td>
 			</tr>
 			<%/section%>
 		</table>
