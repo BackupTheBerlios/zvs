@@ -34,7 +34,7 @@
 * 
 * @since 2004-10-05
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: timetrackerclass.inc.php,v 1.2 2004/11/04 14:36:38 ehret Exp $
+* @version $Id: timetrackerclass.inc.php,v 1.3 2004/11/06 19:31:51 ehret Exp $
 */
 class Timetracker {
     // property global difference
@@ -313,7 +313,8 @@ class Timetracker {
 		                 FROM $tbl_timetracker  
 						 WHERE fk_employee_id = $userid 
 						 AND ISNULL(deleted_date)
-						 AND (UNIX_TIMESTAMP(end_date) BETWEEN " . MetabaseGetTextFieldValue($gDatabase, $start) . " AND " . MetabaseGetTextFieldValue($gDatabase, $end) . ")";
+						 AND (UNIX_TIMESTAMP(end_date) BETWEEN " . MetabaseGetTextFieldValue($gDatabase, $start) . " AND " . MetabaseGetTextFieldValue($gDatabase, $end) . ")
+						 ORDER BY start_date";
         $result = MetabaseQuery($gDatabase, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Timetracker::gettimes()', $query);
