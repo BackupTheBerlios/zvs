@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: calendarclass.inc.php,v 1.2 2005/01/11 09:18:18 ehret Exp $
+* @version $Id: calendarclass.inc.php,v 1.3 2005/01/19 15:26:09 ehret Exp $
 */
 class Calendar {
     /**
@@ -543,11 +543,11 @@ class Calendar {
             $todaydate = getdate();
             $todayyear = $todaydate['year'];
             $i = 0;
-            for ($year = $startyear; $year <= $todayyear; ++$year) {
+			for ($year = $startyear; $year <= $todayyear; ++$year) {
                 $dates[$i] = $year;
                 ++$i;
             } 
-            for ($j = 1; $j <= 20; ++$j) {
+            for ($j = 0; $j <= 20; ++$j) {
                 $dates[$i] = $year + $j;
                 ++$i;
             } 
