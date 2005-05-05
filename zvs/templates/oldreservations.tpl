@@ -1,4 +1,3 @@
-<%strip%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
@@ -14,7 +13,7 @@
 <link href="<%$wwwroot%>css/dynCalendar.css" rel="stylesheet" type="text/css">
 <script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
 <script language="javascript" type="text/javascript" src="<%$wwwroot%>global/dynCalendar.js"></script>
-<%/strip%>
+
 <script language="Javascript">
 <!--
 function submitform(id)
@@ -31,6 +30,46 @@ function submitform(id)
 		alert('Bitte Datum eingeben');
 	}
 }
+
+function res_all()
+{
+	var thefield, thedate;
+	thefield = 'document.reservation.frm_reservationduration.value';
+	thedate = eval(thefield);
+	if (thedate != '')
+	{
+		document.reservation.frm_res_all.value = 'true';
+		document.reservation.frm_date.value = thedate;
+		document.reservation.submit();
+	} else {
+		alert('Bitte Datum eingeben');
+	}
+}
+function del_all()
+{
+		document.reservation.frm_del_all.value = 'true';
+		document.reservation.submit();
+}
+
+
+function setCheckboxes(the_form, do_check)
+{
+    var elts      = document.forms[the_form].elements['frm_ids[]'];
+
+    var elts_cnt  = (typeof(elts.length) != 'undefined')
+                  ? elts.length
+                  : 0;
+
+    if (elts_cnt) {
+        for (var i = 0; i < elts_cnt; i++) {
+            elts[i].checked = do_check;
+        } // end for
+    } else {
+        elts.checked        = do_check;
+    } // end if... else
+
+    return true;
+}
 //-->
 </script>
 <%strip%>
@@ -43,6 +82,8 @@ function submitform(id)
 <input type="hidden" name="frm_navmonth" id="frm_navmonth" value="<%$tpl_navmonth%>">
 <input type="hidden" name="frm_navyear" id="frm_navyear" value="<%$tpl_navyear%>">
 <input type="hidden" name="frm_navstep" id="frm_navstep" value="<%$tpl_navstep%>">
+<input type="hidden" name="frm_res_all" id="frm_res_all" value="false">
+<input type="hidden" name="frm_del_all" id="frm_del_all" value="false">
 <table width="98%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
   <tr>
     <td><img src="<%$wwwroot%>img/box_corner01.gif" width="8" height="8"></td>
@@ -53,8 +94,13 @@ function submitform(id)
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
 		<p class="SubheadlineYellow">Abgelaufene Reservierungen</p>
+		<%section name=page loop=$tpl_pages%>
+		<%if $tpl_pages[page].number eq $tpl_thispageno%>&lt;<%/if%><a href="<%$tpl_wwwroot%>oldreservations.php/start.<%$tpl_pages[page].start%>/oldreservations.php">Seite <%$tpl_pages[page].number%></a><%if $tpl_pages[page].number eq $tpl_thispageno%>&gt;<%/if%>&nbsp;
+		<%/section%>
+		<br><br>
 		<table border="0" cellpadding="4" cellspacing="0">
              <tr>
+			   <td class="ListL1">&nbsp;</td>
                <td class="ListL1"><strong>Gast</strong></td>
 			   <td class="ListL1"><strong>von</strong></td>
 			   <td class="ListL1"><strong>bis</strong></td>
@@ -64,10 +110,11 @@ function submitform(id)
               <%/strip%>
               <%section name=res loop=$tpl_oldreservations%>
                <tr>
+			     <td class="ListL<%$tpl_oldreservations[res].color%>"><input type="checkbox" name="frm_ids[]" id="frm_ids[]" value="<%$tpl_oldreservations[res].bookingid%>"></td>
                  <td class="ListL<%$tpl_oldreservations[res].color%>"><%if $tpl_oldreservations[res].salutation neq "n/a"%><%$tpl_oldreservations[res].salutation%>&nbsp;<%/if%><%if $tpl_oldreservations[res].academictitle neq ""%><%$tpl_oldreservations[res].academictitle %>&nbsp;<%/if%><%$tpl_oldreservations[res].firstname %>&nbsp;<%$tpl_oldreservations[res].lastname %></td>
                  <td class="ListL<%$tpl_oldreservations[res].color%>"><%$tpl_oldreservations[res].startdate%></td>
 				 <td class="ListL<%$tpl_oldreservations[res].color%>"><%$tpl_oldreservations[res].enddate%></td>
-				 <td class="ListL<%$tpl_oldreservations[res].color%>"><a href="<%$wwwroot%>oldreservations.php//month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/navstep.<%$tpl_navstep%><%/if%>/del.<%$tpl_oldreservations[res].bookingid%>/oldreservations.php"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="Reservierung l&ouml;schen"></a></td>
+				 <td class="ListL<%$tpl_oldreservations[res].color%>"><a href="<%$wwwroot%>oldreservations.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/navstep.<%$tpl_navstep%><%/if%>/del.<%$tpl_oldreservations[res].bookingid%>/oldreservations.php"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="Reservierung l&ouml;schen"></a></td>
 				 <td class="ListL<%$tpl_oldreservations[res].color%>"><input name="frm_reservationduration<%$tpl_oldreservations[res].bookingid%>" type="text" id="frm_reservationduration<%$tpl_oldreservations[res].bookingid%>" size="10" value="<%$tpl_reservationduration%>">
 
     <script language="JavaScript" type="text/javascript">
@@ -112,7 +159,55 @@ function submitform(id)
 			  </tr>
               <%/section%>
 		      <%strip%>
-            </table>	
+            </table>
+			<br><br>	
+       <table border="0" cellspacing="5" cellpadding="0">
+          <tr>
+			<td><a href="#" onclick="setCheckboxes('reservation', true); return false;">Alle auswählen</a>
+            &nbsp;/&nbsp;
+            <a href="#" onclick="setCheckboxes('reservation', false); return false;">Auswahl entfernen</a></td>
+			<td>Ausgew&auml;hlte&nbsp;</td>
+			<td><a href="javascript:del_all();"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="Reservierung l&ouml;schen"></a></td>
+			<td><input name="frm_reservationduration" type="text" id="frm_reservationduration" size="10" value="">
+    <%/strip%>
+    <script language="JavaScript" type="text/javascript">
+    <!--
+        /**
+        * Example callback function
+        */
+        function calendarCallback(date, month, year)
+        {
+            document.forms['reservation'].frm_reservationduration.value = date + '.' + month + '.' + year;
+        }
+
+        function calendarGetValue()
+        {
+        	var strDate, arrDate, month, year, day;
+        	
+        	strDate = document.forms['reservation'].frm_reservationduration.value;
+        	if (strDate != "")
+			{
+				arrDate = strDate.split(".");
+				month = arrDate[1]-1;
+				year = arrDate[2];
+				day = arrDate[0];
+				strDate = month+', '+year+', '+day;
+			} else {
+				strDate = "";
+			}
+			
+         return strDate
+        }
+
+        calendar = new dynCalendar('calendar', 'calendarCallback', '<%$wwwroot%>img/');
+        calendar.setOffsetX(-260);
+        calendar.setOffsetY(-140);
+    //-->
+    </script>
+	<%strip%>
+			   <input type="button" value="verl&auml;ngern" onclick="res_all();"></td>
+		</tr>
+		</table>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td align="right"><a href="javascript:window.opener.location.replace('<%$wwwroot%>index.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%>');self.close();"><img src="<%$wwwroot%>img/button_schliessen.png" width="86" height="24" border="0"></a></td>

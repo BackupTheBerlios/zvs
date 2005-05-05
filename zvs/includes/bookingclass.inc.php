@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: bookingclass.inc.php,v 1.2 2005/05/05 10:03:20 ehret Exp $
+* @version $Id: bookingclass.inc.php,v 1.3 2005/05/05 11:49:24 ehret Exp $
 */
 class Booking {
     /**
@@ -275,11 +275,13 @@ class Booking {
     * This function returns all old reservations
     * 
     * @access public 
+	* @param integer $start start value
+	* @param integer $displayrows number of rows to display
     * @return array reservations
     * @since 2004-02-07
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function getoldreservations()
+    function getoldreservations($start, $displayrows)
     {
         global $tbl_booking, $tbl_guest, $tbl_salutation, $gDatabase, $request, $errorhandler;
 
@@ -291,7 +293,8 @@ class Booking {
 				  WHERE b.booking_type = ";
         $query .= MetabaseGetTextFieldValue($gDatabase, 'R');
         $query .= "AND DATE_FORMAT( b.reservation_until, '%Y-%m-%d' ) < CURRENT_DATE( )
-		           AND ISNULL(b.fk_deleted_user_id)";
+		           AND ISNULL(b.fk_deleted_user_id)
+				   LIMIT $start,  $displayrows";
 
         $result = MetabaseQuery($gDatabase, $query);
 
@@ -320,6 +323,37 @@ class Booking {
         } 
     } 
 
+	
+    /**
+    * Booking::getnumoldreservations()
+    * 
+    * This function returns number of old reservations
+    * 
+    * @access public 
+    * @return array reservations
+    * @since 2005-05-05
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function getnumoldreservations()
+    {
+        global $tbl_booking, $tbl_guest, $tbl_salutation, $gDatabase, $request, $errorhandler;
+
+        $query = "SELECT count(*)
+		          FROM $tbl_booking b
+				  WHERE b.booking_type = ";
+        $query .= MetabaseGetTextFieldValue($gDatabase, 'R');
+        $query .= "AND DATE_FORMAT( b.reservation_until, '%Y-%m-%d' ) < CURRENT_DATE( )
+		           AND ISNULL(b.fk_deleted_user_id)";
+
+        $result = MetabaseQuery($gDatabase, $query);
+
+        if (!$result) {
+            $errorhandler->display('SQL', 'Booking::getnumoldreservations()', $query);
+        } else {
+            return MetabaseFetchResult($gDatabase, $result, 0, 0);
+        } 
+    } 	
+	
     /**
     * Booking::deloldreservation()
     * 
