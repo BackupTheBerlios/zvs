@@ -53,6 +53,7 @@ $checkout = New Checkout;
 $firstpage = false;
 // select Countries
 $smarty->assign("tpl_countries", $guest->GetCountries());
+$smarty->assign('tpl_children0_field', $request->GetVar('children0', 'session'));
 $smarty->assign('tpl_children1_field', $request->GetVar('children1', 'session'));
 $smarty->assign('tpl_children2_field', $request->GetVar('children2', 'session'));
 $smarty->assign('tpl_children3_field', $request->GetVar('children3', 'session'));
@@ -375,12 +376,47 @@ if ($request->GetVar('frm_step', 'post') == "editescort") {
             $success = MetabaseAutoCommitTransactions($gDatabase, $auto_commit);
         } 
     } 
+} else if ($request->GetVar('frm_step', 'post') == "editchildren0") {
+    $smarty->assign('tpl_step', 'editchildren0');	
 } else if ($request->GetVar('frm_step', 'post') == "editchildren") {
     $smarty->assign('tpl_step', 'editchildren');
 } else if ($request->GetVar('frm_step', 'post') == "editchildren2") {
     $smarty->assign('tpl_step', 'editchildren2');
 } else if ($request->GetVar('frm_step', 'post') == "editchildren3") {
     $smarty->assign('tpl_step', 'editchildren3');
+} else if ($request->GetVar('frm_step', 'post') == "savechildren0") {
+    // transaction control
+    $auto_commit = false;
+    $success = MetabaseAutoCommitTransactions($gDatabase, $auto_commit);
+
+    $query = sprintf("UPDATE $tbl_booking SET children0 = %s, updated_date = NOW(), fk_updated_user_id = %s WHERE pk_booking_id = %s ",
+        MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_children0', 'post')),
+        MetabaseGetTextFieldValue($gDatabase, $request->GetVar('uid', 'session')),
+        MetabaseGetTextFieldValue($gDatabase, $bookid)
+        );
+
+    $result = MetabaseQuery($gDatabase, $query);
+    if (!$result) {
+        $success = MetabaseRollbackTransaction($gDatabase);
+        $errorhandler->display('SQL', 'editbook.php', $query);
+    } else {
+        $query = sprintf("UPDATE $tbl_booking_detail SET children0 = %s, updated_date = NOW(), fk_updated_user_id = %s WHERE pk_booking_detail_id = %s ",
+            MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_children0', 'post')),
+            MetabaseGetTextFieldValue($gDatabase, $request->GetVar('uid', 'session')),
+            MetabaseGetTextFieldValue($gDatabase, $bookingdetailid)
+            );
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $success = MetabaseRollbackTransaction($gDatabase);
+            $errorhandler->display('SQL', 'editbook.php', $query);
+        } else {
+            $success = MetabaseCommitTransaction($gDatabase); 
+            // end transaction
+            $auto_commit = true;
+            $success = MetabaseAutoCommitTransactions($gDatabase, $auto_commit);
+        } 
+    } 
+	
 } else if ($request->GetVar('frm_step', 'post') == "savechildren") {
     // transaction control
     $auto_commit = false;
@@ -535,7 +571,7 @@ if ($request->GetVar('frm_step', 'post') == "editescort") {
 
 $bookdata = $booking->get($bookingdetailid);
 // check room capacity
-if ($bookdata[persons] + $bookdata[children] + $bookdata[children2] + $bookdata[children3] > $bookdata[capacity]) {
+if ($bookdata[persons] + $bookdata[children0] + $bookdata[children] + $bookdata[children2] + $bookdata[children3] > $bookdata[capacity]) {
     $smarty->assign('tpl_overload', 'true');
 } else {
     $smarty->assign('tpl_overload', 'false');

@@ -30,7 +30,7 @@
 * 
 * @since 2003-10-12
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: emailconfirmation.php,v 1.1 2004/11/03 13:56:59 ehret Exp $
+* @version $Id: emailconfirmation.php,v 1.2 2005/05/05 09:19:36 ehret Exp $
 */
 
 /**
@@ -60,7 +60,7 @@ function createEmailConfirmation($bookid)
 			  booking_type, $tbl_guest.formal_greeting,  
 			  $tbl_guest.gender, 
 			  COALESCE( CASE WHEN $tbl_bookingcat.description = '' THEN NULL ELSE $tbl_bookingcat.description END, CASE WHEN $tbl_bookingcat.bookingcat = '' THEN NULL ELSE $tbl_bookingcat.bookingcat END, '' ),
-			  children2, children3 
+			  children2, children3, children0 
 			  FROM $tbl_booking 
 			  LEFT JOIN $tbl_guest ON ($tbl_booking.fk_guest_id = $tbl_guest.pk_guest_id) 
 			  LEFT JOIN $tbl_guest_address ON ($tbl_guest_address.default_address  = " . MetabaseGetBooleanFieldValue($gDatabase, true) . " 
@@ -106,6 +106,7 @@ function createEmailConfirmation($bookid)
             $body .= "Abreise: " . date("d. m. Y", MetabaseFetchResult($gDatabase, $result, 0, 3)) . "\n";
             $body .= "Kategorie: " . MetabaseFetchResult($gDatabase, $result, 0, 19) . "\n";
             $body .= "Erwachsene: " . MetabaseFetchResult($gDatabase, $result, 0, 5) . "\n";
+			$body .= $request->GetVar('children0','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 22) . "\n";			
             $body .= $request->GetVar('children1','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 6) . "\n";
 			$body .= $request->GetVar('children2','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 20) . "\n";
 			$body .= $request->GetVar('children3','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 21) . "\n\n";

@@ -42,9 +42,10 @@ include_once('bookingcategoryclass.inc.php');
 include_once('guestclass.inc.php');
 include_once('bookingclass.inc.php');
 
-	$smarty -> assign('tpl_children_field1', $request->GetVar('children1', 'session'));
-	$smarty -> assign('tpl_children_field2', $request->GetVar('children2', 'session'));
-	$smarty -> assign('tpl_children_field3', $request->GetVar('children3', 'session'));	
+$smarty -> assign('tpl_children_field0', $request->GetVar('children0', 'session'));
+$smarty -> assign('tpl_children_field1', $request->GetVar('children1', 'session'));
+$smarty -> assign('tpl_children_field2', $request->GetVar('children2', 'session'));
+$smarty -> assign('tpl_children_field3', $request->GetVar('children3', 'session'));	
 	
 $cal = New Calendar;
 $room = New Room;
@@ -92,6 +93,7 @@ if ($request -> GetVar('frm_step', 'post') == "2") {
     $smarty -> assign('tpl_niceroom', $room -> getname($request -> GetVar('frm_room', 'post')));
     $smarty -> assign('tpl_cat', $request -> GetVar('frm_cat', 'post'));
     $smarty -> assign('tpl_persons', $request -> GetVar('frm_persons', 'post'));
+	$smarty -> assign('tpl_children0', $request -> GetVar('frm_children0', 'post'));   
     $smarty -> assign('tpl_children', $request -> GetVar('frm_children', 'post'));
     $smarty -> assign('tpl_children2', $request -> GetVar('frm_children2', 'post'));
     $smarty -> assign('tpl_children3', $request -> GetVar('frm_children3', 'post'));		
@@ -111,6 +113,7 @@ if ($request -> GetVar('frm_step', 'post') == "2") {
     $smarty -> assign('tpl_niceroom', $room -> getname($request -> GetVar('frm_room', 'post')));
     $smarty -> assign('tpl_cat', $request -> GetVar('frm_cat', 'post'));
     $smarty -> assign('tpl_persons', $request -> GetVar('frm_persons', 'post'));
+	$smarty -> assign('tpl_children0', $request -> GetVar('frm_children0', 'post'));
     $smarty -> assign('tpl_children', $request -> GetVar('frm_children', 'post'));
     $smarty -> assign('tpl_children2', $request -> GetVar('frm_children2', 'post'));
     $smarty -> assign('tpl_children3', $request -> GetVar('frm_children3', 'post'));		
@@ -152,6 +155,7 @@ if ($request -> GetVar('frm_step', 'post') == "2") {
     $smarty -> assign('tpl_end', date("d. m. Y", $request -> GetVar('frm_enddate', 'post')));
     $smarty -> assign('tpl_nights', $request -> GetVar('frm_days', 'post'));
     $smarty -> assign('tpl_persons', $request -> GetVar('frm_persons', 'post'));
+    $smarty -> assign('tpl_children0', $request -> GetVar('frm_children0', 'post'));
     $smarty -> assign('tpl_children', $request -> GetVar('frm_children', 'post'));
     $smarty -> assign('tpl_children2', $request -> GetVar('frm_children2', 'post'));
     $smarty -> assign('tpl_children3', $request -> GetVar('frm_children3', 'post'));		

@@ -7,7 +7,7 @@
 	ZVS is a free open source Room Administration Framework created by Christian Ehret and licensed under GNU/GPL.
 	ZVS is copyright 2003-2004 of Christian Ehret
 -->
-<title>zvs: <%if $tpl_checkin eq "true"%>##CHECK_IN##<%elseif $tbpl_checkout eq "true"%>##CHECK_OUT##<%else%>##CHANGE_BOOKING##<%/if%></title>
+<title>zvs: <%if $tpl_checkin eq "true"%>Check In<%elseif $tbpl_checkout eq "true"%>Check Out<%else%>Buchung &auml;ndern<%/if%></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta name="Content-Type" content="text/html; charset=iso-8859-1">
 <link href="<%$wwwroot%>css/admin.css" rel="stylesheet" type="text/css">
@@ -74,17 +74,6 @@ function openWindow(url, windowname)
   detailsWindow.focus();
 }
 
-<%if $tpl_step eq "90"%>
-
-  function submit_onkeypress()
-  {
-    if(window.event.keyCode==13)
-    {
-   	  setstep(91);
-    }
-  }
-
-<%/if%>
 //-->
 </script>
 <%strip%>
@@ -99,7 +88,6 @@ function openWindow(url, windowname)
 //-->
 </script>
 <%elseif $tpl_checkedout eq "true"%>
-
 <script language="JavaScript">
 <!--
 	window.opener.location.replace('<%$wwwroot%>checkoutlist.php');
@@ -119,7 +107,7 @@ function openWindow(url, windowname)
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-     <p class="SubheadlineYellow"><%if $tpl_checkin eq "true"%>##CHECK_IN##<%elseif $tpl_checkout eq "true"%>##CHECK_OUT##<%else%>##CHANGE_BOOKING##<%/if%></p>
+     <p class="SubheadlineYellow"><%if $tpl_checkin eq "true"%>Check In<%elseif $tpl_checkout eq "true"%>Check Out<%else%>Buchung &auml;ndern<%/if%></p>
 
      <input type="hidden" name="frm_bookid" id="frm_bookid" value="<%$tpl_bookid%>">
      <input type="hidden" name="frm_bookingdetailid" id="frm_bookingdetailid" value="<%$tpl_bookingdetailid%>">
@@ -136,21 +124,19 @@ function openWindow(url, windowname)
 	 <input type="hidden" name="frm_addPosEscortid" id="frm_addPosEscortid" value="">
 	 <input type="hidden" name="frm_addressid" id="frm_addressid" value="<%$tpl_bookdata.addressid%>">
 	 <input type="hidden" name="frm_guestid" id="frm_guestid" value="<%$tpl_bookdata.gastid%>">
-<%/strip%>     
+<%/strip%>
      <%if $tpl_step eq "10"%>
-	 <%strip%>
-     ##BOOKING_SUCCESSFUL_DELETED##!
-	 <%/strip%>
+     Buchung erfolgreich gel&ouml;scht!
      <%elseif $tpl_step eq "91"%>
-     <%strip%>
-	       <p class="SubheadlineYellow">##FOUND_GUESTS##</p>
+	<%strip%>	
+	       <p class="SubheadlineYellow">gefundene G&auml;ste</p>
        		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td colspan="2">&nbsp;</td>
-               <td><strong>##FIRSTNAME##</strong></td>			   
-               <td><strong>##LASTNAME##</strong></td>
-               <td><strong>##CITY##</strong></td>
-               <td><strong>##COUNTRY##</strong></td>
+               <td><strong>Nachname</strong></td>			   
+               <td><strong>Vorname</strong></td>
+               <td><strong>Ort</strong></td>
+               <td><strong>Land</strong></td>
                <td>&nbsp;</td>
              </tr>
              <%section name=res loop=$tpl_result%>
@@ -165,62 +151,77 @@ function openWindow(url, windowname)
              </tr>
              <%sectionelse%>
              <tr>
-               <td class="DefText" colspan="4">##NO_ENTRYS##</td>
+               <td class="DefText" colspan="4">keine Eintr&auml;ge gefunden</td>
              <%/section%>
 
         </table>
-     <%/strip%>
+	<%/strip%>	 
      <%elseif $tpl_step eq "90"%>
-     <%strip%>
-	  <p class="SubheadlineYellow">##SEARCH_GUEST##</p>
+<script language="javascript"  type="text/javascript">
+
+<!--
+
+  function submit_onkeypress()
+  {
+    if(window.event.keyCode==13)
+    {
+   	  setstep(91);
+    }
+  }
+
+// -->
+
+</script>	 
+<%strip%>
+	  <p class="SubheadlineYellow">Gast suchen</p>
 		<table width="100%" border="0" cellpadding="4" cellspacing="0">
        		<%if $tpl_notfound eq 'true'%>
        		<tr>
-       		  <td colspan="2" class="DefError">##NO_GUESTS_FOUND_WITH_THESE_INFORMATIONS##! <a href="javascript:setstep('editescort');">##NEW_SEARCH##</a></td>
+       		  <td colspan="2" class="DefError">keine G&auml;ste mit diesen Angaben gefunden! <a href="javascript:setstep('editescort');">neue Suche</a></td>
        		</tr>
        		<%/if%>
              <tr>
-               <td><strong>##FIRSTNAME##</strong></td>
+               <td><strong>Vorname</strong></td>
                <td><input name="frm_vorname" type="text" id="frm_vorname" size="30" value="<%$tpl_vorname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
              <tr>
-               <td><strong>##LASTNAME##</strong></td>
+               <td><strong>Nachname</strong></td>
                <td><input name="frm_nachname" type="text" id="frm_nachname" size="30" value="<%$tpl_nachname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
         </table>
-     <%/strip%>
+	<%/strip%>
      <%else%>
-     <%strip%>
+	 <%strip%>
 	 <table border="0" width="100%">
 	 <tr>
 	 	<td>
      <table border="0" cellspacing="0" cellpadding="3">
        <tr>
-         <td class="ListL1"><%if $tpl_checkaddress eq 'false'%><span class="DefError"><%/if%><strong>##NAME##:</strong><%if $tpl_checkaddress eq 'false'%></span><%/if%></td>
+         <td class="ListL1"><%if $tpl_checkaddress eq 'false'%><span class="DefError"><%/if%><strong>Name:</strong><%if $tpl_checkaddress eq 'false'%></span><%/if%></td>
          <td class="ListL1"><%if $tpl_step eq "changeguest"%><select name="frm_guest" id="frm_guest">
           <%section name=guest loop=$tpl_guestlist%>
           <option value="<%$tpl_guestlist[guest].guest_id%>" <%if $tpl_bookdata.gastid eq $tpl_guestlist[guest].guest_id%>selected="selected"<%/if%>><%$tpl_guestlist[guest].lastname%>, <%$tpl_guestlist[guest].firstname%>&nbsp;(<%$tpl_guestlist[guest].city%>)</option>
           <%/section%>
           </select><%else%>
-		  	 <%if $tpl_checkaddress eq 'false'%><span class="DefError"><%/if%><%$tpl_bookdata.name%><%if $tpl_checkaddress eq 'false'%></span><%/if%>&nbsp;<a href="javascript:window.opener.location.replace('<%$wwwroot%>editgast.php/guestid.<%$tpl_bookdata.gastid%>');window.opener.focus();"><img src="<%$wwwroot%>img/edit.png" hight="16" width="16" alt="##EDIT_GUEST##" border="0"></a>
+		  	 <%if $tpl_checkaddress eq 'false'%><span class="DefError"><%/if%><%$tpl_bookdata.name%><%if $tpl_checkaddress eq 'false'%></span><%/if%>&nbsp;<a href="javascript:window.opener.location.replace('<%$wwwroot%>editgast.php/guestid.<%$tpl_bookdata.gastid%>');window.opener.focus();"><img src="<%$wwwroot%>img/edit.png" hight="16" width="16" alt="Gast bearbeiten" border="0"></a>
 		  <%/if%>	 
 		 </td>
 			 
          <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "changeguest"%><a href="javascript:setstep('saveguest');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('changeguest');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL1"><%if $tpl_step eq "changeguest"%><a href="javascript:setstep('saveguest');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('changeguest');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL0"><strong>##ROOM##:</strong></td>
+         <td class="ListL0"><strong>Zimmer:</strong></td>
          <td class="ListL0"><%if $tpl_step eq "editroom"%><select name="frm_room" id="frm_room">
           <%section name=room loop=$tpl_rooms%>
           <option value="<%$tpl_rooms[room].roomid%>"><%$tpl_rooms[room].name%></option>
           <%/section%>
           </select><%else%><%$tpl_bookdata.room%><%/if%></td>
           <td class="ListL0">&nbsp;</td>
-         <td class="ListL0"><%if $tpl_step eq "editroom"%><a href="javascript:setstep('saveroom');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editroom');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editroom"%><a href="javascript:setstep('saveroom');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editroom');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL1"><strong>##FROM##:</strong></td>
+         <td class="ListL1"><strong>vom:</strong></td>
          <td class="ListL1"><%if $tpl_step eq "editstart"%>
 		 <select name="frm_extdays" id="frm_extdays">
 		 <%section name=day loop=$tpl_extdays%>
@@ -231,10 +232,10 @@ function openWindow(url, windowname)
 		  <%$tpl_bookdata.nicestart%>
 		  <%/if%></td>
          <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "editstart"%><a href="javascript:setstep('savestart');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editstart');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL1"><%if $tpl_step eq "editstart"%><a href="javascript:setstep('savestart');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editstart');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL0"><strong>##UNTIL##:</strong></td>
+         <td class="ListL0"><strong>bis:</strong></td>
          <td class="ListL0"><%if $tpl_step eq "editend"%>
 		 <select name="frm_extdays" id="frm_extdays">
 		 <%section name=day loop=$tpl_extdays%>
@@ -246,40 +247,40 @@ function openWindow(url, windowname)
 		 <%/if%>
 		 </td>
          <td class="ListL0">&nbsp;</td>
-         <td class="ListL0"><%if $tpl_step eq "editend"%><a href="javascript:setstep('saveend');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editend');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editend"%><a href="javascript:setstep('saveend');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editend');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL1"><strong>##NIGHTS##:</strong></td>
+         <td class="ListL1"><strong>N&auml;chte:</strong></td>
          <td class="ListL1"><%if $tpl_step eq "editdays"%><select name="frm_days" id="frm_days">
           <%section name=day loop=$tpl_days%>
           <option value="<%$tpl_days[day]%>" <%if $tpl_days[day] eq $tpl_bookdata.days%>selected<%/if%>><%$tpl_days[day]%></option>
           <%/section%>
           </select><%else%><%$tpl_bookdata.days%><%/if%></td>
          <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "editdays"%><a href="javascript:setstep('savedays');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editdays');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL1"><%if $tpl_step eq "editdays"%><a href="javascript:setstep('savedays');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editdays');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL0"><strong>##CATEGORY##:</strong></td>
+         <td class="ListL0"><strong>Kategorie:</strong></td>
          <td class="ListL0"><%if $tpl_step eq "editcat"%><select name="frm_cat" id="frm_cat">
           <%section name=cat loop=$tpl_bcat%>
           <option value="<%$tpl_bcat[cat].bcatid%>" <%if $tpl_bookdata.catid eq $tpl_bcat[cat].bcatid%>selected<%/if%>><%$tpl_bcat[cat].name%></option>
           <%/section%>
           </select><%else%><%$tpl_bookdata.catname%><%/if%></td>
          <td class="ListL0">&nbsp;</td>
-         <td class="ListL0"><%if $tpl_step eq "editcat"%><a href="javascript:setstep('savecat');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editcat');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editcat"%><a href="javascript:setstep('savecat');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editcat');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL1"><strong>##TYPE_OF_ALLOCATION##:</strong></td>
+         <td class="ListL1"><strong>Belegungsart:</strong></td>
          <td class="ListL1"><%/strip%><%if $tpl_step eq "edittype"%><%strip%><select name="frm_bookingtype" id="frm_bookingtype"  onChange="CheckForReservation(this.selectedIndex);">
-          <option value="P" <%if $tpl_bookdata.bookingtype eq 'P'%>selected<%/if%>>##CLEARED##</option>
-          <option value="B" <%if $tpl_bookdata.bookingtype eq 'B'%>selected<%/if%>>##BOOKING##</option>
-          <option value="R" <%if $tpl_bookdata.bookingtype eq 'R'%>selected<%/if%>>##ADVANCE_BOOKING##</option>
+          <option value="P" <%if $tpl_bookdata.bookingtype eq 'P'%>selected<%/if%>>Abgerechnet</option>
+          <option value="B" <%if $tpl_bookdata.bookingtype eq 'B'%>selected<%/if%>>Buchung</option>
+          <option value="R" <%if $tpl_bookdata.bookingtype eq 'R'%>selected<%/if%>>Reservierung</option>
           </select>
           </td>
           <td class="ListL1">
           <div id="reservationduration" style="position:relative; left:0px; top:0px; width:130px; height:25px; z-index:1; visibility: <%if $tpl_bookdata.bookingtype eq 'R'%>show<%else%>hidden<%/if%>;">
            <strong>bis:</strong> <input name="frm_reservationduration" type="text" id="frm_reservationduration" size="10" value="<%if $tpl_bookdata.reservationuntil eq "00.00.0000"%><%$tpl_reservationduration%><%else%><%$tpl_bookdata.reservationuntil%><%/if%>">
-    <%/strip%>   
+            <%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         function calendar1Callback(date, month, year)
@@ -312,26 +313,46 @@ function openWindow(url, windowname)
     //-->
     </script>
     </div>
-
-          <%else%><%$tpl_bookdata.bookingtypename%> <%if $tpl_bookdata.bookingtype eq 'R'%>&nbsp;bis <%$tpl_bookdata.reservationuntil%><%/if%></td><td class="ListL1">&nbsp;<%/if%><%strip%></td>
-          <td class="ListL1"><%if $tpl_step eq "edittype"%><a href="javascript:setstep('savetype');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('edittype');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+          <%else%>
+		      <%strip%>
+		  <%$tpl_bookdata.bookingtypename%> <%if $tpl_bookdata.bookingtype eq 'R'%>&nbsp;bis <%$tpl_bookdata.reservationuntil%><%/if%></td><td class="ListL1">&nbsp;<%/strip%><%/if%></td>
+          <td class="ListL1"><%if $tpl_step eq "edittype"%><a href="javascript:setstep('savetype');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('edittype');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
       </tr>
       <tr>
-         <td class="ListL0"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong>##ADULT##:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
+         <td class="ListL0"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong>Erwachsene:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
          <td class="ListL0"><%if $tpl_step eq "editpersons"%><select name="frm_persons" id="frm_persons">
+         <option value="0" <%if $tpl_bookdata.persons eq "0"%>selected<%/if%>>0</option>
          <option value="1" <%if $tpl_bookdata.persons eq "1"%>selected<%/if%>>1</option>
          <option value="2" <%if $tpl_bookdata.persons eq "2"%>selected<%/if%>>2</option>
          <option value="3" <%if $tpl_bookdata.persons eq "3"%>selected<%/if%>>3</option>
          <option value="4" <%if $tpl_bookdata.persons eq "4"%>selected<%/if%>>4</option>
          <option value="5" <%if $tpl_bookdata.persons eq "5"%>selected<%/if%>>5</option>
          <option value="6" <%if $tpl_bookdata.persons eq "6"%>selected<%/if%>>6</option>
+         <option value="7" <%if $tpl_bookdata.persons eq "7"%>selected<%/if%>>7</option>
+         <option value="8" <%if $tpl_bookdata.persons eq "8"%>selected<%/if%>>8</option>
+         <option value="9" <%if $tpl_bookdata.persons eq "9"%>selected<%/if%>>9</option>
+         <option value="10" <%if $tpl_bookdata.persons eq "10"%>selected<%/if%>>10</option>
        </select><%else%><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.persons%><%if $tpl_overload eq 'true'%></span><%/if%><%/if%></td>
          <td class="ListL0">&nbsp;</td>
-         <td class="ListL0"><%if $tpl_step eq "editpersons"%><a href="javascript:setstep('savepersons');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editpersons');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editpersons"%><a href="javascript:setstep('savepersons');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editpersons');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL1"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children1_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
-         <td class="ListL1"><%if $tpl_step eq "editchildren"%><select name="frm_children" id="frm_children">
+         <td class="ListL1"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children0_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
+         <td class="ListL1"><%if $tpl_step eq "editchildren0"%><select name="frm_children0" id="frm_children0">
+         <option value="0" <%if $tpl_bookdata.children0 eq "0"%>selected<%/if%>>0</option>
+         <option value="1" <%if $tpl_bookdata.children0 eq "1"%>selected<%/if%>>1</option>
+         <option value="2" <%if $tpl_bookdata.children0 eq "2"%>selected<%/if%>>2</option>
+         <option value="3" <%if $tpl_bookdata.children0 eq "3"%>selected<%/if%>>3</option>
+         <option value="4" <%if $tpl_bookdata.children0 eq "4"%>selected<%/if%>>4</option>
+         <option value="5" <%if $tpl_bookdata.children0 eq "5"%>selected<%/if%>>5</option>
+         <option value="6" <%if $tpl_bookdata.children0 eq "6"%>selected<%/if%>>6</option>
+       </select><%else%><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.children0%><%if $tpl_overload eq 'true'%></span><%/if%><%/if%></td>
+         <td class="ListL1">&nbsp;</td>
+         <td class="ListL1"><%if $tpl_step eq "editchildren0"%><a href="javascript:setstep('savechildren0');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren0');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
+       </tr>	   
+       <tr>
+         <td class="ListL0"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children1_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editchildren"%><select name="frm_children" id="frm_children">
          <option value="0" <%if $tpl_bookdata.children eq "0"%>selected<%/if%>>0</option>
          <option value="1" <%if $tpl_bookdata.children eq "1"%>selected<%/if%>>1</option>
          <option value="2" <%if $tpl_bookdata.children eq "2"%>selected<%/if%>>2</option>
@@ -340,8 +361,8 @@ function openWindow(url, windowname)
          <option value="5" <%if $tpl_bookdata.children eq "5"%>selected<%/if%>>5</option>
          <option value="6" <%if $tpl_bookdata.children eq "6"%>selected<%/if%>>6</option>
        </select><%else%><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.children%><%if $tpl_overload eq 'true'%></span><%/if%><%/if%></td>
-         <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "editchildren"%><a href="javascript:setstep('savechildren');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0">&nbsp;</td>
+         <td class="ListL0"><%if $tpl_step eq "editchildren"%><a href="javascript:setstep('savechildren');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
          <td class="ListL1"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children2_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
@@ -355,11 +376,11 @@ function openWindow(url, windowname)
          <option value="6" <%if $tpl_bookdata.children2 eq "6"%>selected<%/if%>>6</option>
        </select><%else%><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.children2%><%if $tpl_overload eq 'true'%></span><%/if%><%/if%></td>
          <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "editchildren2"%><a href="javascript:setstep('savechildren2');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="##SAVE##"></a><%else%><a href="javascript:setstep('editchildren2');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL1"><%if $tpl_step eq "editchildren2"%><a href="javascript:setstep('savechildren2');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren2');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
        <tr>
-         <td class="ListL1"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children3_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
-         <td class="ListL1"><%if $tpl_step eq "editchildren3"%><select name="frm_children3" id="frm_children3">
+         <td class="ListL0"><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><strong><%$tpl_children3_field%>:</strong><%if $tpl_overload eq 'true'%></span><%/if%></td>
+         <td class="ListL0"><%if $tpl_step eq "editchildren3"%><select name="frm_children3" id="frm_children3">
          <option value="0" <%if $tpl_bookdata.children3 eq "0"%>selected<%/if%>>0</option>
          <option value="1" <%if $tpl_bookdata.children3 eq "1"%>selected<%/if%>>1</option>
          <option value="2" <%if $tpl_bookdata.children3 eq "2"%>selected<%/if%>>2</option>
@@ -368,31 +389,31 @@ function openWindow(url, windowname)
          <option value="5" <%if $tpl_bookdata.children3 eq "5"%>selected<%/if%>>5</option>
          <option value="6" <%if $tpl_bookdata.children3 eq "6"%>selected<%/if%>>6</option>
        </select><%else%><%if $tpl_overload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.children3%><%if $tpl_overload eq 'true'%></span><%/if%><%/if%></td>
-         <td class="ListL1">&nbsp;</td>
-         <td class="ListL1"><%if $tpl_step eq "editchildren3"%><a href="javascript:setstep('savechildren3');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren3');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL0">&nbsp;</td>
+         <td class="ListL0"><%if $tpl_step eq "editchildren3"%><a href="javascript:setstep('savechildren3');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editchildren3');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>
 	   
        <tr>
-         <td class="ListL0"><strong>##COMMENT##:</strong></td>
-         <td class="ListL0"><%if $tpl_step eq "editinfo"%><textarea name="frm_description" id="frm_description" cols="50" rows="5"><%$tpl_bookdata.description%></textarea><%else%><%$tpl_bookdata.description|truncate:30:"...":false%><%/if%>&nbsp;</td>
-         <td class="ListL0">&nbsp;</td>
-         <td class="ListL0"><%if $tpl_step eq "editinfo"%><a href="javascript:setstep('saveinfo');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editinfo');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="##EDIT##"></a><%/if%></td>
+         <td class="ListL1"><strong>Bemerkung:</strong></td>
+         <td class="ListL1"><%if $tpl_step eq "editinfo"%><textarea name="frm_description" id="frm_description" cols="50" rows="5"><%$tpl_bookdata.description%></textarea><%else%><%$tpl_bookdata.description|truncate:30:"...":false%><%/if%>&nbsp;</td>
+         <td class="ListL1">&nbsp;</td>
+         <td class="ListL1"><%if $tpl_step eq "editinfo"%><a href="javascript:setstep('saveinfo');"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0" alt="Speichern"></a><%else%><a href="javascript:setstep('editinfo');"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0" alt="Bearbeiten"></a><%/if%></td>
        </tr>	
 	   	   	   	   
        <tr>
-         <td class="ListL1" valign="top"><strong>##ESCORT##:</strong></td>
-         <td class="ListL1" valign="top" colspan="3">
+         <td class="ListL0" valign="top"><strong>Begleitung:</strong></td>
+         <td class="ListL0" valign="top" colspan="3">
 		    <table border="0" cellspacing="0" cellpadding="3">
 		        <tr>
 		        <td colspan="3">&nbsp;</td>
-		  		<td><a href="javascript:setstep('editescort');"><img src="<%$wwwroot%>img/shutter_plus.gif" border="0" width="13" height="13" alt="##ADD##"></a></td>
+		  		<td><a href="javascript:setstep('editescort');"><img src="<%$wwwroot%>img/shutter_plus.gif" border="0" width="13" height="13" alt="hinzuf&uuml;gen"></a></td>
 		  		</tr>
 			<%section name=escort loop=$tpl_bookdata.additionalguests%>
 				<tr>
-				<td><a href="javascript:openWindow('<%$wwwroot%>showgast.php/guestid.<%$tpl_bookdata.additionalguests[escort].guestid%>','detailsWindow')"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="##TO_SHOW##"></a></td>
+				<td><a href="javascript:openWindow('<%$wwwroot%>showgast.php/guestid.<%$tpl_bookdata.additionalguests[escort].guestid%>','detailsWindow')"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="Anzeigen"></a></td>
 				<td><%if $tpl_addoverload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.additionalguests[escort].lastname%><%if $tpl_addoverload eq 'true'%></span><%/if%></td>
 				<td><%if $tpl_addoverload eq 'true'%><span class="DefError"><%/if%><%$tpl_bookdata.additionalguests[escort].firstname%><%if $tpl_addoverload eq 'true'%></span><%/if%></td>
-				<td><a href="javascript:delescort(<%$tpl_bookdata.additionalguests[escort].guestid%>);"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="##DELETE##"></a></td>
+				<td><a href="javascript:delescort(<%$tpl_bookdata.additionalguests[escort].guestid%>);"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="l&ouml;schen"></a></td>
 				</tr>
 			<%/section%>
 			</table>
@@ -401,29 +422,29 @@ function openWindow(url, windowname)
      </table>
 		</td>
 		<td valign="top">
-		<b>##ESCORT_FROM_OTHER_BOOKINGS##:</b>
+		<b>Begleitpersonen aus anderen Buchungen:</b>
 		<br><br>
      <table boder="0" cellspacing="0" cellpadding="3">
 		<tr>
 			<td class="ListL1">&nbsp;</td>
 			<td class="ListL1">
-	  			<strong>##LASTNAME##</strong>
+	  			<strong>Nachname</strong>
 	  		</td>
 			<td class="ListL1">
-	  			<strong>##FIRSTNAME##</strong>
+	  			<strong>Vorname</strong>
 	  		</td>
 			<td class="ListL1">&nbsp;</td>
 		</tr>
      <%section name=posEscort loop=$tpl_posEscorts%>
        <tr>
-		 <td class="ListL<%$tpl_posEscorts[posEscort].color%>"><a href="javascript:addPosEscort(<%$tpl_posEscorts[posEscort].guestid%>);"><img src="<%$wwwroot%>img/shutter_plus.gif" border="0" width="13" height="13" alt="##ADD##"></a></td>
+		 <td class="ListL<%$tpl_posEscorts[posEscort].color%>"><a href="javascript:addPosEscort(<%$tpl_posEscorts[posEscort].guestid%>);"><img src="<%$wwwroot%>img/shutter_plus.gif" border="0" width="13" height="13" alt="hinzuf&uuml;gen"></a></td>
          <td class="ListL<%$tpl_posEscorts[posEscort].color%>"><%$tpl_posEscorts[posEscort].lastname%></td>
 		 <td class="ListL<%$tpl_posEscorts[posEscort].color%>"><%$tpl_posEscorts[posEscort].firstname%></td>
          <td class="ListL<%$tpl_posEscorts[posEscort].color%>"><a href="javascript:openWindow('<%$wwwroot%>showgast.php/guestid.<%$tpl_posEscorts[posEscort].guestid%>','guest');"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="Anzeigen"></a></td>		 
        </tr>
      <%sectionelse%>
        <tr>
-          <td colspan="3">##NO_BOOKINGS_WITH_OTHER_ESCORTS_YET##</td>
+          <td colspan="3">bisher keine Buchungen mit weiteren Begleitpersonen</td>
        </tr>
      <%/section%>
      </table>
@@ -433,20 +454,19 @@ function openWindow(url, windowname)
 	 </table>
 
      <br>
-      <%/strip%>
         <%/if%>
-       <%strip%>
+
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td><%if $tpl_checkin neq "true" and $tpl_checkout neq "true" and ($tpl_step eq "0" or $tpl_step eq "")%><a href="javascript:setstep('del');"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="##DELETE##"></a><%else%><%if $tpl_checkin eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkin');"><img src="<%$wwwroot%>img/button_checkin.png" border="0" width="74" height="24" alt="##CHECK_IN##"></a><%elseif $tpl_checkout eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkout');"><img src="<%$wwwroot%>img/button_checkout.png" border="0" width="80" height="24" alt="##CHECK_OUT##"></a><%else%>&nbsp;<%/if%><%/if%></td>
-            <td align="center"><%if $tpl_step eq "0" or $tpl_step eq ""%><a href="<%$wwwroot%>meldescheinrtf.php/bookid.<%$tpl_bookid%>/meldeschein.rtf" target="_blank"><img src="<%$wwwroot%>img/button_meldeschein.png" width="96" height="24" border="0" alt="##REGISTRATION_FORM##"></a><%else%>&nbsp;<%/if%></td>
-			<td align="center"><%if $tpl_step eq "0" or $tpl_step eq ""%><a href="javascript:openWindow('<%$wwwroot%>checkopenbookings.php/bookid.<%$tpl_bookid%>/checkopenbookings.php','receiptWindow');"><img src="<%$wwwroot%>img/button_rechnung.png" border="0" width="80" height="24" alt="##BILL##"></a><%else%>&nbsp;<%/if%></td>
-            <td align="center"><%if ($tpl_step eq "0" or $tpl_step eq "") and $tpl_emailconfirmation neq ""%><a href="<%$tpl_emailconfirmation%>" target="_blank"><img src="<%$wwwroot%>img/button_emailbest.png" border="0" width="120" height="24" alt="##EMAIL_CONFIRMATION##"></a><%else%>&nbsp;<%/if%></td>			
+            <td><%if $tpl_checkin neq "true" and $tpl_checkout neq "true" and ($tpl_step eq "0" or $tpl_step eq "")%><a href="javascript:setstep('del');"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0" alt="L&ouml;schen"></a><%else%><%if $tpl_checkin eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkin');"><img src="<%$wwwroot%>img/button_checkin.png" border="0" width="74" height="24" alt="Check in"></a><%elseif $tpl_checkout eq "true" and $tpl_step neq "90" and $tpl_step neq "91"%><a href="javascript:setstep('checkout');"><img src="<%$wwwroot%>img/button_checkout.png" border="0" width="80" height="24" alt="Check out"></a><%else%>&nbsp;<%/if%><%/if%></td>
+            <td align="center"><%if $tpl_step eq "0" or $tpl_step eq ""%><a href="<%$wwwroot%>meldescheinrtf.php/bookid.<%$tpl_bookid%>/meldeschein.rtf" target="_blank"><img src="<%$wwwroot%>img/button_meldeschein.png" width="96" height="24" border="0" alt="Meldeschein"></a><%else%>&nbsp;<%/if%></td>
+			<td align="center"><%if $tpl_step eq "0" or $tpl_step eq ""%><a href="javascript:openWindow('<%$wwwroot%>checkopenbookings.php/bookid.<%$tpl_bookid%>/checkopenbookings.php','receiptWindow');"><img src="<%$wwwroot%>img/button_rechnung.png" border="0" width="80" height="24" alt="Rechnung"></a><%else%>&nbsp;<%/if%></td>
+            <td align="center"><%if ($tpl_step eq "0" or $tpl_step eq "") and $tpl_emailconfirmation neq ""%><a href="<%$tpl_emailconfirmation%>" target="_blank"><img src="<%$wwwroot%>img/button_emailbest.png" border="0" width="120" height="24" alt="eMail Best&auml;stigung"></a><%else%>&nbsp;<%/if%></td>			
             <td align="right"><a href="javascript:<%if $tpl_step eq "90"%>setstep(91);<%elseif $tpl_step eq "91"%>setstep(92);<%else%>window.opener.location.replace('<%$wwwroot%><%if $tpl_checkin eq "true"%>checkinlist.php<%elseif $tpl_checkout eq "true"%>checkoutlist.php<%else%>index.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%><%/if%>');self.close();<%/if%>">
 			<%if $tpl_step eq "90" or $tpl_step eq "91"%> 
-			 <img src="<%$wwwroot%>img/button_weiter.gif" width="73" height="24" border="0" alt="##NEXT##">
+			 <img src="<%$wwwroot%>img/button_weiter.gif" width="73" height="24" border="0" alt="weiter">
 			 <%else%>
-			 <img src="<%$wwwroot%>img/button_schliessen.png" width="86" height="24" border="0" alt="##CLOSE##"> 
+			 <img src="<%$wwwroot%>img/button_schliessen.png" width="86" height="24" border="0" alt="schliessen"> 
 			 <%/if%></a></td>
           </tr>
         </table>
@@ -459,9 +479,7 @@ function openWindow(url, windowname)
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
 </table>
-<%/strip%>
-        <%if ($tpl_step eq '90' and $tpl_notfound eq 'true') or $tpl_step eq '91'%>
-		<%strip%>
+        <%if ($tpl_step eq '90' and $tpl_notfound eq 'true') or $tpl_step eq '91'%><%strip%>
         <br>
         <input type="hidden" name="frm_escort" id="frm_escort" value="true">
 <table width="95%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
@@ -473,52 +491,52 @@ function openWindow(url, windowname)
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-      <span class="SubheadlineYellow">##ADD_NEW_GUEST##&nbsp;&nbsp;&nbsp;</span>
-	  <input type="checkbox" name="frm_keepaddress" id="frm_keepaddress" value="true" checked="checked"> ##TAKE_ADDRESS_FROM_MAIN_GUEST##
+      <span class="SubheadlineYellow">neuen Gast anlegen&nbsp;&nbsp;&nbsp;</span>
+	  <input type="checkbox" name="frm_keepaddress" id="frm_keepaddress" value="true" checked="checked"> Adresse(n) vom Hauptgast &uuml;bernehmen
 	  <br>
 			<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
-               <td><strong>##SALUTATION##</strong></td>
+               <td><strong>Anrede</strong></td>
                <td> <select name="frm_salutation" id="frm_salutation">
                     <%section name=sal loop=$tpl_salutation%>
                         <option value="<%$tpl_salutation[sal].salutation_id%>"><%$tpl_salutation[sal].salutation%></option>
                     <%/section%>
                </select> </td>
-               <td><strong>##TITLE##</strong></td>
+               <td><strong>Titel</strong></td>
                <td><input name="frm_academictitle" type="text" id="frm_academictitle" size="30" value=""></td>
-               <td><strong>##GENDER##</strong></td>
+               <td><strong>Geschlecht</strong></td>
                <td> <select name="frm_gender" id="frm_gender">
-                   <option value="##MALE_SHORT##">m</option>
-                   <option value="##FEMALE_SHORT##">w</option>
+                   <option value="M">m</option>
+                   <option value="F">w</option>
                  </select> </td>
              </tr>
              <tr>
-               <td><strong>##FIRSTNAME##</strong></td>
+               <td><strong>Vorname</strong></td>
                <td><input name="frm_firstname" type="text" id="frm_firstname" size="30" value="<%$tpl_vorname%>"></td>
-               <td><strong>##LASTNAME##</strong></td>
+               <td><strong>Nachname</strong></td>
                <td><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_nachname%>"></td>
-               <td><strong>##LANGUAGE##</strong></td>
+               <td><strong>Sprache</strong></td>
                <td> <select name="frm_language" id="frm_language">
-                   <option value="2">##GERMAN_SHORT##</option>
-                   <option value="3">##ENGLISH_SHORT##</option>
-                   <option value="4">##ITALIAN_SHORT##</option>
+                   <option value="2">D</option>
+                   <option value="3">E</option>
+                   <option value="4">I</option>
                  </select> </td>
              </tr>
              <tr>
-               <td><strong>##JOB##</strong></td>
+               <td><strong>Beruf</strong></td>
                <td><input name="frm_job" type="text" id="frm_job" size="30" value=""></td>
-               <td><strong>##COMPANY##</strong></td>
+               <td><strong>Firma</strong></td>
                <td><input name="frm_company" type="text" id="frm_company" size="30" value=""></td>
-               <td><strong>##FORMAL_GREETING##</strong></td>
+               <td><strong>Du/Sie</strong></td>
                <td> <select name="frm_formal_greeting" id="frm_formal_greeting">
-                   <option value="N">##YOU_PERSONAL##</option>
-                   <option value="Y">##YOU_UNPERSONAL##</option>
+                   <option value="N">Du</option>
+                   <option value="Y">Sie</option>
                  </select> </td>
              </tr>
              <tr>
-               <td><strong>##DATE_OF_BIRTH##</strong></td>
+               <td><strong>Geburtsdatum</strong></td>
                <td><input name="frm_date_of_birth" type="text" id="frm_date_of_birth" size="10" value="">
-    <%/strip%>
+			   <%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         /**
@@ -550,14 +568,13 @@ function openWindow(url, windowname)
         calendar1 = new dynCalendar('calendar1', 'calendar1Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-	<%strip%>
-     &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y"> erinnern</td></td>
-	<td><strong>##PLACE_OF_BIRTH##</strong></td>
+    <%strip%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y"> erinnern</td></td>
+	<td><strong>Geburtsort</strong></td>
 	<td><input type="text" name="frm_birthplace" id="frm_birthplace" size="30" value=""></td>
 	<td colspan="2">&nbsp;</td>
             </tr>
   <tr>
-	<td><strong>##NATIONALITY##</strong></td>
+	<td><strong>Staatsangeh&ouml;rigkeit</strong></td>
 	<td colspan="2"><select id="frm_nationality" name="frm_nationality">
                 <%section name=cou loop=$tpl_countries%>
                         <option value="<%$tpl_countries[cou].countrySuffix%>" <%if $tpl_countries[cou].countrySuffix eq "DE"%>selected<%/if%>><%$tpl_countries[cou].countryName%></option>
@@ -566,23 +583,22 @@ function openWindow(url, windowname)
 	<td colspan="3">&nbsp;</td>
   </tr>
   <tr>
-	<td><strong>##DOCUMENT_OF_IDENTITY##</strong></td>
+	<td><strong>Ausweisdokument</strong></td>
 	<td><select name="frm_identification" id="frm_identification">
-           <option value="P">##IDENTITY_CARD##</option>	
-           <option value="R">##PASSPORT##</option>
-           <option value="F">##DRIVING_LICENSE##</option>                   
+           <option value="P">Personalausweis</option>	
+           <option value="R">Reisepass</option>
+           <option value="F">F&uuml;hrerschein</option>                   
         </select></td>
-	<td><strong>##IDENTITY_CARD_NUMBER##</strong></td>
+	<td><strong>Ausweis-Nummer</strong></td>
     <td><input name="frm_passport" type="text" id="frm_passport" size="30" value=""></td>
 	<td colspan="2">&nbsp;</td>
  </tr>
  <tr>            
- 	<td><strong>##AGENCY_OF_EXHIBITION##</strong></td>
+ 	<td><strong>Ausstellungsbeh&ouml;rde</strong></td>
 	<td><input name="frm_agency" type="text" id="frm_agency" size="30" value=""></td>
-	<td><strong>##DATE_OF_EXHIBITION##</strong></td>
-	<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value="">
-    <%/strip%>
-	<script language="JavaScript" type="text/javascript">
+	<td><strong>Ausstellungsdatum</strong></td>
+	<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value=""><%/strip%>
+    <script language="JavaScript" type="text/javascript">
     <!--
         /**
         * Example callback function
@@ -614,9 +630,8 @@ function openWindow(url, windowname)
         calendar2 = new dynCalendar('calendar2', 'calendar2Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-	<%strip%>
-</td>
-	<td colspan="2"><input type="checkbox" name="frm_status" id="frm_status" value="Y"> <strong>##REGULAR##</strong></td>
+    <%strip%></td>
+	<td colspan="2"><input type="checkbox" name="frm_status" id="frm_status" value="Y"> <strong>Stammgast</strong></td>
 
                
     
@@ -636,10 +651,10 @@ function openWindow(url, windowname)
     <td class="BoxBottom"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td><img src="<%$wwwroot%>img/box_corner03.gif" width="8" height="8"></td>
   </tr>
-</table>
-<%/strip%> <%/if%>
+</table><%/strip%>
+        <%/if%>
 </form>
 </body>
-
 <%/if%>
+
 </html>

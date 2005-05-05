@@ -87,7 +87,7 @@ function CheckForReservation(argValue)
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-     <p class="SubheadlineYellow">##BOOKING## ##FOR## <%$tpl_niceroom%></p>
+     <p class="SubheadlineYellow">Buchung für <%$tpl_niceroom%></p>
      <form name="book" id="book" action="<%$wwwroot%>book.php" method="post">
      <input type="hidden" name="frm_startdate" id="frm_startdate" value="<%$tpl_startdate%>">
      <input type="hidden" name="frm_room" id="frm_room" value="<%$tpl_room%>">
@@ -96,13 +96,14 @@ function CheckForReservation(argValue)
      <input type="hidden" name="frm_navyear" id="frm_navyear" value="<%$tpl_navyear%>">
      <input type="hidden" name="frm_navstep" id="frm_navstep" value="<%$tpl_navstep%>">
      <input type="hidden" name="frm_bookid" id="frm_bookid" value="<%$tpl_bookid%>">
-	 <%/strip%>
+     <%/strip%>
      <%if $tpl_step eq "2"%>
 	 <%strip%>
      <input type="hidden" name="frm_step" id="frm_step" value="3">
      <input type="hidden" name="frm_days" id="frm_days" value="<%$tpl_days%>">
      <input type="hidden" name="frm_cat" id="frm_cat" value="<%$tpl_cat%>">
      <input type="hidden" name="frm_persons" id="frm_persons" value="<%$tpl_persons%>">
+	 <input type="hidden" name="frm_children0" id="frm_children0" value="<%$tpl_children0%>">
      <input type="hidden" name="frm_children" id="frm_children" value="<%$tpl_children%>">
      <input type="hidden" name="frm_children2" id="frm_children2" value="<%$tpl_children2%>">	
      <input type="hidden" name="frm_children3" id="frm_children3" value="<%$tpl_children3%>">	  
@@ -110,36 +111,37 @@ function CheckForReservation(argValue)
      <input type="hidden" name="frm_description" id="frm_description" value="<%$tpl_description%>">
      <input type="hidden" name="frm_reservationduration" id="frm_reservationduration" value="<%$tpl_reservationduration%>">
      <input type="hidden" name="frm_newguest" id="frm_newguest" value="false">
-	  <p class="SubheadlineYellow">##SEARCH_GUEST##</p>
+	  <p class="SubheadlineYellow">Gast suchen</p>
 		<table width="100%" border="0" cellpadding="4" cellspacing="0">
        		<%if $tpl_notfound eq 'true'%>
        		<tr>
-       		  <td colspan="2" class="DefError">##NO_GUESTS_FOUND_WITH_THESE_INFORMATIONS##!</td>
+       		  <td colspan="2" class="DefError">keine G&auml;ste mit diesen Angaben gefunden!</td>
        		</tr>
        		<%/if%>
              <tr>
-               <td><strong>##FIRSTNAME##</strong></td>
+               <td><strong>Vorname</strong></td>
                <td><input name="frm_vorname" type="text" id="frm_vorname" size="30" value="<%$tpl_vorname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
              <tr>
-               <td><strong>##LASTNAME##</strong></td>
+               <td><strong>Nachname</strong></td>
                <td><input name="frm_nachname" type="text" id="frm_nachname" size="30" value="<%$tpl_nachname%>" onKeyPress="submit_onkeypress();"></td>
              </tr>
        		<%if $tpl_notfound eq 'true'%>
              <tr>
-                <td colspan="2"><a href="javascript:newGuest();"><img src="<%$wwwroot%>img/button_newguest.png" width="131" height="24" border="0" alt="##ADD_NEW_GUEST_WITH_THESE_INFORMATIONS##"></a>&nbsp;
-				<a href="javascript:document.book.submit();"><img src="<%$wwwroot%>img/button_search.png" width="73" height="24" border="0" alt="##NEW_SEARCH##"></a>
+                <td colspan="2"><a href="javascript:newGuest();"><img src="<%$wwwroot%>img/button_newguest.png" width="131" height="24" border="0" alt="neuen Gast mit diesen Daten anlegen"></a>&nbsp;
+				<a href="javascript:document.book.submit();"><img src="<%$wwwroot%>img/button_search.png" width="73" height="24" border="0" alt="neue Suche"></a>
 				</td>
              </tr>
        		<%/if%>
         </table>
 	 <%/strip%>
      <%elseif $tpl_step eq "3"%>
-     <%strip%>
+	 <%strip%>
           <input type="hidden" name="frm_step" id="frm_step" value="4">
           <input type="hidden" name="frm_days" id="frm_days" value="<%$tpl_days%>">
           <input type="hidden" name="frm_cat" id=frm_cat" value="<%$tpl_cat%>">
           <input type="hidden" name="frm_persons" id="frm_persons" value="<%$tpl_persons%>">
+		  <input type="hidden" name="frm_children0" id="frm_children0" value="<%$tpl_children0%>">
           <input type="hidden" name="frm_children" id="frm_children" value="<%$tpl_children%>">
           <input type="hidden" name="frm_children2" id="frm_children2" value="<%$tpl_children2%>">
           <input type="hidden" name="frm_children3" id="frm_children3" value="<%$tpl_children3%>">		  		  
@@ -151,40 +153,40 @@ function CheckForReservation(argValue)
        		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td colspan="2">&nbsp;</td>			   
-               <td><strong>##FIRSTNAME##</strong></td>			   
-               <td><strong>##LASTNAME##</strong></td>
-               <td><strong>##CITY##</strong></td>
-               <td><strong>##COUNTRY##</strong></td>
+               <td><strong>Nachname</strong></td>			   
+               <td><strong>Vorname</strong></td>
+               <td><strong>Ort</strong></td>
+               <td><strong>Land</strong></td>
                <td>&nbsp;</td>
              </tr>
              <%section name=res loop=$tpl_result%>
              <tr>
                <td class="ListL<%$tpl_result[res].color%>" width="5"><input type="radio" name="frm_guestid" id="tpl_guestid" value="<%$tpl_result[res].guestid%>" <%if $tpl_selected eq $tpl_result[res].guestid%>checked="checked"<%/if%></td>
-               <td class="ListL<%$tpl_result[res].color%>" width="5"><a href="javascript:openWindow('<%$wwwroot%>showgast.php/guestid.<%$tpl_result[res].guestid%>')"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="##TO_SHOW##"></a></td>
+               <td class="ListL<%$tpl_result[res].color%>" width="5"><a href="javascript:openWindow('<%$wwwroot%>showgast.php/guestid.<%$tpl_result[res].guestid%>')"><img src="<%$wwwroot%>img/icon_show.gif" width="16" height="16" border="0" alt="Anzeigen"></a></td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].lastname%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].firstname%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].city%>&nbsp;</td>
                <td class="ListL<%$tpl_result[res].color%>"><%$tpl_result[res].country_name%>&nbsp;</td>
-               <td class="ListL<%$tpl_result[res].color%>"><a href="javascript:openWindow('<%$wwwroot%>editgast.php/guestid.<%$tpl_result[res].guestid%>')"><img src="<%$wwwroot%>img/icon_antwort.gif" width="19" height="16" border="0" alt="##EDIT##"></a></td>
+               <td class="ListL<%$tpl_result[res].color%>"><a href="javascript:openWindow('<%$wwwroot%>editgast.php/guestid.<%$tpl_result[res].guestid%>')"><img src="<%$wwwroot%>img/icon_antwort.gif" width="19" height="16" border="0" alt="Editieren"></a></td>
              </tr>
              <%sectionelse%>
              <tr>
-               <td class="DefText" colspan="7">##NO_ENTRYS## ##FOUND##</td>
+               <td class="DefText" colspan="7">keine Eintr&auml;ge gefunden</td>
              <%/section%>
 			</tr>
 			<tr>
 			<td colspan="7">
 			<table border="0">
              <tr>
-               <td><strong>##FIRSTNAME##</strong></td>
+               <td><strong>Vorname</strong></td>
                <td><input name="frm_vorname" type="text" id="frm_vorname" size="30" value="<%$tpl_ofirstname%>"></td>
              </tr>
              <tr>
-               <td><strong>##LASTNAME##</strong></td>
+               <td><strong>Nachname</strong></td>
                <td><input name="frm_nachname" type="text" id="frm_nachname" size="30" value="<%$tpl_olastname%>"></td>
              </tr>
              <tr>
-                <td colspan="2"><a href="javascript:document.book.frm_step.value='3';newGuest();"><img src="<%$wwwroot%>img/button_newguest.png" width="131" height="24" border="0" alt="##ADD_NEW_GUEST_WITH_THESE_INFORMATIONS## "></a>&nbsp;
+                <td colspan="2"><a href="javascript:document.book.frm_step.value='3';newGuest();"><img src="<%$wwwroot%>img/button_newguest.png" width="131" height="24" border="0" alt="neuen Gast mit diesen Daten anlegen"></a>&nbsp;
 				<a href="javascript:document.book.frm_step.value='3';document.book.submit();"><img src="<%$wwwroot%>img/button_search.png" width="73" height="24" border="0" alt="neue Suche"></a>
 				</td>
              </tr>
@@ -195,76 +197,80 @@ function CheckForReservation(argValue)
 		
 	 <%/strip%>  
      <%elseif $tpl_step eq "4"%>
-	 <%strip%>
-     <b>##BOOKING_SUCCESSFUL_DONE##:</b>
+	<%strip%>
+     <b>Buchung erfolgreich abgeschlossen:</b>
 	 <br>
 	 <table border="0" cellpadding="0" cellspacing="0">
 	 	<tr>
-	 		<td class="ListL1"><b>##ARRIVAL##:</b></td> 
+	 		<td class="ListL1"><b>Ankunft:</b></td> 
 			<td class="ListL1"><%$tpl_start%></td>
 	 	</tr>
 		<tr>
-			<td class="ListL0"><b>##DEPARTURE##:</b></td>
+			<td class="ListL0"><b>Abreise:</b></td>
 			<td class="ListL0"><%$tpl_end%></td>
 		</tr>
 		<tr>
-			<td class="ListL1"><b>##NIGHTS##:</b></td>
+			<td class="ListL1"><b>N&auml;chte:</b></td>
 			<td class="ListL1"><%$tpl_nights%></td>
 		</tr>
 		<tr>
-			<td class="ListL0"><b>##CATEGORY##:</b></td>
+			<td class="ListL0"><b>Kategorie:</b></td>
 			<td class="ListL0"><%section name=cat loop=$tpl_bcat%><%if $tpl_bcat[cat].bcatid eq $tpl_cat%><%$tpl_bcat[cat].name%><%/if%><%/section%></td>
 		</tr>
 		<tr>
-			<td class="ListL1"><b>##TYPE_OF_ALLOCATION##:</b></td>
-			<td class="ListL1"><%if $tpl_bookingtype eq "P"%>##CLEARED##<%elseif $tpl_bookingtype eq "B"%>##BOOKING##<%elseif $tpl_bookingtype eq "R"%>##ADVANCE_BOOKING## ##UNTIL## <%$tpl_reservationduration%><%/if%></td>
+			<td class="ListL1"><b>Belegungsart:</b></td>
+			<td class="ListL1"><%if $tpl_bookingtype eq "P"%>Abgerechnet<%elseif $tpl_bookingtype eq "B"%>Buchung<%elseif $tpl_bookingtype eq "R"%>Reservierung bis <%$tpl_reservationduration%><%/if%></td>
 		</tr>
 		<tr>
-			<td class="ListL0"><b>##ADULT##:</b></td>
+			<td class="ListL0"><b>Erwachsene:</b></td>
 			<td class="ListL0"><%$tpl_persons%></td>
 		</tr>
 		<tr>
-			<td class="ListL1"><b><%$tpl_children_field1%>:</b></td>
-			<td class="ListL1"><%$tpl_children%></td>
+			<td class="ListL1"><b><%$tpl_children_field0%>:</b></td>
+			<td class="ListL1"><%$tpl_children0%></td>
 		</tr>
 		<tr>
-			<td class="ListL0"><b><%$tpl_children_field2%>:</b></td>
-			<td class="ListL0"><%$tpl_children2%></td>
+			<td class="ListL0"><b><%$tpl_children_field1%>:</b></td>
+			<td class="ListL0"><%$tpl_children%></td>
 		</tr>
 		<tr>
-			<td class="ListL1"><b><%$tpl_children_field3%>:</b></td>
-			<td class="ListL1"><%$tpl_children3%> </td>
+			<td class="ListL1"><b><%$tpl_children_field2%>:</b></td>
+			<td class="ListL1"><%$tpl_children2%></td>
+		</tr>
+		<tr>
+			<td class="ListL0"><b><%$tpl_children_field3%>:</b></td>
+			<td class="ListL0"><%$tpl_children3%> </td>
 		</tr>
      <%if $tpl_description neq ""%>
 	 	<tr>
-			<td class="ListL0"><b>##COMMENT##:</b></td>
-			<td class="ListL0"><%$tpl_description%></td>
+			<td class="ListL1"><b>Bemerkung:</b></td>
+			<td class="ListL1"><%$tpl_description%></td>
 		</tr>
   	 <%/if%>		
 	 </table>
 
 
  	 <br><br>
-	 <%/strip%>
  	 <%if $tpl_emailconfirmation neq ""%><a href="<%$tpl_emailconfirmation%>" target="_blank"><img src="<%$wwwroot%>img/button_emailbest.png" border="0" width="120" height="24" alt="eMail Best&auml;stigung"></a><%else%>&nbsp;<%/if%>
+	<%/strip%>
      <%else%>
 	 <%strip%>
      <input type="hidden" name="frm_step" id="frm_step" value="2">
      <table border="0">
      <tr>
-      <td><b>##BOOKING## ##FROM## <%$tpl_startnice%></b></td>
+      <td><b>Buchung vom <%$tpl_startnice%></b></td>
      </tr>
      <tr>
-      <td><b>##UNTIL##: </b> <select name="frm_days" id="frm_days">
+      <td><b>bis: </b> <select name="frm_days" id="frm_days">
           <%section name=day loop=$tpl_days%>
-          <option value="<%$tpl_days[day].count%>"><%$tpl_days[day].date%>&nbsp;(<%$tpl_days[day].count%>&nbsp;<%if $tpl_days[day].count eq "1"%>##NIGHT##<%else%>##NIGHTS##<%/if%>)</option>
+          <option value="<%$tpl_days[day].count%>"><%$tpl_days[day].date%>&nbsp;(<%$tpl_days[day].count%>&nbsp;<%if $tpl_days[day].count eq "1"%>Nacht<%else%>N&auml;chte<%/if%>)</option>
           <%/section%>
           </select> </td>
           <td>&nbsp;</td>
       </tr>
       <tr>
      <td>
-     <b>##CATEGORY##:</b> <select name="frm_cat" id="frm_cat">
+     <b>Kategorie:</b> <select name="frm_cat" id="frm_cat">
           <%section name=cat loop=$tpl_bcat%>
           <option value="<%$tpl_bcat[cat].bcatid%>"><%$tpl_bcat[cat].name%></option>
           <%/section%>
@@ -274,10 +280,10 @@ function CheckForReservation(argValue)
      </tr>
       <tr>
      <td>
-     <b>##TYPE_OF_ALLOCATION##:</b> <select name="frm_bookingtype" id="frm_bookingtype" onChange="CheckForReservation(this.selectedIndex);">
-          <option value="B">##BOOKING##</option>
-          <option value="P">##CLEARED##</option>
-          <option value="R">##ADVANCE_BOOKING##</option>
+     <b>Belegungsart:</b> <select name="frm_bookingtype" id="frm_bookingtype" onChange="CheckForReservation(this.selectedIndex);">
+          <option value="B">Buchung</option>
+          <option value="P">Abgerechnet</option>
+          <option value="R">Reservierung</option>
           </select>
      </td>
      <td><div id="reservationduration" style="position:relative; left:0px; top:0px; width:200px; height:25px; z-index:1; visibility: hidden;">
@@ -321,9 +327,10 @@ function CheckForReservation(argValue)
      </tr>     
      <tr>
      <td colspan="2">
-     <b>##NUMBER_OF_PEOPLE##:</b>
+     <b>Anzahl der Personen:</b>
      <br>
-      ##ADULT##: <select name="frm_persons" id="frm_persons">
+      Erwachsene: <select name="frm_persons" id="frm_persons">
+         <option value="0">0</option>
          <option value="1">1</option>
          <option value="2">2</option>
          <option value="3">3</option>
@@ -335,6 +342,21 @@ function CheckForReservation(argValue)
 		 <option value="9">9</option>
 		 <option value="10">10</option>
        </select>
+	   &nbsp;
+      <%$tpl_children_field0%>: <select name="frm_children0" id="frm_children0">
+         <option value="0">0</option>
+         <option value="1">1</option>
+         <option value="2">2</option>
+         <option value="3">3</option>
+         <option value="4">4</option>
+         <option value="5">5</option>
+         <option value="6">6</option>
+		 <option value="7">7</option>
+		 <option value="8">8</option>
+		 <option value="9">9</option>
+		 <option value="10">10</option>		 
+       </select>
+
 	   &nbsp;
       <%$tpl_children_field1%>: <select name="frm_children" id="frm_children">
          <option value="0">0</option>
@@ -380,7 +402,7 @@ function CheckForReservation(argValue)
        </td>
        </tr>
        <tr>
-		<td colspan="2"><b>##COMMENT##:</b><br><textarea name="frm_description" id="frm_description" cols="50" rows="5"></textarea></td>
+		<td colspan="2"><b>Bemerkung:</b><br><textarea name="frm_description" id="frm_description" cols="50" rows="5"></textarea></td>
        </tr>
        </table>
 	   <%/strip%>
