@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: bookingclass.inc.php,v 1.1 2004/11/03 14:41:09 ehret Exp $
+* @version $Id: bookingclass.inc.php,v 1.2 2005/05/05 10:03:20 ehret Exp $
 */
 class Booking {
     /**
@@ -82,8 +82,8 @@ class Booking {
 						 start_date, end_date, inserted_date, 
 						 fk_inserted_user_id, persons, children,
 						 booking_type, reservation_until, additional_info, booking_reference_id,
-						 children2, children3) 
-						 VALUES (%s, %s, %s, %s, %s, NOW(), %s, %s, %s, %s, %s, %s, %s, %s, %s )",
+						 children2, children3, children0) 
+						 VALUES (%s, %s, %s, %s, %s, NOW(), %s, %s, %s, %s, %s, %s, %s, %s, %s, %s )",
             $bookid,
             $request->GetVar('frm_cat', 'post'),
             $request->GetVar('frm_guestid', 'post'),
@@ -97,7 +97,8 @@ class Booking {
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_description', 'post')),
             MetabaseGetTextFieldValue($gDatabase, $reference_id),
             $request->GetVar('frm_children2', 'post'),
-            $request->GetVar('frm_children3', 'post')
+            $request->GetVar('frm_children3', 'post'),
+            $request->GetVar('frm_children0', 'post')			
             );
 
         $result = MetabaseQuery($gDatabase, $query);
@@ -111,8 +112,8 @@ class Booking {
 							  (pk_booking_detail_id, fk_booking_id, fk_room_id, 
 							   start_date, end_date, inserted_date, 
 							   fk_inserted_user_id, persons, children, 
-							   additional_info, children2, children3)
-							   VALUES (%s, %s, %s, %s, %s, NOW(), %s, %s, %s, %s, %s, %s )",
+							   additional_info, children2, children3, children0)
+							   VALUES (%s, %s, %s, %s, %s, NOW(), %s, %s, %s, %s, %s, %s, %s )",
                 $bookdetailid,
                 $bookid,
                 $request->GetVar('frm_room', 'post'),
@@ -123,7 +124,8 @@ class Booking {
                 $request->GetVar('frm_children', 'post'),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_description', 'post')),
                 $request->GetVar('frm_children2', 'post'),
-                $request->GetVar('frm_children3', 'post')
+                $request->GetVar('frm_children3', 'post'),
+                $request->GetVar('frm_children0', 'post')				
                 );
 
             $result = MetabaseQuery($gDatabase, $query);
@@ -495,7 +497,7 @@ class Booking {
 				  bc.bookingcat, TO_DAYS( b.end_date ) - TO_DAYS( b.start_date ) AS days, 
 				  b.booking_type, DATE_FORMAT(b.reservation_until, '%d.%m.%Y'), b.additional_info, 
 				  bd.fk_booking_id, r.capacity, ga.pk_fk_address_id, b.booking_reference_id,
-				  b.children2, b.children3 
+				  b.children2, b.children3, b.children0 
 				  FROM $tbl_booking b, $tbl_booking_detail bd, $tbl_guest g, $tbl_room r, $tbl_bookingcat bc 
 				  LEFT JOIN $tbl_guest_address ga ON g.pk_guest_id = ga.pk_fk_guest_id AND ga.default_address = " . MetabaseGetBooleanFieldValue($gDatabase, true) . " 
 				  WHERE bd.pk_booking_detail_id = " . $bookingdetailid . " 
@@ -549,6 +551,7 @@ class Booking {
                     'referenceid' => MetabaseFetchResult($gDatabase, $result, $row, 18),
                     'children2' => MetabaseFetchResult($gDatabase, $result, $row, 19),
                     'children3' => MetabaseFetchResult($gDatabase, $result, $row, 20),
+					'children0' => MetabaseFetchResult($gDatabase, $result, $row, 21),
                     'additionalguests' => $this->getAdditionalGuest($bookingdetailid, MetabaseFetchResult($gDatabase, $result, $row, 1))
                     );
             } 
@@ -578,7 +581,22 @@ class Booking {
             MetabaseGetBooleanFieldValue($gDatabase, true)
             );
 */
-        $query = "SELECT $tbl_booking.fk_bookingcat_id, $tbl_booking.fk_guest_id, " . "UNIX_TIMESTAMP(start_date), UNIX_TIMESTAMP(end_date), " . "TO_DAYS( end_date ) - TO_DAYS( start_date ) AS days, $tbl_booking.persons, " . "children, firstname, lastname, $tbl_bookingcat.bookingcat, " . "DATE_FORMAT($tbl_guest.date_of_birth , '%d.%m.%Y'), postalcode, city, " . "address, c.country_de, birthplace, n.country_de AS nationality, identification, " . "passport, agency, DATE_FORMAT(issue_date, '%d.%m.%Y') " . "FROM $tbl_booking " . "LEFT JOIN $tbl_guest ON ($tbl_booking.fk_guest_id = $tbl_guest.pk_guest_id) " . "LEFT JOIN $tbl_guest_address ON ($tbl_guest_address.default_address  = " . MetabaseGetBooleanFieldValue($gDatabase, true) . " AND $tbl_guest.pk_guest_id = $tbl_guest_address.pk_fk_guest_id) " . "LEFT JOIN $tbl_address ON ($tbl_address.pk_address_id = $tbl_guest_address.pk_fk_address_id) " . "LEFT JOIN $tbl_bookingcat ON ($tbl_booking.fk_bookingcat_id = $tbl_bookingcat.pk_bookingcat_id) " . "LEFT JOIN $tbl_country c ON (fk_country_id = c.pk_country_id )" . "LEFT JOIN $tbl_country n ON (fk_nationality_id  = n.pk_country_id )" . "WHERE pk_booking_id =  " . $bookid;
+        $query = "SELECT $tbl_booking.fk_bookingcat_id, $tbl_booking.fk_guest_id, 
+				  UNIX_TIMESTAMP(start_date), UNIX_TIMESTAMP(end_date), 
+				  TO_DAYS( end_date ) - TO_DAYS( start_date ) AS days, $tbl_booking.persons, 
+				  children, firstname, lastname, $tbl_bookingcat.bookingcat, 
+				  DATE_FORMAT($tbl_guest.date_of_birth , '%d.%m.%Y'), postalcode, city, 
+				  address, c.country_de, birthplace, n.country_de AS nationality, identification, 
+				  passport, agency, DATE_FORMAT(issue_date, '%d.%m.%Y') 
+				  FROM $tbl_booking 
+				  LEFT JOIN $tbl_guest ON ($tbl_booking.fk_guest_id = $tbl_guest.pk_guest_id) 
+				  LEFT JOIN $tbl_guest_address ON ($tbl_guest_address.default_address  = " . MetabaseGetBooleanFieldValue($gDatabase, true) . " 
+				  AND $tbl_guest.pk_guest_id = $tbl_guest_address.pk_fk_guest_id) 
+				  LEFT JOIN $tbl_address ON ($tbl_address.pk_address_id = $tbl_guest_address.pk_fk_address_id) 
+				  LEFT JOIN $tbl_bookingcat ON ($tbl_booking.fk_bookingcat_id = $tbl_bookingcat.pk_bookingcat_id) 
+				  LEFT JOIN $tbl_country c ON (fk_country_id = c.pk_country_id )
+				  LEFT JOIN $tbl_country n ON (fk_nationality_id  = n.pk_country_id )
+				  WHERE pk_booking_id =  " . $bookid;
         $result = MetabaseQuery($gDatabase, $query);
 
         if (!$result) {

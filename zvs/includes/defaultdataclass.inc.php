@@ -34,7 +34,7 @@
 * 
 * @since 2003-08-01
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: defaultdataclass.inc.php,v 1.1 2004/11/03 14:45:06 ehret Exp $
+* @version $Id: defaultdataclass.inc.php,v 1.2 2005/05/05 10:03:20 ehret Exp $
 */
 class DefaultData {
     /**
@@ -51,7 +51,10 @@ class DefaultData {
         global $request, $sess, $gDatabase, $tbl_hotel_default, $tbl_default, $errorhandler;
 
         if ($request -> GetVar('hotel_name', 'session') == $request -> undefined && $request -> GetVar('hotelid', 'session') !== $request -> undefined) {
-            $query = "SELECT " . "def.pk_default_id, default_name, fieldtype, " . "IF(ISNULL(hotel.string_value),def.string_value,hotel.string_value) AS string_value, " . "IF(ISNULL(hotel.integer_value),def.integer_value,hotel.integer_value) AS integer_value, " . "IF(ISNULL(hotel.datetime_value),def.datetime_value,hotel.datetime_value) AS datetime_value, " . "IF(ISNULL(hotel.boolean_value),def.boolean_value,hotel.boolean_value) AS boolean_value " . "FROM $tbl_default AS def " . "LEFT JOIN $tbl_hotel_default AS hotel " . "ON (hotel.pk_fk_default_id = def.pk_default_id " . "AND hotel.pk_fk_hotel_id = " . $request -> GetVar('hotelid', 'session') . ")";
+            $query = "SELECT def.pk_default_id, default_name, fieldtype, 
+						IF(ISNULL(hotel.string_value),def.string_value,hotel.string_value) AS string_value, 
+						IF(ISNULL(hotel.integer_value),def.integer_value,hotel.integer_value) AS integer_value, " . "IF(ISNULL(hotel.datetime_value),def.datetime_value,hotel.datetime_value) AS datetime_value, " . "IF(ISNULL(hotel.boolean_value),def.boolean_value,hotel.boolean_value) AS boolean_value " . "FROM $tbl_default AS def " . "LEFT JOIN $tbl_hotel_default AS hotel " . "ON (hotel.pk_fk_default_id = def.pk_default_id 
+						AND hotel.pk_fk_hotel_id = " . $request -> GetVar('hotelid', 'session') . ")";
 
             $result = MetabaseQuery($gDatabase, $query);
 
@@ -91,7 +94,18 @@ class DefaultData {
     function geteditablefields()
     {
         global $gDatabase, $request, $tbl_default, $tbl_hotel_default, $sess, $errorhandler;
-        $query = "SELECT " . "def.pk_default_id, default_name, fieldtype, " . "IF(ISNULL(hotel.string_value),def.string_value,hotel.string_value) AS string_value, " . "IF(ISNULL(hotel.integer_value),def.integer_value,hotel.integer_value) AS integer_value, " . "IF(ISNULL(hotel.datetime_value),def.datetime_value,hotel.datetime_value) AS datetime_value, " . "IF(ISNULL(hotel.boolean_value),def.boolean_value,hotel.boolean_value) AS boolean_value, " . "description " . "FROM $tbl_default AS def " . "LEFT JOIN $tbl_hotel_default AS hotel " . "ON (hotel.pk_fk_default_id = def.pk_default_id " . "AND hotel.pk_fk_hotel_id = " . $request -> GetVar('hotelid', 'session') . ") " . "WHERE def.editable = 'Y' " . "ORDER BY default_name";
+        $query = "SELECT def.pk_default_id, default_name, fieldtype, 
+				  IF(ISNULL(hotel.string_value),def.string_value,hotel.string_value) AS string_value, 
+				  IF(ISNULL(hotel.integer_value),def.integer_value,hotel.integer_value) AS integer_value, 
+				  IF(ISNULL(hotel.datetime_value),def.datetime_value,hotel.datetime_value) AS datetime_value, 
+				  IF(ISNULL(hotel.boolean_value),def.boolean_value,hotel.boolean_value) AS boolean_value, 
+				  description 
+				  FROM $tbl_default AS def 
+				  LEFT JOIN $tbl_hotel_default AS hotel 
+				  ON (hotel.pk_fk_default_id = def.pk_default_id 
+				  AND hotel.pk_fk_hotel_id = " . $request -> GetVar('hotelid', 'session') . ") " . "
+				  WHERE def.editable = 'Y' 
+				  ORDER BY default_name";
 
         $result = MetabaseQuery($gDatabase, $query);
 

@@ -183,6 +183,7 @@
 				<td class="ListL1Header"><b>Buchungskategorie</b></td>
 				<td class="ListL1Header"><b>Buchungsstatus</b></td>
 				<td class="ListL1Header"><b>Erwachsene</b></td>
+				<td class="ListL1Header"><b><%$tpl_children0_field%></b></td>
 				<td class="ListL1Header"><b><%$tpl_children1_field%></b></td>
 				<td class="ListL1Header"><b><%$tpl_children2_field%></b></td>
 				<td class="ListL1Header"><b><%$tpl_children3_field%></b></td>								
@@ -190,12 +191,15 @@
 			<%section name=guest loop=$tpl_guests%>
 			<%if $smarty.section.guest.last%>
 			<tr>
-				<td colspan="7" class="ListL<%$tpl_guests[guest].color%>" align="right">
+				<td colspan="8" class="ListL<%$tpl_guests[guest].color%>" align="right">
 					  <b>Summe: </b>
 				</td>			
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].person%>
-				</td>				
+				</td>		
+				<td class="ListL<%$tpl_guests[guest].color%>">
+					  <%$tpl_guests[guest].children0%>
+				</td>						
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].children1%>
 				</td>
@@ -236,6 +240,9 @@
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].person%>
 				</td>				
+				<td class="ListL<%$tpl_guests[guest].color%>">
+					  <%$tpl_guests[guest].children0%>
+				</td>
 				<td class="ListL<%$tpl_guests[guest].color%>">
 					  <%$tpl_guests[guest].children1%>
 				</td>

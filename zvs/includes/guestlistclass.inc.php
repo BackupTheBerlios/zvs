@@ -34,7 +34,7 @@
 * 
 * @author Christian Ehret <chris@uffbasse.de> 
 * @since 2004-06-05
-* @version $Id: guestlistclass.inc.php,v 1.2 2005/03/14 16:10:35 ehret Exp $
+* @version $Id: guestlistclass.inc.php,v 1.3 2005/05/05 10:03:20 ehret Exp $
 */
 class Guestlist {
     /**
@@ -58,7 +58,7 @@ class Guestlist {
 				 		  DATE_FORMAT(b.end_date, '%d.%m.%Y'), 
 				 		  bd.pk_booking_detail_id, r.room, bc.bookingcat,
 						  b.persons, b.children, b.children2, b.children3, b.booking_type,
-						  a.email " .
+						  a.email, b.children0 " .
         sprintf("FROM $tbl_booking b, $tbl_guest g, $tbl_booking_detail bd
 				 		  LEFT JOIN $tbl_room r ON r.pk_room_id = bd.fk_room_id
 						  LEFT JOIN $tbl_bookingcat bc ON b.fk_bookingcat_id = bc.pk_bookingcat_id
@@ -86,6 +86,7 @@ class Guestlist {
             $children1 = 0;
             $children2 = 0;
             $children3 = 0;
+			$children0 = 0;
             for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase, $result)) == 0; ++$row) {
                 $color = 0;
                 if ($row % 2 <> 0) {
@@ -112,11 +113,13 @@ class Guestlist {
                     'children1' => MetabaseFetchResult($gDatabase, $result, $row, 10),
                     'children2' => MetabaseFetchResult($gDatabase, $result, $row, 11),
                     'children3' => MetabaseFetchResult($gDatabase, $result, $row, 12),
+					'children0' => MetabaseFetchResult($gDatabase, $result, $row, 15),
                     'bookingtype' => $bookingtype,
 					'email' => MetabaseFetchResult($gDatabase, $result, $row, 14),
                     'color' => $color
                     );
                 $person += MetabaseFetchResult($gDatabase, $result, $row, 9);
+				$children0 += MetabaseFetchResult($gDatabase, $result, $row, 15);
                 $children1 += MetabaseFetchResult($gDatabase, $result, $row, 10);
                 $children2 += MetabaseFetchResult($gDatabase, $result, $row, 11);
                 $children3 += MetabaseFetchResult($gDatabase, $result, $row, 12);
@@ -135,6 +138,7 @@ class Guestlist {
                 'room' => '',
                 'bookingcat' => '',
                 'person' => $person,
+				'children0' => $children0,
                 'children1' => $children1,
                 'children2' => $children2,
                 'children3' => $children3,
@@ -166,7 +170,7 @@ class Guestlist {
 		                  DATE_FORMAT(b.start_date, '%d.%m.%Y'), 
 				 		  DATE_FORMAT(b.end_date, '%d.%m.%Y'), 
 				 		  bd.pk_booking_detail_id, r.room, bc.bookingcat,
-						  b.persons, b.children, b.children2, b.children3, b.booking_type, a.email " .
+						  b.persons, b.children, b.children2, b.children3, b.booking_type, a.email, b.children0 " .
         sprintf("FROM $tbl_booking b, $tbl_guest g, $tbl_booking_detail bd
 				 		  LEFT JOIN $tbl_room r ON r.pk_room_id = bd.fk_room_id
 						  LEFT JOIN $tbl_bookingcat bc ON b.fk_bookingcat_id = bc.pk_bookingcat_id
@@ -197,6 +201,7 @@ class Guestlist {
         } else {
             $row = 0;
             $person = 0;
+			$children0 = 0;
             $children1 = 0;
             $children2 = 0;
             $children3 = 0;
@@ -226,11 +231,13 @@ class Guestlist {
                     'children1' => MetabaseFetchResult($gDatabase, $result, $row, 10),
                     'children2' => MetabaseFetchResult($gDatabase, $result, $row, 11),
                     'children3' => MetabaseFetchResult($gDatabase, $result, $row, 12),
+					'children0' => MetabaseFetchResult($gDatabase, $result, $row, 15),
 					'email' => MetabaseFetchResult($gDatabase, $result, $row, 14),
                     'bookingtype' => $bookingtype,
                     'color' => $color
                     );
                 $person += MetabaseFetchResult($gDatabase, $result, $row, 9);
+				$children0 += MetabaseFetchResult($gDatabase, $result, $row, 15);
                 $children1 += MetabaseFetchResult($gDatabase, $result, $row, 10);
                 $children2 += MetabaseFetchResult($gDatabase, $result, $row, 11);
                 $children3 += MetabaseFetchResult($gDatabase, $result, $row, 12);
@@ -252,6 +259,7 @@ class Guestlist {
                 'children1' => $children1,
                 'children2' => $children2,
                 'children3' => $children3,
+				'children0' => $children0,
                 'bookingtype' => 'Summe: ',
                 'color' => $color
                 );

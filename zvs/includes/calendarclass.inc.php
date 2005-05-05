@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: calendarclass.inc.php,v 1.3 2005/01/19 15:26:09 ehret Exp $
+* @version $Id: calendarclass.inc.php,v 1.4 2005/05/05 10:03:20 ehret Exp $
 */
 class Calendar {
     /**
@@ -185,7 +185,7 @@ class Calendar {
 					  DATE_FORMAT(reservation_until, '%d.%m.%Y'), 
 					  $tbl_booking.additional_info, UNIX_TIMESTAMP($tbl_booking.start_date), 
 					  UNIX_TIMESTAMP($tbl_booking.end_date), $tbl_booking.pk_booking_id,
-					  $tbl_booking_detail.children2, $tbl_booking_detail.children3 
+					  $tbl_booking_detail.children2, $tbl_booking_detail.children3, $tbl_booking_detail.children0 
 					  FROM $tbl_booking_detail, $tbl_booking, $tbl_bookingcat, $tbl_guest 
 					  WHERE $tbl_booking_detail.fk_booking_id = $tbl_booking.pk_booking_id 
 					  AND $tbl_booking.fk_bookingcat_id = $tbl_bookingcat.pk_bookingcat_id 
@@ -226,6 +226,7 @@ class Calendar {
                         'firstname' => MetabaseFetchResult($gDatabase, $result, $row, 7),
                         'cat' => MetabaseFetchResult($gDatabase, $result, $row, 8),
                         'persons' => MetabaseFetchResult($gDatabase, $result, $row, 9),
+						'children0' => MetabaseFetchResult($gDatabase, $result, $row, 19),
                         'children' => MetabaseFetchResult($gDatabase, $result, $row, 10),
                         'children2' => MetabaseFetchResult($gDatabase, $result, $row, 17),
                         'children3' => MetabaseFetchResult($gDatabase, $result, $row, 18),
@@ -281,7 +282,7 @@ class Calendar {
                         } else {
                             $infotxt .= " Erwachsener";
                         } 
-                        $childrentotal = $booking['children'] + $booking['children2'] + $booking['children3'];
+                        $childrentotal = $booking['children0'] + $booking['children'] + $booking['children2'] + $booking['children3'];
                         if ($childrentotal <> 0) {
                             $infotxt .= ", " . $childrentotal;
                             if ($childrentotal <> 1) {
@@ -289,7 +290,7 @@ class Calendar {
                             } else {
                                 $infotxt .= " Kind";
                             } 
-                            $infotxt .= " (" . $booking['children'] . "/" . $booking['children2'] . "/" . $booking['children3'] . ")";
+                            $infotxt .= " (" . $booking['children0'] . "/" . $booking['children'] . "/" . $booking['children2'] . "/" . $booking['children3'] . ")";
                         } 
                         if ($booking['description'] != "") {
                             $infotxt .= "<br><b>Bemerkung:</b> " . $booking['description'];
