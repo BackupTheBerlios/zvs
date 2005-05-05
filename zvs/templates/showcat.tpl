@@ -1,6 +1,5 @@
 <%include file=header.tpl%>
 <DIV ID="dek"></DIV>
-<%/strip%>
 
 <script type="text/javascript" language="Javascript">
 <!--
