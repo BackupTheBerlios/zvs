@@ -52,7 +52,7 @@ $smarty -> assign('tpl_nav', 'calendar');
 $smarty -> assign('tpl_type', 'calendar');
 
 // check for old reservations
-$numoldres = count($book -> getoldreservations());
+$numoldres = $book -> getnumoldreservations();
 if (($numoldres > 0) && ($request->GetVar('showoldres','Session') !== 'noshow')) {
     $smarty -> assign('tpl_oldreservations','true');
 } else {
