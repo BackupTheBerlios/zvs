@@ -56,7 +56,7 @@
             <td>Buchung</td>
             <td>&nbsp;</td>
             <td class="colorchooser" bgcolor="<%$tpl_colorR%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" boder="0"></td>
-            <td>Reservierung <td valign="right"><%if $tpl_numoldres > 0%>(<a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php');"><%$tpl_numoldres%>&nbsp;##EXPIRED_BOOKING##<%if $tpl_numoldres > 1%>en<%/if%></a>)<%/if%></td></td>
+            <td>Reservierung <td valign="right"><%if $tpl_numoldres > 0%>(<a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php');"><%$tpl_numoldres%>&nbsp;<%if $tpl_numoldres > 1%>##EXPIRED_BOOKINGS##<%else%>##EXPIRED_BOOKING##<%/if%></a>)<%/if%></td></td>
             <td>&nbsp;</td>
         <%else%>
             <%section name=bcat loop=$tpl_bcat%>
@@ -73,7 +73,7 @@
         <input type="hidden" name="frm_view" id="frm_view" value="<%$tpl_view%>">
         <table width="100%" boder="0">
         <tr>
-          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_prev.png" border="0" height="24" width="28" alt="''##HOLE_MONTH_BACK##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfprev.png" border="0" height="24" width="28" alt="##HALF_MONTH_BACK"></a></td>
+          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_prev.png" border="0" height="24" width="28" alt="##HOLE_MONTH_BACK##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfprev.png" border="0" height="24" width="28" alt="##HALF_MONTH_BACK##"></a></td>
           <td align="center">
              <select name="month" id="month" onChange="javascript:document.choosedate.submit();">
                <option value="1" <%if $tpl_dropdownmonth eq "Januar"%>selected<%/if%>>##JANUARY##</option>
@@ -95,7 +95,7 @@
                <%/section%>
             </select>
           </td>
-          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="##HALF_MONTH_NEXT##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="HOLE_MONTH_NEXT"></a></td>
+          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="##HALF_MONTH_NEXT##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="##HOLE_MONTH_NEXT##"></a></td>
         </tr>
         </table>
         </form>
