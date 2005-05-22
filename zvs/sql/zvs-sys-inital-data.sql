@@ -319,4 +319,5 @@ INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, st
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (16, 'children3', 'Kinder3', 'string', 'Kinder bis 16' , NULL, '2004-02-23 21:10:44', NULL , 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (17, 'hotel_email', 'Hotel eMail', 'string', 'wiesenhof@tirol.com', NULL, '2004-07-10 20:23:53', NULL, 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (18, 'birthday_days', 'Anzahl der Tage für Geburtstagserinnerung', 'int', NULL, 5, NULL, NULL, 'Y');
-INSERT INTO _sequence_zvs_pk_default_id (sequence) VALUES (18);
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (19, 'children0', 'Kinder0', 'string', 'Kinder bis 1' , NULL, '2004-02-23 21:10:44', NULL , 'Y');
+INSERT INTO _sequence_zvs_pk_default_id (sequence) VALUES (19);
