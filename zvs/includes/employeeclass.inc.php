@@ -34,7 +34,7 @@
 * 
 * @since 2004-10-03
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: employeeclass.inc.php,v 1.1 2004/11/03 14:45:22 ehret Exp $
+* @version $Id: employeeclass.inc.php,v 1.2 2005/06/08 20:49:17 ehret Exp $
 */
 class Employee {
     /**
@@ -138,6 +138,10 @@ class Employee {
         global $gDatabase2, $request, $tbl_employee, $errorhandler;
 
         $userid = $request->GetVar('frm_userid', 'post'); 
+		$salery = $request->GetVar('frm_salary', 'post');
+		if (!is_numeric($salery)) {
+		    $salery = '0.00';
+		}
         // update
         if ($userid !== '0') {
             if ($request->GetVar('response', 'post') == 'd41d8cd98f00b204e9800998ecf8427e') {
@@ -157,7 +161,7 @@ class Employee {
                     MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('frm_first', 'post')),
                     MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('frm_login', 'post')),
                     MetabaseGetBooleanFieldValue($gDatabase2, false),
-                    $request->GetVar('frm_salary', 'post'),
+                    $salery,
                     1,
                     $request->GetVar('uid', 'session'),
                     $userid
@@ -181,7 +185,7 @@ class Employee {
                     MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('frm_login', 'post')),
                     MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('response', 'post')),
                     MetabaseGetBooleanFieldValue($gDatabase2, false),
-                    $request->GetVar('frm_salary', 'post'),
+                    $salery,
                     1,
                     $request->GetVar('uid', 'session'),
                     $userid
@@ -200,7 +204,7 @@ class Employee {
                 MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('frm_login', 'post')),
                 MetabaseGetTextFieldValue($gDatabase2, $request->GetVar('response', 'post')),
                 MetabaseGetBooleanFieldValue($gDatabase2, false),
-                $request->GetVar('frm_salary', 'post'),
+                $salery,
                 1,
                 $request->GetVar('uid', 'session'),
                 $request->GetVar('uid', 'session')
