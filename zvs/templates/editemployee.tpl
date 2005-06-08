@@ -28,7 +28,7 @@
 	function edituser(id) {
 		document.user.frm_userid.value = id;
 		document.user.frm_action.value = "edit";
-		//document.user.submit();
+		document.user.submit();
 	}
 	
 	function deluser(id, name) {
