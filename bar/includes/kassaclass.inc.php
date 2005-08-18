@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.5 2004/12/13 13:22:01 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.6 2005/08/18 10:33:28 ehret Exp $
 */
 class Kassa {
     /**
@@ -286,7 +286,8 @@ class Kassa {
                 if (!$result) {
                     $errorhandler->display('SQL', 'Kassa::checkout()', $query);
                 } else {
-                    header("Location: $wwwroot");
+					$startpage = $wwwroot . "index.php";
+                    header("Location: $startpage");
                 } 
             } 
         } 
@@ -368,7 +369,8 @@ class Kassa {
         if (!$result) {
             $errorhandler->display('SQL', 'Kassa::setinactive()', $query);
         } else {
-            header("Location: $wwwroot");
+			$startpage = $wwwroot . "index.php";
+            header("Location: $startpage");
         } 
     } 
 } 
