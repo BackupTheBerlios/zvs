@@ -219,10 +219,12 @@
   <tr>
     <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
     <td width="100%">
-      <p class="SubheadlineYellow">##PRIVAT_ADRESS##</p>
+      <p class="SubheadlineYellow">##PRIVAT_ADRESS##</p>			
 			<input type="radio" name="frm_default_address" id="frm_default_address" value="private" <%if $tpl_gast.privateAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
 			&nbsp;&nbsp;
 			<%if $tpl_gast.privateAddress.count gt 1%><input type="checkbox" name="frm_private_copy" id="frm_private_copy" value="true"> Addresse nicht mehr teilen<%/if%>
+			&nbsp;&nbsp;
+			<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.private/shareaddress.php">Adresse verkn&uuml;pfen</a><%/if%>
       		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td  rowspan="2" valign="top"><strong>##STREET##</strong></td>
@@ -305,6 +307,8 @@
 			<input type="radio" name="frm_default_address" id="frm_default_address" value="business" <%if $tpl_gast.businessAddress.defaultaddress eq "1"%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
 			&nbsp;&nbsp;
 			<%if $tpl_gast.businessAddress.count gt 1%><input type="checkbox" name="frm_business_copy" id="frm_business_copy" value="true"> ##DO_NOT_DIVIDE_ADRESS##<%/if%>
+			&nbsp;&nbsp;
+			<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.business/shareaddress.php">Adresse verkn&uuml;pfen</a><%/if%>
       		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td  rowspan="2" valign="top"><strong>##STREET##</strong></td>
@@ -387,6 +391,8 @@
 			<input type="radio" name="frm_default_address" id="frm_default_address" value="other"  <%if $tpl_gast.otherAddress.defaultaddress eq "1"%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
 			&nbsp;&nbsp;
 			<%if $tpl_gast.otherAddress.count gt 1%><input type="checkbox" name="frm_other_copy" id="frm_other_copy" value="true"> ##DO_NOT_DIVIDE_ADRESS##<%/if%>
+			&nbsp;&nbsp;
+			<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.other/shareaddress.php">Adresse verkn&uuml;pfen</a><%/if%>			
       		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
                <td  rowspan="2" valign="top"><strong>##STREET##</strong></td>

@@ -1,52 +1,52 @@
 <?php
-/***************************************************************
-*  Copyright notice
-*  
-*  (c) 2003-2004 Christian Ehret (chris@ehret.name)
-*  All rights reserved
-*
-*  This script is part of the ZVS project. The ZVS project is 
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-* 
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*  A copy is found in the textfile GPL.txt and important notices to the license 
-*  from the author is found in LICENSE.txt distributed with these scripts.
-*
-* 
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+/**
+ * Copyright notice
+ * 
+ *            (c) 2003-2004 Christian Ehret (chris@ehret.name)
+ *            All rights reserved
+ * 
+ *            This script is part of the ZVS project. The ZVS project is 
+ *            free software; you can redistribute it and/or modify
+ *            it under the terms of the GNU General Public License as published by
+ *            the Free Software Foundation; either version 2 of the License, or
+ *            (at your option) any later version.
+ * 
+ *            The GNU General Public License can be found at
+ *            http://www.gnu.org/copyleft/gpl.html.
+ *            A copy is found in the textfile GPL.txt and important notices to the license 
+ *            from the author is found in LICENSE.txt distributed with these scripts.
+ * 
+ * 
+ *            This script is distributed in the hope that it will be useful,
+ *            but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *            GNU General Public License for more details.
+ * 
+ *            This copyright notice MUST APPEAR in all copies of the script!
+ */
 
 /**
-* class Guest
-* 
-* Class for guests functionality
-* 
-* This class has all functions which are needed for the guests.
-* 
-* @since 2003-07-24
-* @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: guestclass.inc.php,v 1.1 2004/11/03 14:46:37 ehret Exp $
-*/
+ * class Guest
+ * 
+ * Class for guests functionality
+ * 
+ * This class has all functions which are needed for the guests.
+ * 
+ * @since 2003-07-24
+ * @author Christian Ehret <chris@uffbasse.de> 
+ * @version $Id: guestclass.inc.php,v 1.2 2005/09/08 20:49:27 ehret Exp $
+ */
 class Guest {
     /**
-    * Guest::setAddressesNoDefault()
-    * 
-    * Set all addresses of a given guest to default no
-    * 
-    * @param number $guestid address id
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::setAddressesNoDefault()
+     * 
+     * Set all addresses of a given guest to default no
+     * 
+     * @param number $guestid address id
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function setAddressesNoDefault($guestid)
     {
         global $gDatabase, $tbl_guest_address, $errorhandler;
@@ -65,17 +65,17 @@ class Guest {
     } 
 
     /**
-    * Guest::getAddress()
-    * 
-    * Get guest address
-    * 
-    * @param number $addressid address id
-    * @param boolean $defaultaddress default address
-    * @return array guestdata
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getAddress()
+     * 
+     * Get guest address
+     * 
+     * @param number $addressid address id
+     * @param boolean $defaultaddress default address
+     * @return array guestdata
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getAddress($addressid, $defaultaddress)
     {
         global $gDatabase, $tbl_address, $tbl_guest_address, $tbl_country, $tbl_user, $errorhandler;
@@ -136,16 +136,16 @@ class Guest {
     } 
 
     /**
-    * Guest::getGuest()
-    * 
-    * Get guest data
-    * 
-    * @param number $guestid guest id
-    * @return array guestdata
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getGuest()
+     * 
+     * Get guest data
+     * 
+     * @param number $guestid guest id
+     * @return array guestdata
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getGuest($guestid)
     {
         global $gDatabase, $tbl_guest, $tbl_guest_address, $tbl_country, $tbl_user, $tbl_booking, $tbl_salutation, $errorhandler, $request;
@@ -262,16 +262,16 @@ class Guest {
     } 
 
     /**
-    * Guest::saveupdateaddress()
-    * 
-    * save a new or update an existing address
-    * 
-    * @param number $guestid guest id
-    * @param string $type type: private, business, other
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::saveupdateaddress()
+     * 
+     * save a new or update an existing address
+     * 
+     * @param number $guestid guest id
+     * @param string $type type: private, business, other
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function saveupdateaddress($guestid, $type)
     {
         global $gDatabase, $request, $tbl_address, $tbl_guest_address, $errorhandler;
@@ -449,15 +449,15 @@ class Guest {
     } 
 
     /**
-    * Guest::saveupdateguest()
-    * 
-    * save a new or update an existing guest
-    * 
-    * @return number guest id
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::saveupdateguest()
+     * 
+     * save a new or update an existing guest
+     * 
+     * @return number guest id
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function saveupdateguest()
     {
         global $gDatabase, $request, $tbl_guest, $tbl_address, $tbl_guest_address, $errorhandler;
@@ -590,16 +590,16 @@ class Guest {
     } 
 
     /**
-    * Guest::updateinfo()
-    * 
-    * update info for a guest
-    * 
-    * @param string $guestid guestid
-    * @param string $value info text
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::updateinfo()
+     * 
+     * update info for a guest
+     * 
+     * @param string $guestid guestid
+     * @param string $value info text
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function updateinfo($guestid, $value)
     {
         global $tbl_guest, $gDatabase;
@@ -614,17 +614,17 @@ class Guest {
     } 
 
     /**
-    * Guest::easysearch()
-    * 
-    * search for a guest
-    * 
-    * @param string $firstname firstname
-    * @param string $lastname lastname
-    * @return array guest data
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::easysearch()
+     * 
+     * search for a guest
+     * 
+     * @param string $firstname firstname
+     * @param string $lastname lastname
+     * @return array guest data
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function easysearch($firstname, $lastname)
     {
         global $gDatabase, $tbl_guest, $tbl_address, $tbl_guest_address, $tbl_country, $tbl_booking, $tbl_booking_detail_guest, $tbl_booking_detail, $errorhandler, $request;
@@ -697,15 +697,15 @@ class Guest {
     } 
 
     /**
-    * Guest::getCountries()
-    * 
-    * get Countries form Database
-    * 
-    * @return array countries
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getCountries()
+     * 
+     * get Countries form Database
+     * 
+     * @return array countries
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getCountries()
     {
         global $tbl_country, $gDatabase, $errorhandler;
@@ -728,17 +728,17 @@ class Guest {
     } 
 
     /**
-    * Guest::quickinsert()
-    * 
-    * insert only firstname and lastname from a new guest into the db
-    * 
-    * @param string $firstname firstname
-    * @param string $lastname lastname
-    * @return array userdata
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::quickinsert()
+     * 
+     * insert only firstname and lastname from a new guest into the db
+     * 
+     * @param string $firstname firstname
+     * @param string $lastname lastname
+     * @return array userdata
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function quickinsert($firstname, $lastname)
     {
         global $tbl_guest, $tbl_address, $tbl_guest_address, $gDatabase, $errorhandler, $request; 
@@ -809,16 +809,16 @@ class Guest {
     } 
 
     /**
-    * Guest::checkaddress()
-    * 
-    * check if there exists an valid address for a guest
-    * 
-    * @param integer $guestid guestid
-    * @return boolean exists
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::checkaddress()
+     * 
+     * check if there exists an valid address for a guest
+     * 
+     * @param integer $guestid guestid
+     * @return boolean exists
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function checkaddress($guestid)
     {
         global $tbl_guest, $tbl_address, $tbl_guest_address, $gDatabase, $errorhandler, $request;
@@ -846,15 +846,15 @@ class Guest {
     } 
 
     /**
-    * Guest::getSalutation()
-    * 
-    * get the salutation titles
-    * 
-    * @return array salutation
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getSalutation()
+     * 
+     * get the salutation titles
+     * 
+     * @return array salutation
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getSalutation()
     {
         global $tbl_salutation, $gDatabase, $errorhandler, $request;
@@ -877,16 +877,16 @@ class Guest {
     } 
 
     /**
-    * Guest::getEscort()
-    * 
-    * get escorts
-    * 
-    * @param number $guestid guestid
-    * @return array escorts
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getEscort()
+     * 
+     * get escorts
+     * 
+     * @param number $guestid guestid
+     * @return array escorts
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getEscort($guestid)
     {
         global $tbl_guest, $tbl_booking_detail_guest, $gDatabase, $errorhandler, $request;
@@ -917,17 +917,17 @@ class Guest {
     } 
 
     /**
-    * Guest::getMeldeData()
-    * 
-    * check if there exists an valid address for a guest
-    * 
-    * @param integer $guestid guestid
-    * @param integer $number number of meldescheinen to show (0 for all)
-    * @return array Meldebescheinigungen
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getMeldeData()
+     * 
+     * check if there exists an valid address for a guest
+     * 
+     * @param integer $guestid guestid
+     * @param integer $number number of meldescheinen to show (0 for all)
+     * @return array Meldebescheinigungen
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getMeldeData($guestid, $number)
     {
         global $tbl_booking, $gDatabase, $errorhandler, $request;
@@ -968,17 +968,17 @@ class Guest {
     } 
 
     /**
-    * Guest::getLastBookings()
-    * 
-    * get last bookings of a guest
-    * 
-    * @param integer $guestid guestid
-    * @param integer $numaber number of bookings to show (0 for all)
-    * @return array last bookings
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getLastBookings()
+     * 
+     * get last bookings of a guest
+     * 
+     * @param integer $guestid guestid
+     * @param integer $numaber number of bookings to show (0 for all)
+     * @return array last bookings
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getLastBookings($guestid, $number)
     {
         global $tbl_booking, $gDatabase, $errorhandler, $request;
@@ -1019,17 +1019,17 @@ class Guest {
     } 
 
     /**
-    * Guest::getLastStays()
-    * 
-    * get last stays of a guest
-    * 
-    * @param integer $guestid guestid
-    * @param integer $number number of stays to show (0 for all)
-    * @return array last bookings
-    * @access public 
-    * @since 2003-07-24
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getLastStays()
+     * 
+     * get last stays of a guest
+     * 
+     * @param integer $guestid guestid
+     * @param integer $number number of stays to show (0 for all)
+     * @return array last bookings
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getLastStays($guestid, $number)
     {
         global $tbl_booking, $tbl_booking_detail, $tbl_booking_detail_guest, $tbl_guest, $gDatabase, $errorhandler, $request;
@@ -1071,7 +1071,7 @@ class Guest {
                     'lastname' => MetabaseFetchResult($gDatabase, $result, $row, 5),
                     'color' => $color,
                     'guestid' => $guestid,
-					'thisguestid' => MetabaseFetchResult($gDatabase, $result, $row, 6)
+                    'thisguestid' => MetabaseFetchResult($gDatabase, $result, $row, 6)
                     );
             } 
             return $meldedocuments;
@@ -1079,16 +1079,16 @@ class Guest {
     } 
 
     /**
-    * Guest::getGreeting()
-    * 
-    * get the greeting for a guest
-    * 
-    * @param integer $guestid guestid
-    * @return string greeting
-    * @access public 
-    * @since 2003-09-30
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getGreeting()
+     * 
+     * get the greeting for a guest
+     * 
+     * @param integer $guestid guestid
+     * @return string greeting
+     * @access public 
+     * @since 2003-09-30
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getGreeting($guestid)
     {
         global $tbl_guest, $tbl_salutation, $gDatabase, $errorhandler;
@@ -1137,17 +1137,17 @@ class Guest {
     } 
 
     /**
-    * Guest::getLastReceipts()
-    * 
-    * get last receipts of a guest
-    * 
-    * @param integer $guestid guestid
-    * @param integer $numaber number of bookings to show (0 for all)
-    * @return array last receipts
-    * @access public 
-    * @since 2004-03-04
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getLastReceipts()
+     * 
+     * get last receipts of a guest
+     * 
+     * @param integer $guestid guestid
+     * @param integer $numaber number of bookings to show (0 for all)
+     * @return array last receipts
+     * @access public 
+     * @since 2004-03-04
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getLastReceipts($guestid, $number)
     {
         global $tbl_booking, $tbl_receipt, $tbl_receipt_booking, $gDatabase, $errorhandler, $request;
@@ -1164,7 +1164,7 @@ class Guest {
 				  LEFT JOIN $tbl_booking b ON b.pk_booking_id = rb.pk_fk_booking_id 				  
 				  WHERE r.fk_guest_id = $guestid 
 				  ORDER BY r.receipt_date DESC"; 
-		//b.pk_booking_id,
+        // b.pk_booking_id,
         // AND r.pk_receipt_id = rb.pk_fk_receipt_id
         // AND b.pk_booking_id = rb.pk_fk_booking_id
         // GROUP BY r.receipt_reference_id
@@ -1195,22 +1195,22 @@ class Guest {
                     'color' => $color,
                     'type' => $receiptsum['type'],
                     'sum' => $receiptsum['sum']
-                    );
-                 //'book_id' => MetabaseFetchResult($gDatabase, $result, $row, 5),					
+                    ); 
+                // 'book_id' => MetabaseFetchResult($gDatabase, $result, $row, 5),
             } 
             return $receipts;
         } 
     } 
 
     /**
-    * Guest::getList()
-    * 
-    * get a list of all guests
-    * 
-    * @access public 
-    * @since 2004-03-29
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getList()
+     * 
+     * get a list of all guests
+     * 
+     * @access public 
+     * @since 2004-03-29
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getList()
     {
         global $gDatabase, $tbl_guest, $tbl_guest_address, $tbl_address, $errorhandler;
@@ -1240,16 +1240,16 @@ class Guest {
     } 
 
     /**
-    * Guest::getListWithoutEscorts()
-    * 
-    * get a list of all guests
-    * 
-	* @param int $bookingdetailid booking detail id
-	* @param int $oldguestid guest id of the original guest
-    * @access public 
-    * @since 2004-08-13
-    * @author Christian Ehret <chris@uffbasse.de> 
-    */
+     * Guest::getListWithoutEscorts()
+     * 
+     * get a list of all guests
+     * 
+     * @param int $bookingdetailid booking detail id
+     * @param int $oldguestid guest id of the original guest
+     * @access public 
+     * @since 2004-08-13
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
     function getListWithoutEscorts($bookingdetailid, $oldguestid)
     {
         global $gDatabase, $tbl_guest, $tbl_guest_address, $tbl_booking_detail_guest, $tbl_address, $errorhandler;
@@ -1266,13 +1266,13 @@ class Guest {
         } 
         $row = 0;
         $guests = array();
-		$guestids = '';
+        $guestids = '';
         for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase, $result)) == 0; ++$row) {
-			if ($guestids == '') {
-			    $guestids = MetabaseFetchResult($gDatabase, $result, $row, 0);
-			} else {
-				$guestids = $guestids . ", " . MetabaseFetchResult($gDatabase, $result, $row, 0);
-			}
+            if ($guestids == '') {
+                $guestids = MetabaseFetchResult($gDatabase, $result, $row, 0);
+            } else {
+                $guestids = $guestids . ", " . MetabaseFetchResult($gDatabase, $result, $row, 0);
+            } 
         } 
 
         $query = "SELECT pk_guest_id, firstname, lastname, 
@@ -1280,11 +1280,11 @@ class Guest {
 				  FROM $tbl_guest g 
 			 	  LEFT  JOIN $tbl_guest_address ga ON g.pk_guest_id = ga.pk_fk_guest_id AND ga.default_address = " . MetabaseGetBooleanFieldValue($gDatabase, true) . " 
 				  LEFT  JOIN $tbl_address a ON ga.pk_fk_address_id = a.pk_address_id ";
-		if ($guestids = '') {
-		    $query .= "WHERE pk_guest_id NOT IN ($guestids) ";
-		}
-				  
-		$query .= "ORDER BY lastname ";
+        if ($guestids = '') {
+            $query .= "WHERE pk_guest_id NOT IN ($guestids) ";
+        } 
+
+        $query .= "ORDER BY lastname ";
 
         $result = MetabaseQuery($gDatabase, $query);
 
@@ -1301,6 +1301,177 @@ class Guest {
                 );
         } 
         return $guests;
+    } 
+
+    /**
+     * Guest::shareaddress()
+     * 
+     * share address
+     * 
+     * @param string $shareid address id and type of source
+     * @param number $guestid address id
+     * @param string $type type of aim
+     * @access public 
+     * @since 2005-08-20
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
+    function shareaddress($shareid, $guestid, $type)
+    {
+        global $gDatabase, $tbl_guest_address, $tbl_address, $errorhandler;
+        $sharetype = substr($shareid, 0, 1);
+        $shareid = substr($shareid, 2);
+        $type = ucfirst(substr($type, 0, 1));
+        $auto_commit = false;
+        $success = MetabaseAutoCommitTransactions($gDatabase, $auto_commit);
+
+        $query = sprintf("SELECT pk_fk_address_id FROM $tbl_guest_address
+		                  WHERE pk_fk_guest_id = %s
+						  AND address_type = %s ",
+            $guestid,
+            MetabaseGetTextFieldValue($gDatabase, $type)
+            );
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $success = MetabaseRollbackTransaction($gDatabase);
+            $errorhandler->display('SQL', 'Guest::shareaddress()', $query);
+        } 
+        $oldaddressid = MetabaseFetchResult($gDatabase, $result, 0, 0);
+
+        $query = sprintf("SELECT pk_fk_address_id FROM $tbl_guest_address
+		                  WHERE pk_fk_guest_id = %s
+						  AND address_type = %s ",
+            $shareid,
+            MetabaseGetTextFieldValue($gDatabase, $sharetype)
+            );
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $success = MetabaseRollbackTransaction($gDatabase);
+            $errorhandler->display('SQL', 'Guest::shareaddress()', $query);
+        } 
+        $newaddressid = MetabaseFetchResult($gDatabase, $result, 0, 0);
+        if ($oldaddressid) {
+            $query = sprintf("UPDATE $tbl_guest_address ga 
+		                  SET pk_fk_address_id = %s 
+						  WHERE pk_fk_guest_id = %s 
+						  AND address_type = %s",
+                $newaddressid,
+                $guestid,
+                MetabaseGetTextFieldValue($gDatabase, $type)
+                );
+        } else {
+            $query = sprintf("INSERT INTO $tbl_guest_address 
+						  (pk_fk_guest_id, pk_fk_address_id, address_type) 
+						  VALUES (%s, %s, %s)",
+                $guestid,
+                $newaddressid,
+                MetabaseGetTextFieldValue($gDatabase, $type)
+                );
+        } 
+        $result = MetabaseQuery($gDatabase, $query);
+
+        if (!$result) {
+            $success = MetabaseRollbackTransaction($gDatabase);
+            $errorhandler->display('SQL', 'Guest::shareaddress()', $query);
+        } 
+        if ($oldaddressid) {
+            // check if address is used more than this time
+            $query = "SELECT count( * ) FROM $tbl_guest_address 
+			          WHERE pk_fk_address_id = $oldaddressid";
+            $result = MetabaseQuery($gDatabase, $query);
+            if (!$result) {
+                $success = MetabaseRollbackTransaction($gDatabase);
+                $errorhandler->display('SQL', 'Guest::shareaddress()', $query);
+            } else {
+                $count = MetabaseFetchResult($gDatabase, $result, 0, 0);
+            } 
+            if ($count == 0) {
+                $query = sprintf("DELETE FROM $tbl_address 
+						  WHERE pk_address_id = %s",
+                    $oldaddressid,
+                    MetabaseGetTextFieldValue($gDatabase, $type)
+                    );
+                $result = MetabaseQuery($gDatabase, $query);
+                if (!$result) {
+                    $success = MetabaseRollbackTransaction($gDatabase);
+                    $errorhandler->display('SQL', 'Guest::shareaddress()', $query);
+                } 
+            } 
+        } 
+        $success = MetabaseCommitTransaction($gDatabase); 
+        // end transaction
+        $auto_commit = true;
+        $success = MetabaseAutoCommitTransactions($gDatabase, $auto_commit);
+    } 
+
+    /**
+     * Guest::asearch()
+     * 
+     * search adresses for a guest
+     * 
+     * @param string $firstname firstname
+     * @param string $lastname lastname
+     * @return array guest data
+     * @access public 
+     * @since 2003-07-24
+     * @author Christian Ehret <chris@uffbasse.de> 
+     */
+    function asearch($firstname, $lastname)
+    {
+        global $gDatabase, $tbl_guest, $tbl_address, $tbl_guest_address, $tbl_country, $tbl_booking, $tbl_booking_detail_guest, $tbl_booking_detail, $errorhandler, $request;
+
+        $guest = array();
+
+        $query = "SELECT g.pk_guest_id, 
+				  IF ( g.firstname =  '' OR g.firstname IS  NULL ,  '-', g.firstname )firstname, 
+				  g.lastname, 
+				  IF ( g.company =  '' OR g.company IS  NULL ,  '-', g.company )company 
+				  FROM $tbl_guest g  ";
+
+        if ($firstname != "" or $lastname != "") {
+            $query .= "WHERE ";
+        } 
+        if ($firstname != "") {
+            $query .= "firstname LIKE '%" . $firstname . "%' ";
+        } 
+        if ($firstname != "" and $lastname != "") {
+            $query .= "AND ";
+        } 
+        if ($lastname != "") {
+            $query .= "lastname LIKE '%" . $lastname . "%' ";
+        } 
+        $query .= "GROUP  BY g.pk_guest_id ";
+        $query .= "ORDER BY lastname, firstname ";
+
+        $result = MetabaseQuery($gDatabase, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Guest::asearch()', $query);
+        } else {
+            $row = 0;
+            for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase, $result)) == 0; ++$row) {
+			    unset($addresses);
+                $query = "SELECT pk_fk_address_id, address_type FROM $tbl_guest_address WHERE pk_fk_guest_id = ".MetabaseFetchResult($gDatabase, $result, $row, 0);
+                $result2 = MetabaseQuery($gDatabase, $query);
+                if (!$result2) {
+                    $errorhandler->display('SQL', 'Guest::asearch()', $query);
+                } 
+                for ($row2 = 0; ($eor = MetabaseEndOfResult($gDatabase, $result2)) == 0; ++$row2) {
+                	$addresses[$row2] = $this->getAddress(MetabaseFetchResult($gDatabase, $result2, $row2, 0), MetabaseFetchResult($gDatabase, $result2, $row2, 1));
+				} 
+                $color = 0;
+                if ($row % 2 <> 0) {
+                    $color = 1;
+                } 
+                $guest[$row] = array('guestid' => MetabaseFetchResult($gDatabase, $result, $row, 0),
+                    'firstname' => MetabaseFetchResult($gDatabase, $result, $row, 1),
+                    'lastname' => MetabaseFetchResult($gDatabase, $result, $row, 2),
+                    'company' => MetabaseFetchResult($gDatabase, $result, $row, 3),
+					'addresses' => $addresses,
+                    'color' => $color
+                    );
+            } 
+        } 
+
+        return $guest;
     } 
 } 
 
