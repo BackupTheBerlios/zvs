@@ -106,7 +106,7 @@
                <td class="ListL1Header"><strong>##POSTAL_CODE_SHORT##</strong></td>
                <td class="ListL1Header"><strong>##CITY##</strong></td>
                <td class="ListL1Header"><strong>##COUNTRY##</strong></td>
-               <td class="ListL1Header"><strong>##LAST##<br>##BOOKING##</strong></td>
+               <td class="ListL1Header"><strong>##LAST1##<br>##BOOKING##</strong></td>
                <td class="ListL1Header"><strong>##LAST2##<br>##STAY##</strong></td>
                <td class="ListL1Header">&nbsp;</td>
              </tr>
