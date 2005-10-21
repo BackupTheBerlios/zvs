@@ -10,18 +10,11 @@
 	<legend>##LOGIN##</legend>
 	<label for="username">##LOGINNAME##</label><input type="text" id="username" name="username" maxlength="128" value="<%$tpl_login%>" onKeyPress="next_onkeypress();" class="text" tabindex="1"><br/> 
   <label for="password">##PASSWORD##</label><input type="password" id="password" name="password" maxlength="32" onKeyPress="login_onkeypress();" value="" class="text" tabindex="2"><br/> 
+	<%if $tpl_issetuname eq "true" %>
+		<span class="error">Entweder war der Benutzername oder das Passwort falsch.</span>
+	<%/if%>
 	<p class="right"><input type="submit" value="anmelden &raquo;" class="right"></p>
 </fieldset>
-
-				
-				
-				<% if $tpl_issetuname eq "true" %>
-				  <tr>
-				   <td colspan=2 class="DefError">Entweder war der Benutzername oder das Passwort falsch.</td>
-				  </tr>
-				
-				 <%/if%>
-				</table>
 
 </form>
 <%/strip%>
