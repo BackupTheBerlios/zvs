@@ -1,0 +1,335 @@
+body {
+	background: #FFFFFF;
+	color: #000000; /* font:x-small/1.5em Georgia,Serif;*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	margin: 0;
+	padding: 0;
+	voice-family: inherit;
+	voice-family: "\"}\"";
+}
+
+html>body {
+	font-size: small;
+}
+
+
+#header {
+	background: url("bg2.gif") #e7f4d7 repeat-x bottom;
+	position: relative;
+	float: left;
+	font-size: 93%;
+	line-height: normal;
+	width: 100%;
+}
+
+#header ul #current {
+	background-image: url("left_on.gif");
+}
+
+#header ul #current a {
+	background-image: url("right_on.gif");
+	color: #333333;
+	padding-bottom: 5px;
+}
+
+
+#header ul a {
+	background: url("right.gif") no-repeat right top;
+	color: #776655;
+	display: block;
+	float: left;
+	font-weight: bold;
+	padding: 5px 15px 4px 6px;
+	text-decoration: none;
+}
+
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#header ul a {
+	float: none;
+}
+/* End IE5-Mac hack */
+
+#header ul a:hover {
+	color: #333333;
+}
+
+#header li {
+	background: url("left.gif") no-repeat left top;
+	float: left;
+	margin: 0;
+	padding: 0 0 0 9px;
+}
+
+#header ul {
+	list-style: none;
+	margin: 0;
+	padding: 40px 10px 0px 150px;
+}
+
+#servicenav {
+	left: auto;
+	position: absolute;
+	margin: 5px 0px 0px 0px;
+	top: 0px;
+	height: 20px;
+	right: 0px;
+}
+
+#servicenav a {
+	font-weight: normal;
+	padding: 5px 5px 4px 6px;
+	text-decoration: none;	
+	color: blue;
+} 
+#date {
+	left: auto;
+	position: absolute;
+	margin: 5px 5px 0px 0px;
+	top: 35px;
+	height: 20px;
+	right: 0px;
+}
+
+#tab {
+
+	background-color: #fefdfd; /*#fff7d5; */
+	padding-bottom: 20px;
+	border-bottom: 1px solid #d59f5f;
+}
+#whereiam{
+	font-weight: bolder;
+	font-size: large;
+	padding: 10px 10px 10px 10px;
+	font-stretch: wider;
+	clear: both;
+	position: relative;
+	left: 10px;
+}
+
+#main {
+	padding: 10px 20px 10px 20px;
+	clear: both;
+	position: relative;
+}
+
+#copyright{
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	font-size: smaller;
+}
+#copyright a {
+		text-decoration: none;
+		color: #776655;
+}
+
+#subnav {
+	/*left: auto;
+	position: absolute;
+	margin: 0px 0px 0px 0px;
+	top: 0px;
+	right: 0px;*/
+	font-size: small;
+	clear: both;
+/*	background-color: #fff7d5;*/
+	height: 30px;
+}
+
+#subnav li {
+	float: left;
+	margin: 0;
+	padding: 0 0 0 9px;
+}
+
+#subnav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0px 5px 0px 5px;
+}
+
+#subnav ul #current {
+	
+}
+
+#subnav ul #current a {
+	color: #333333;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+
+#subnav ul {
+	padding: 5px 15px 4px 6px;
+	display: block;
+
+}
+
+#subnav ul a {
+	color: #776655;
+	float: left;
+	padding: 5px 15px 4px 6px;
+	text-decoration: none;
+}
+
+
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+#subnav ul a {
+	float: none;
+}
+/* End IE5-Mac hack */
+
+#subnav ul a:hover {
+	color: #333333;
+}
+
+
+
+img.logo {
+	float: left;
+	padding: 0;
+	border: 0;
+	margin: 0;
+	height: 60px;
+}
+Table.Calendar{
+background-color : #FFF7D5;
+}  
+
+TD.CalendarL0{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFFFFF;
+}
+
+TD.CalendarL1{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;	
+}
+TD.CalendarL1Header{
+	border-top : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+	font-weight : bold;
+	
+}
+
+TD.CalendarL1HeaderLeft{
+	border-top : 1px solid #FFD940;
+	border-left : 1px solid #FFD940;
+	border-right : 2px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+}
+
+TD.CalendarL1Left{
+	border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFF2BD;
+	font-weight : bold;
+}
+
+TD.CalendarL0Left{
+	border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+	background-color : #FFFFFF;
+	font-weight : bold;
+}
+TD.CalendarRoom0{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+}
+
+TD.CalendarRoom1{
+	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;
+}
+TD.colorchooser{
+	border : 1px solid #FFD940;
+}
+
+a span.button {
+	border:1px solid;
+	border-color:#FC9 #630 #330 #F96;
+	padding: 0px 3px 0px 3px;
+	font-weight: bold;
+	color:#333333;
+	background:#FFF2BD;
+	text-decoration:none;
+	margin:0;
+}
+
+input {
+	margin: 3px;	
+}
+
+input.text {
+	width: 150px;
+}
+
+p.right {
+	padding: 0;
+	margin-left: 230px;
+}
+
+fieldset{
+	padding: 5px;
+	border: 1px solid #663300;
+	margin: 0 auto;
+}
+
+fieldset.w400 {
+	width: 400px;	
+}
+
+legend{
+	color: #663300;
+	font-weight: bolder;
+	font-size: large;	
+}
+
+label {
+  float: left;
+  width: 165px;
+  margin: 5px 2px 2px 2px;
+  text-align: right;
+  font-weight: bold;
+}
+
+
+
