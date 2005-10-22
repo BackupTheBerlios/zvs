@@ -3,19 +3,21 @@
 
 <form id="login" name="login" action="<%$tpl_url%>" method="post" onSubmit="doChallengeResponse(); return false;">
 <%$tpl_hiddenfields%>
-<input type="hidden" id="challenge" name="challenge" value="<%$tpl_challenge%>">
-<input type="hidden" id="response" name="response"  value="">
+<input type="hidden" id="challenge" name="challenge" value="<%$tpl_challenge%>"/>
+<input type="hidden" id="response" name="response"  value=""/>
 
 <fieldset class="w400">
 	<legend>##LOGIN##</legend>
-	<label for="username">##LOGINNAME##</label><input type="text" id="username" name="username" maxlength="128" value="<%$tpl_login%>" onKeyPress="next_onkeypress();" class="text" tabindex="1"><br/> 
-  <label for="password">##PASSWORD##</label><input type="password" id="password" name="password" maxlength="32" onKeyPress="login_onkeypress();" value="" class="text" tabindex="2"><br/> 
+	<label for="username">##LOGINNAME##</label>
+	<input type="text" id="username" name="username" maxlength="128" value="<%$tpl_login%>" onKeyPress="next_onkeypress();" class="text" tabindex="1"/>
+	<br/> 
+	<label for="password">##PASSWORD##</label>
+	<input type="password" id="password" name="password" maxlength="32" onKeyPress="login_onkeypress();" value="" class="text" tabindex="2"/><br/> 
 	<%if $tpl_issetuname eq "true" %>
 		<span class="error">##LOGIN_ERROR##</span>
 	<%/if%>
-	<p class="right"><input type="submit" value="##LOGIN## &raquo;" class="right"></p>
+	<p class="right"><input type="submit" value="##LOGIN## &raquo;" class="right"/></p>
 </fieldset>
-
 </form>
 <%/strip%>
 <script language="JavaScript" type="text/javascript">
