@@ -1,0 +1,23 @@
+Australia,Australian Capital Territory,Canberra
+Australia,New South Wales,Newcastle
+Australia,New South Wales,Sydney
+Australia,New South Wales,Wollongong
+Australia,Northern Territory,Darwin
+Australia,Northern Territory,Alice Springs
+Australia,Queensland,Brisbane
+Australia,Queensland,Cairns
+Australia,Queensland,Townsville
+Australia,South Australia,Adelaide
+Australia,Tasmania,Hobart
+Australia,Tasmania,Launceston
+Australia,Victoria,Melbourne
+Australia,Western Australia,Perth
+United States,California,Los Angeles
+United States,California,Sacramento
+United States,California,San Francisco
+United States,Illinois,Chicago
+United States,Nevada,Las Vegas
+United States,New York,New York City
+United States,Texas,Dallas
+United States,Texas,Houston
+United States,Texas,San Antonio
