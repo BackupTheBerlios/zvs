@@ -40,7 +40,7 @@ include_once('paycategoryclass.inc.php');
 $pcategory = New PayCategory;
 $smarty -> assign("tpl_title", "Zahlungskategorieverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
-$smarty -> assign('tpl_subnav', 'paycategory');
+$smarty -> assign('tpl_subnav', 'catsettings');
 
 if ($request -> GetVar('frm_catid', 'post') !== $request -> undefined) {
     if ($request -> GetVar('frm_action', 'post') == 'edit') {
