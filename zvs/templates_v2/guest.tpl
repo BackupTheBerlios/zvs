@@ -1,15 +1,18 @@
 <%strip%>
 <%include file=header.tpl%>
 <form id="search" name="search" action="<%$SCRIPT_NAME%>" method="post">
-<fieldset class="w400">
+
+
+<fieldset class="w750">
 	<legend>##SEARCH_GUEST##</legend>
-  <label for="frm-lastname">##LASTNAME##</label><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_lastname%>" onKeyPress="submit_onkeypress();" class="text" tabindex="1"><br/> 
-	<label for="frm_firstname">##FIRSTNAME##</label><input name="frm_firstname" type="text" id="frm_firstname" size="30" value="<%$tpl_firstname%>" onKeyPress="submit_onkeypress();" class="text" tabindex="2"><br/> 
-	<p class="right"><input type="submit" value="##SEARCH## &raquo;" class="right"></p>
-	
+  	<label for="frm_lastname">##LASTNAME##</label>
+		<input name="frm_lastname" type="text" id="frm_lastname" value="<%$tpl_lastname%>" class="textlong" autocomplete="off" tabindex="1"/><br/>
+		<div id="search-results" name="search-results"></div> 
+	<label for="frm_firstname">##FIRSTNAME##</label><input name="frm_firstname" type="text" id="frm_firstname"  value="<%$tpl_firstname%>" class="textlong" autocomplete="off" tabindex="2"/><br/> 
+	<p class="rightlong"><input type="submit" value="##SEARCH## &raquo;" class="right"></p>
+	<%$tpl_widgets%>
+	<%$tpl_loadapp%>
 	<%if $tpl_isresult eq 'true'%>
-
-
     <p class="SubheadlineYellow"><%$tpl_numresult%>&nbsp;<%if $tpl_numresult eq 1%>Eintrag<%else%>Eintr&auml;ge<%/if%>&nbsp;gefunden</p>
    		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr>
@@ -51,36 +54,24 @@
 </fieldset>
 </form>
 <br/>
-<fieldset class="w400">
+<fieldset class="w750">
 	<legend>##ADD_NEW_GUEST##</legend>
-	<a href="<%$wwwroot%>editgast.php">##ADD_NEW_GUEST##</a>
+	<p>
+	<a href="<%$wwwroot%>editgast.php"><span class="button">##ADD_NEW_GUEST##</span></a>
+	</p>
 </fieldset>
-
 <%/strip%>
 <script language="javascript"  type="text/javascript">
-
+<!--
   // Activate the appropriate input form field.
   var firstname = document.search.frm_firstname;
   var lastname = document.search.frm_lastname;
-
   if (lastname.value == '') {
     lastname.focus();
   } else {
     firstname.focus();
   }
-
-<!--
-	
-  function submit_onkeypress()
-  {
-    if(window.event.keyCode==13)
-    {
-   	  document.search.submit();
-    }
-  }
-
 // -->
-
 </script>
 <%strip%>
 <%include file=footer.tpl%>
