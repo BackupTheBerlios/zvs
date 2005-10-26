@@ -1,6 +1,6 @@
 <%include file=header.tpl%>
 <%strip%>	
-<form name="newsletter" id="newsletter" method="post" action="<%$SCRIPT_NAME%>">
+<form accept-charset="utf-8" name="newsletter" id="newsletter" method="post" action="<%$SCRIPT_NAME%>">
 <fieldset class="w400">
 	<legend>##NEWSLETTER##</legend>
 	<%if $tpl_sent eq 'true'%>

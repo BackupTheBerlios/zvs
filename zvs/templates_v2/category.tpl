@@ -30,63 +30,65 @@
 		document.cat.frm_action.value = "addnew";
 		document.cat.submit();
 	}
-
 //-->
 </script>
 <%strip%>
 <fieldset class="w750">
 	<legend>##ADMINISTER_GUEST_CATEGORYS##</legend>
-		<form id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
-		<input type="hidden" name="frm_catid" id="frm_catid" value="0">
-		<input type="hidden" name="frm_action" id="frm_action" value="new">
-		<table border="0" cellspacing="0" cellpadding="3" width="600">
+		<form accept-charset="utf-8" id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
+		<input type="hidden" name="frm_catid" id="frm_catid" value="0"/>
+		<input type="hidden" name="frm_action" id="frm_action" value="new"/>
+
+		<%if $tpl_addnew neq 'true'%>
+		  			<div id="toolbar"><span class="label">Tools:</span><a href="javascript:neu();" class="dotted">##NEW_CATEGORY##</a></div>
+		<%/if%>
+		<table class="list">
+     <colgroup>
+        <col width="200">
+        <col width="350">
+        <col width="100">
+     </colgroup>
+			
+			<tr class="ListHeader">
+				<th>##CATEGORY##</th>
+				<th>##DESCRIPTION##</th>
+				<th>&nbsp;</th>
+		</tr>			
 		   <%if $tpl_addnew eq 'true'%>
-			<tr>
-				<td class="ListL1">
-		  			<input type="text" name="frm_cat" id="frm_cat" maxlength="128" size="50">
+			<tr class="ListHighlight">
+				<td>
+		  			<input type="text" name="frm_cat" id="frm_cat" maxlength="128" size="30"/>
 		  		</td>
-		  		<td class="ListL1">
-					<textarea name="frm_description" id="frm_description" cols="25" rows="2"></textarea>
+		  		<td>
+					<input type="text" name="frm_description" id="frm_description"  size="50" value=""/>
 		  		</td>
-				<td class="ListL1">
-					<a href="javascript:savecat(0);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
+				<td>
+					<a href="javascript:savecat(0);"><span class="button">##SAVE## &raquo;</span></a>
 				</td>
-				<td class="ListL1">&nbsp;</td>
 		   </tr>
-		   <%else%>
-			<tr>
-				<td colspan="4">
-		  			<a href="javascript:neu();"><img src="<%$wwwroot%>img/button_neu.gif" width="56" height="24" border="0"></a>
-		  		</td>
-		  	</tr>		   
 		   <%/if%>
 			<%section name=cat loop=$tpl_category%>
-			<tr>
-				<td class="ListL<%$tpl_category[cat].color%>">
+			<tr <%if $tpl_editid eq $tpl_category[cat].catid%>class="ListHighlight"<%else%>class="ListL<%$tpl_category[cat].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_category[cat].color%>'"<%/if%>>
+				<td>
 					<%if $tpl_editid eq $tpl_category[cat].catid%>
-					  <input type="text" name="frm_cat" id="frm_cat" maxlength="128" size="50" value="<%$tpl_category[cat].cat%>">
+					  <input type="text" name="frm_cat" id="frm_cat" maxlength="128" size="30" value="<%$tpl_category[cat].cat%>"/>
 					<%else%>
-					  <%$tpl_category[cat].cat%>
+					  <a href="javascript:editcat(<%$tpl_category[cat].catid%>);" title="##EDIT##" class="dotted"><%$tpl_category[cat].cat%></a>
 					<%/if%>
 				</td>
-				<td class="ListL<%$tpl_category[cat].color%>">
+				<td>
 					<%if $tpl_editid eq $tpl_category[cat].catid%>
-					  <textarea name="frm_description" id="frm_description" cols="25" rows="2"><%$tpl_category[cat].description%></textarea>
+					  <input type="text" name="frm_description" id="frm_description" size="50" value"<%$tpl_category[cat].description%>"/>
 					<%else%>
 					  <%$tpl_category[cat].description%>&nbsp;
 					<%/if%>
 				</td>
-				<td class="ListL<%$tpl_category[cat].color%>">
+				<td>
 				<%if $tpl_editid eq $tpl_category[cat].catid%>
-					<a href="javascript:savecat(<%$tpl_category[cat].catid%>);"><img src="<%$wwwroot%>img/button_save.gif" width="87" height="24" border="0"></a>
+					<a href="javascript:savecat(<%$tpl_category[cat].catid%>);"><span class="button">##SAVE## &raquo;</span></a>
 				<%else%>
-					<a href="javascript:editcat(<%$tpl_category[cat].catid%>);"><img src="<%$wwwroot%>img/button_bearbeiten.gif" width="98" height="24" border="0"></a>
+					<a href="javascript:delcat(<%$tpl_category[cat].catid%>,'<%$tpl_category[cat].cat%>');" class="dotted">##DELETE## &raquo;</a>
 				<%/if%>
-				</td>
-				<td class="ListL<%$tpl_category[cat].color%>">
-					<%if $tpl_editid neq $tpl_category[cat].catid%>
-						<a href="javascript:delcat(<%$tpl_category[cat].catid%>,'<%$tpl_category[cat].cat%>');"><img src="<%$wwwroot%>img/button_loeschen.gif" width="80" height="24" border="0"></a>
-					<%/if%>&nbsp;
 				</td>
 			</tr>
 			<%/section%>

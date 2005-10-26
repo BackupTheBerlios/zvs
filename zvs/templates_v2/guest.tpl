@@ -1,6 +1,6 @@
 <%strip%>
 <%include file=header.tpl%>
-<form id="search" name="search" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" id="search" name="search" action="<%$SCRIPT_NAME%>" method="post">
 
 
 <fieldset class="w750">

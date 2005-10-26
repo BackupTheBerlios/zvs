@@ -10,36 +10,43 @@
 //-->
 </SCRIPT>
 <%strip%>
-<fieldset class="w400">
+<fieldset class="w750">
 	<legend>##CHECK_IN##</legend>
-   	<table border="0" cellspacing="0" cellpadding="3" width="500">
-			<tr>
-			  <td class="ListL1Header"><b>##FIRSTNAME##</b></td>
-				<td class="ListL1Header"><b>##LASTNAME##</b></td>
-				<td class="ListL1Header"><b>##FROM##</b></td>
-				<td class="ListL1Header"><b>##UNTIL##</b></td>
-				<td class="ListL1Header">&nbsp;</td>
+   	<table border="0" cellspacing="0" cellpadding="3">
+     <colgroup>
+        <col width="200">
+        <col width="200">
+        <col width="80">
+        <col width="80">
+        <col width="80">
+     </colgroup>
+			<tr class="ListHeader">
+			  <th>##FIRSTNAME##</th>
+				<th>##LASTNAME##</th>
+				<th>##FROM##</th>
+				<th>##UNTIL##</th>
+				<th>&nbsp;</th>
 			</tr>
 			<%section name=guest loop=$tpl_guests%>
-			<tr>
-				<td class="ListL<%$tpl_guests[guest].color%>">
+			<tr class="ListL<%$tpl_guests[guest].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_guests[guest].color%>'">
+				<td>
 					  <%$tpl_guests[guest].lastname%>
 				</td>
-				<td class="ListL<%$tpl_guests[guest].color%>">
+				<td>
 					  <%$tpl_guests[guest].firstname%>
 				</td>
-				<td class="ListL<%$tpl_guests[guest].color%>">
+				<td>
 					  <%$tpl_guests[guest].startdate%>
 				</td>
-				<td class="ListL<%$tpl_guests[guest].color%>">
+				<td>
 					  <%$tpl_guests[guest].enddate%>
 				</td>
-				<td class="ListL<%$tpl_guests[guest].color%>">
-					<a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkin.true');"><img src="<%$wwwroot%>img/checkin.png" border="0" width="15" height="13" alt="##CHECK_IN##"></a>
+				<td>
+					<a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkin.true');" class="dotted">##CHECK_IN## &raquo;</a>
 				</td>
 			</tr>
 			<%sectionelse%>
-			<tr>
+			<tr class="ListL0" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL0'">
 			    <td colspan="5">##NO_ENTRYS##</td>
 			</tr>
 			<%/section%>

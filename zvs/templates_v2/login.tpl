@@ -1,7 +1,7 @@
 <%include file=header.tpl%>
 <%strip%>
 
-<form id="login" name="login" action="<%$tpl_url%>" method="post" onSubmit="doChallengeResponse(); return false;">
+<form accept-charset="utf-8" id="login" name="login" action="<%$tpl_url%>" method="post" onSubmit="doChallengeResponse(); return false;">
 <%$tpl_hiddenfields%>
 <input type="hidden" id="challenge" name="challenge" value="<%$tpl_challenge%>"/>
 <input type="hidden" id="response" name="response"  value=""/>

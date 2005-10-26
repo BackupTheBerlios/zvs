@@ -7,8 +7,8 @@
 	ZVS is copyright 2003-2005 of Christian Ehret
 -->
 	<title>zvs: <%$tpl_title%></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
-	<meta name="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<meta name="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css" media="screen">@import "<%$wwwroot%>css/global.css";</style>
 	<%if $tpl_type eq "editgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime"%>
 		<link href="<%$wwwroot%>css/dynCalendar.css" rel="stylesheet" type="text/css">
@@ -24,10 +24,11 @@
 	<%/if%>
 	<%if $tpl_logout eq "true"%>
 		<meta http-equiv="refresh" content="3; URL=<%$wwwroot%>index.php/login.<%$tpl_login%>/index.php">
-	<%/if%> 
-	<%if $tpl_title eq "Login"%>
-		<script language="javascript" src="<%$wwwroot%>global/md5.js"  type="text/javascript"></script>
 	<%/if%>
+	<%if $tpl_title eq "Login"%>
+		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/md5.js"></script> 
+	<%/if%>
+	<%$tpl_ajaxjs%>
 </head>
 <%strip%>
 <body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_subnav eq "hauptgast"%>switchLayer('add_private');<%/if%><%if $tpl_type eq "editgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "editgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
@@ -81,27 +82,30 @@
 				   <li <%if $tpl_subnav eq "receiptitems"%>id="current"<%/if%>><a href="<%$wwwroot%>list_receiptitems.php">##INVOICE_ITEM##</a>|</li>			   
 				   <li <%if $tpl_subnav eq "income"%>id="current"<%/if%>><a href="<%$wwwroot%>list_income.php">##REVENUES##</a>|</li>			   			   
 				   <li <%if $tpl_subnav eq "checkout"%>id="current"<%/if%>><a href="<%$wwwroot%>list_guest.php">##ATTENDANCE_LIST##</a>|</li>
-				   <li <%if $tpl_subnav eq "guestlist2"%>id="current"<%/if%>><a href="<%$wwwroot%>list_guest2.php">##ATTENDANCE_LIST## 2</a>|</li>			   
+				   <li <%if $tpl_subnav eq "guestlist2"%>id="current"<%/if%>><a href="<%$wwwroot%>list_guest2.php">##ATTENDANCE_LIST## (##TIMEPERIOD##)</a>|</li>			   
 				   <li <%if $tpl_subnav eq "roomchange"%>id="current"<%/if%>><a href="<%$wwwroot%>list_roomchange.php">##CHANGE_OF_ROOM##</a>|</li>			   			   
 				   <li <%if $tpl_subnav eq "birthday"%>id="current"<%/if%>><a href="<%$wwwroot%>list_birthday.php">##BIRTHDAY_LIST##</a>|</li>			   			   			   
 				   <li <%if $tpl_subnav eq "employeetime"%>id="current"<%/if%>><a href="<%$wwwroot%>list_employeetime.php">##EMPLOYEES_TIMES##</a>|</li>			   			   			   			   
 				   <li <%if $tpl_subnav eq "employee"%>id="current"<%/if%>><a href="<%$wwwroot%>list_employee.php">##EMPLOYEES##</a></li>			   			   			   			   			   
 		      </ul>
-          <%elseif $tpl_nav eq "settings"%>
+          <%elseif $tpl_subnav eq "catsettings"%>
           <ul>
 						<li <%if $tpl_subnav eq "category"%>id="current"<%/if%>><a href="<%$wwwroot%>category.php">##GUEST_CATEGORIES##</a>|</li>
 						<li <%if $tpl_subnav eq "roomcat"%>id="current"<%/if%>><a href="<%$wwwroot%>roomcategory.php">##ROOM_CATEGORIES##</a>|</li>
-						<li <%if $tpl_subnav eq "rooms"%>id="current"<%/if%>><a href="<%$wwwroot%>rooms.php">##ROOM##</a>|</li>
 						<li <%if $tpl_subnav eq "bookingcat"%>id="current"<%/if%>><a href="<%$wwwroot%>bookingcat.php">##CATEGORIES_OF_BOOKING##</a>|</li>
+						<li <%if $tpl_subnav eq "paycategory"%>id="current"<%/if%>><a href="<%$wwwroot%>paytypes.php">##PAYMENT_CATEGORIES##</a></li>		   
+          </ul>		      
+          <%elseif $tpl_subnav eq "syssettings"%>
+          <ul>
+						<li <%if $tpl_subnav eq "rooms"%>id="current"<%/if%>><a href="<%$wwwroot%>rooms.php">##ROOM##</a>|</li>
 						<li <%if $tpl_subnav eq "season"%>id="current"<%/if%>><a href="<%$wwwroot%>season.php">##SEASON##</a>|</li>			   
 						<li <%if $tpl_subnav eq "price"%>id="current"<%/if%>><a href="<%$wwwroot%>price.php">##ROOM_PRICES##</a>|</li>			   			   
-						<li <%if $tpl_subnav eq "article"%>id="current"<%/if%>><a href="<%$wwwroot%>article.php">##ARTICLE##</a>|</li>	
-						<li <%if $tpl_subnav eq "paycategory"%>id="current"<%/if%>><a href="<%$wwwroot%>paytypes.php">##PAYMENT_CATEGORIES##</a>|</li>		   
+						<li <%if $tpl_subnav eq "article"%>id="current"<%/if%>><a href="<%$wwwroot%>article.php">##ARTICLE##</a>|</li>							
 						<li <%if $tpl_subnav eq "user"%>id="current"<%/if%>><a href="<%$wwwroot%>edituser.php">##USER##</a>|</li>
 						<li <%if $tpl_subnav eq "employee"%>id="current"<%/if%>><a href="<%$wwwroot%>editemployee.php">##EMPLOYEES##</a>|</li>
 						<li <%if $tpl_subnav eq "systemsettings"%>id="current"<%/if%>><a href="<%$wwwroot%>systemsettings.php">##SYSTEM_SETTINGS##</a>|</li>
 						<li <%if $tpl_subnav eq "database"%>id="current"<%/if%>><a href="<%$wwwroot%>database.php">##DATABASE##</a></li>
-          </ul>		      
+          </ul>		                	
           <%elseif $tpl_nav eq "calendar"%>
           <ul>
 						<li <%if $tpl_subnav eq "type"%>id="current"<%/if%>><a href="<%$wwwroot%>index.php/view.type<%if $tpl_navmonth neq ""%>/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%/if%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%>">##TYPE_OF_ALLOCATION_PLURAL##</a>|</li>
