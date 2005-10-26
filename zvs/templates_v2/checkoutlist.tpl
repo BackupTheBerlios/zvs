@@ -47,7 +47,7 @@
 					  <%$tpl_guests[guest].enddate%>
 				</td>
 				<td>
-					<%if $tpl_checkout eq 'true'%><a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkout.true');" class="dotted">##CHECK_OUT## &raquo;</a><%else%>&nbsp;<%/if%>
+					<%if $tpl_checkout eq 'true'%><a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkout.true');" class="dotted">##CHECK_OUT##</a><strong>&nbsp;&raquo;</strong><%else%>&nbsp;<%/if%>
 				</td>
 			</tr>
 			<%sectionelse%>

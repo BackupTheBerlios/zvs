@@ -42,7 +42,7 @@
 					  <%$tpl_guests[guest].enddate%>
 				</td>
 				<td>
-					<a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkin.true');" class="dotted">##CHECK_IN## &raquo;</a>
+					<a href="javascript:openWindow('<%$wwwroot%>editbook.php/bookid.<%$tpl_guests[guest].bookingid%>/bookingdetailid.<%$tpl_guests[guest].bookingdetailid%>/checkin.true');" class="dotted">##CHECK_IN##</a><strong>&nbsp;&raquo;</strong>
 				</td>
 			</tr>
 			<%sectionelse%>

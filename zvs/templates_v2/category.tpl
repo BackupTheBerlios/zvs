@@ -40,7 +40,7 @@
 		<input type="hidden" name="frm_action" id="frm_action" value="new"/>
 
 		<%if $tpl_addnew neq 'true'%>
-		  			<div id="toolbar"><span class="label">Tools:</span><a href="javascript:neu();" class="dotted">##NEW_CATEGORY##</a></div>
+		  			<div id="toolbar"><span class="label">##TOOLS##:</span><a href="javascript:neu();" class="dotted">##NEW_CATEGORY##</a></div>
 		<%/if%>
 		<table class="list">
      <colgroup>
@@ -87,7 +87,7 @@
 				<%if $tpl_editid eq $tpl_category[cat].catid%>
 					<a href="javascript:savecat(<%$tpl_category[cat].catid%>);"><span class="button">##SAVE## &raquo;</span></a>
 				<%else%>
-					<a href="javascript:delcat(<%$tpl_category[cat].catid%>,'<%$tpl_category[cat].cat%>');" class="dotted">##DELETE## &raquo;</a>
+					<a href="javascript:delcat(<%$tpl_category[cat].catid%>,'<%$tpl_category[cat].cat%>');" class="dotted">##DELETE##</a><strong>&nbsp;&raquo;</strong>
 				<%/if%>
 				</td>
 			</tr>
