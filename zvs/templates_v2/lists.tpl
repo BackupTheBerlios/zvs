@@ -1,7 +1,8 @@
 <%strip%>
 <%include file=header.tpl%>
-<fieldset class="w400">
-	<legend>##LISTS##</legend>
+<div class="box400">
+		<h2><span>##LISTS##</span></h2>
+		<br/>
 	<ul class="buttonlist">
 		<li><a href="<%$wwwroot%>list_receipt.php">##BILLS##</a></li>
 		<li><a href="<%$wwwroot%>list_receiptitems.php">##INVOICE_ITEM##</a></li>
@@ -13,7 +14,7 @@
 		<li><a href="<%$wwwroot%>list_employeetime.php">##EMPLOYEES_TIMES##</a></li>
 		<li><a href="<%$wwwroot%>list_employee.php">##EMPLOYEES##</a></li>
 	</ul>
-</fieldset>
+</div>
  
 <%include file=footer.tpl%>
 <%/strip%>
