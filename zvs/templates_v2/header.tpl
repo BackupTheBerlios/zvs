@@ -53,7 +53,6 @@
 		   </ul>
 		   <%/if%>
 		</div>
-		<%/strip%>
 		<div id="tab">
 				<div id="subnav">
           <%if $tpl_nav eq "gast"%>
@@ -115,6 +114,4 @@
           </ul>          
 					<%/if%>
 				</div>
-			<%strip%>
-			<div id="main">
 <%/strip%>

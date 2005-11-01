@@ -10,9 +10,10 @@
 //-->
 </SCRIPT>
 <%strip%>
-<fieldset class="w750">
-	<legend>##CHECK_OUT##</legend>
-    	<table border="0" cellspacing="0" cellpadding="3">
+<div class="box750">
+	<h2><span>##CHECK_OUT##</span></h2>
+   	<div class="table">
+   	<table border="0" cellspacing="0" cellpadding="3">
      <colgroup>
      		<col width="100">
         <col width="200">
@@ -56,6 +57,7 @@
 			</tr>
 			<%/section%>
 		</table>
-</fieldset>
+	</div>
+</div>
 <%include file=footer.tpl%>
 <%/strip%>

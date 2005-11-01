@@ -1,8 +1,8 @@
 <%strip%>
 <%include file=header.tpl%>
-<fieldset class="w400">
-		<legend>##LOGGEDOUT##</legend>
+<div class="box400">
+		<h2><span>##LOGGEDOUT##</span></h2>
 		<p>##SUCCESSFUL_LOGGEDOUT##</p>
-</fieldset>
+</div>
 <%include file=footer.tpl%>
 <%/strip%> 

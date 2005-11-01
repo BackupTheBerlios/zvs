@@ -10,15 +10,16 @@
 //-->
 </SCRIPT>
 <%strip%>
-<fieldset class="w750">
-	<legend>##CHECK_IN##</legend>
+<div class="box750">
+<h2><span>##CHECK_IN##</span></h2>
+	<div class="table">
    	<table border="0" cellspacing="0" cellpadding="3">
      <colgroup>
         <col width="200">
         <col width="200">
-        <col width="80">
-        <col width="80">
-        <col width="80">
+        <col width="90">
+        <col width="90">
+        <col width="110">
      </colgroup>
 			<tr class="ListHeader">
 			  <th>##FIRSTNAME##</th>
@@ -51,6 +52,7 @@
 			</tr>
 			<%/section%>
 		</table>
-</fieldset>
+	</div>
+</div>
 <%include file=footer.tpl%>
 <%/strip%>

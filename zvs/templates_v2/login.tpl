@@ -1,13 +1,12 @@
 <%include file=header.tpl%>
 <%strip%>
-
+<div class="box400">
+		<h2><span>##LOGIN##</span></h2>
+<p>
 <form accept-charset="utf-8" id="login" name="login" action="<%$tpl_url%>" method="post" onSubmit="doChallengeResponse(); return false;">
 <%$tpl_hiddenfields%>
 <input type="hidden" id="challenge" name="challenge" value="<%$tpl_challenge%>"/>
-<input type="hidden" id="response" name="response"  value=""/>
-
-<fieldset class="w400">
-	<legend>##LOGIN##</legend>
+<input type="hidden" id="response" name="response"  value=""/>	
 	<label for="username">##LOGINNAME##</label>
 	<input type="text" id="username" name="username" maxlength="128" value="<%$tpl_login%>" onKeyPress="next_onkeypress();" class="text" tabindex="1"/>
 	<br/> 
@@ -17,8 +16,10 @@
 		<span class="error">##LOGIN_ERROR##</span>
 	<%/if%>
 	<p class="right"><input type="submit" value="##LOGIN## &raquo;" class="right"/></p>
-</fieldset>
-</form>
+	</form>
+	</p>
+</div>
+
 <%/strip%>
 <script language="JavaScript" type="text/javascript">
 <!--
