@@ -165,20 +165,7 @@
 
 <br/>
 
-	<table border="0" cellspacing="0" cellpadding="3" width="100%">
-<!--
-     <colgroup>
-     		<col width="10">
-        <col width="50">
-        <col width="50">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="100">
-        <col width="140">
-     </colgroup>
-     -->
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr class="ListHeader">
 			  <th>&nbsp;</th>
 			  <th>##DATE##</th>

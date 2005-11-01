@@ -1,21 +1,20 @@
 <%strip%>
 <%include file=header.tpl%>
 <div class="boxdyn">
-		<h2><span>##ITEM_OF_AN_INVOICE##</span></h2>
+		<h2><span>##REVENUES## <a href="<%$wwwroot%>list_income_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/paycat.<%$tpl_thepaycat%>/list_income_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="##EXPORT_CSV##"></a></span></h2>
 		<br/>
   <div class="table">
 <form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
-<input type="hidden" name="frm_newstart" id="frm_newstart" value="false"/>
-<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>"/>
+<input type="hidden" name="frm_newstart" id="frm_newstart" value="false">
+<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>">
 
-<a href="javascript:switchLayer('thedate');document.select.frm_what.value='thedate';document.select.submit();" class="dotted">##DATE##</a>
-	&nbsp;<a href="javascript:switchLayer('timeline');document.select.frm_what.value='timeline';document.select.submit();" class="dotted">##TIMEFRAME## (##DATE##)</a>
-	&nbsp;<a href="javascript:switchLayer('timeline2');document.select.frm_what.value='timeline2';document.select.submit();" class="dotted">##TIMEFRAME## (##MONTH##)</a>
+<a href="javascript:switchLayer('thedate');document.select.frm_what.value='thedate';document.select.submit();" class="dotted">Datum</a>
+	&nbsp;<a href="javascript:switchLayer('timeline');document.select.frm_what.value='timeline';document.select.submit();" class="dotted">Zeitspanne (Datum)</a>
+	&nbsp;<a href="javascript:switchLayer('timeline2');document.select.frm_what.value='timeline2';document.select.submit();" class="dotted">Zeitspanne (Monat)</a>
 	<br/><br/>
 	<div id="thedate" name="thedate" style="visibility:visible">
 	##DATE##: 
-	<input name="frm_thedate" type="text" id="frm_thedate" size="10" value="<%$tpl_thedate%>"  onChange="javascript:document.select.frm_what.value='thedate';document.select.submit();" class="nomargin"/>
-	<%/strip%>
+	<input name="frm_thedate" type="text" id="frm_thedate" size="10" value="<%$tpl_thedate%>"  onChange="javascript:document.select.frm_what.value='thedate';document.select.submit();" class="nomargin"/><%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         function calendar1Callback(date, month, year)
@@ -47,17 +46,17 @@
     </script>
     <%strip%>	
 	&nbsp;
-	##TAX##:
-	<select name="frm_mwst1" id="frm_mwst1" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_themwst eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="mwst" loop="$tpl_mwst%>
-		<option value="<%$tpl_mwst[mwst]%>" <%if $tpl_themwst eq $tpl_mwst[mwst]%>selected<%/if%>><%$tpl_mwst[mwst]%></option>
+	##PAYMENT_CATEGORY##:
+	<select name="frm_paycat1" id="frm_paycat1" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
+	<%section name="paycat" loop="$tpl_paycat%>
+		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
 	<%/section%>
-	</select>	
+	</select>		
 	</div>
 	<div id="timeline" name="timeline" style="visibility:visible">
 	##FROM##: 
-	<input name="frm_start1" type="text" id="frm_start1" size="10" value="<%$tpl_start1%>" class="nomargin">
+	<input name="frm_start1" type="text" id="frm_start1" size="10" value="<%$tpl_start1%>" class="nomargin"/>
 	<%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
@@ -94,8 +93,7 @@
     <%strip%>	
 
 	&nbsp;##UNTIL##: 
-	<input name="frm_end1" type="text" id="frm_end1" size="10" value="<%$tpl_end1%>" class="nomargin"/>
-	<%/strip%>
+	<input name="frm_end1" type="text" id="frm_end1" size="10" value="<%$tpl_end1%>" class="nomargin"/><%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         function calendar3Callback(date, month, year)
@@ -130,13 +128,13 @@
     </script>
     <%strip%>	
 	&nbsp;
-	##TAX##:
-	<select name="frm_mwst2" id="frm_mwst2" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_themwst eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="mwst" loop="$tpl_mwst%>
-		<option value="<%$tpl_mwst[mwst]%>" <%if $tpl_themwst eq $tpl_mwst[mwst]%>selected<%/if%>><%$tpl_mwst[mwst]%></option>
+	##PAYMENT_CATEGORY##:
+	<select name="frm_paycat2" id="frm_paycat2" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
+	<%section name="paycat" loop="$tpl_paycat%>
+		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
 	<%/section%>
-	</select>	
+	</select>		
 	</div>
 	<div id="timeline2" name="timeline2" style="visibility:visible">
 	##FROM##: 
@@ -153,53 +151,38 @@
 	<%/section%>
 	</select>
 	&nbsp;
-	MwSt.:
-	<select name="frm_mwst3" id="frm_mwst3" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_themwst eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="mwst" loop="$tpl_mwst%>
-		<option value="<%$tpl_mwst[mwst]%>" <%if $tpl_themwst eq $tpl_mwst[mwst]%>selected<%/if%>><%$tpl_mwst[mwst]%></option>
+	##PAYMENT_CATEGORY##:
+	<select name="frm_paycat3" id="frm_paycat3" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
+	<%section name="paycat" loop="$tpl_paycat%>
+		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
 	<%/section%>
-	</select>	
+	</select>		
 	</div>	
-<br>
+	<br/>
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr class="ListHeader">
 			  <th>##DATE##</th>
-				<th>##INVOICE_NUMBER##</th>
-				<th>##NAME##</th>
+				<th>##PAYMENT_CATEGORY##</th>
 				<th>##LABEL##</th>
-				<th align="right">##SET##</th>
-				<th align="right">##NET##</th>
-				<th align="right">##TOTAL## ##NET##</th>
-				<th align="right">##TAX##</th>
-				<th align="right">##GROSS##</th>
-				<th align="right">##TOTAL## ##GROSS##</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
-			</tr>
-			<%section name=receipt loop=$tpl_receiptitems%>
-				<tr class="ListL<%$tpl_receiptitems[receipt].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_receiptitems[receipt].color%>'">
-				<%if $smarty.section.receipt.last%>
-				<td colspan="10" align="right"><b>Gesamt:</b></td>
-				<td align="right"><%$tpl_receiptitems[receipt].netto_sum%>&nbsp;EUR&nbsp;</td>
-				<td align="right"><%$tpl_receiptitems[receipt].brutto_sum%>&nbsp;EUR&nbsp;</td>								
-				<%else%>
-					<td><%$tpl_receiptitems[receipt].receipt_date%>&nbsp;</td>
-					<td><%$tpl_receiptitems[receipt].receipt_reference_id%>&nbsp;</td>
-					<td><%$tpl_receiptitems[receipt].firstname%>&nbsp;<%$tpl_receiptitems[receipt].lastname%></td>
-					<td><%$tpl_receiptitems[receipt].article%>&nbsp;</td>					
-					<td align="right"><%$tpl_receiptitems[receipt].amount%>&nbsp;</td>										
-					<td align="right"><%$tpl_receiptitems[receipt].price_netto%>&nbsp;EUR&nbsp;</td>							
-					<td align="right"><%$tpl_receiptitems[receipt].sum_netto%>&nbsp;EUR&nbsp;</td>							
-					<td align="right"><%$tpl_receiptitems[receipt].mwst%>&nbsp;</td>							
-					<td align="right"><%$tpl_receiptitems[receipt].price_brutto%>&nbsp;EUR&nbsp;</td>																	
-					<td align="right"><%$tpl_receiptitems[receipt].sum_brutto%>&nbsp;EUR&nbsp;</td>						
-					<td align="right"><%$tpl_receiptitems[receipt].netto_sum%><%if $tpl_receiptitems[receipt].netto_sum neq ''%>&nbsp;EUR<%/if%>&nbsp;</td>						
-					<td align="right"><%$tpl_receiptitems[receipt].brutto_sum%><%if $tpl_receiptitems[receipt].netto_sum neq ''%>&nbsp;EUR<%/if%>&nbsp;</td>																
-				<%/if%>
+				<th align="right">##AMOUNT##</th>
+				<th>##NAME##</th>
+				<th>##INVOICE_NUMBER##</th>
+				<th>##INVOICE_DATE##</th>
+			</tr>	
+ 			<%section name=i loop=$tpl_income%>
+				<tr class="ListL<%$tpl_income[i].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_income[i].color%>'">
+					<td><%$tpl_income[i].date_payment%>&nbsp;</td>
+					<td><%$tpl_income[i].paycat%>&nbsp;</td>
+					<td><%$tpl_income[i].description%>&nbsp;</td>					
+					<td align="right"><%$tpl_income[i].amount%>&nbsp;EUR&nbsp;</td>
+					<td><%$tpl_income[i].lastname%><%if $tpl_income[i].lastname neq "" && $tpl_income[i].firstname neq ""%>,&nbsp;<%/if%><%$tpl_income[i].firstname%>&nbsp;</td>
+					<td><%$tpl_income[i].receipt_reference_id%>&nbsp;</td>
+					<td><%$tpl_income[i].receipt_date%>&nbsp;</td>
 				</tr>
 			<%/section%>
 		</table>
+	
 </form>
 </div>
 <%/strip%>
