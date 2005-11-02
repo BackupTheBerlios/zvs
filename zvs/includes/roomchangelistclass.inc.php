@@ -34,7 +34,7 @@
 * 
 * @author Christian Ehret <chris@uffbasse.de> 
 * @since 2004-06-12
-* @version $Id: roomchangelistclass.inc.php,v 1.1 2004/11/03 14:51:26 ehret Exp $
+* @version $Id: roomchangelistclass.inc.php,v 1.2 2005/11/02 20:33:11 ehret Exp $
 */
 class Roomchangelist {
     /**
@@ -84,7 +84,8 @@ class Roomchangelist {
 		                  DATE_FORMAT(bd.start_date, '%d.%m.%Y'), 
 				 		  bc.bookingcat,
 						  b.persons, b.children, b.children2, b.children3, b.booking_type,
-						  g.firstname, g.lastname, b.additional_info, DATE_FORMAT(bd.end_date, '%d.%m.%Y')
+						  g.firstname, g.lastname, b.additional_info, DATE_FORMAT(bd.end_date, '%d.%m.%Y'),
+						  b.children0
                           FROM $tbl_booking b, $tbl_booking_detail bd
 						  LEFT JOIN $tbl_guest g ON b.fk_guest_id = g.pk_guest_id
 				 		  LEFT JOIN $tbl_room r ON r.pk_room_id = bd.fk_room_id
@@ -110,7 +111,8 @@ class Roomchangelist {
 						'firstname' => MetabaseFetchResult($gDatabase, $result2, 0, 7),
 						'lastname' => MetabaseFetchResult($gDatabase, $result2, 0, 8),
 						'addinfo' => MetabaseFetchResult($gDatabase, $result2, 0, 9),
-						'enddate2' => MetabaseFetchResult($gDatabase, $result2, 0, 10)
+						'enddate2' => MetabaseFetchResult($gDatabase, $result2, 0, 10),
+						'children0' => MetabaseFetchResult($gDatabase, $result2, 0, 11)
                         );
                 } else {
                     $bookings[$row] = array ('enddate' => MetabaseFetchResult($gDatabase, $result, $row, 1),
