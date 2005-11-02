@@ -94,10 +94,14 @@
 	<%if $tpl_theemployeeid eq -1%>
 		Bitte einen Mitarbeiter ausw&auml;hlen
 	<%else%>
-	<%strip%>
-	<table border="0" cellspacing="0" cellpadding="0">
+
+	<%if $tpl_addnew neq 'true'%>
+	<div id="toolbar"><span class="label">##TOOLS##:</span><a href="javascript:neu();" class="dotted">##ADD##</a></div>	
+	<%/if%>
+		<%strip%>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 		<tr class="ListHeader">
-				<th>##CLEARED##</th>			
+				<th><%if $tpl_noresult || $tpl_thetype eq "cleared"%>&nbsp;<%else%><input type="checkbox" name="frm_selector" id="frm_selector" value="" onClick="checkAll();" class="nomargin"/><%/if%>##CLEARED##</th>			
 				<th>##COME##</th>
 				<th>##GO##</th>					
 				<th>##TIME##</th>	
@@ -106,7 +110,7 @@
 		   <%/strip%>				   
 		   <%if $tpl_addnew eq 'true'%>
 		   <%strip%>
-			<tr class="ListL0" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL0'">
+			<tr class="ListHighlight">
 			    <td>&nbsp;</td>
 					<td><input type="text" name="frm_thestart" id="frm_thestart" size="10" maxlength="10"  value="" class="nomargin"/>
 		<%/strip%>
@@ -177,16 +181,10 @@
 	&nbsp;<input type="text" name="frm_endtime" id="frm_endtime" value="" size="5" class="nomargin"/>
 		  		</td>
 				<td>&nbsp;</td>
-				<td><a href="javascript:save(0);" class="dotted">##SAVE##</a>&nbsp;&raquo;</td>
+				<td><a href="javascript:save(0);"><span class="button">##SAVE##</span></a></td>
 		   </tr>
 		   <%/strip%>
-		   <%else%>
-		   <%strip%>
-			<tr  class="ListL0" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL0'">
-				<td colspan="4"><%if $tpl_noresult || $tpl_thetype eq "cleared"%>&nbsp;<%else%><input type="checkbox" name="frm_selector" id="frm_selector" value="" onClick="checkAll();" class="nomargin"/><%/if%></td>			
-				<td><a href="javascript:neu();" class="dotted">##ADD##</a>&nbsp;&raquo;</td>
-		  	</tr>		   
-		   <%/strip%>
+
 		   <%/if%>		   
 			<%section name=list loop=$tpl_list%>
 		   <%strip%>
@@ -292,9 +290,9 @@
 					<td><%$tpl_list[list].diff%>&nbsp;</td>	
 					<td>
 					<%if $tpl_editid eq $tpl_list[list].timetracker_id%>
-					  <a href="javascript:save(<%$tpl_list[list].timetracker_id%>);" class="dotted">##SAVE##</a>&nbsp;&raquo;
+					  <a href="javascript:save(<%$tpl_list[list].timetracker_id%>);"><span class="button">##SAVE##</span></a>
 				    <%else%>
-				      <a href="javascript:edit(<%$tpl_list[list].timetracker_id%>);" class="dotted">##EDIT##</a>&nbsp;&raquo;
+				      <a href="javascript:edit(<%$tpl_list[list].timetracker_id%>);" class="dotted">##EDIT##</a>&nbsp;&raquo;&nbsp;&nbsp;
 					  <a href="javascript:del(<%$tpl_list[list].timetracker_id%>);" class="dotted">##DELETE##</a>&nbsp;&raquo;
 					<%/if%>  
 					</td>				
