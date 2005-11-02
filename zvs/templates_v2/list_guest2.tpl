@@ -1,12 +1,14 @@
 <%strip%>
 <%include file=header.tpl%>
 <div class="boxdyn">
-		<h2><span>##REVENUES## <a href="<%$wwwroot%>list_income_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/paycat.<%$tpl_thepaycat%>/list_income_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="##EXPORT_CSV##"></a></span></h2>
+		<h2><span>##ATTENDANCE_LIST## <a href="<%$wwwroot%>list_guest2_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="Export nach CSV"></a>
+	<a href="<%$wwwroot%>list_guest2_rtf.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_rtf.php"><img src="<%$wwwroot%>img/rtf.png" hight="16" width="16" alt="Export nach RTF" border="0"></a>
+</span></h2>
 		<br/>
   <div class="table">
 <form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
-<input type="hidden" name="frm_newstart" id="frm_newstart" value="false">
-<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>">
+<input type="hidden" name="frm_newstart" id="frm_newstart" value="false"/>
+<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>"/>
 
 <a href="javascript:switchLayer('thedate');document.select.frm_what.value='thedate';document.select.submit();" class="dotted">##DATE##</a>
 	&nbsp;<a href="javascript:switchLayer('timeline');document.select.frm_what.value='timeline';document.select.submit();" class="dotted">##TIMEFRAME## (##DATE##)</a>
@@ -45,19 +47,17 @@
     //-->
     </script>
     <%strip%>	
-	&nbsp;
-	##PAYMENT_CATEGORY##:
-	<select name="frm_paycat1" id="frm_paycat1" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="paycat" loop="$tpl_paycat%>
-		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
+	&nbsp; ##CATEGORY_OF_BOOKING##: 
+	<select name="frm_bookcat1" id="frm_bookcat1" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thebookcat eq "-1"%>selected<%/if%>>##ALL##</option>
+	<%section name="bookcat" loop="$tpl_bookcat%>
+		<option value="<%$tpl_bookcat[bookcat].bcatid%>" <%if $tpl_thebookcat eq $tpl_bookcat[bookcat].bcatid%>selected<%/if%>><%$tpl_bookcat[bookcat].name%></option>
 	<%/section%>
-	</select>		
+	</select>	
 	</div>
 	<div id="timeline" name="timeline" style="visibility:visible">
 	##FROM##: 
-	<input name="frm_start1" type="text" id="frm_start1" size="10" value="<%$tpl_start1%>" class="nomargin"/>
-	<%/strip%>
+	<input name="frm_start1" type="text" id="frm_start1" size="10" value="<%$tpl_start1%>" class="nomargin"/><%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         function calendar2Callback(date, month, year)
@@ -127,12 +127,11 @@
     //-->
     </script>
     <%strip%>	
-	&nbsp;
-	##PAYMENT_CATEGORY##:
-	<select name="frm_paycat2" id="frm_paycat2" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="paycat" loop="$tpl_paycat%>
-		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
+	&nbsp; ##CATEGORY_OF_BOOKING##: 
+	<select name="frm_bookcat2" id="frm_bookcat2" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thebookcat eq "-1"%>selected<%/if%>>##ALL##</option>
+	<%section name="bookcat" loop="$tpl_bookcat%>
+		<option value="<%$tpl_bookcat[bookcat].bcatid%>" <%if $tpl_thebookcat eq $tpl_bookcat[bookcat].bcatid%>selected<%/if%>><%$tpl_bookcat[bookcat].name%></option>
 	<%/section%>
 	</select>		
 	</div>
@@ -150,40 +149,64 @@
 		<option value="<%$tpl_dates[date]%>" <%if $tpl_dates[date] eq $tpl_theend%>selected<%/if%>><%$tpl_dates[date]%></option>
 	<%/section%>
 	</select>
-	&nbsp;
-	##PAYMENT_CATEGORY##:
-	<select name="frm_paycat3" id="frm_paycat3" onChange="document.select.submit();">
-		<option value="-1" <%if $tpl_thepaycat eq "-1"%>selected<%/if%>>##ALL##</option>
-	<%section name="paycat" loop="$tpl_paycat%>
-		<option value="<%$tpl_paycat[paycat].catid%>" <%if $tpl_thepaycat eq $tpl_paycat[paycat].catid%>selected<%/if%>><%$tpl_paycat[paycat].cat%></option>
+	&nbsp; ##CATEGORY_OF_BOOKING##: 
+	<select name="frm_bookcat3" id="frm_bookcat3" onChange="document.select.submit();">
+		<option value="-1" <%if $tpl_thebookcat eq "-1"%>selected<%/if%>>alle</option>
+	<%section name="bookcat" loop="$tpl_bookcat%>
+		<option value="<%$tpl_bookcat[bookcat].bcatid%>" <%if $tpl_thebookcat eq $tpl_bookcat[bookcat].bcatid%>selected<%/if%>><%$tpl_bookcat[bookcat].name%></option>
 	<%/section%>
 	</select>		
 	</div>	
 	<br/>
-	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+    	<table border="0" cellspacing="0" cellpadding="0" width="100%">
 			<tr class="ListHeader">
-			  <th>##DATE##</th>
-				<th>##PAYMENT_CATEGORY##</th>
-				<th>##LABEL##</th>
-				<th align="right">##AMOUNT##</th>
-				<th>##NAME##</th>
-				<th>##INVOICE_NUMBER##</th>
-				<th>##INVOICE_DATE##</th>
-			</tr>	
- 			<%section name=i loop=$tpl_income%>
-				<tr class="ListL<%$tpl_income[i].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_income[i].color%>'">
-					<td><%$tpl_income[i].date_payment%>&nbsp;</td>
-					<td><%$tpl_income[i].paycat%>&nbsp;</td>
-					<td><%$tpl_income[i].description%>&nbsp;</td>					
-					<td align="right"><%$tpl_income[i].amount%>&nbsp;EUR&nbsp;</td>
-					<td><%$tpl_income[i].lastname%><%if $tpl_income[i].lastname neq "" && $tpl_income[i].firstname neq ""%>,&nbsp;<%/if%><%$tpl_income[i].firstname%>&nbsp;</td>
-					<td><%$tpl_income[i].receipt_reference_id%>&nbsp;</td>
-					<td><%$tpl_income[i].receipt_date%>&nbsp;</td>
-				</tr>
+			  <th>##ROOM##</th>
+				<th>##LASTNAME##</th>
+				<th>##FIRSTNAME##</th>
+				<th>##EMAIL##</th>
+				<th>##FROM##</th>
+				<th>##UNTIL##</th>
+				<th>##CATEGORY_OF_BOOKING##</th>
+				<th>##STATUS_OF_BOOKING##</th>
+				<th>##ADULT##</th>
+				<th><%$tpl_children0_field%></th>
+				<th><%$tpl_children1_field%></th>
+				<th><%$tpl_children2_field%></th>
+				<th><%$tpl_children3_field%></th>								
+			</tr>    	
+			<%section name=guest loop=$tpl_guests%>
+			<tr class="ListL<%$tpl_guests[guest].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_guests[guest].color%>'">			
+			<%if $smarty.section.guest.last%>
+				<td colspan="8" align="right"><b>Summe: </b></td>			
+				<td><%$tpl_guests[guest].person%></td>		
+				<td><%$tpl_guests[guest].children0%></td>						
+				<td><%$tpl_guests[guest].children1%></td>
+				<td><%$tpl_guests[guest].children2%></td>
+				<td><%$tpl_guests[guest].children3%></td>															
+			<%else%>
+				<td><%$tpl_guests[guest].room%></td>			
+				<td><%$tpl_guests[guest].lastname%></td>
+				<td><%$tpl_guests[guest].firstname%></td>
+				<td><a href="mailto:<%$tpl_guests[guest].email%>"><%$tpl_guests[guest].email%></a></td>				
+				<td><%$tpl_guests[guest].startdate%></td>
+				<td><%$tpl_guests[guest].enddate%></td>
+				<td><%$tpl_guests[guest].bookingcat%></td>	
+				<td><%$tpl_guests[guest].bookingtype%></td>					
+				<td><%$tpl_guests[guest].person%></td>				
+				<td><%$tpl_guests[guest].children0%></td>
+				<td><%$tpl_guests[guest].children1%></td>
+				<td><%$tpl_guests[guest].children2%></td>
+				<td><%$tpl_guests[guest].children3%></td>															
+			<%/if%>
+			</tr>
+			<%sectionelse%>
+			<tr>
+			    <td colspan="13">keine Eintr&auml;ge</td>
+			</tr>
 			<%/section%>
 		</table>
-	
 </form>
+</div>
 </div>
 <%/strip%>
 <script language="JavaScript" type="text/javascript">
@@ -219,4 +242,3 @@ switchLayer('<%$tpl_what%>');
 
 <%include file=footer.tpl%>
 <%/strip%>
-
