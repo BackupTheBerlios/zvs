@@ -33,21 +33,18 @@
 //-->
 </script>
 <%strip%>
-<fieldset class="w750">
-	<legend>##ADMINISTER_GUEST_CATEGORYS##</legend>
+<div class="box750">
+	<h2><span>##ADMINISTER_GUEST_CATEGORYS##</span></h2>
+
+	<div class="table">
 		<form accept-charset="utf-8" id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_catid" id="frm_catid" value="0"/>
 		<input type="hidden" name="frm_action" id="frm_action" value="new"/>
 
 		<%if $tpl_addnew neq 'true'%>
-		  			<div id="toolbar"><span class="label">##TOOLS##:</span><a href="javascript:neu();" class="dotted">##NEW_CATEGORY##</a></div>
+				  			&nbsp;<div id="toolbar"><span class="label">##TOOLS##:</span><a href="javascript:neu();" class="dotted">##NEW_CATEGORY##</a></div>
 		<%/if%>
-		<table class="list">
-     <colgroup>
-        <col width="200">
-        <col width="350">
-        <col width="100">
-     </colgroup>
+		<table class="list" width="100%">
 			
 			<tr class="ListHeader">
 				<th>##CATEGORY##</th>
@@ -63,7 +60,7 @@
 					<input type="text" name="frm_description" id="frm_description"  size="50" value=""/>
 		  		</td>
 				<td>
-					<a href="javascript:savecat(0);"><span class="button">##SAVE## &raquo;</span></a>
+					<a href="javascript:savecat(0);"><span class="button">##SAVE##</span></a>
 				</td>
 		   </tr>
 		   <%/if%>
@@ -85,7 +82,7 @@
 				</td>
 				<td>
 				<%if $tpl_editid eq $tpl_category[cat].catid%>
-					<a href="javascript:savecat(<%$tpl_category[cat].catid%>);"><span class="button">##SAVE## &raquo;</span></a>
+					<a href="javascript:savecat(<%$tpl_category[cat].catid%>);"><span class="button">##SAVE##</span></a>
 				<%else%>
 					<a href="javascript:delcat(<%$tpl_category[cat].catid%>,'<%$tpl_category[cat].cat%>');" class="dotted">##DELETE##</a><strong>&nbsp;&raquo;</strong>
 				<%/if%>
@@ -94,7 +91,8 @@
 			<%/section%>
 		</table>
 		</form>
-</fieldset>
+		</div>
+</div>
 <%include file=footer.tpl%>
 <%/strip%>
 

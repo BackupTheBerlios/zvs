@@ -4,7 +4,7 @@
 		<h2><span>##EMPLOYEES## ##ATTENDANCE_LIST##</span></h2>
 		<br/>
   <div class="table">
-    	<table border="0" cellspacing="0" cellpadding="0">
+    	<table class="list" width="100%">
 			<tr class="ListHeader">
 			  <th>##NAME##</th>				
 				<th>##SINCE##</th>

@@ -21,7 +21,7 @@
 			<option value="12" <%if $tpl_month eq "12"%>selected=selected<%/if%>>##DECEMBER##</option>
 		</select>
 		<br/><br/>
-    	<table border="0" cellspacing="0" cellpadding="0">
+    	<table class="list" width="100%">
 			<tr class="ListHeader">
 			  <th>##DATE##</th>
 				<th>##NAME##</th>

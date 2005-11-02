@@ -99,7 +99,7 @@
 	<div id="toolbar"><span class="label">##TOOLS##:</span><a href="javascript:neu();" class="dotted">##ADD##</a></div>	
 	<%/if%>
 		<%strip%>
-	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<table class="list" width="100%">
 		<tr class="ListHeader">
 				<th><%if $tpl_noresult || $tpl_thetype eq "cleared"%>&nbsp;<%else%><input type="checkbox" name="frm_selector" id="frm_selector" value="" onClick="checkAll();" class="nomargin"/><%/if%>##CLEARED##</th>			
 				<th>##COME##</th>

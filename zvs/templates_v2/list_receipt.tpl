@@ -165,7 +165,7 @@
 
 <br/>
 
-	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<table class="list" width="100%">
 			<tr class="ListHeader">
 			  <th>&nbsp;</th>
 			  <th>##DATE##</th>
