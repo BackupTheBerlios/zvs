@@ -41,6 +41,7 @@ $smarty->assign("tpl_title", "Zimmerwechselliste");
 $smarty->assign('tpl_nav', 'lists');
 $smarty->assign('tpl_type', 'lists');
 $smarty->assign('tpl_subnav', 'roomchange');
+$smarty->assign('tpl_children0_field', $request->GetVar('children0', 'session'));
 $smarty->assign('tpl_children1_field', $request->GetVar('children1', 'session'));
 $smarty->assign('tpl_children2_field', $request->GetVar('children2', 'session'));
 $smarty->assign('tpl_children3_field', $request->GetVar('children3', 'session'));

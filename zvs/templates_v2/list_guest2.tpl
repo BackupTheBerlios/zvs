@@ -1,8 +1,8 @@
 <%strip%>
 <%include file=header.tpl%>
 <div class="boxdyn">
-		<h2><span>##ATTENDANCE_LIST## <a href="<%$wwwroot%>list_guest2_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="Export nach CSV"></a>
-	<a href="<%$wwwroot%>list_guest2_rtf.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_rtf.php"><img src="<%$wwwroot%>img/rtf.png" hight="16" width="16" alt="Export nach RTF" border="0"></a>
+		<h2><span>##ATTENDANCE_LIST## <a href="<%$wwwroot%>list_guest2_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="##EXPORT_CSV##"></a>
+	<a href="<%$wwwroot%>list_guest2_rtf.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/bcat.<%$tpl_thebookcat%>/list_guest2_rtf.php"><img src="<%$wwwroot%>img/rtf.png" hight="16" width="16" alt="##EXPORT_RTF##" border="0"></a>
 </span></h2>
 		<br/>
   <div class="table">
