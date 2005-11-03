@@ -166,8 +166,8 @@ function splitSqlFile(&$ret, $sql)
 $smarty->assign("tpl_title", "Datenbank sichern/wiederherstellen");
 
 $smarty->assign('tpl_nav', 'settings');
-
-$smarty->assign('tpl_subnav', 'database');
+$smarty->assign('tpl_subnav', 'syssettings');
+$smarty->assign('tpl_subnav2', 'database');
 $smarty->assign('tpl_db', $request->GetVar('schema', 'session'));
 
 if ($request->GetVar('frm_schema', 'post') !== $request->undefined) {
