@@ -40,7 +40,8 @@ include_once('userclass.inc.php');
 $user = New User;
 $smarty -> assign("tpl_title", "Benutzerverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
-$smarty -> assign('tpl_subnav', 'user');
+$smarty -> assign('tpl_subnav', 'syssettings');
+$smarty -> assign('tpl_subnav2', 'user');
 $smarty -> assign("tpl_challenge", session_id());
 
 if ($request -> GetVar('frm_userid', 'post') !== $request -> undefined) {

@@ -12,7 +12,7 @@
 	
 	function delroom(id, name) {
 		var check;
-		check = confirm("Zimmer \""+ name +"\" wirklich löschen?");
+		check = confirm("##REALLY_DELETE_ROOM##: \""+ name +"\"");
 		if (check) {
 			document.cat.frm_roomid.value = id;
 			document.cat.frm_action.value = "del";
