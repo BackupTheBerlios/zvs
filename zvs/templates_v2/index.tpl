@@ -92,7 +92,7 @@
 
 <div id="dek"></div>
 <%/strip%> 
-<SCRIPT TYPE="text/javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
 	var offsetxpoint=-60; //Customize x offset of tooltip
 	var offsetypoint=20; //Customize y offset of tooltip
@@ -123,7 +123,7 @@
 	openWindow2('<%$wwwroot%>birthdays.php', 'birthdays');
 <%/if%>
 //-->
-</SCRIPT>
+</script>
 
 <%include file=footer.tpl%>
 

@@ -12,7 +12,7 @@
 	
 	function delcat(id, name) {
 		var check;
-		check = confirm("##CATEGORY## \""+ name +"\" ##REALLY_DELETE##?");
+		check = confirm("##REALLY_DELETE_CATEGORY##: \""+ name +"\"\n");
 		if (check) {
 			document.cat.frm_catid.value = id;
 			document.cat.frm_action.value = "del";

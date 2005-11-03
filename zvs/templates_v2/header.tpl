@@ -10,9 +10,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 	<meta name="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css" media="screen">@import "<%$wwwroot%>css/global.css";</style>
+	<%if $tpl_type eq "editgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" || $tpl_type eq "roomcat"%>
+		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
+	<%/if%>
 	<%if $tpl_type eq "editgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime"%>
 		<link href="<%$wwwroot%>css/dynCalendar.css" rel="stylesheet" type="text/css">
-		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/dynCalendar.js"></script>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/confirmleave.js"></script>
 	<%/if%>
@@ -89,21 +91,21 @@
 		      </ul>
           <%elseif $tpl_subnav eq "catsettings"%>
           <ul>
-						<li <%if $tpl_subnav eq "category"%>id="current"<%/if%>><a href="<%$wwwroot%>category.php">##GUEST_CATEGORIES##</a>|</li>
-						<li <%if $tpl_subnav eq "roomcat"%>id="current"<%/if%>><a href="<%$wwwroot%>roomcategory.php">##ROOM_CATEGORIES##</a>|</li>
-						<li <%if $tpl_subnav eq "bookingcat"%>id="current"<%/if%>><a href="<%$wwwroot%>bookingcat.php">##CATEGORIES_OF_BOOKING##</a>|</li>
-						<li <%if $tpl_subnav eq "paycategory"%>id="current"<%/if%>><a href="<%$wwwroot%>paytypes.php">##PAYMENT_CATEGORIES##</a></li>		   
+						<li <%if $tpl_subnav2 eq "category"%>id="current"<%/if%>><a href="<%$wwwroot%>category.php">##GUEST_CATEGORIES##</a>|</li>
+						<li <%if $tpl_subnav2 eq "roomcat"%>id="current"<%/if%>><a href="<%$wwwroot%>roomcategory.php">##ROOM_CATEGORIES##</a>|</li>
+						<li <%if $tpl_subnav2 eq "bookingcat"%>id="current"<%/if%>><a href="<%$wwwroot%>bookingcat.php">##CATEGORIES_OF_BOOKING##</a>|</li>
+						<li <%if $tpl_subnav2 eq "paycategory"%>id="current"<%/if%>><a href="<%$wwwroot%>paytypes.php">##PAYMENT_CATEGORIES##</a></li>		   
           </ul>		      
           <%elseif $tpl_subnav eq "syssettings"%>
           <ul>
-						<li <%if $tpl_subnav eq "rooms"%>id="current"<%/if%>><a href="<%$wwwroot%>rooms.php">##ROOM##</a>|</li>
-						<li <%if $tpl_subnav eq "season"%>id="current"<%/if%>><a href="<%$wwwroot%>season.php">##SEASON##</a>|</li>			   
-						<li <%if $tpl_subnav eq "price"%>id="current"<%/if%>><a href="<%$wwwroot%>price.php">##ROOM_PRICES##</a>|</li>			   			   
-						<li <%if $tpl_subnav eq "article"%>id="current"<%/if%>><a href="<%$wwwroot%>article.php">##ARTICLE##</a>|</li>							
-						<li <%if $tpl_subnav eq "user"%>id="current"<%/if%>><a href="<%$wwwroot%>edituser.php">##USER##</a>|</li>
-						<li <%if $tpl_subnav eq "employee"%>id="current"<%/if%>><a href="<%$wwwroot%>editemployee.php">##EMPLOYEES##</a>|</li>
-						<li <%if $tpl_subnav eq "systemsettings"%>id="current"<%/if%>><a href="<%$wwwroot%>systemsettings.php">##SYSTEM_SETTINGS##</a>|</li>
-						<li <%if $tpl_subnav eq "database"%>id="current"<%/if%>><a href="<%$wwwroot%>database.php">##DATABASE##</a></li>
+						<li <%if $tpl_subnav2 eq "rooms"%>id="current"<%/if%>><a href="<%$wwwroot%>rooms.php">##ROOM##</a>|</li>
+						<li <%if $tpl_subnav2 eq "season"%>id="current"<%/if%>><a href="<%$wwwroot%>season.php">##SEASON##</a>|</li>			   
+						<li <%if $tpl_subnav2 eq "price"%>id="current"<%/if%>><a href="<%$wwwroot%>price.php">##ROOM_PRICES##</a>|</li>			   			   
+						<li <%if $tpl_subnav2 eq "article"%>id="current"<%/if%>><a href="<%$wwwroot%>article.php">##ARTICLE##</a>|</li>							
+						<li <%if $tpl_subnav2 eq "user"%>id="current"<%/if%>><a href="<%$wwwroot%>edituser.php">##USER##</a>|</li>
+						<li <%if $tpl_subnav2 eq "employee"%>id="current"<%/if%>><a href="<%$wwwroot%>editemployee.php">##EMPLOYEES##</a>|</li>
+						<li <%if $tpl_subnav2 eq "systemsettings"%>id="current"<%/if%>><a href="<%$wwwroot%>systemsettings.php">##SYSTEM_SETTINGS##</a>|</li>
+						<li <%if $tpl_subnav2 eq "database"%>id="current"<%/if%>><a href="<%$wwwroot%>database.php">##DATABASE##</a></li>
           </ul>		                	
           <%elseif $tpl_nav eq "calendar"%>
           <ul>
