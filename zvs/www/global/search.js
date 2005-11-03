@@ -57,7 +57,7 @@ function gsc_addresult(elt, qElt, q, c, sel)
     _res += '<div class="' + (sel ? 'srs' : 'sr') + '"'
          +  ' onmouseover="gsc_mouseover(\'' + elt.id + '\', \'' + qElt.id + '\', ' + idx + ')"'
          +  ' onmouseout="gsc_mouseout(\'' + elt.id + '\', ' + idx + ')"'
-         +  ' onclick="gsc_mouseclick(\'' + elt.id + '\', \'' + qElt.id + '\', ' + idx + ')">';
+         +  ' onclick="gsc_mouseclick(\'' + elt.id + '\', \'' + qElt.id + '\', ' + idx + ',\'' + c + '\')">';
     _res += '<span class="srt">' + q + '</span>';
     if (c.length > 0)
         _res += '<span class="src">' + c + '</span>';
@@ -84,12 +84,13 @@ function gsc_mouseout(id, idx)
     gsc_highlightsel(elt);
 }
 
-function gsc_mouseclick(id, qId, idx)
+function gsc_mouseclick(id, qId, idx, c)
 {
     elt = document.getElementById(id);
     qElt = document.getElementById(qId);
-
     qElt.value = elt.results[idx];
+    q2Elt = document.getElementById('frm_firstname');
+    q2Elt.value = c;
     qElt.form.submit();
 }
 
