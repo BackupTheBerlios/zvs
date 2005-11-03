@@ -41,10 +41,9 @@ include_once("../includes/default.inc.php");
 $auth->is_authenticated();
 
 $smarty->assign("tpl_title", "Einstellungen");
-
 $smarty->assign('tpl_nav', 'settings');
-
-$smarty->assign('tpl_subnav', 'systemsettings');
+$smarty->assign('tpl_subnav', 'syssettings');
+$smarty->assign('tpl_subnav2', 'systemsettings');
 
 if ($request->GetVar('frm_action', 'post') !== $request->undefined) {
     if ($request->GetVar('frm_action', 'post') == 'edit') {
