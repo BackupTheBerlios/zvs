@@ -41,6 +41,7 @@ $gcategory = New GuestCategory;
 $smarty -> assign("tpl_title", "Kategorieverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
 $smarty -> assign('tpl_subnav', 'catsettings');
+$smarty -> assign('tpl_subnav2', 'category');
 
 if ($request -> GetVar('frm_catid', 'post') !== $request -> undefined) {
     if ($request -> GetVar('frm_action', 'post') == 'edit') {

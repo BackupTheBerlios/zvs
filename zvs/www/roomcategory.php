@@ -41,6 +41,7 @@ $roomcategory = New RoomCategory;
 $smarty -> assign("tpl_title", "Zimmerkategorieverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
 $smarty -> assign('tpl_subnav', 'catsettings');
+$smarty -> assign('tpl_subnav2', 'roomcat');
 $smarty -> assign('tpl_type', 'roomcat');
 
 if ($request -> GetVar('frm_catid', 'post') !== $request -> undefined) {
