@@ -41,7 +41,8 @@ include_once('articleclass.inc.php');
 $article = New Article;
 $smarty -> assign("tpl_title", "Artikel verwalten");
 $smarty -> assign('tpl_nav', 'settings');
-$smarty -> assign('tpl_subnav', 'article');
+$smarty -> assign('tpl_subnav', 'syssettings');
+$smarty -> assign('tpl_subnav2', 'article');
 
 if ($request -> GetVar('frm_articleid', 'post') !== $request -> undefined) {
     if ($request -> GetVar('frm_action', 'post') == 'edit') {

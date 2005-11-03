@@ -41,7 +41,8 @@ include_once('seasonclass.inc.php');
 $season = New Season;
 $smarty -> assign("tpl_title", "Saisonzeitr&auml;ume verwalten");
 $smarty -> assign('tpl_nav', 'settings');
-$smarty -> assign('tpl_subnav', 'season');
+$smarty -> assign('tpl_subnav', 'syssettings');
+$smarty -> assign('tpl_subnav2', 'season');
 $smarty -> assign('tpl_type','season');
 
 if ($request -> GetVar('frm_seasonid', 'post') !== $request -> undefined) {
