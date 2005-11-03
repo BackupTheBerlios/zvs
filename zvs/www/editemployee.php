@@ -40,7 +40,8 @@ include_once('employeeclass.inc.php');
 $employee = New Employee;
 $smarty -> assign("tpl_title", "Mitarbeiterverwaltung");
 $smarty -> assign('tpl_nav', 'settings');
-$smarty -> assign('tpl_subnav', 'employee');
+$smarty -> assign('tpl_subnav', 'syssettings');
+$smarty -> assign('tpl_subnav2', 'employee');
 $smarty -> assign("tpl_challenge", session_id());
 
 if ($request -> GetVar('frm_userid', 'post') !== $request -> undefined) {
