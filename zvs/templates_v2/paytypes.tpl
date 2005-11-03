@@ -37,7 +37,7 @@
 <div class="box750">
 	<h2><span>##ADMINISTER_PAYTYPES##</span></h2>
 	<div class="table">
-		<form id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
+		<form accept-charset="utf-8" id="cat" name="cat" action="<%$SCRIPT_NAME%>" method="post">
 		<input type="hidden" name="frm_catid" id="frm_catid" value="0"/>
 		<input type="hidden" name="frm_action" id="frm_action" value="new"/>
 		   <%if $tpl_addnew neq 'true'%>
