@@ -12,7 +12,7 @@
 	
 	function delart(id, name) {
 		var check;
-		check = confirm("##REALLY_DELETE## ##ARTICLE##: \""+ name +"\" \n");
+		check = confirm("##REALLY_DELETE_ARTICLE##: \""+ name +"\" \n");
 		if (check) {
 			document.article.frm_articleid.value = id;
 			document.article.frm_action.value = "del";
