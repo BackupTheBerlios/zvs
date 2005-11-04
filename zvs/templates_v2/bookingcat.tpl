@@ -16,7 +16,7 @@
 	
 	function delbcat(id, name) {
 		var check;
-		check = confirm("Kategorie \""+ name +"\" wirklich löschen?\n");
+		check = confirm("Kategorie \""+ name +"\" wirklich lÃ¶schen?\n");
 		if (check) {
 			document.cat.frm_bcatid.value = id;
 			document.cat.frm_action.value = "del";

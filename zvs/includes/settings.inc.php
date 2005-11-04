@@ -27,6 +27,7 @@
 
 # no caching
 header('Expires: 0');
+header('Content-Type: text/html; charset=utf-8');
 
 # needed for rtf output
 if (!isset($nocachecontrol)) {
@@ -77,11 +78,11 @@ include_once('multilanguage.php');
 $smarty = new smartyML();
 //$smarty = new Smarty;
 // Configure Smarty
-$smarty -> template_dir = '../templates';
-$smarty -> compile_dir = '../templates_c';
+$smarty -> template_dir = '../templates_v2';
+$smarty -> compile_dir = '../templates_v2_c';
 $smarty -> compile_check = true;
-$smarty -> force_compile = true;
-$smarty -> debugging = false;
+$smarty -> force_compile = false;
+$smarty -> debugging = true;
 $smarty -> cache_dir = '../cache';
 $smarty -> caching = false;
 $smarty -> left_delimiter = '<%';

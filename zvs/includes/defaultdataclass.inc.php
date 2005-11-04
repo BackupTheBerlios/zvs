@@ -34,7 +34,7 @@
 * 
 * @since 2003-08-01
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: defaultdataclass.inc.php,v 1.2 2005/05/05 10:03:20 ehret Exp $
+* @version $Id: defaultdataclass.inc.php,v 1.3 2005/11/04 10:13:58 ehret Exp $
 */
 class DefaultData {
     /**
@@ -146,7 +146,7 @@ class DefaultData {
     } 
 
     /**
-    * DefaultData::´setfield()
+    * DefaultData::Â´setfield()
     * 
     * This function updates a given field and updates the session value
     * 

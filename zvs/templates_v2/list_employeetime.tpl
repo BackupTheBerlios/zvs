@@ -12,7 +12,7 @@
 	
 	function del(id) {
 		var check;
-		check = confirm("Zeit wirklich löschen?");
+		check = confirm("Zeit wirklich lÃ¶schen?");
 		if (check) {
 			document.selectfrm.frm_timetrackerid.value = id;
 			document.selectfrm.frm_action.value = "del";

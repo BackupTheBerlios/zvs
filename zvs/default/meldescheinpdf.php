@@ -66,12 +66,12 @@ $pdf->Write(5, $request->GetVar('hotel_zip', 'session') . " " . $request->GetVar
 // Headline
 $pdf->SetXY(120, $y);
 $pdf->SetFont($fonttype, 'B', 12);
-$pdf->Write(5, "Meldeschein für Beherbergungsstätten");
+$pdf->Write(5, "Meldeschein fÃ¼r BeherbergungsstÃ¤tten");
 $pdf->SetXY(120, $y + 5);
 $pdf->SetFont($fonttype, '', 6);
-$pdf->Write(3, "Rechtsgrundlage für die Erhebung der nachfolgend aufgeführten Daten sind");
+$pdf->Write(3, "Rechtsgrundlage fÃ¼r die Erhebung der nachfolgend aufgefÃ¼hrten Daten sind");
 $pdf->SetXY(120, $y + 8);
-$pdf->Write(3, "§§23 und 24 des Meldegesetzes vom 11. April 1983 (GBI. S. 117)");
+$pdf->Write(3, "Â§Â§23 und 24 des Meldegesetzes vom 11. April 1983 (GBI. S. 117)");
 
 $pdf->SetFont($fonttype, 'B', 10);
 $pdf->SetXY(10, 60);
@@ -87,15 +87,15 @@ $pdf->Write(5, "Geburtsdatum");
 $pdf->SetY(85);
 $pdf->Write(5, "Geburtsort");
 $pdf->SetY(90);
-$pdf->Write(5, "Staatsangehörigkeit");
+$pdf->Write(5, "StaatsangehÃ¶rigkeit");
 $pdf->SetY(95);
 $pdf->Write(5, "Ausweis");
 $pdf->SetY(100);
-$pdf->Write(5, "Ausstellende Behörde, Ausstellungsdatum");
+$pdf->Write(5, "Ausstellende BehÃ¶rde, Ausstellungsdatum");
 $pdf->SetY(105);
 $pdf->Write(5, "Postleitzahl, Wohnort");
 $pdf->SetY(110);
-$pdf->Write(5, "Straße, Hausnummer");
+$pdf->Write(5, "StraÃŸe, Hausnummer");
 $pdf->SetY(115);
 $pdf->Write(5, "Staat");
 $pdf->SetY(120);
@@ -125,7 +125,7 @@ if ($bookdata[identity] == 'P') {
 } else if ($bookdata[identity] == 'R') {
     $identity = "Reisepass-";
 } else if ($bookdata[identity] == 'F') {
-    $identity = "Führerschein-";       
+    $identity = "FÃ¼hrerschein-";       
 }
 $pdf->Write(5, $identity . "Nummer: " . $bookdata[passport]);
 $pdf->SetXY(100, 100);

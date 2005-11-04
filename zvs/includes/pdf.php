@@ -27,7 +27,7 @@
 
 class PDF extends FPDF {
     // -----------------------------------------------------------------------//
-    // Définitions de variables                                             //
+    // DÃ©finitions de variables                                             //
     // -----------------------------------------------------------------------//
     var $categorie_courante = '';
     var $sous_categorie_courante = '';
@@ -121,9 +121,9 @@ class PDF extends FPDF {
     // -----------------------------------------------------------------------//
     // Parseur HTML basic                                                   //
     // -----------------------------------------------------------------------//
-    // *¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*
+    // *Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*
     // Moteur central du parseur HTML
-    // *¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*¤*
+    // *Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*Â¤*
     function parseHTML ($chaine)
     {
         $chaine = str_replace("&#8211;", '-', $chaine);
@@ -135,11 +135,11 @@ class PDF extends FPDF {
 
         foreach ($contenu AS $i => $e) {
             if ($i % 2 == 0) {
-                // Lien hypertexte à afficher
+                // Lien hypertexte Ã  afficher
                 if ($this -> HREF) {
                     $this -> PutLink($this -> HREF, $e);
                 } 
-                // Un bout de texte à afficher
+                // Un bout de texte Ã  afficher
                 else {
                     $this -> Write(5, $e);
                 } 
@@ -150,12 +150,12 @@ class PDF extends FPDF {
                 } 
                 // Balise ouvrante
                 else {
-                    $prop_temp = split(' ', $e); // Chaque élément de $prop_temp contient 
+                    $prop_temp = split(' ', $e); // Chaque Ã©lÃ©ment de $prop_temp contient 
                     // un attribut + sa valeur
-                    // Le premier élément est la balise en elle même
-                    $tag = strtoupper(array_shift($prop_temp)); // on récupère la balise
+                    // Le premier Ã©lÃ©ment est la balise en elle mÃªme
+                    $tag = strtoupper(array_shift($prop_temp)); // on rÃ©cupÃ¨re la balise
                     $prop = array(); 
-                    // On récupère dans un tableau associatif les couples attibut-valeur
+                    // On rÃ©cupÃ¨re dans un tableau associatif les couples attibut-valeur
                     // $prop['attribut'] = valeur
                     foreach ($prop_temp AS $v) {
                         if (ereg('^(.*)=["\']?([^"\']*)["\']?$', $v, $a3)) {
@@ -173,7 +173,7 @@ class PDF extends FPDF {
     function OpenTag ($tag, $prop)
     {
         switch ($tag) {
-            // Gras, italique ou souligné
+            // Gras, italique ou soulignÃ©
             case 'B':
             case 'I':
             case 'U':
@@ -183,22 +183,22 @@ class PDF extends FPDF {
             case 'A':
                 $this -> HREF = $prop['HREF'];
                 break; 
-            // Retour à la ligne
+            // Retour Ã  la ligne
             case 'BR':
                 $this -> ln();
                 break; 
-            // Police utilisée
+            // Police utilisÃ©e
             case 'FONT':
                 if ($prop['FACE'] == "System" || $prop['FACE'] == "system") {
                     $this -> SetFontSystem(true);
                 } 
                 break; 
-            // Nouvelle liste à puce
+            // Nouvelle liste Ã  puce
             case 'UL':
                 $this -> UL++;
                 $this -> SetLeftMargin($this -> lMargin + 10);
                 break; 
-            // Nouvelle liste à puce
+            // Nouvelle liste Ã  puce
             case 'OL':
                 $this -> OL++;
                 $this -> SetLeftMargin($this -> lMargin + 10);
@@ -224,7 +224,7 @@ class PDF extends FPDF {
             case 'P':
                 $this -> ln();
                 break; 
-            // Barre de séparation entre la description de l'astuce et l'astuce elle même
+            // Barre de sÃ©paration entre la description de l'astuce et l'astuce elle mÃªme
             case 'BARRE':
                 $this -> ln();
                 $this -> SetLineWidth(0.5); 
@@ -244,7 +244,7 @@ class PDF extends FPDF {
     function CloseTag($tag)
     {
         switch ($tag) {
-            // Gras, italique ou souligné
+            // Gras, italique ou soulignÃ©
             case 'B':
             case 'I':
             case 'U':
@@ -254,17 +254,17 @@ class PDF extends FPDF {
             case 'A':
                 $this -> HREF = '';
                 break; 
-            // Police utilisée
+            // Police utilisÃ©e
             case 'FONT':
                 $this -> SetFontSystem(false);
                 break; 
-            // Fin d'une liste à puce
+            // Fin d'une liste Ã  puce
             case 'UL':
                 $this -> UL--;
                 $this -> SetLeftMargin($this -> lMargin-10);
                 $this -> Ln();
                 break; 
-            // Fin d'une liste à puce
+            // Fin d'une liste Ã  puce
             case 'OL':
                 $this -> OL--;
                 $this -> SetLeftMargin($this -> lMargin-10);
@@ -278,7 +278,7 @@ class PDF extends FPDF {
         } 
     } 
     // --------------------------------------------
-    // Gère les balises gras, italique et souligné
+    // GÃ¨re les balises gras, italique et soulignÃ©
     // --------------------------------------------
     function SetStyle ($tag, $enable)
     {
@@ -310,7 +310,7 @@ class PDF extends FPDF {
         $this -> SetTextColor(0);
     } 
     // --------------------------------------------------------
-    // Gère les affichages des clés du registre et des valeurs
+    // GÃ¨re les affichages des clÃ©s du registre et des valeurs
     // --------------------------------------------------------
     function SetFontSystem ($enable)
     {
@@ -320,7 +320,7 @@ class PDF extends FPDF {
             $this -> SetFont('arial', '', 10);
     } 
     // -----------------------
-    // Gère les listes à puce
+    // GÃ¨re les listes Ã  puce
     // -----------------------
     function WritePuce()
     {
@@ -339,7 +339,7 @@ class PDF extends FPDF {
             $this -> Cell(10, 5, chr(111), 0, 0, 'C');
             $this -> SetFont('', '', 10);
         } 
-        // Niveau 3 et + d'indentation : puce carrée remplie
+        // Niveau 3 et + d'indentation : puce carrÃ©e remplie
         elseif ($this -> UL >= 3) {
             $this -> SetFont('zapfdingbats', '', 6);
             $this -> SetX($this -> GetX()-20);
@@ -349,7 +349,7 @@ class PDF extends FPDF {
         $this -> SetFont('', '', 10);
     } 
 
-    function decomposerTableau ($tab_string) // $tab_string est le code html du tableau, $path est une chaine de caractères contenant le chemin du fichier contenant le code du tableau html
+    function decomposerTableau ($tab_string) // $tab_string est le code html du tableau, $path est une chaine de caractÃ¨res contenant le chemin du fichier contenant le code du tableau html
     {
         // echo $tab_string;
         $this -> Ln(5);
@@ -360,7 +360,7 @@ class PDF extends FPDF {
         $tab_string = eregi_replace('</td>', '', $tab_string);
         $tab_string = eregi_replace('</tr>', '', $tab_string);
         $tab_string = eregi_replace('</table>', '', $tab_string);
-        $tab_split = preg_split('/<(t.*)>/Ui', $tab_string, -1, PREG_SPLIT_DELIM_CAPTURE); //séparer balises et texte associé aux balises
+        $tab_split = preg_split('/<(t.*)>/Ui', $tab_string, -1, PREG_SPLIT_DELIM_CAPTURE); //sÃ©parer balises et texte associÃ© aux balises
          
         // TEST
         /*
@@ -574,9 +574,9 @@ class PDF extends FPDF {
         $nl = 1;
 
         $chaine = '';
-        $split = preg_split('/ /U', $txt, -1, PREG_SPLIT_NO_EMPTY); //on découpe à chaque espace
+        $split = preg_split('/ /U', $txt, -1, PREG_SPLIT_NO_EMPTY); //on dÃ©coupe Ã  chaque espace
         for ($a = 0; $a < count($split); $a++) {
-            if ($split[$a] == '¿' || $split[$a] == '¿1') {
+            if ($split[$a] == 'Â¿' || $split[$a] == 'Â¿1') {
                 $nl ++;
                 $chaine = '';
             } else {
@@ -674,7 +674,7 @@ class PDF extends FPDF {
         return $texte;
     } 
     // ---------------------------------------------------------------
-    // Convertit une couleur au format hexadécimal en composantes RVB
+    // Convertit une couleur au format hexadÃ©cimal en composantes RVB
     // ---------------------------------------------------------------
     function HexToRVB ($hex)
     {

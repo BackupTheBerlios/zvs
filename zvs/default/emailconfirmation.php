@@ -30,7 +30,7 @@
 * 
 * @since 2003-10-12
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: emailconfirmation.php,v 1.2 2005/05/05 09:19:36 ehret Exp $
+* @version $Id: emailconfirmation.php,v 1.3 2005/11/04 10:18:46 ehret Exp $
 */
 
 /**
@@ -87,21 +87,21 @@ function createEmailConfirmation($bookid)
             } 
             switch (MetabaseFetchResult($gDatabase, $result, 0, 16)) {
                 case 'R':
-                    $bookingtype = "Reservierungsbest&auml;tigung";
+                    $bookingtype = "Reservierungsbestätigung";
                     $bookingstr = "Reservierung";
                     break;
                 case 'B':
-                    $bookingtype = "Buchungsbest&auml;tigung";
+                    $bookingtype = "Buchungsbestätigung";
                     $bookingstr = "Buchung";
                     break;
                 case 'P':
-                    $bookingtype = "Buchungsbest&auml;tigung";
+                    $bookingtype = "Buchungsbestätigung";
                     $bookingstr = "Buchung";
                     break;
             } 
             $body = "";
             $body .= $guest->GetGreeting(MetabaseFetchResult($gDatabase, $result, 0, 1)) . "\n";
-            $body .= "hiermit best�tigen wir " . $dirihnen . " folgende " . $bookingstr . ":\n\n";
+            $body .= "hiermit bestätigen wir " . $dirihnen . " folgende " . $bookingstr . ":\n\n";
             $body .= "Anreise: " . date("d. m. Y", MetabaseFetchResult($gDatabase, $result, 0, 2)) . "\n";
             $body .= "Abreise: " . date("d. m. Y", MetabaseFetchResult($gDatabase, $result, 0, 3)) . "\n";
             $body .= "Kategorie: " . MetabaseFetchResult($gDatabase, $result, 0, 19) . "\n";
@@ -110,7 +110,7 @@ function createEmailConfirmation($bookid)
             $body .= $request->GetVar('children1','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 6) . "\n";
 			$body .= $request->GetVar('children2','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 20) . "\n";
 			$body .= $request->GetVar('children3','session').": " . MetabaseFetchResult($gDatabase, $result, 0, 21) . "\n\n";
-            $body .= "f�r:\n";
+            $body .= "für:\n";
             $body .= MetabaseFetchResult($gDatabase, $result, 0, 7) . " " . MetabaseFetchResult($gDatabase, $result, 0, 8) . "\n";
             $body .= MetabaseFetchResult($gDatabase, $result, 0, 13) . "\n";
             $body .= MetabaseFetchResult($gDatabase, $result, 0, 11) . " " . MetabaseFetchResult($gDatabase, $result, 0, 12) . "\n";
