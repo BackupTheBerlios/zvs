@@ -1,6 +1,11 @@
 AjaxAC ChangeLog
 ----------------
 
+2005-10-25  - Version 0.4.5
+
+ - Added custom response types. Response handlers are called response_handlername() (see class for examples)
+ - Changed JavaScript handler to return text/javascript mime type instead of text/plain
+
 2005-08-06  - Version 0.4.4
 
  - Added option for optional content-length header sending

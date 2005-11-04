@@ -93,11 +93,6 @@
         var $_defaultCharset = 'UTF-8';
 
 
-        var $_responseTypes = array('text'    => 'text/plain',
-                                    'jsarray' => 'text/plain',
-                                    'xml'     => 'text/xml',
-                                    'csv'     => 'text/plain');
-
         /**
          * AjaxACApplication
          *
@@ -591,7 +586,6 @@
          * accordingly. The script exits after this method is called.
          *
          * @todo    Cache control functionality
-         * @todo    Perhaps create separate callbacks for each different data type instead of switch
          * @todo    Move actual data output / headers into separate section so can be used elsewhere
          * @param   string  $type       The type of data being sent
          * @param   mixed   $data       The data to return
@@ -599,32 +593,78 @@
         function sendResponseData($type, $data)
         {
             $type = strtolower($type);
-            if (!array_key_exists($type, $this->_responseTypes))
-                $type = 'text';
-            $mime = $this->_responseTypes[$type];
 
-            switch ($type) {
-                case 'jsarray':
-                    // expects an array
-                    if (is_array($data) && count($data) > 0) {
-                        $ret = $this->_phpArrayToJs($data);
-                        //$ret = sprintf("[ '%s' ]", trim(join("','", $data)));
-                    }
+            // check if there's a handler for this data type. if not
+            // just assume it's plain text and send the data as is with a text/plain
+            // mime type.
+            $callback = 'response_' . $type;
+
+            if (method_exists($this, $callback)) {
+                $response = $this->$callback($data);
+
+                // the returned data should be an array with a 'mime' elements
+                // and a 'data' element. if not an array, then the returned data
+                // is output. if no mime type found then text/plain is used
+
+                if (is_array($response)) {
+                    if (isset($response['mime']))
+                        $mime = $response['mime'];
+
+                    if (isset($response['data']))
+                        $data = $response['data'];
                     else
-                        $ret = '[]';
-                    break;
-                case 'text':
-                default:
-                    $ret = $data;
+                        $data = '';
+                }
+                else {
+                    $mime = 'text/plain';
+                    $data = $response;
+                }
             }
+            else
+                $mime = 'text/plain';
 
             header('Content-type: ' . $this->getContentType($mime));
-            header('Content-length: ' . strlen($ret));
-            echo $ret;
+            header('Content-length: ' . strlen($data));
 
+            echo $data;
             exit;
         }
 
+
+        /**
+         * response_xml
+         *
+         * Outputs XML data. Assumes it is receiving well-formed XML
+         *
+         * @param   mixed   $data       The data to return
+         * @return  array               A reponse type array, with mime and data elements
+         */
+        function response_xml($data)
+        {
+            return array('mime' => 'text/xml',
+                         'data' => $data);
+        }
+
+
+        /**
+         * response_jsarray
+         *
+         * Handle the jsarray response type
+         *
+         * @param   mixed   $data       The data to return
+         * @return  array               A reponse type array, with mime and data elements
+         */
+        function response_jsarray($data)
+        {
+            return array('mime' => 'text/javascript',
+                         'data' => $this->_phpArrayToJs($data));
+        }
+
+        /**
+         * _phpArrayToJs
+         *
+         * Helper function for jsarray response type
+         */
         function _phpArrayToJs($arr)
         {
             $items = array();

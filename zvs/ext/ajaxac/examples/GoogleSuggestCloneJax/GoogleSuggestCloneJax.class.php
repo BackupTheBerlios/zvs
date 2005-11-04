@@ -15,16 +15,16 @@
      * limitations under the License.
      */
 
-    require_once('../../lib/AjaxACApplication.class.php');
+    require_once('AjaxACApplication.class.php');
 
-    class extends AjaxACApplication
+    class GoogleSuggestCloneJax extends AjaxACApplication
     {
         /**
          * Database connection details
          */
         var $db_hostname = 'localhost';
         var $db_username = 'root';
-        var $db_password = 'Just4fun';
+        var $db_password = '';
         var $db_database = 'ajaxac';
         var $db_table    = 'google_suggest_clone_data';
 

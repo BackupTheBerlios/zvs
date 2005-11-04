@@ -100,7 +100,7 @@ function ajaxac_getkeycode(e)
     if (document.layers)
         return e.which;
     else if (document.all)
-    	  return event.keyCode;
+        return event.keyCode;
     else if (document.getElementById)
         return e.keyCode;
     return 0;

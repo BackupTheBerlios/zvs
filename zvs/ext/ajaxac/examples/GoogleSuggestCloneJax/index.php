@@ -14,7 +14,7 @@
      * See the License for the specific language governing permissions and
      * limitations under the License.
      */
-ini_set('include_path', ini_get('include_path').';C:\wwwroot\ajaxac-0.4.4\lib');
+
     require_once('GoogleSuggestCloneJax.class.php');
 
     $ajax = new GoogleSuggestCloneJax();
