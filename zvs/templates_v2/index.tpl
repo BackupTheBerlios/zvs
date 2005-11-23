@@ -4,7 +4,7 @@
 	<h2><span>##ROOMPLAN## (<%if $tpl_view eq "type"%>##TYPE_OF_ALLOCATION##<%else%>##CATEGORIES_OF_BOOKING##<%/if%> <%$tpl_monthname%>&nbsp;<%$tpl_year%>&nbsp;&nbsp;<a href="<%$wwwroot%>calendarpdf.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%><%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" target='_blank'><img src="<%$wwwroot%>img/pdf.gif" hight="16" width="16" alt="##PDF_VERSION##" border="0"></a>) </span></h2>
   <form name="choosedate" action="<%$wwwroot%>index.php" method="post">
   <input type="hidden" name="frm_view" id="frm_view" value="<%$tpl_view%>"/>
-	<p align="center"><%if $tpl_numoldres > 0%><a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php');"><span class="button"><%$tpl_numoldres%>&nbsp;<%if $tpl_numoldres > 1%>##EXPIRED_BOOKINGS##<%else%>##EXPIRED_BOOKING##<%/if%></span></a><%/if%></p>
+	<p align="center"><%if $tpl_numoldres > 0%><a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php','reservation');"><span class="button"><%$tpl_numoldres%>&nbsp;<%if $tpl_numoldres > 1%>##EXPIRED_BOOKINGS##<%else%>##EXPIRED_BOOKING##<%/if%></span></a><%/if%></p>
 
         <table width="100%" border="0">
         <tr>
@@ -94,7 +94,7 @@
 <%/strip%> 
 <script language="JavaScript" type="text/javascript">
 <!--
-	var offsetxpoint=-60; //Customize x offset of tooltip
+	var offsetxpoint=60; //Customize x offset of tooltip
 	var offsetypoint=20; //Customize y offset of tooltip
 	var ie=document.all;
 	var ns6=document.getElementById && !document.all;
@@ -106,13 +106,13 @@
 
     function openWindow(url){
     url = url + '/year.<%$tpl_navyear%>/month.<%$tpl_navmonth%>/navstep.<%$tpl_navstep%>';
-    F1 = window.open(url,'booking','width=800,height=550,left=0,top=0,scrollbars=yes');
+    F1 = window.open(url,'booking','width=800,height=800,left=0,top=0,scrollbars=yes');
     F1.focus();
     }
 	
 	function openWindow2(url, name){
     url = url + '/year.<%$tpl_navyear%>/month.<%$tpl_navmonth%>/navstep.<%$tpl_navstep%>';
-    F2 = window.open(url,name,'width=800,height=550,left=0,top=0,scrollbars=yes');
+    F2 = window.open(url,name,'width=800,height=560,left=0,top=0,scrollbars=yes');
     F2.focus();
     }
 	
