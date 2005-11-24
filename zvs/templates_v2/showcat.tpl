@@ -4,8 +4,8 @@
 <script type="text/javascript" language="Javascript">
 <!--
 
-	var offsetxpoint=-60; //Customize x offset of tooltip
-	var offsetypoint=20; //Customize y offset of tooltip
+	var offsetxpoint=10; //Customize x offset of tooltip
+	var offsetypoint=100; //Customize y offset of tooltip
 	var ie=document.all;
 	var ns6=document.getElementById && !document.all;
 	var enabletip=false;
