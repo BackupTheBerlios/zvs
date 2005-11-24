@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: guestcategoryclass.inc.php,v 1.1 2004/11/03 14:46:21 ehret Exp $
+* @version $Id: guestcategoryclass.inc.php,v 1.2 2005/11/24 09:31:49 ehret Exp $
 */
 class GuestCategory {
     /**
@@ -211,9 +211,14 @@ class GuestCategory {
         } else {
             $row = 0;
             for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase, $result)) == 0; ++$row) {
+            	  $color = 0;
+                if ($row % 2 <> 0) {
+                    $color = 1;
+                } 
                 $cat[$row] = array ('catid' => MetabaseFetchResult($gDatabase, $result, $row, 0),
                     'cat' => MetabaseFetchResult($gDatabase, $result, $row, 1),
                     'description' => MetabaseFetchResult($gDatabase, $result, $row, 2),
+                    'color' => $color
                     );
             } 
         } 
