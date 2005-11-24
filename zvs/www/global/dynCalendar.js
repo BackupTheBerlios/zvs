@@ -23,12 +23,11 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
 /**
 * Filename.......: calendar.js
 * Project........: Popup Calendar
-* Last Modified..: $Date: 2004/11/03 15:05:42 $
-* CVS Revision...: $Revision: 1.1 $
+* Last Modified..: $Date: 2005/11/24 09:45:56 $
+* CVS Revision...: $Revision: 1.2 $
 * Copyright......: 2001, 2002 Richard Heyes
 */
 
@@ -64,12 +63,13 @@
 		this.callbackFunc   = callbackFunc;
 		this.imagesPath     = arguments[2] ? arguments[2] : 'img/';
 		this.layerID        = arguments[3] ? arguments[3] : 'dynCalendar_layer_' + dynCalendar_layers.length;
+
 		this.offsetX        = 5;
 		this.offsetY        = 5;
 
 		this.useMonthCombo  = true;
 		this.useYearCombo   = true;
-		this.yearComboRange = 103;
+		this.yearComboRange = 5;
 
 		this.currentMonth   = this.month;
 		this.currentYear    = this.year;
@@ -131,8 +131,7 @@
 		this.currentMonth = month = arguments[0] != null ? arguments[0] : this.currentMonth;
 		this.currentYear  = year  = arguments[1] != null ? arguments[1] : this.currentYear;
 
-
-		monthnames = new Array('Januar', 'Februar', 'M&auml;rz', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
+		monthnames = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 		numdays    = this._getDaysInMonth(month, year);
 
 		thisMonth    = new Date(year, month, 1);
@@ -181,7 +180,7 @@
 
 		prevImgHTML  = '<img src="' + this.imagesPath + '/prev.gif" alt="<<" border="0" />';
 		prevLinkHTML = '<a href="javascript: ' + this.objName + '.show(' + previousMonth + ', ' + previousYear + ')">' + prevImgHTML + '</a>';
-		nextImgHTML  = '<img src="' + this.imagesPath + '/next.gif" alt=">>" border="0" />';
+		nextImgHTML  = '<img src="' + this.imagesPath + '/next.gif" alt="<<" border="0" />';
 		nextLinkHTML = '<a href="javascript: ' + this.objName + '.show(' + nextMonth + ', ' + nextYear + ')">' + nextImgHTML + '</a>';
 
 		/**
@@ -215,38 +214,22 @@
 		html = '<table border="0" class="dynCalendar_table" width="200">';
 		html += '<tr><td class="dynCalendar_header">' + prevLinkHTML + '</td><td colspan="5" align="center" class="dynCalendar_header">' + monthCombo + ' ' + yearCombo + '</td><td align="right" class="dynCalendar_header">' + nextLinkHTML + '</td></tr>';
 		html += '<tr>';
-		html += '<td class="dynCalendar_dayname">So</td>';
-		html += '<td class="dynCalendar_dayname">Mo</td>';
-		html += '<td class="dynCalendar_dayname">Di</td>';
-		html += '<td class="dynCalendar_dayname">Mi</td>';
-		html += '<td class="dynCalendar_dayname">Do</td>';
-		html += '<td class="dynCalendar_dayname">Fr</td>';
-		html += '<td class="dynCalendar_dayname">Sa</td></tr>';
+		html += '<td class="dynCalendar_dayname">Sun</td>';
+		html += '<td class="dynCalendar_dayname">Mon</td>';
+		html += '<td class="dynCalendar_dayname">Tue</td>';
+		html += '<td class="dynCalendar_dayname">Wed</td>';
+		html += '<td class="dynCalendar_dayname">Thu</td>';
+		html += '<td class="dynCalendar_dayname">Fri</td>';
+		html += '<td class="dynCalendar_dayname">Sat</td></tr>';
 		html += '<tr>' + ret.join('</tr>\n<tr>') + '</tr>';
 		html += '</table>';
 
 		this._setHTML(html);
-		//changed for displaying year and month from field
-		if ((!arguments[0] && !arguments[1]) || arguments[2]) {
+		if (!arguments[0] && !arguments[1]) {
 			this._showLayer();
 			this._setLayerPosition();
 		}
 	}
-
-/**
-* Hide/show other drop downs
-*/
-function dynCalendar_setSelectVisibility(bShow)
-{
-    var i;
-    for (i = 0; i < document.all.length; i++)
-    {
-        if ("SELECT" == document.all[i].tagName && document.all[i].name != "years" && document.all[i].name != "months")
-        {
-            document.all[i].style.visibility = (bShow)? "visible" : "hidden";
-        }
-    }
-}
 
 /**
 * Writes HTML to document for layer
@@ -256,15 +239,7 @@ function dynCalendar_setSelectVisibility(bShow)
 	function dynCalendar_writeHTML()
 	{
 		if (is_ie5up || is_nav6up || is_gecko) {
-		
-		
-		/*
-		*	Get value from field and display month and year
-		*/
-		var strDate, arrDate;
-		strDate = eval(this.objName + 'GetValue()');
-
-			document.write('<a href="javascript: ' + this.objName + '.show('+strDate+')"><img src="' + this.imagesPath + 'button_calendar.gif" border="0" width="17" height="15" onclick="unsetaltered();"/></a>');
+			document.write('<a href="javascript: ' + this.objName + '.show()"><img src="' + this.imagesPath + 'button_calendar.gif" border="0" width="16" height="16" /></a>');
 			document.write('<div class="dynCalendar" id="' + this.layerID + '" onmouseover="' + this.objName + '._mouseover(true)" onmouseout="' + this.objName + '._mouseover(false)"></div>');
 		}
 	}
@@ -404,8 +379,6 @@ function dynCalendar_setSelectVisibility(bShow)
 	function dynCalendar_hideLayer()
 	{
 		this._getLayer().style.visibility = 'hidden';
-		dynCalendar_setSelectVisibility(true);
-		
 	}
 
 /**
@@ -416,7 +389,6 @@ function dynCalendar_setSelectVisibility(bShow)
 	function dynCalendar_showLayer()
 	{
 		this._getLayer().style.visibility = 'visible';
-		dynCalendar_setSelectVisibility(false);
 	}
 
 /**
