@@ -12,8 +12,8 @@
 		</tr>
      <%section name=escort loop=$tpl_escort%>
     <tr class="ListL<%$tpl_escort[escort].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_escort[escort].color%>'">
-     <td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_escort[escort].guestid%>" class="dotted"><%$tpl_escort[escort].lastname%></a></td>
-		 <td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_escort[escort].guestid%>" class="dotted"><%$tpl_escort[escort].firstname%></a></td>
+     <td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_escort[escort].guestid%>" class="dotted" title="##SHOW##"><%$tpl_escort[escort].lastname%></a></td>
+		 <td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_escort[escort].guestid%>" class="dotted" title="##SHOW##"><%$tpl_escort[escort].firstname%></a></td>
     </tr>
      <%sectionelse%>
        <tr>
