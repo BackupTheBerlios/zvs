@@ -34,7 +34,7 @@
  * 
  * @since 2003-07-24
  * @author Christian Ehret <chris@uffbasse.de> 
- * @version $Id: guestclass.inc.php,v 1.2 2005/09/08 20:49:27 ehret Exp $
+ * @version $Id: guestclass.inc.php,v 1.3 2005/12/01 21:54:48 ehret Exp $
  */
 class Guest {
     /**
@@ -427,7 +427,8 @@ class Guest {
             } 
         } 
         // remove empty addresses
-        $query = "DELETE FROM $tbl_guest_address, $tbl_address 
+       // $query = "DELETE FROM $tbl_guest_address, $tbl_address 
+       $query = "DELETE FROM ga, a
 				  USING $tbl_guest_address ga, $tbl_address a 
 				  WHERE ga.pk_fk_guest_id = $guestid 
 				  AND ga.pk_fk_address_id = a.pk_address_id 
