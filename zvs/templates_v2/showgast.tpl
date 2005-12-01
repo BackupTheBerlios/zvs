@@ -30,7 +30,7 @@
              </tr>
              <tr>
                <td><strong>##DATE_OF_BIRTH##</strong></td>
-               <td><%if $tpl_gast.date_of_birth neq "00.00.0000"%><%$tpl_gast.date_of_birth%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y" <%if $tpl_gast.reminder eq "Y"%>checked="checked"<%/if%> disabled="disabled"> erinnern<%/if%></td>
+               <td><%if $tpl_gast.date_of_birth neq "00.00.0000"%><%$tpl_gast.date_of_birth%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y" <%if $tpl_gast.reminder eq "Y"%>checked="checked"<%/if%> disabled="disabled"> ##REMINDER##<%/if%></td>
 			   <td><strong>##PLACE_OF_BIRTH##</strong></td>
 				<td><%$tpl_gast.birthplace%></td>
 				<td colspan="2"></td>
@@ -78,7 +78,7 @@
 
 <div id="add_private" name="add_private" style="visibility:visible">
    &nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>
-      <p class="SubheadlineYellow">##PRIVAT_ADRESS##</p>
+      <h3>##PRIVAT_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.privateAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"> ##POSTAL_ADRESS##
       		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
@@ -128,7 +128,8 @@
 			</table>
 </div>
 <div id="add_business" name="add_business" style="visibility:visible">
-		&nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      <p class="SubheadlineYellow">Gesch&auml;ftsaddresse</p>
+		&nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      
+		<h3>##BUSINESS_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.businessAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"> Postanschrift
       		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
@@ -179,7 +180,8 @@
 			</table>
 </div>
 <div id="add_other" name="add_other" style="visibility:visible">
-&nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      <p class="SubheadlineYellow">weitere Addresse</p>
+&nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      
+			<h3>##ANOTHER_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.otherAddress.otherAddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"> Postanschrift
       		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
