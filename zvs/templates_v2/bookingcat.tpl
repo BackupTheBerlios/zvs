@@ -4,7 +4,7 @@
 <script language="JavaScript" type="text/javascript">
 <!--
     function openWindow(){
-    F1 = window.open('<%$wwwroot%>colorchooser.php','colorchooser','width=270,height=190,left=0,top=0');
+    F1 = window.open('<%$wwwroot%>colorchooser.php','colorchooser','width=308,height=203,left=0,top=0');
     F1.focus();
     }
     
