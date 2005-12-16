@@ -4,7 +4,7 @@
 		<h2><span>##ITEM_OF_AN_INVOICE##</span></h2>
 		<br/>
   <div class="table">
-<form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
 <input type="hidden" name="frm_newstart" id="frm_newstart" value="false"/>
 <input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>"/>
 

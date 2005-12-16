@@ -4,7 +4,7 @@
 		<h2><span>##BIRTHDAY_LIST##</span></h2>
 		<br/>
   <div class="table">
-<form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
 		##MONTH##: 
 		<select name="frm_month" id="frm_month" onchange="document.select.submit();">
 			<option value="01" <%if $tpl_month eq "01"%>selected=selected<%/if%>>##JANUARY##</option>

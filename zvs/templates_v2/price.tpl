@@ -47,7 +47,7 @@ function switchLayer(layername)
 				<%/section%>
 			</select>
 		</form>				
-    <form id="seasoncopy" name="seasoncopy" action="<%$SCRIPT_NAME%>" method="post" class="inline">
+    <form accept-charset="utf-8" id="seasoncopy" name="seasoncopy" action="<%$SCRIPT_NAME%>" method="post" class="inline">
 	<input type="hidden" name="frm_theyear" id="frm_theyear" value="<%$tpl_theyear%>"/>
 	<input type="hidden" name="frm_theseason" id="frm_theseason" value="L<%$tpl_seasons[0].seasonid%>"/>
 		##COPY_PRICE##: 

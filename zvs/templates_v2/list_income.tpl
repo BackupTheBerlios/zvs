@@ -4,9 +4,9 @@
 		<h2><span>##REVENUES## <a href="<%$wwwroot%>list_income_csv.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/paycat.<%$tpl_thepaycat%>/list_income_csv.php"><img src="<%$wwwroot%>img/export.png" width="16" height="16" border="0" alt="##EXPORT_CSV##"></a></span></h2>
 		<br/>
   <div class="table">
-<form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
-<input type="hidden" name="frm_newstart" id="frm_newstart" value="false">
-<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>">
+<form accept-charset="utf-8" name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
+<input type="hidden" name="frm_newstart" id="frm_newstart" value="false"/>
+<input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>"/>
 
 <a href="javascript:switchLayer('thedate');document.select.frm_what.value='thedate';document.select.submit();" class="dotted">##DATE##</a>
 	&nbsp;<a href="javascript:switchLayer('timeline');document.select.frm_what.value='timeline';document.select.submit();" class="dotted">##TIMEFRAME## (##DATE##)</a>

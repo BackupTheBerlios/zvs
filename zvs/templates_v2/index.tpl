@@ -2,7 +2,7 @@
 <%include file=header.tpl%>
 <div class="boxdyn">
 	<h2><span>##ROOMPLAN## (<%if $tpl_view eq "type"%>##TYPE_OF_ALLOCATION##<%else%>##CATEGORIES_OF_BOOKING##<%/if%> <%$tpl_monthname%>&nbsp;<%$tpl_year%>&nbsp;&nbsp;<a href="<%$wwwroot%>calendarpdf.php/month.<%$tpl_navmonth%>/year.<%$tpl_navyear%><%if $tpl_navstep neq ""%>/step.<%$tpl_navstep%><%/if%><%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" target='_blank'><img src="<%$wwwroot%>img/pdf.gif" hight="16" width="16" alt="##PDF_VERSION##" border="0"></a>) </span></h2>
-  <form name="choosedate" action="<%$wwwroot%>index.php" method="post">
+  <form accept-charset="utf-8" name="choosedate" action="<%$wwwroot%>index.php" method="post">
   <input type="hidden" name="frm_view" id="frm_view" value="<%$tpl_view%>"/>
 	<p align="center"><%if $tpl_numoldres > 0%><a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php','reservation');"><span class="button"><%$tpl_numoldres%>&nbsp;<%if $tpl_numoldres > 1%>##EXPIRED_BOOKINGS##<%else%>##EXPIRED_BOOKING##<%/if%></span></a><%/if%></p>
 

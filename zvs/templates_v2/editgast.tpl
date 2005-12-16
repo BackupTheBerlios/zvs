@@ -1,8 +1,8 @@
 <%strip%>
 <%include file=header.tpl%>
 <div class="boxdyn">
-<form id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
-<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%if $tpl_gast.guestid neq ""%><%$tpl_gast.guestid%><%else%>0<%/if%>">
+<form accept-charset="utf-8" id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
+<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%if $tpl_gast.guestid neq ""%><%$tpl_gast.guestid%><%else%>0<%/if%>"/>
 	<h2><span><%if $tpl_gast.lastname neq ""%><%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></span></h2>
 	&nbsp;<div id="toolbar"><span class="label">##TOOLS##:</span><%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>exportvcard.php/guestid.<%$tpl_gast.guestid%>/lastname.<%$tpl_gast.lastname%>/firstname.<%$tpl_gast.firstname%>" class="dotted">##VCARD_EXPORT##</a> | <%/if%><a href="javascript:document.save.submit();" onClick="unsetaltered();" class="dotted">##SAVE##</a></div>
 			<table border="0" cellpadding="2" cellspacing="0" width="750">
@@ -23,9 +23,9 @@
              </tr>
              <tr>
                <td><strong>##FIRSTNAME##</strong></td>
-               <td><input name="frm_firstname" type="text" id="frm_firstname" size="30" value="<%$tpl_gast.firstname%>"></td>
+               <td><input name="frm_firstname" type="text" id="frm_firstname" size="30" value="<%$tpl_gast.firstname%>"/></td>
                <td><strong>##LASTNAME##</strong></td>
-               <td><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_gast.lastname%>"></td>
+               <td><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_gast.lastname%>"/></td>
                <td><strong>##LANGUAGE##</strong></td>
                <td><select name="frm_language" id="frm_language">
                    <option value="2" <%if $tpl_gast.language_id eq "2"%>selected<%/if%>>##GERMAN_SHORT##</option>
@@ -35,9 +35,9 @@
              </tr>
              <tr>
                <td><strong>##JOB##</strong></td>
-               <td><input name="frm_job" type="text" id="frm_job" size="30" value="<%$tpl_gast.job%>"></td>
+               <td><input name="frm_job" type="text" id="frm_job" size="30" value="<%$tpl_gast.job%>"/></td>
                <td><strong>##COMPANY##</strong></td>
-               <td><input name="frm_company" type="text" id="frm_company" size="30" value="<%$tpl_gast.company%>"></td>
+               <td><input name="frm_company" type="text" id="frm_company" size="30" value="<%$tpl_gast.company%>"/></td>
                <td><strong>##FORMAL_GREETING##</strong></td>
                <td><select name="frm_formal_greeting" id="frm_formal_greeting">
                    <option value="N" <%if $tpl_gast.formal_greeting eq "N"%>selected<%/if%>>##YOU_PERSONAL##</option>
@@ -46,7 +46,7 @@
              </tr>
              <tr>
                <td><strong>##DATE_OF_BIRTH##</strong></td>
-               <td><input name="frm_date_of_birth" type="text" id="frm_date_of_birth" size="10" value="<%if $tpl_gast.date_of_birth neq "00.00.0000"%><%$tpl_gast.date_of_birth%><%/if%>"><%/strip%>
+               <td><input name="frm_date_of_birth" type="text" id="frm_date_of_birth" size="10" value="<%if $tpl_gast.date_of_birth neq "00.00.0000"%><%$tpl_gast.date_of_birth%><%/if%>"/><%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         /**
@@ -78,9 +78,9 @@
         calendar1 = new dynCalendar('calendar1', 'calendar1Callback', '<%$wwwroot%>img/');
     //-->
     </script>
-    <%strip%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y" <%if $tpl_gast.reminder eq "Y"%>checked="checked"<%/if%>> ##REMINDER##</td>
+    <%strip%> &nbsp;&nbsp;<input type="checkbox" name="frm_reminder" id="reminder" value="Y" <%if $tpl_gast.reminder eq "Y"%>checked="checked"<%/if%>/> ##REMINDER##</td>
 			   <td><strong>##PLACE_OF_BIRTH##</strong></td>
-				<td><input type="text" name="frm_birthplace" id="frm_birthplace" size="30" value="<%$tpl_gast.birthplace%>"></td>
+				<td><input type="text" name="frm_birthplace" id="frm_birthplace" size="30" value="<%$tpl_gast.birthplace%>"/></td>
 				<td colspan="2"></td>
 				</tr>
 			  <tr>
@@ -100,14 +100,14 @@
            <option value="F" <%if $tpl_gast.identification eq "F"%>selected<%/if%>>##DRIVING_LICENSE##</option>                   
         </select></td>
 				<td><strong>##IDENTITY_CARD_NUMBER##</strong></td>
-			    <td><input name="frm_passport" type="text" id="frm_passport" size="30" value="<%$tpl_gast.passport%>"></td>
+			    <td><input name="frm_passport" type="text" id="frm_passport" size="30" value="<%$tpl_gast.passport%>"/></td>
 				<td colspan="2">&nbsp;</td>
 			 </tr>			  		
 				<tr>
 					 	<td><strong>##AGENCY_OF_EXHIBITION##</strong></td>
-						<td><input name="frm_agency" type="text" id="frm_agency" size="30" value="<%$tpl_gast.agency%>"></td>
+						<td><input name="frm_agency" type="text" id="frm_agency" size="30" value="<%$tpl_gast.agency%>"/></td>
 						<td><strong>##DATE_OF_EXHIBITION##</strong></td>
-						<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value="<%if $tpl_gast.issue_date neq "00.00.0000"%><%$tpl_gast.issue_date%><%/if%>"><%/strip%>
+						<td><input name="frm_issue_date" type="text" id="frm_issue_date" size="10" value="<%if $tpl_gast.issue_date neq "00.00.0000"%><%$tpl_gast.issue_date%><%/if%>"/><%/strip%>
     <script language="JavaScript" type="text/javascript">
     <!--
         /**
@@ -141,7 +141,7 @@
     //-->
     </script>
     <%strip%></td>
-            <td colspan="2"><input type="checkbox" name="frm_status" id="frm_status" value="Y" <%if $tpl_gast.status eq "Y"%>checked<%/if%>> <strong>##REGULAR_GUEST##</strong></td>
+            <td colspan="2"><input type="checkbox" name="frm_status" id="frm_status" value="Y" <%if $tpl_gast.status eq "Y"%>checked<%/if%>/> <strong>##REGULAR_GUEST##</strong></td>
         </tr>
         <tr>
 				<td colspan="6">
@@ -163,15 +163,15 @@
 				</td>
        </tr>
       </table>
-<br>
+<br/>
 
 <div id="add_private" name="add_private" style="visibility:visible">
-	<input type="hidden" name="frm_private_addressid" id="frm_private_addressid" value="<%if $tpl_gast.privateAddress.addressid neq ""%><%$tpl_gast.privateAddress.addressid%><%else%>0<%/if%>">
+	<input type="hidden" name="frm_private_addressid" id="frm_private_addressid" value="<%if $tpl_gast.privateAddress.addressid neq ""%><%$tpl_gast.privateAddress.addressid%><%else%>0<%/if%>"/>
    &nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 	 &nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.private/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%>
-	 	<%if $tpl_gast.privateAddress.count gt 1%> | <input type="checkbox" name="frm_private_copy" id="frm_private_copy" value="true"> ##DO_NOT_SHARE_ADDRESS##<%/if%></div>
+	 	<%if $tpl_gast.privateAddress.count gt 1%> | <input type="checkbox" name="frm_private_copy" id="frm_private_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS##<%/if%></div>
       <h3>##PRIVAT_ADRESS##</h3>
-			<input type="radio" name="frm_default_address" id="frm_default_address" value="private" <%if $tpl_gast.privateAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
+			<input type="radio" name="frm_default_address" id="frm_default_address" value="private" <%if $tpl_gast.privateAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%>/> ##POSTAL_ADRESS##
       		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
         			<col width="25%">
@@ -182,34 +182,34 @@
              <tr>
                <td colspan="2" valign="top"><strong>##STREET##</strong></td>
                <td align="right"><strong>##PHONE##</strong></td>
-               <td><input name="frm_private_phone" type="text" id="frm_private_phone" size="30" value="<%$tpl_gast.privateAddress.phone%>"></td>
+               <td><input name="frm_private_phone" type="text" id="frm_private_phone" size="30" value="<%$tpl_gast.privateAddress.phone%>"/></td>
              </tr>
              <tr>
                <td colspan="2" valign="top"><textarea name="frm_private_address" id="frm_private_address" cols="50" rows="3"><%$tpl_gast.privateAddress.address%></textarea></td>
                <td align="right"><strong>##FAX##</strong></td>
-               <td><input name="frm_private_fax" type="text" id="frm_private_fax" size="30" value="<%$tpl_gast.privateAddress.fax%>"></td>
+               <td><input name="frm_private_fax" type="text" id="frm_private_fax" size="30" value="<%$tpl_gast.privateAddress.fax%>"/></td>
              </tr>
              <tr>
 				<td colspan="2">
              <table border="0" cellpadding="4" cellspacing="0">
                 <tr>
 	               <td><strong>##COUNTRY_LABEL_SHORT##</strong></td>
-	               <td><input name="frm_private_region" type="text" id="frm_private_region" size="10" value="<%$tpl_gast.privateAddress.region%>"></td>
+	               <td><input name="frm_private_region" type="text" id="frm_private_region" size="10" value="<%$tpl_gast.privateAddress.region%>"/></td>
 	               <td><strong>##POSTAL_CODE_SHORT##</strong></td>
-	               <td><input name="frm_private_postalcode" type="text" id="frm_private_postalcode" size="10" value="<%$tpl_gast.privateAddress.postalcode%>"></td>
+	               <td><input name="frm_private_postalcode" type="text" id="frm_private_postalcode" size="10" value="<%$tpl_gast.privateAddress.postalcode%>"/></td>
  	               <td><strong>##CITY##</strong></td>
-	               <td><input name="frm_private_city" type="text" id="frm_private_city" size="30" value="<%$tpl_gast.privateAddress.city%>"></td>
+	               <td><input name="frm_private_city" type="text" id="frm_private_city" size="30" value="<%$tpl_gast.privateAddress.city%>"/></td>
                 </tr>
                </table>
 				</td>
 				<td align="right"><strong>##MOBILE_PHONE##</strong></td>
-               <td><input name="frm_private_mobile" type="text" id="frm_private_mobile" size="30" value="<%$tpl_gast.privateAddress.mobile%>"></td>
+               <td><input name="frm_private_mobile" type="text" id="frm_private_mobile" size="30" value="<%$tpl_gast.privateAddress.mobile%>"/></td>
              </tr>
              <tr>
              	<td><strong>##COUNTRY##</strong></td>
 	            <td>&nbsp;</td>
                <td align="right"><strong>##EMAIL##</strong></td>
-               <td><input name="frm_private_email" type="text" id="frm_private_email" size="30" value="<%$tpl_gast.privateAddress.email%>"></td>
+               <td><input name="frm_private_email" type="text" id="frm_private_email" size="30" value="<%$tpl_gast.privateAddress.email%>"/></td>
              </tr>
              <tr>
              	<td><select id="frm_private_country" name="frm_private_country">
@@ -219,18 +219,18 @@
                         </select></td>
 				<td>&nbsp;</td>
 				<td align="right"><strong>##HOMEPAGE##</strong></td>
-				<td><input type="text" name="frm_private_homepage" id="frm_private_homepage" size="30" value="<%$tpl_gast.privateAddress.homepage%>"></td>
+				<td><input type="text" name="frm_private_homepage" id="frm_private_homepage" size="30" value="<%$tpl_gast.privateAddress.homepage%>"/></td>
              </tr>
 			</table>
 </div>
 <div id="add_business" name="add_business" style="visibility:visible">
-<input type="hidden" name="frm_business_addressid" id="frm_business_addressid" value="<%if $tpl_gast.businessAddress.addressid neq ""%><%$tpl_gast.businessAddress.addressid%><%else%>0<%/if%>">
+<input type="hidden" name="frm_business_addressid" id="frm_business_addressid" value="<%if $tpl_gast.businessAddress.addressid neq ""%><%$tpl_gast.businessAddress.addressid%><%else%>0<%/if%>"/>
 		&nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 		&nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.business/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%>
-		<%if $tpl_gast.businessAddress.count gt 1%> | <input type="checkbox" name="frm_business_copy" id="frm_business_copy" value="true"> ##DO_NOT_SHARE_ADDRESS##<%/if%>
+		<%if $tpl_gast.businessAddress.count gt 1%> | <input type="checkbox" name="frm_business_copy" id="frm_business_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS##<%/if%>
 		</div>      
 		<h3>##BUSINESS_ADRESS##</h3>
-			<input type="radio" name="frm_default_address" id="frm_default_address" value="business" <%if $tpl_gast.businessAddress.defaultaddress eq "1"%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
+			<input type="radio" name="frm_default_address" id="frm_default_address" value="business" <%if $tpl_gast.businessAddress.defaultaddress eq "1"%>checked="checked"<%/if%>/> ##POSTAL_ADRESS##
 			 		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
         			<col width="25%">
@@ -242,34 +242,34 @@
              <tr>
                <td colspan="2" valign="top"><strong>##STREET##</strong></td>
                <td align="right"><strong>##PHONE##</strong></td>
-               <td><input name="frm_business_phone" type="text" id="frm_business_phone" size="30" value="<%$tpl_gast.businessAddress.phone%>"></td>
+               <td><input name="frm_business_phone" type="text" id="frm_business_phone" size="30" value="<%$tpl_gast.businessAddress.phone%>"/></td>
              </tr>
              <tr>
                <td colspan="2" valign="top"><textarea name="frm_business_address" id="frm_business_address" cols="50" rows="3"><%$tpl_gast.businessAddress.address%></textarea></td>
                <td align="right"><strong>##FAX##</strong></td>
-               <td><input name="frm_business_fax" type="text" id="frm_business_fax" size="30" value="<%$tpl_gast.businessAddress.fax%>"></td>
+               <td><input name="frm_business_fax" type="text" id="frm_business_fax" size="30" value="<%$tpl_gast.businessAddress.fax%>"/></td>
              </tr>
              <tr>
 				<td colspan="2">
              <table border="0" cellpadding="4" cellspacing="0">
                 <tr>
 	               <td><strong>##COUNTRY_LABEL_SHORT##</strong></td>
-	               <td><input name="frm_business_region" type="text" id="frm_business_region" size="10" value="<%$tpl_gast.businessAddress.region%>"></td>
+	               <td><input name="frm_business_region" type="text" id="frm_business_region" size="10" value="<%$tpl_gast.businessAddress.region%>"/></td>
 	               <td><strong>##POSTAL_CODE_SHORT##</strong></td>
-	               <td><input name="frm_business_postalcode" type="text" id="frm_business_postalcode" size="10" value="<%$tpl_gast.businessAddress.postalcode%>"></td>
+	               <td><input name="frm_business_postalcode" type="text" id="frm_business_postalcode" size="10" value="<%$tpl_gast.businessAddress.postalcode%>"/></td>
  	               <td><strong>##CITY##</strong></td>
-	               <td><input name="frm_business_city" type="text" id="frm_business_city" size="30" value="<%$tpl_gast.businessAddress.city%>"></td>
+	               <td><input name="frm_business_city" type="text" id="frm_business_city" size="30" value="<%$tpl_gast.businessAddress.city%>"/></td>
                 </tr>
                </table>
 				</td>
 				<td align="right"><strong>##MOBILE_PHONE##</strong></td>
-               <td><input name="frm_business_mobile" type="text" id="frm_business_mobile" size="30" value="<%$tpl_gast.businessAddress.mobile%>"></td>
+               <td><input name="frm_business_mobile" type="text" id="frm_business_mobile" size="30" value="<%$tpl_gast.businessAddress.mobile%>"/></td>
              </tr>
              <tr>
              	<td><strong>##COUNTRY##</strong></td>
 	            <td>&nbsp;</td>
                <td align="right"><strong>##EMAIL##</strong></td>
-               <td><input name="frm_business_email" type="text" id="frm_business_email" size="30" value="<%$tpl_gast.businessAddress.email%>"></td>
+               <td><input name="frm_business_email" type="text" id="frm_business_email" size="30" value="<%$tpl_gast.businessAddress.email%>"/></td>
              </tr>
              <tr>
              	<td><select id="frm_business_country" name="frm_business_country">
@@ -279,18 +279,18 @@
                         </select></td>
 				<td>&nbsp;</td>
 				<td align="right"><strong>##HOMEPAGE##</strong></td>
-				<td><input type="text" name="frm_business_homepage" id="frm_business_homepage" size="30" value="<%$tpl_gast.businessAddress.homepage%>"></td>
+				<td><input type="text" name="frm_business_homepage" id="frm_business_homepage" size="30" value="<%$tpl_gast.businessAddress.homepage%>"/></td>
              </tr>
 			</table>
 </div>
 <div id="add_other" name="add_other" style="visibility:visible">
-<input type="hidden" name="frm_other_addressid" id="frm_other_addressid" value="<%if $tpl_gast.otherAddress.addressid neq ""%><%$tpl_gast.otherAddress.addressid%><%else%>0<%/if%>">
+<input type="hidden" name="frm_other_addressid" id="frm_other_addressid" value="<%if $tpl_gast.otherAddress.addressid neq ""%><%$tpl_gast.otherAddress.addressid%><%else%>0<%/if%>"/>
 &nbsp;<div id="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 &nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.other/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%>			
-<%if $tpl_gast.otherAddress.count gt 1%> | <input type="checkbox" name="frm_other_copy" id="frm_other_copy" value="true"> ##DO_NOT_SHARE_ADDRESS##<%/if%>
+<%if $tpl_gast.otherAddress.count gt 1%> | <input type="checkbox" name="frm_other_copy" id="frm_other_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS##<%/if%>
 </div>      
 			<h3>##ANOTHER_ADRESS##</h3>
-			<input type="radio" name="frm_default_address" id="frm_default_address" value="other"  <%if $tpl_gast.otherAddress.defaultaddress eq "1"%>checked="checked"<%/if%>> ##POSTAL_ADRESS##
+			<input type="radio" name="frm_default_address" id="frm_default_address" value="other"  <%if $tpl_gast.otherAddress.defaultaddress eq "1"%>checked="checked"<%/if%>/> ##POSTAL_ADRESS##
       		<table border="0" cellpadding="2" cellspacing="0" width="750">
 			     <colgroup>
         			<col width="25%">
@@ -301,34 +301,34 @@
              <tr>
                <td colspan="2" valign="top"><strong>##STREET##</strong></td>
                <td align="right"><strong>##PHONE##</strong></td>
-               <td><input name="frm_other_phone" type="text" id="frm_other_phone" size="30" value="<%$tpl_gast.otherAddress.phone%>"></td>
+               <td><input name="frm_other_phone" type="text" id="frm_other_phone" size="30" value="<%$tpl_gast.otherAddress.phone%>"/></td>
              </tr>
              <tr>
                <td colspan="2" valign="top"><textarea name="frm_other_address" id="frm_other_address" cols="50" rows="3"><%$tpl_gast.otherAddress.address%></textarea></td>
                <td align="right"><strong>##FAX##</strong></td>
-               <td><input name="frm_other_fax" type="text" id="frm_other_fax" size="30" value="<%$tpl_gast.otherAddress.fax%>"></td>
+               <td><input name="frm_other_fax" type="text" id="frm_other_fax" size="30" value="<%$tpl_gast.otherAddress.fax%>"/></td>
              </tr>
              <tr>
 				<td colspan="2">
              <table border="0" cellpadding="4" cellspacing="0">
                 <tr>
 	               <td><strong>##COUNTRY_LABEL_SHORT##</strong></td>
-	               <td><input name="frm_other_region" type="text" id="frm_other_region" size="10" value="<%$tpl_gast.otherAddress.region%>"></td>
+	               <td><input name="frm_other_region" type="text" id="frm_other_region" size="10" value="<%$tpl_gast.otherAddress.region%>"/></td>
 	               <td><strong>##POSTAL_CODE_SHORT##</strong></td>
-	               <td><input name="frm_other_postalcode" type="text" id="frm_other_postalcode" size="10" value="<%$tpl_gast.otherAddress.postalcode%>"></td>
+	               <td><input name="frm_other_postalcode" type="text" id="frm_other_postalcode" size="10" value="<%$tpl_gast.otherAddress.postalcode%>"/></td>
  	               <td><strong>##CITY##</strong></td>
-	               <td><input name="frm_other_city" type="text" id="frm_other_city" size="30" value="<%$tpl_gast.otherAddress.city%>"></td>
+	               <td><input name="frm_other_city" type="text" id="frm_other_city" size="30" value="<%$tpl_gast.otherAddress.city%>"/></td>
                 </tr>
                </table>
 				</td>
 				<td align="right"><strong>##MOBILE_PHONE##</strong></td>
-               <td><input name="frm_other_mobile" type="text" id="frm_other_mobile" size="30" value="<%$tpl_gast.otherAddress.mobile%>"></td>
+               <td><input name="frm_other_mobile" type="text" id="frm_other_mobile" size="30" value="<%$tpl_gast.otherAddress.mobile%>"/></td>
              </tr>
              <tr>
              	<td><strong>##COUNTRY##</strong></td>
 	            <td>&nbsp;</td>
                <td align="right"><strong>##EMAIL##</strong></td>
-               <td><input name="frm_other_email" type="text" id="frm_other_email" size="30" value="<%$tpl_gast.otherAddress.email%>"></td>
+               <td><input name="frm_other_email" type="text" id="frm_other_email" size="30" value="<%$tpl_gast.otherAddress.email%>"/></td>
              </tr>
              <tr>
              	<td><select id="frm_other_country" name="frm_other_country">
@@ -338,7 +338,7 @@
                         </select></td>
 				<td>&nbsp;</td>
 				<td align="right"><strong>##HOMEPAGE##</strong></td>
-				<td><input type="text" name="frm_other_homepage" id="frm_other_homepage" size="30" value="<%$tpl_gast.otherAddress.homepage%>"></td>
+				<td><input type="text" name="frm_other_homepage" id="frm_other_homepage" size="30" value="<%$tpl_gast.otherAddress.homepage%>"/></td>
              </tr>
 			</table>
 	</div>

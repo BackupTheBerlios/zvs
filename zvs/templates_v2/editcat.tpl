@@ -43,7 +43,7 @@ function save()
 //-->
 </script>
 <%strip%>
-<form id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
 <input type="hidden" name="frm_gastid" id="frm_gastid" value="<%if $tpl_gast.guestid neq ""%><%$tpl_gast.guestid%><%else%>0<%/if%>"/>
 <input type="hidden" name="frm_changeAction" id="frm_changeAction" value=""/>
 <input type="hidden" name="frm_catid" id="frm_catid" value=""/>

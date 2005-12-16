@@ -5,7 +5,7 @@
 	<a href="<%$wwwroot%>list_roomchange_rtf.php/what.<%$tpl_what%>/thedate.<%$tpl_theotherdate%>/start1.<%$tpl_theotherstart1%>/start.<%$tpl_theotherstart%>/end1.<%$tpl_theotherend1%>/end.<%$tpl_theotherend%>/list_roomchange_rtf.php"><img src="<%$wwwroot%>img/rtf.png" hight="16" width="16" alt="##EXPORT_RTF##" border="0"></a></span></h2>
 		<br/>
   <div class="table">
-<form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
 <input type="hidden" name="frm_newstart" id="frm_newstart" value="false"/>
 <input type="hidden" name="frm_what" id="frm_what" value="<%$tpl_what%>"/>
 

@@ -15,7 +15,7 @@
  	<%$tpl_widgets%>
 	<%$tpl_loadapp%>
 	<%if $tpl_isresult eq 'true'%>
-    <p class="SubheadlineYellow"><%$tpl_numresult%>&nbsp;<%if $tpl_numresult eq 1%>Eintrag<%else%>Eintr&auml;ge<%/if%>&nbsp;gefunden</p>
+    <p><%$tpl_numresult%>&nbsp;<%if $tpl_numresult eq 1%>Eintrag<%else%>Eintr&auml;ge<%/if%>&nbsp;gefunden</p>
    		<table width="100%" border="0" cellpadding="4" cellspacing="0">
              <tr class="ListHeader">
                <th>##LASTNAME##</th>

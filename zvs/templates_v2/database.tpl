@@ -35,7 +35,7 @@ function recover()
 <div class="box750">
 	<h2><span>##RESTORE_DATABASE##</span></h2>
 	<div class="table">
-	<form name="recover" id="recover" method="post" action="<%$SCRIPT_NAME%>" enctype="multipart/form-data">
+	<form  accept-charset="utf-8" name="recover" id="recover" method="post" action="<%$SCRIPT_NAME%>" enctype="multipart/form-data">
 	<%if $tpl_ready eq "true"%>
 	<p class="DefError">##DATA_SUCCESSFUL_IMPORTED##!</p>
 	<%/if%>

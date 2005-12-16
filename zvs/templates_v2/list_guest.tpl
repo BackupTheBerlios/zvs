@@ -5,7 +5,7 @@
 	<a href="<%$wwwroot%>list_guest_rtf.php/bcat.<%$tpl_thebookcat%>/list_guest_rtf.php"><img src="<%$wwwroot%>img/rtf.png" hight="16" width="16" alt="##EXPORT_RTF##" border="0"></a></span></h2>
 		<br/>
   <div class="table">
-<form name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" name="select" id="select" action="<%$SCRIPT_NAME%>" method="post">
 
 	##CATEGORY_OF_BOOKING##: 
 	<select name="frm_bookcat" id="frm_bookcat" onChange="document.select.submit();">

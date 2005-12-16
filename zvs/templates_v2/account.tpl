@@ -3,7 +3,7 @@
 <div class="boxdyn">
 	<h2><span>##PAYMENT_ENTRY## <%if $tpl_gast.lastname neq ""%>##FROM## <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%> <a href="<%$wwwroot%>account.php/showall.true/guestid.<%$tpl_guestid%>/type.<%$tpl_type%>/account.php"><img src="<%$wwwroot%>img/showall.png" border="0" width="16" height="16" boder="0" alt="##SHOW_ALL##"></a></span></h2>
  <div class="table">  
-		<form name="account" id="account" action="<%$wwwroot%>account.php/guestid.<%$tpl_guestid%>/type.<%$tpl_type%>/account.php" method="post">
+		<form accept-charset="utf-8" name="account" id="account" action="<%$wwwroot%>account.php/guestid.<%$tpl_guestid%>/type.<%$tpl_type%>/account.php" method="post">
      <table boder="0" cellspacing="0" cellpadding="3" border="0" width="650">
 			<tr class="ListHeader">
 				<th>##DATE##</th>

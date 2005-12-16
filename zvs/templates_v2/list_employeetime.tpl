@@ -58,7 +58,7 @@
 		<h2><span>##EMPLOYEES_TIMES##</span></h2>
 		<br/>
   <div class="table">
-<form name="selectfrm" id="selectfrm" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" name="selectfrm" id="selectfrm" action="<%$SCRIPT_NAME%>" method="post">
 <input name="frm_newstart" id="frm_newstart" type="hidden" value="false"/>
 <input name="frm_timetrackerid" id="frm_timetrackerid" type="hidden" value=""/>
 <input name="frm_action" id="frm_action" type="hidden" value=""/>

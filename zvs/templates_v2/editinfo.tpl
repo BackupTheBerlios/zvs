@@ -1,6 +1,6 @@
 <%strip%>
 <%include file=header.tpl%>
-<form id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
+<form accept-charset="utf-8" id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
 <input type="hidden" name="frm_guestid" id="frm_guestid" value="<%if $tpl_gast.guestid neq ""%><%$tpl_gast.guestid%><%else%>0<%/if%>">
 <div class="boxdyn">
 	<h2><span>##NOTICE## <%if $tpl_gast.guestid neq ""%>##FOR##: <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></span></h2>
