@@ -5,14 +5,14 @@
 
 <div class="boxdyn">
 <h2><span>##SEARCH_GUEST##</span></h2>
+&nbsp;<div id="toolbar"><span class="label">##TOOLS##:</span><a href="<%$wwwroot%>editgast.php" class="dotted">##ADD_NEW_GUEST##</a></div>
 <div class="table">	
   	<label for="frm_lastname">##LASTNAME##</label>
 		<input name="frm_lastname" type="text" id="frm_lastname" value="<%$tpl_lastname%>" class="textlong" autocomplete="off" tabindex="1"/><br/>
 		<div id="search-results" name="search-results"></div> 
 	<label for="frm_firstname">##FIRSTNAME##</label><input name="frm_firstname" type="text" id="frm_firstname"  value="<%$tpl_firstname%>" class="textlong" autocomplete="off" tabindex="2"/><br/> 
 	<p class="rightlong"><input type="submit" value="##SEARCH## &raquo;" class="right"/></p>
- <p align="left"><a href="<%$wwwroot%>editgast.php"><span class="button">##ADD_NEW_GUEST##</span></a></p>
-	<%$tpl_widgets%>
+ 	<%$tpl_widgets%>
 	<%$tpl_loadapp%>
 	<%if $tpl_isresult eq 'true'%>
     <p class="SubheadlineYellow"><%$tpl_numresult%>&nbsp;<%if $tpl_numresult eq 1%>Eintrag<%else%>Eintr&auml;ge<%/if%>&nbsp;gefunden</p>

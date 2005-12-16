@@ -110,7 +110,7 @@
        </tr>
      <%sectionelse%>
        <tr class="ListL0" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL0'">
-          <td>##NO_INVOICE##</td>
+          <td colspan="6">##NO_INVOICE##</td>
        </tr>
      <%/section%>
      </table>
