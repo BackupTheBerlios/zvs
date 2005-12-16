@@ -20,10 +20,7 @@
 <div class="boxdyn">
 	<h2><span>##CATEGORY_PLURAL## <%if $tpl_gast.guestid neq ""%>##FROM##: <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></span></h2>
 	<%if $tpl_gast.guestid neq ""%>&nbsp;<div id="toolbar"><span class="label">##TOOLS##:</span><a href="<%$wwwroot%>editcat.php/guestid.<%$tpl_gast.guestid%>" class="dotted">##EDIT##</a></div><%/if%>
-   <table boder="0" cellspacing="0" cellpadding="3">
-		<tr class="ListHeader">
-			<th>##CATEGORY##</th>
-		</tr>
+   <table boder="0" cellspacing="0" cellpadding="3" width="300">
      <%section name=cat loop=$tpl_cat%>
       <tr class="ListL<%$tpl_cat[cat].color%>" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL<%$tpl_cat[cat].color%>'">
           <td><%if $tpl_cat[cat].description neq ""%><a ONMOUSEOVER=" popup('<%$tpl_cat[cat].description|strip%>','<%$wwwroot%>');" ONMOUSEOUT="kill()"><%/if%><%$tpl_cat[cat].cat%><%if $tpl_cat[cat].description neq ""%></a><%/if%><td>
