@@ -4,11 +4,11 @@
 <div class="boxdyn">
 	<h2><span>##BOOKING_PLURAL## <%if $tpl_gast.lastname neq ""%>##FROM## <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%> <a href="<%$wwwroot%>showguestdocuments.php/showall.true/guestid.<%$tpl_guestid%>/type.<%$tpl_type%>/showguestdocuments.php"><img src="<%$wwwroot%>img/showall.png" border="0" width="16" height="16" boder="0" alt="##SHOW_ALL##"></a></span></h2>
  <div class="table">  
-     <table boder="0" cellspacing="0" cellpadding="3" width="500">
+     <table boder="0" cellspacing="0" cellpadding="3" width="550">
 			<colgroup>
       	<col width="80">
       	<col width="80">
-      	<col width="340">
+      	<col width="390">
      	</colgroup>		     
       <tr class="ListHeader">
 	    <th><strong>##FROM##</th>
@@ -29,12 +29,12 @@
      </table>
      <br/>
 	   <h3>##LAST_STAYS## <%if $tpl_gast.lastname neq ""%>##OF## <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></h3>
-     <table boder="0" cellspacing="0" cellpadding="3" width="500">
+     <table boder="0" cellspacing="0" cellpadding="3" width="550">
 			<colgroup>
       	<col width="80">
       	<col width="80">
-      	<col width="170">
-      	<col width="170">
+      	<col width="195">
+      	<col width="195">
      	</colgroup>		     
 	   <tr class="ListHeader">
 	    <th>##FROM##</th>
@@ -57,11 +57,11 @@
      </table>
 	  <br/>
 	  <h3>##LAST_REGISTRATION_CARDS## <%if $tpl_gast.lastname neq ""%>##OF## <%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%></h3>
-     <table boder="0" cellspacing="0" cellpadding="3" width="500">
+     <table boder="0" cellspacing="0" cellpadding="3" width="550">
 			<colgroup>
       	<col width="80">
       	<col width="80">
-      	<col width="340">
+      	<col width="390">
      	</colgroup>     
 	   <tr class="ListHeader">
 	    <th>##FROM##</th>
@@ -89,7 +89,7 @@
    			<col width="180">
 				<col width="80">
 				<col width="80">				
-				<col width="210">
+				<col width="116">
  			</colgroup>		
 	   <tr class="ListHeader">
 	    <th>&nbsp;</th>
