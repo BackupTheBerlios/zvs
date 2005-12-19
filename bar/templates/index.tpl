@@ -80,6 +80,11 @@ function openbon(){
 	F4.focus();
 }
 
+function printbon(){
+  F8 = window.open('<%$wwwroot%>receipt_html.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt_html.php', "Bon", "width=300,height=600,left=100,top=200,toolbar=no,status=no,scrollbars=yes");
+  F8.focus();
+}
+
     function openImport(){
     F5 = window.open('<%$wwwroot%>importuser.php','importuser','width=270,height=190,left=0,top=0');
     F5.focus();
@@ -377,7 +382,7 @@ function switchLayer(layername)
 				  <%/section%>
 				</table>
 				<br>
-				<button onclick="checkout(false);">bezahlt</button>&nbsp;<%if $tpl_level ge 10%><button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt.php')">Bon</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="openbon();">Bon &uuml;ber Zeitraum</button><%/if%>
+				<button onclick="checkout(false);">bezahlt</button>&nbsp;<%if $tpl_level ge 10%><button onclick="checkout(true);">bezahlt und weg</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="printbon();">Bon drucken</button>&nbsp;<button onclick="window.open('<%$wwwroot%>receipt.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt.php')">Bon</button>&nbsp;<%/if%><%if $tpl_level ge 10%><button onclick="openbon();">Bon &uuml;ber Zeitraum</button><%/if%>
 				<%/if%>
 				</form>
 			<%/if%>

@@ -1,0 +1,49 @@
+* {
+ padding: 0;
+ margin: 0;
+ }
+ 
+body, html {
+	margin:0;
+	padding:0;
+}
+
+#head, #footer {
+	width:270px;
+	text-align: center;
+}
+
+#head img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+	border: 0px;
+	width: 270px;
+	border-collapse:collapse;
+}
+
+td {
+	padding-top: 1px;
+}
+td.left {
+	text-align: left;
+}
+
+td.right{
+	text-align: right;
+}
+
+td.border {
+	border-bottom:1px dashed black;
+}
+
+td.secondlast {
+	border-bottom:1px solid black;
+}
+
+td.sum {
+	font-size: large;
+}
