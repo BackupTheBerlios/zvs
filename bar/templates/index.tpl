@@ -81,7 +81,15 @@ function openbon(){
 }
 
 function printbon(){
-  F8 = window.open('<%$wwwroot%>receipt_html.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt_html.php', "Bon", "width=300,height=600,left=100,top=200,toolbar=no,status=no,scrollbars=yes");
+  //F8 = window.open('<%$wwwroot%>receipt_html.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt_html.php', "Bon", "width=300,height=600,left=100,top=200,toolbar=no,status=no,scrollbars=yes");
+  //F8.focus();
+  F8 = window.open('', "Bon", "width=300,height=600,left=100,top=200,toolbar=no,status=no,scrollbars=yes");
+  var temp = document.pay.action;
+  document.pay.action = '<%$wwwroot%>receipt_html.php/guestid.<%$tpl_theguestid%>/cats.<%section name=thecat loop=$tpl_selectedcat%><%$tpl_selectedcat[thecat]%><%if not $smarty.section.thecat.last%>,<%/if%><%/section%>/receipt_html.php';
+  document.pay.target = 'Bon';
+  document.pay.submit();
+  document.pay.target = '_top';
+  document.pay.action = temp;
   F8.focus();
 }
 

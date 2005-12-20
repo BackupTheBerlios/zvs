@@ -36,31 +36,37 @@ $smartyType = "www";
 include_once("../includes/default.inc.php");
 
 $auth->is_authenticated();
-include_once("../includes/fileselector.inc.php");
 include_once("kassaclass.inc.php");
 $kassacls = New Kassa;
 include_once("barguestclass.inc.php");
 $barguest = New Barguest;
 
-if ($request->GetVar('cats', 'get') !== $request->undefined) {
-    $cats = explode(",", $request->GetVar('cats', 'get'));
+if ($request->GetVar('frm_selectedcat', 'post') !== $request->undefined) {
+    $cats = $request->GetVar('frm_selectedcat', 'post');
 } else {
     $cats = array();
 } 
 
-if ($request->GetVar('guestid', 'get') !== $request->undefined) {
-    $theguestid = $request->GetVar('guestid', 'get');
-
-    $guestarticles = $kassacls->get($theguestid, 'ASC', $cats);
-
+if ($request->GetVar('payid', 'post') !== $request->undefined) {
+	$items = $request->GetVar('payid', 'post');
 } else {
-    $theguestid = $request->GetVar('frm_theguestid', 'get');
-    $start = $request->GetVar('frm_start', 'get');
-    $end = $request->GetVar('frm_end', 'get');
-    $guestarticles = $kassacls->getTimeline($theguestid, $start, $end, 'ASC', $cats);
+	$items = array();
+}
 
-} 
-$smarty -> assign("tpl_logo", $tplfile = selectfile('logo.gif'));
+if ($request->GetVar('frm_guestid', 'post') !== $request->undefined) {
+    $theguestid = $request->GetVar('frm_guestid', 'post');
+    $guestarticles = $kassacls->get($theguestid, 'ASC', $cats);
+}
+
+for ($i=0; $i <= count($guestarticles); $i++) {
+	if (!in_array($guestarticles[$i]['boughtid'], $items) && $guestarticles[$i]['articleid'] !== 0) {
+	  unset($guestarticles[$i]);
+	}
+}
+
+$guestarticles = array_values($guestarticles);
+
+$smarty -> assign("tpl_logo", 'logo.gif');
 $smarty -> assign('tpl_name', $barguest->getName($theguestid));
 $smarty -> assign('tpl_date', date("d.m.Y"));
 $smarty -> assign("tpl_receipt", $guestarticles);

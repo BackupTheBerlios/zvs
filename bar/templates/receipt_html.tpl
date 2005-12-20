@@ -12,7 +12,7 @@
 </head>
 <body onload="javascript:window.print();">
 <div id="head">
-<img src="<%$tpl_logo%>" width="150" height="105" border="0"/>
+<img src="<%$wwwroot%>global/<%$tpl_logo%>" width="150" height="105" border="0"/>
 <br/>
 Petra & Mike
 <br/>
