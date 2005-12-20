@@ -90,6 +90,26 @@ function printbon(){
     F5.focus();
     }
 
+function calculate(){ 
+	<%section name=guestarticle loop=$tpl_guestarticles%>	
+	<%/section%>
+	num = <%$smarty.section.guestarticle.total%>-1;
+	id = 'payid';
+	total = 'total';
+	sum = 0.00;
+  for (i=0;i<num;i++) {
+     cb = document.getElementById(id+[i+1]);
+     if (cb.checked) {
+     	fieldtotal = document.getElementById(total+[i+1]);
+     	sum += parseFloat(fieldtotal.value);
+     }
+  }
+  document.all.subtotal1.innerHTML = sum.toFixed(2);
+  document.all.subtotal2.innerHTML = sum.toFixed(2);
+}
+
+
+
 var isIE, isDOM;
 isIE = (document.all ? true : false);
 isDOM = (document.getElementById ? true : false);
@@ -340,7 +360,7 @@ function switchLayer(layername)
 				  <%if $smarty.section.guestarticle.last%>		   
 				   <tr>
 				   	<td colspan="4" align="right" class="ListL1Footer"><b>Summe:</b></td>
-					<td class="ListL1Footer" align="right"><b><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</b></td>
+					<td class="ListL1Footer" align="right"><b><span id="subtotal1"><%$tpl_guestarticles[guestarticle].total%></span>&nbsp;EUR</b></td>
 					<td class="ListL1Footer" colspan="3">&nbsp;</td>
  				  	<%if $tpl_level ge 10%>
 					<td class="ListL1Footer">von</td>
@@ -355,7 +375,7 @@ function switchLayer(layername)
 				  <%if $smarty.section.guestarticle.last%>
 				   <tr>
 				   	<td colspan="4" align="right" class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer"><b>Summe:</b></td>
-					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" align="right"><b><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</b></td>
+					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" align="right"><b><span id="subtotal2"><%$tpl_guestarticles[guestarticle].total%></span>&nbsp;EUR</b></td>
 					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" colspan="3">&nbsp;</td>
 					<%if $tpl_level ge 10%>
 					<td class="ListL<%$tpl_guestarticles[guestarticle].color%>Footer" colspan="4">&nbsp;</td>
@@ -363,12 +383,12 @@ function switchLayer(layername)
 				   </tr>		  
 				  <%else%>
 					<tr>
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><input type="checkbox" name="payid[]" id="payid[]" checked="checked" value="<%$tpl_guestarticles[guestarticle].boughtid%>" onclick="InitializeTimer();"></td>
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><input type="checkbox" name="payid[]" id="payid<%$smarty.section.guestarticle.iteration%>" checked="checked" value="<%$tpl_guestarticles[guestarticle].boughtid%>" onclick="calculate(); InitializeTimer();"></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].num%></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].description%></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%$tpl_guestarticles[guestarticle].timestamp%>&nbsp;Uhr</td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><%$tpl_guestarticles[guestarticle].price%>&nbsp;EUR</td>			  
-					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</td>	
+					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>" align="right"><input type="hidden" name="total<%$smarty.section.guestarticle.iteration%>" id="total<%$smarty.section.guestarticle.iteration%>" value="<%$tpl_guestarticles[guestarticle].total%>"><%$tpl_guestarticles[guestarticle].total%>&nbsp;EUR</td>	
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><a href="javascript:pay(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>')"><img src="<%$wwwroot%>img/icon_ok.gif" border="0" width="15" height="13" alt="bezahlt"></a></td>
 					  <td class="ListL<%$tpl_guestarticles[guestarticle].color%>"><%if $tpl_level ge 10%><a href="javascript:storno(<%$tpl_guestarticles[guestarticle].boughtid%>, <%$tpl_guestarticles[guestarticle].num%>, '<%$tpl_guestarticles[guestarticle].description%>');"><img src="<%$wwwroot%>img/shutter_minus.gif" border="0" width="13" height="13" alt="Storno"></a><%/if%>&nbsp;</td>		  
 					  <%if $tpl_level ge 10%>
