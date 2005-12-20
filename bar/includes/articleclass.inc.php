@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: articleclass.inc.php,v 1.4 2004/12/14 10:38:55 ehret Exp $
+* @version $Id: articleclass.inc.php,v 1.5 2005/12/20 15:58:46 ehret Exp $
 */
 class Article {
     /**
@@ -61,11 +61,12 @@ class Article {
                 'hotkey' => "",
                 'catid' => "",
                 'cat' => "",
-                'newline' => "false"
+                'newline' => "false",
+                'tax' => ""
                 );
         } 
 
-        $query = "SELECT pk_bararticle_id, description, price, hotkey, fk_bararticlecat_id, bararticlecat
+        $query = "SELECT pk_bararticle_id, description, price, hotkey, fk_bararticlecat_id, bararticlecat, tax
 		                 FROM $tbl_bararticle ba
 						 LEFT JOIN $tbl_bararticlecat bac ON pk_bararticlecat_id = fk_bararticlecat_id
 						 WHERE ISNULL(ba.deleted_date) AND fk_period_id = $period ";
@@ -101,6 +102,7 @@ class Article {
                     'hotkey' => MetabaseFetchResult($gDatabase, $result, $row, 3),
                     'catid' => MetabaseFetchResult($gDatabase, $result, $row, 4),
                     'cat' => MetabaseFetchResult($gDatabase, $result, $row, 5),
+                    'tax' => MetabaseFetchResult($gDatabase, $result, $row, 6),
                     'newline' => $newline,
                     'color' => $color
                     );
@@ -133,11 +135,12 @@ class Article {
                 'hotkey' => "",
                 'catid' => "",
                 'cat' => "",
-                'newline' => "false"
+                'newline' => "false",
+                'tax' => ""
                 );
         } 
 
-        $query = sprintf("SELECT pk_bararticle_id, description, price, hotkey, fk_bararticlecat_id, bararticlecat
+        $query = sprintf("SELECT pk_bararticle_id, description, price, hotkey, fk_bararticlecat_id, bararticlecat, tax
 		                 FROM $tbl_bararticle ba
 						 LEFT JOIN $tbl_bararticlecat bac ON pk_bararticlecat_id = fk_bararticlecat_id
 						 LEFT JOIN $tbl_period p ON p.pk_period_id = ba.fk_period_id
@@ -175,6 +178,7 @@ class Article {
                     'hotkey' => MetabaseFetchResult($gDatabase, $result, $row, 3),
                     'catid' => MetabaseFetchResult($gDatabase, $result, $row, 4),
                     'cat' => MetabaseFetchResult($gDatabase, $result, $row, 5),
+                    'tax' => MetabaseFetchResult($gDatabase, $result, $row, 6),
                     'newline' => $newline,
                     'color' => $color
                     );
@@ -234,6 +238,7 @@ class Article {
 			                 description = %s, 
 							 price = %s,
 							 hotkey = %s,
+							 tax = %s,
 							 updated_date = NOW(), 
 							 fk_updated_user_id = %s 
 							 WHERE pk_bararticle_id = %s ",
@@ -241,6 +246,7 @@ class Article {
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_description', 'post')),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_price', 'post')),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_hotkey', 'post')),
+                MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_tax', 'post')),
                 $request->GetVar('uid', 'session'),
                 $articleid
                 );
@@ -248,14 +254,15 @@ class Article {
             $name = "zvs_pk_bararticle_id";
             $sequence = MetabaseGetSequenceNextValue($gDatabase, $name, &$articleid);
             $query = sprintf("INSERT INTO $tbl_bararticle
-			                  (pk_bararticle_id, fk_bararticlecat_id, fk_period_id, description, price, hotkey, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
-							  VALUES (%s, %s, %s, %s, %s, %s, NOW(), %s, NULL, NULL )",
+			                  (pk_bararticle_id, fk_bararticlecat_id, fk_period_id, description, price, hotkey, tax, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
+							  VALUES (%s, %s, %s, %s, %s, %s, %s, NOW(), %s, NULL, NULL )",
                 $articleid,
                 $request->GetVar('frm_cat', 'post'),
                 $request->GetVar('frm_period', 'post'),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_description', 'post')),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_price', 'post')),
                 MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_hotkey', 'post')),
+                MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_tax', 'post')),
                 $request->GetVar('uid', 'session'),
                 $request->GetVar('uid', 'session')
                 );
@@ -284,13 +291,14 @@ class Article {
         $name = "zvs_pk_bararticle_id";
         $sequence = MetabaseGetSequenceNextValue($gDatabase, $name, &$articleid);
         $query = sprintf("INSERT INTO $tbl_bararticle
-	                       (pk_bararticle_id, fk_bararticlecat_id, fk_period_id, description, price, inserted_date, fk_inserted_user_id, deleted_date, fk_deleted_user_id)
-					  	   VALUES (%s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
+	                       (pk_bararticle_id, fk_bararticlecat_id, fk_period_id, description, price, tax, inserted_date, fk_inserted_user_id, deleted_date, fk_deleted_user_id)
+					  	   VALUES (%s, %s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
             $articleid,
 			$request->GetVar('frm_catid','post'),
 			$active['periodid'],
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_description', 'post')),
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_price', 'post')),
+            MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_tax', 'post')),
             $request->GetVar('uid', 'session'),
             $request->GetVar('uid', 'session')
             );

@@ -82,6 +82,10 @@ function submit_onkeypress()
 				<td><input type="text" name="frm_price" id="frm_price" maxlength="6" size="6" value="0.00" onKeyPress="submit_onkeypress();"> EUR&nbsp;</td>
 			</tr>	
 			<tr>
+				<td><b>Steuer:</b></td>
+				<td><input type="text" name="frm_tax" id="frm_tax" maxlength="6" size="6" value="20.00" onKeyPress="submit_onkeypress();"> %&nbsp;</td>
+			</tr>				
+			<tr>
 				<td colspan="2" align="right"><a href="javascript:check();"><img src="<%$wwwroot%>img/button_weiter.gif" width="73" height="24" border="0"></a></td>
 			</tr>		
 		</table>

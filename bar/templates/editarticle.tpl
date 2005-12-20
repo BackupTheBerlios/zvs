@@ -116,6 +116,9 @@
 		  			<strong>Preis</strong>
 		  		</td>	
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
+		  			<strong>Steuersatz</strong>
+		  		</td>			  		
+				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
 		  			<strong>Hotkey</strong>
 		  		</td>	
 				<td class="ListL<%if $tpl_addnew eq 'true'%>0<%else%>1<%/if%>">
@@ -134,6 +137,9 @@
 				<td class="ListL1" nowrap>
 		  			<input type="text" name="frm_price" id="frm_price" maxlength="6" size="6" value="0.00"> EUR&nbsp;
 		  		</td>
+				<td class="ListL1" nowrap>
+		  			<input type="text" name="frm_tax" id="frm_tax" maxlength="6" size="6" value="0.00"> %&nbsp;
+		   		</td>
 				<td class="ListL1">
 		  			ALT+<input type="text" name="frm_hotkey" id="frm_hotkey" maxlength="1" size="1" value="">
 		  		</td>
@@ -155,6 +161,7 @@
 				<tr>
 					<td class="ListL<%$tpl_article[article].color%>"><%$tpl_article[article].description%>&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap><%$tpl_article[article].price%>&nbsp;EUR&nbsp;</td>
+					<td class="ListL<%$tpl_article[article].color%>" nowrap><%$tpl_article[article].tax%>&nbsp;%&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap>ALT+<%$tpl_article[article].hotkey%>&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap><%$tpl_article[article].cat%>&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>">
@@ -167,6 +174,7 @@
 				<tr>
 					<td class="ListL<%$tpl_article[article].color%>"><input type="text" name="frm_description" id="frm_description" maxlength="255" size="50" value="<%$tpl_article[article].description%>">&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap><input type="text" name="frm_price" id="frm_price" maxlength="6" size="6" value="<%$tpl_article[article].price%>"> EUR&nbsp;</td>
+					<td class="ListL<%$tpl_article[article].color%>" nowrap><input type="text" name="frm_tax" id="frm_tax" maxlength="6" size="6" value="<%$tpl_article[article].tax%>"> %&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap>ALT+<input type="text" name="frm_hotkey" id="frm_hotkey" maxlength="1" size="1" value="<%$tpl_article[article].hotkey%>">&nbsp;</td>
 					<td class="ListL<%$tpl_article[article].color%>" nowrap><select name="frm_cat" id="frm_cat">
 																			<%section name=cat loop=$tpl_cat%>
