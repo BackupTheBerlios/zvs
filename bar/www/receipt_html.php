@@ -67,9 +67,28 @@ for ($i=0; $i <= count($guestarticles); $i++) {
 $guestarticles = array_values($guestarticles);
 
 $sum = 0.00;
+$tax = array();
 for ($i=0; $i < count($guestarticles)-1; $i++) {
 	$sum  += $guestarticles[$i]['total'];
+	$netto = 0.00;
+	$tax_value = 0.00;
+	$netto = round(($guestarticles[$i]['total'] * 100)/($guestarticles[$i]['tax']+100),2);
+	$tax_value = $guestarticles[$i]['total']-$netto;
+	$tax[$guestarticles[$i]['tax']]['netto'] += $netto;
+	$tax[$guestarticles[$i]['tax']]['brutto'] += $guestarticles[$i]['total'];
+	$tax[$guestarticles[$i]['tax']]['tax_value'] += $tax_value;
 }
+ksort($tax);
+$tpl_tax = array();
+$i = 0;
+foreach ($tax as $key => $val) {
+ $tpl_tax[$i]['tax'] = $key;
+ $tpl_tax[$i]['netto'] = number_format($val['netto'], 2, '.', '');
+ $tpl_tax[$i]['brutto'] = number_format($val['brutto'], 2, '.', '');
+ $tpl_tax[$i]['tax_value'] = number_format($val['tax_value'], 2, '.', '');
+ $i++;
+}
+
 
 $guestarticles[$i]['total'] = number_format($sum, 2, '.', '');
 
@@ -77,6 +96,7 @@ $smarty -> assign("tpl_logo", 'logo.gif');
 $smarty -> assign('tpl_name', $barguest->getName($theguestid));
 $smarty -> assign('tpl_date', date("d.m.Y"));
 $smarty -> assign("tpl_receipt", $guestarticles);
+$smarty -> assign ('tpl_tax', $tpl_tax);
 $smarty -> display('receipt_html.tpl');
 
 ?>

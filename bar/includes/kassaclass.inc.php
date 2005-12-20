@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.6 2005/08/18 10:33:28 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.7 2005/12/20 17:00:21 ehret Exp $
 */
 class Kassa {
     /**
@@ -70,7 +70,7 @@ class Kassa {
         $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, 
 		          DATE_FORMAT( b.timestamp, '%d.%m.%Y, %H:%i' ), b.num, b.pk_bought_id, 
 				  u1.firstname, u1.lastname, DATE_FORMAT( b.inserted_date, '%d.%m.%Y, %H:%i' ), 
-				  u2.firstname, u2.lastname, DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i' )" .
+				  u2.firstname, u2.lastname, DATE_FORMAT( b.updated_date, '%d.%m.%Y, %H:%i' ), ba.tax " .
         sprintf("FROM $tbl_bought b
 				  		  LEFT JOIN $tbl_barguest bg ON bg.pk_barguest_id = b.fk_barguest_id
 				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
@@ -84,7 +84,6 @@ class Kassa {
             MetabaseGetBooleanFieldValue($gDatabase2, false),
             $order
             );
-
         $result = MetabaseQuery($gDatabase2, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Kassa::get()', $query);
@@ -107,6 +106,7 @@ class Kassa {
                     'inserteddate' => MetabaseFetchResult($gDatabase2, $result, $row, 8),
                     'updated' => MetabaseFetchResult($gDatabase2, $result, $row, 9) . " " . MetabaseFetchResult($gDatabase2, $result, $row, 10),
                     'updateddate' => MetabaseFetchResult($gDatabase2, $result, $row, 11),
+                    'tax' => MetabaseFetchResult($gDatabase2, $result, $row, 12),
                     'total' => number_format($total, 2, '.', ''),
                     'color' => $color
                     );

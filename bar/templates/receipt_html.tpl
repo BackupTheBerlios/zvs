@@ -40,6 +40,20 @@ E-mail: wiesenhof@tirol.com
  </tr>
  <%section name="art" loop=$tpl_receipt%>
 <%if $smarty.section.art.last%>
+  <%section name="tax" loop=$tpl_tax%>
+  <tr>
+    <td class="left">enthaltene MwSt. <%$tpl_tax[tax].tax%>%:</td>
+    <td class="right"><%$tpl_tax[tax].tax_value%> &euro;</td>
+  </tr>  
+  <tr>
+    <td class="left">Summe Netto (<%$tpl_tax[tax].tax%>%):</td>
+    <td class="right"><%$tpl_tax[tax].netto%> &euro;</td>
+  </tr>  
+  <tr>
+    <td class="left <%if $smarty.section.tax.last%>secondlast<%else%>border<%/if%>">Summe Brutto (<%$tpl_tax[tax].tax%>%):</td>
+    <td class="right <%if $smarty.section.tax.last%>secondlast<%else%>border<%/if%>"><%$tpl_tax[tax].brutto%> &euro;</td>
+  </tr>    
+  <%/section%>
   <tr>
   <td class="left sum"><b>Summe:</b></td>
   <td class="right sum"><b><%$tpl_receipt[art].total%> &euro;</b></td>
@@ -57,6 +71,9 @@ E-mail: wiesenhof@tirol.com
 </table>
 <br/>
 <div id="footer">
+UID-Nr. ATU47239607
+<br/>
+<br/>
 Vielen Dank f&uuml;r Ihren Besuch
 <br/>
 Auf Wiedersehen
