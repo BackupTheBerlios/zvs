@@ -66,6 +66,13 @@ for ($i=0; $i <= count($guestarticles); $i++) {
 
 $guestarticles = array_values($guestarticles);
 
+$sum = 0.00;
+for ($i=0; $i < count($guestarticles)-1; $i++) {
+	$sum  += $guestarticles[$i]['total'];
+}
+
+$guestarticles[$i]['total'] = number_format($sum, 2, '.', '');
+
 $smarty -> assign("tpl_logo", 'logo.gif');
 $smarty -> assign('tpl_name', $barguest->getName($theguestid));
 $smarty -> assign('tpl_date', date("d.m.Y"));
