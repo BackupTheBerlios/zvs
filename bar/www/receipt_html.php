@@ -55,9 +55,9 @@ if ($request->GetVar('payid', 'post') !== $request->undefined) {
 
 if ($request->GetVar('frm_guestid', 'post') !== $request->undefined) {
     $theguestid = $request->GetVar('frm_guestid', 'post');
-    $guestarticles = $kassacls->get($theguestid, 'ASC', $cats);
+    $guestarticles = $kassacls->getBon($theguestid, $cats, $items);
 }
-
+/*
 for ($i=0; $i <= count($guestarticles); $i++) {
 	if (!in_array($guestarticles[$i]['boughtid'], $items) && $guestarticles[$i]['articleid'] !== 0) {
 	  unset($guestarticles[$i]);
@@ -65,18 +65,12 @@ for ($i=0; $i <= count($guestarticles); $i++) {
 }
 
 $guestarticles = array_values($guestarticles);
-
+*/
 $sum = 0.00;
 $tax = array();
 for ($i=0; $i < count($guestarticles)-1; $i++) {
 	$sum  += $guestarticles[$i]['total'];
-//	$netto = 0.00;
-//	$tax_value = 0.00;
-//	$netto = round(($guestarticles[$i]['total'] * 100)/($guestarticles[$i]['tax']+100),2);
-//	$tax_value = $guestarticles[$i]['total']-$netto;
-//	$tax[$guestarticles[$i]['tax']]['netto'] += $netto;
 	$tax[$guestarticles[$i]['tax']]['brutto'] += $guestarticles[$i]['total'];
-//	$tax[$guestarticles[$i]['tax']]['tax_value'] += $tax_value;
 }
 ksort($tax);
 $tpl_tax = array();

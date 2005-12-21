@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: kassaclass.inc.php,v 1.7 2005/12/20 17:00:21 ehret Exp $
+* @version $Id: kassaclass.inc.php,v 1.8 2005/12/21 21:36:09 ehret Exp $
 */
 class Kassa {
     /**
@@ -75,7 +75,7 @@ class Kassa {
 				  		  LEFT JOIN $tbl_barguest bg ON bg.pk_barguest_id = b.fk_barguest_id
 				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
 						  LEFT JOIN $tbl_user u1 ON b.fk_inserted_user_id = u1.pk_user_id
-						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u1.pk_user_id
+						  LEFT JOIN $tbl_user u2 ON b.fk_updated_user_id = u2.pk_user_id
 						  WHERE pk_barguest_id = %s
 						  AND paid = %s 
 						  $catstr
@@ -84,6 +84,7 @@ class Kassa {
             MetabaseGetBooleanFieldValue($gDatabase2, false),
             $order
             );
+            
         $result = MetabaseQuery($gDatabase2, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Kassa::get()', $query);
@@ -127,6 +128,99 @@ class Kassa {
         } 
         return $article;
     } 
+    
+    /**
+    * Kassa::getBon()
+    * 
+    * This function returns all bought articles for one guest.
+    * 
+    * @param number $guestid guest id
+    * @param string $order order desc or asc
+    * @param array $cats categories
+    * @return array articles
+    * @access public 
+    * @since 2005-12-20
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function getBon($guestid, $cats = array(), $items = array())
+    {
+        global $gDatabase2, $tbl_bararticle, $tbl_user, $tbl_bought, $tbl_barguest, $request, $errorhandler, $articlerows;
+        $article = array();
+        if (count($cats) > 0) {
+            $catstr = "AND ba.fk_bararticlecat_id IN (";
+            for ($i = 0; $i < count($cats); $i++) {
+                if ($i > 0) {
+                    $catstr .= ", ";
+                } 
+                $catstr .= $cats[$i];
+            } 
+            $catstr .= ")";
+        } else {
+            $catstr = "";
+        } 
+				if (count($items) > 0) {
+						$itemsstr = "AND b.pk_bought_id IN (";
+						for ($i = 0; $i < count($items); $i++) {
+							if ($i > 0){
+								$itemsstr .= ", ";
+							}
+							$itemsstr .= $items[$i];
+						}
+						$itemsstr .= ")";
+				} else {
+					$itemsstr = "";
+				}
+        $query = "SELECT ba.pk_bararticle_id, ba.description, ba.price, sum(b.num), b.pk_bought_id, 
+								 ba.tax " .
+        sprintf("FROM $tbl_bought b
+				  		  LEFT JOIN $tbl_barguest bg ON bg.pk_barguest_id = b.fk_barguest_id
+				  	      LEFT JOIN $tbl_bararticle ba ON b.fk_bararticle_id = ba.pk_bararticle_id
+						  WHERE pk_barguest_id = %s
+						  AND paid = %s 
+						  $catstr
+						  $itemsstr
+						  GROUP BY pk_bararticle_id
+						  ORDER BY ba.description
+						  ",
+            $guestid,
+            MetabaseGetBooleanFieldValue($gDatabase2, false)
+            );
+            
+        $result = MetabaseQuery($gDatabase2, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Kassa::getBon()', $query);
+        } else {
+            $row = 0;
+            for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase2, $result)) == 0; ++$row) {
+                $total = MetabaseFetchResult($gDatabase2, $result, $row, 2) * MetabaseFetchResult($gDatabase2, $result, $row, 3);
+                $sum += $total;
+                $article[$row] = array ('articleid' => MetabaseFetchResult($gDatabase2, $result, $row, 0),
+                    'description' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
+                    'price' => MetabaseFetchResult($gDatabase2, $result, $row, 2),
+                    'num' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
+                    'boughtid' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
+                    'tax' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
+                    'total' => number_format($total, 2, '.', '')
+                    );
+            } 
+            $color = 0;
+            if ($row % 2 <> 0) {
+                $color = 1;
+            } 
+            $article[$row] = array ('articleid' => 0,
+                'description' => "Summe:",
+                'price' => "",
+                'timestamp' => "",
+                'num' => "",
+                'boughtid' => "",
+                'total' => number_format($sum, 2, '.', ''),
+                'color' => $color
+                );
+        } 
+        return $article;
+    } 
+    
+    
     /**
     * Kassa::getTimeline()
     * 
