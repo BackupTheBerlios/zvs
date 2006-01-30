@@ -195,7 +195,7 @@ function switchLayer(layername)
 				 <%/if%>
 				 <%if $tpl_barguests[guest].guestid neq '0'%>
   			 	<td class="colorchooser" bgcolor="<%$tpl_barguests[guest].bccolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0" alt="<%$tpl_barguests[guest].bookingcat%>"></td>
-			 	<td class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>" nowrap="nowrap" width="250">
+			 	<td class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%><%if $tpl_barguests[guest].sum eq '0.00'%>zero<%else%>NavInactive<%/if%><%/if%>" nowrap="nowrap" width="250">
 					<a href="javascript:openedit(<%$tpl_barguests[guest].guestid%>);"><img src="<%$wwwroot%>img/editnav.png" width="14" height="14" border="0" alt="Bearbeiten"></a>&nbsp;
 				  	<a href="<%$wwwroot%><%if $tpl_nav eq "sell"%>index.php<%else%>kassa.php<%/if%>/guestid.<%$tpl_barguests[guest].guestid%>/index.php" class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_barguests[guest].firstname%>&nbsp;<%$tpl_barguests[guest].lastname%>&nbsp;(<%$tpl_barguests[guest].sum%>&nbsp;EUR)</a>
 

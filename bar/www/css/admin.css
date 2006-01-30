@@ -343,6 +343,17 @@ TD.NavActive{
 	padding-right : 6px;
 	padding-bottom : 1px;
 }
+
+TD.zero{
+	border : 1px solid #FFD940;
+	background-color : #80FF80;
+	font-weight : bold;
+	padding-left : 6px;
+	padding-top : 1px;
+	padding-right : 6px;
+	padding-bottom : 1px;
+}
+
 .DefError{
 	font-family: Arial, Verdana, sans-serif;
 	font-size: 15px;
