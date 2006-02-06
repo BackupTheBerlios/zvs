@@ -169,5 +169,5 @@ function setHotelDB()
 } 
 
 $smarty -> assign('wwwroot', $wwwroot);
-
+$smarty->assign('tpl_loggedin', $request->GetVar('firstname', 'session') . " " . $request->GetVar('lastname', 'session'));
 ?>
