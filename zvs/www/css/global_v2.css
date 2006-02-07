@@ -195,6 +195,8 @@ html #body
 #main {
 	display: block;
 	clear: both;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #main h1 {
@@ -203,4 +205,164 @@ html #body
 	font-weight: bold;
 	padding: 5px 0px 0px 5px;
 	border-bottom: 1px solid #D4D4D4;
+	margin-bottom: 10px;
+}
+
+#copyright {
+	clear: both;
+	bottom: 0px;
+	height: 20px;
+	left: 0px;
+	border: 0px none;	
+	color: #C8C8C8;
+	width: 100%;
+	text-align: center;
+	font-size: smaller;
+}
+
+* html #copyright {
+	position: absolute;
+	top: expression(eval(document.body.clientHeight-20+document.body.scrollTop));
+}
+
+#copyright[id] {
+	position:fixed; 
+	display: table; 
+}
+
+#copyright a {
+		text-decoration: none;
+		color: #C8C8C8;
+}
+
+#dek {
+	position: absolute;
+	visibility: hidden;
+	z-index: 200;
+}
+
+a span.button {
+	border:1px solid;
+	border-color:#FC9 #630 #330 #F96;
+	padding: 1px 3px 1px 3px;
+	font-weight: bold;
+	color:#333333;
+	background:#F2E1AF;
+	text-decoration:none;
+	margin:0px;
+}
+
+
+table.calendar{
+  background-color : #FFF7D5;
+  width: 100%;
+  border-spacing: 0px;
+
+}
+
+table.calendar td{
+	padding: 0px;
+   margin: 0px;
+	height: 20px;
+	border-collapse: collapse;  
+	cursor: pointer;
+}
+
+table.calendar tr, table.calendar, table.calendar td {
+	border-collapse: collapse;
+	border: 1px solid #FFD940;
+}
+table.calendar td a{
+	text-decoration: none;
+}
+table.calendar td:hover {
+  cursor: pointer;
+}
+
+td.CalendarL0{
+/*	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFFFFF;
+}
+
+td.CalendarL1{
+/*		border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFF2BD;	
+}
+td.CalendarL1Header{
+/*		border-top : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFF2BD;
+	font-weight : bold;
+	text-align: center;
+}
+
+td.CalendarL1HeaderLeft{
+/*	border-top : 1px solid #FFD940;
+	border-left : 1px solid #FFD940;
+	border-right : 2px solid #FFD940;
+	border-bottom : 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFF2BD;
+}
+
+td.CalendarL1Left{
+/*		border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFF2BD;
+	font-weight : bold;
+}
+
+td.CalendarL0Left{
+/*	border-bottom : 1px solid #FFD940;
+	border-right: 2px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+	background-color : #FFFFFF;
+	font-weight : bold;
+}
+td.CalendarRoom0{
+/*		border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+}
+
+td.CalendarRoom1{
+/*	border-bottom : 1px solid #FFD940;
+	border-right : 1px solid #FFD940;
+	padding-left : 3px;
+	padding-top : 1px;
+	padding-right : 3px;
+	padding-bottom : 1px;*/
+}
+td.colorchooser{
+	border : 1px solid #FFD940;
+	width: 10px;
+	height: 10px;
 }
