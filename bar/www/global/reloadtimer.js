@@ -24,7 +24,7 @@ function StartTheTimer()
     if (secs==0)
     {
         StopTheClock();
-		switchLayer('list');
+        switchLayer('_the_first_layer_');
     }
     else
     {
