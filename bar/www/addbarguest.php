@@ -36,9 +36,12 @@
 $smartyType = "www";
 include_once("../includes/default.inc.php");
 include_once("barguestclass.inc.php");
+include_once("barguestcatclass.inc.php");
 $barguest = new Barguest;
+$barguestcat = new barguestcat;
 $auth -> is_authenticated();
 $smarty -> assign("tpl_title", "Gast hinzuf&uuml;gen");
+$smarty->assign('tpl_barguestcat', $barguestcat->getAll());
 if ($request->GetVar('frm_firstname','post') !== $request->undefined) {
     $guestid = $barguest->add();
 	$smarty->assign('tpl_theguestid', $guestid);

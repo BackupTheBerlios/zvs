@@ -13,7 +13,7 @@
 <script language="JavaScript" type="text/javascript">
 <!--
     function openWindow(){
-    F1 = window.open('<%$wwwroot%>addbarguest.php','addbarguest','width=400,height=210,left=0,top=0');
+    F1 = window.open('<%$wwwroot%>addbarguest.php','addbarguest','width=400,height=300,left=0,top=0');
     F1.focus();
     }
 //-->

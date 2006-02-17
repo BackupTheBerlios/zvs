@@ -36,13 +36,16 @@
 $smartyType = "www";
 include_once("../includes/default.inc.php");
 include_once("barguestclass.inc.php");
+include_once("barguestcatclass.inc.php");
 $barguest = new Barguest;
+$barguestcat = new barguestcat;
 $auth -> is_authenticated();
 $smarty -> assign("tpl_title", "Gast editieren");
+$smarty->assign('tpl_barguestcat', $barguestcat->getAll());
 
 if ($request->GetVar('frm_firstname','post') !== $request->undefined) {
     $guestid = $request->GetVar('frm_guestid','post');
-    $barguest->update($guestid ,$request->GetVar('frm_firstname','post') ,$request->GetVar('frm_lastname','post'), $request->GetVar('frm_bookingcat','post'), $request->GetVar('frm_gcolor', 'post') );
+    $barguest->update($guestid ,$request->GetVar('frm_firstname','post') ,$request->GetVar('frm_lastname','post'), $request->GetVar('frm_bookingcat','post'), $request->GetVar('frm_gcolor', 'post'), $request->GetVar('frm_bgcat', 'post') );
 	$smarty->assign('tpl_theguestid', $guestid);
 	$smarty->assign('tpl_added','true');
 } else {

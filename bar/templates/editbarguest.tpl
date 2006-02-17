@@ -66,13 +66,21 @@ function submit_onkeypress()
 				<td><input type="text" name="frm_lastname" id="frm_lastname" value="<%$tpl_barguest.lastname%>" onKeyPress="submit_onkeypress();"><%$tpl_barguest.zvsguest_id%></td>
 			</tr>	
 			<tr>
+				<td><b>Bargästekategorie</b></td>
+				<td><select name="frm_bgcat" id="frm_bgcat">
+					<%section name=bgcat loop=$tpl_barguestcat%>
+					<option value="<%$tpl_barguestcat[bgcat].barguestcatid%>" <%if $tpl_barguestcat[bgcat].barguestcatid eq $tpl_barguest.barguestcatid%>selected="selected"<%/if%>><%$tpl_barguestcat[bgcat].barguestcat%></option>
+					<%/section%>
+				    </select></td>
+			</tr>
+			<tr>
 				<td><b>Buchungskategorie</b></td>
 				<td><select name="frm_bookingcat" id="frm_bookingcat">
 					<%section name=cat loop=$tpl_bookingcat%>
 					<option value="<%$tpl_bookingcat[cat].bookingcatid%>" <%if $tpl_bookingcat[cat].bookingcatid eq $tpl_barguest.bookingcatid%>selected="selected"<%/if%>><%$tpl_bookingcat[cat].name%></option>
 					<%/section%>
 				    </select></td>
-			</tr>
+			</tr>			
 			<tr>
 				<td><b>Gruppenfarbe</b></td>
 				<td><input type="text" name="frm_gcolor" id="frm_gcolor" size="7" maxlength="7" value="<%$tpl_barguest.groupcolor%>"/><a href="javascript:openWindow();"><img src="<%$wwwroot%>img/button_colorchooser.gif" width="16" height="15" border="0"></a></td>

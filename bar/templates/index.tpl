@@ -82,7 +82,7 @@ function openSpecial(catid){
     F2.focus();
 }
 function openedit(guestid){
-    F3 = window.open('<%$wwwroot%>editbarguest.php/guestid.'+guestid+'/editbarguest.php','editbarguest','width=400,height=230,left=0,top=0');
+    F3 = window.open('<%$wwwroot%>editbarguest.php/guestid.'+guestid+'/editbarguest.php','editbarguest','width=400,height=300,left=0,top=0');
     F3.focus();
 }
 function openbon(){
@@ -147,27 +147,34 @@ isDOM = (document.getElementById ? true : false);
 
 function switchLayer(layername)
 {
-
+	if (layername == '_the_first_layer_') {
+		layername = 'list<%$tpl_barguestcat[0].barguestcatid%>';
+	}
 	if (isIE)
 	{
-		element0 = document.all.list;
+		<%section name=bgcat loop=$tpl_barguestcat%>
+		element<%$smarty.section.bgcat.index%> = document.all.list<%$tpl_barguestcat[bgcat].barguestcatid%>;
+		<%/section%>
 		<%section name=cat loop=$tpl_cat%>
-	    element<%$smarty.section.cat.rownum%> = document.all.verkauf<%$tpl_cat[cat].articlecatid%>;
+	    element<%$tpl_cat[cat].rownum%> = document.all.verkauf<%$tpl_cat[cat].articlecatid%>;
 		<%/section%>
 		element<%$tpl_nextnum%>  = document.all.abrechnung;
 		myelement = eval('document.all.'+layername);
 	} else {
-		element0 = document.getElementById("list");		
+		<%section name=bgcat loop=$tpl_barguestcat%>
+		element<%$smarty.section.bgcat.index%> = document.getElementById("list<%$tpl_barguestcat[bgcat].barguestcatid%>");
+		<%/section%>
 		<%section name=cat loop=$tpl_cat%>
-		element<%$smarty.section.cat.rownum%> = document.getElementById("verkauf<%$tpl_cat[cat].articlecatid%>");
+		element<%$tpl_cat[cat].rownum%> = document.getElementById("verkauf<%$tpl_cat[cat].articlecatid%>");
 		<%/section%>
 		element<%$tpl_nextnum%> = document.getElementById("abrechnung");
 		myelement = document.getElementById(layername);
 	}	
-
-	element0.style.display = 'none';
+	<%section name=bgcat loop=$tpl_barguestcat%>
+	element<%$smarty.section.bgcat.index%>.style.display = 'none';
+	<%/section%>
 	<%section name=cat loop=$tpl_cat%>
-	element<%$smarty.section.cat.rownum%>.style.display = 'none';
+	element<%$tpl_cat[cat].rownum%>.style.display = 'none';
 	<%/section%>
 	element<%$tpl_nextnum%>.style.display = 'none';
 	myelement.style.display = '';
@@ -180,14 +187,17 @@ function switchLayer(layername)
 	<td valign="top">
 	
 <img id="placeholder" name="placeholder" src="<%$wwwroot%>img/spacer.gif" width="1" height="1">
-<div id="list" name="list" style="visibility:visible">
+<%section name=divbgcat loop=$tpl_barguestcat%>
+<div id="list<%$tpl_barguestcat[divbgcat].barguestcatid%>" name="list<%$tpl_barguestcat[divbgcat].barguestcatid%>" style="visibility:visible">
 	<table width="98%" border="0" cellspacing="0" cellpadding="0" class="Box" align="center">
 		 <tr>
 		   <td class="White">&nbsp;</td>
 		   <td align="right" class="White">
 		       <table border="0" cellspacing="0" cellpadding="0">
 		         <tr>
-		           <td class="NavActive"><a href="javascript:switchLayer('list');" class="NavActive">Gastliste</a></td>
+				   <%section name=bgcat loop=$tpl_barguestcat%>
+		           <td class="<%if $tpl_barguestcat[divbgcat].barguestcatid eq $tpl_barguestcat[bgcat].barguestcatid%>NavActive<%else%>NavInactive<%/if%>"><a href="javascript:switchLayer('list<%$tpl_barguestcat[bgcat].barguestcatid%>');" class="<%if $tpl_barguestcat[divbgcat].barguestcatid eq $tpl_barguestcat[bgcat].barguestcatid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_barguestcat[bgcat].barguestcat%></a></td>
+				   <%/section%>
 				   <%section name=cat loop=$tpl_cat%>
 		           <td class="NavInactive"><a href="javascript:switchLayer('verkauf<%$tpl_cat[cat].articlecatid%>');InitializeTimer();" class="NavInactive"><%$tpl_cat[cat].articlecat%></a></td>
 				   <%/section%>
@@ -205,28 +215,28 @@ function switchLayer(layername)
 		  <tr>
 		    <td class="BoxLeft"><img src="<%$wwwroot%>img/spacer.gif" width="1" height="1"></td>
 		    <td width="100%">	
-			<p class="SubheadlineYellow">Gastliste</p>	
+			<p class="SubheadlineYellow"><%$tpl_barguestcat[divbgcat].barguestcat%></p>	
            <table border="0" cellspacing="0" cellpadding="0" valign="top" width="500" align="center">
              <tr>
 			 	<td valign="top" class="NavInactive" colspan="9"><a href="javascript:openWindow();" class="NavInactive">neuer Gast</a><%if $tpl_import%>&nbsp;&nbsp;<a href="javascript:openImport();" class="NavInactive">ZVS Import</a><%/if%></td>
 			 </tr>
-			   <%section name=guest loop=$tpl_barguests%>
+			   <%section name=guest loop=$tpl_barguestcat[divbgcat].guests%>
 	
-				 <%if $tpl_barguests[guest].newline eq 'true'%>		   
+				 <%if $tpl_barguestcat[divbgcat].guests[guest].newline eq 'true'%>		   
 			    	<tr>
 				 <%/if%>
-				 <%if $tpl_barguests[guest].guestid neq '0'%>
-  			 	<td class="colorchooser" bgcolor="<%$tpl_barguests[guest].groupcolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0"></td>					 
-  			 	<td class="colorchooser" bgcolor="<%$tpl_barguests[guest].bccolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0" alt="<%$tpl_barguests[guest].bookingcat%>"></td>
-			 	<td class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%><%if $tpl_barguests[guest].sum eq '0.00'%>zero<%else%>NavInactive<%/if%><%/if%>" nowrap="nowrap" width="250">
-					<a href="javascript:openedit(<%$tpl_barguests[guest].guestid%>);"><img src="<%$wwwroot%>img/editnav.png" width="14" height="14" border="0" alt="Bearbeiten"></a>&nbsp;
-				  	<a href="<%$wwwroot%><%if $tpl_nav eq "sell"%>index.php<%else%>kassa.php<%/if%>/guestid.<%$tpl_barguests[guest].guestid%>/index.php" class="<%if $tpl_barguests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_barguests[guest].firstname%>&nbsp;<%$tpl_barguests[guest].lastname%>&nbsp;(<%$tpl_barguests[guest].sum%>&nbsp;EUR)</a>
+				 <%if $tpl_barguestcat[divbgcat].guests[guest].guestid neq '0'%>
+  			 	<td class="colorchooser" bgcolor="<%$tpl_barguestcat[divbgcat].guests[guest].groupcolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0"></td>					 
+  			 	<td class="colorchooser" bgcolor="<%$tpl_barguestcat[divbgcat].guests[guest].bccolor%>"><img src="<%$wwwroot%>img/spacer.gif" width="10" height="10" border="0" alt="<%$tpl_barguestcat[divbgcat].guests[guest].bookingcat%>"></td>
+			 	<td class="<%if $tpl_barguestcat[divbgcat].guests[guest].guestid eq $tpl_theguestid%>NavActive<%else%><%if $tpl_barguestcat[divbgcat].guests[guest].sum eq '0.00'%>zero<%else%>NavInactive<%/if%><%/if%>" nowrap="nowrap" width="250">
+					<a href="javascript:openedit(<%$tpl_barguestcat[divbgcat].guests[guest].guestid%>);"><img src="<%$wwwroot%>img/editnav.png" width="14" height="14" border="0" alt="Bearbeiten"></a>&nbsp;
+				  	<a href="<%$wwwroot%><%if $tpl_nav eq "sell"%>index.php<%else%>kassa.php<%/if%>/guestid.<%$tpl_barguestcat[divbgcat].guests[guest].guestid%>/index.php" class="<%if $tpl_barguestcat[divbgcat].guests[guest].guestid eq $tpl_theguestid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_barguestcat[divbgcat].guests[guest].firstname%>&nbsp;<%$tpl_barguestcat[divbgcat].guests[guest].lastname%>&nbsp;(<%$tpl_barguestcat[divbgcat].guests[guest].sum%>&nbsp;EUR)</a>
 
 			   	</td>
 				<%else%>
 				<td class="NavInactive" colspan="3">&nbsp;</td>
 				<%/if%>
-				<%if $tpl_barguests[guest].endline eq 'true'%>		   
+				<%if $tpl_barguestcat[divbgcat].guests[guest].endline eq 'true'%>		   
 			    	</tr>
 				 <%/if%>
 			
@@ -245,6 +255,9 @@ function switchLayer(layername)
 		  </tr>			  
 	</table>
 </div>
+<%/section%>
+
+
  <%section name=divcat loop=$tpl_cat%>
 <div id="verkauf<%$tpl_cat[divcat].articlecatid%>" name="verkauf<%$tpl_cat[divcat].articlecatid%>" style="visibility:visible">	
 
@@ -254,7 +267,9 @@ function switchLayer(layername)
 		   <td align="right" class="White">
 		       <table border="0" cellspacing="0" cellpadding="0">
 		         <tr>
-		           <td class="NavInactive"><a href="javascript:switchLayer('list');" class="NavInactive">Gastliste</a></td>
+				   <%section name=bgcat loop=$tpl_barguestcat%>
+		           <td class="NavInactive"><a href="javascript:switchLayer('list<%$tpl_barguestcat[bgcat].barguestcatid%>');" class="NavInactive"><%$tpl_barguestcat[bgcat].barguestcat%></a></td>
+				   <%/section%>				 
 		           <%section name=cat loop=$tpl_cat%>
 		           <td class="<%if $tpl_cat[divcat].articlecatid eq $tpl_cat[cat].articlecatid%>NavActive<%else%>NavInactive<%/if%>"><a href="javascript:switchLayer('verkauf<%$tpl_cat[cat].articlecatid%>');InitializeTimer();" class="<%if $tpl_cat[divcat].articlecatid eq $tpl_cat[cat].articlecatid%>NavActive<%else%>NavInactive<%/if%>"><%$tpl_cat[cat].articlecat%></a></td>
 				   <%/section%>
@@ -329,7 +344,9 @@ function switchLayer(layername)
 		   <td align="right" class="White">
 		       <table border="0" cellspacing="0" cellpadding="0">
 		         <tr>
-		           <td class="NavInactive"><a href="javascript:switchLayer('list');" class="NavInactive">Gastliste</a></td>
+				   <%section name=bgcat loop=$tpl_barguestcat%>
+		           <td class="NavInactive"><a href="javascript:switchLayer('list<%$tpl_barguestcat[bgcat].barguestcatid%>');" class="NavInactive"><%$tpl_barguestcat[bgcat].barguestcat%></a></td>
+				   <%/section%>		
 		           <%section name=cat loop=$tpl_cat%>
 		           <td class="NavInactive"><a href="javascript:switchLayer('verkauf<%$tpl_cat[cat].articlecatid%>');InitializeTimer();" class="NavInactive"><%$tpl_cat[cat].articlecat%></a></td>
 				   <%/section%>
@@ -454,7 +471,7 @@ function switchLayer(layername)
 </table>
 <%/strip%>
 <script language="JavaScript">
-<%if $tpl_theguestid neq "-1"%>switchLayer('<%$tpl_thecat%>');<%else%>switchLayer('list');<%/if%>
+<%if $tpl_theguestid neq "-1"%>switchLayer('<%$tpl_thecat%>');<%else%>switchLayer('list<%$tpl_barguestcat[0].barguestcatid%>');<%/if%>
 <%strip%>
 </script>
 <%include file=footer.tpl%>

@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: barguestclass.inc.php,v 1.7 2006/02/17 14:57:57 ehret Exp $
+* @version $Id: barguestclass.inc.php,v 1.8 2006/02/17 17:31:26 ehret Exp $
 */
 class Barguest {
     /**
@@ -89,7 +89,7 @@ class Barguest {
 
         $guest = array();
         $query = "SELECT bg.pk_barguest_id, bg.firstname, bg.lastname,
-						 bc.bookingcat, bc.color, bg.groupcolor
+						 bc.bookingcat, bc.color, bg.groupcolor, bg.fk_barguestcat_id
 		                 FROM $tbl_barguest bg
 						 LEFT JOIN $tbl_bookingcat bc ON bg.fk_bookingcat_id = bc.pk_bookingcat_id
 						 WHERE ISNULL(bg.deleted_date)
@@ -118,7 +118,8 @@ class Barguest {
                     'sum' => $this->getSum(MetabaseFetchResult($gDatabase2, $result, $row, 0)),
                     'bookingcat' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
                     'bccolor' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
-                    'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 5)
+                    'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
+                    'barguestcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 6)
                     );
             } while ($row % 3 !== 0) {
                 if (($row + 1) % 3 == 0) {
@@ -147,6 +148,84 @@ class Barguest {
         } 
         return $guest;
     } 
+    
+    /**
+    * Barguest::getallbycat()
+    * 
+    * This function returns all guests.
+    * 
+    * @return array guests
+    * @param integer $bgcatid barguest category id
+    * @access public 
+    * @since 2004-01-06
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function getallbycat($bgcatid)
+    {
+        global $gDatabase2, $tbl_barguest, $tbl_bookingcat, $request, $errorhandler, $namerows;
+
+        $guest = array();
+        $query = "SELECT bg.pk_barguest_id, bg.firstname, bg.lastname,
+						 bc.bookingcat, bc.color, bg.groupcolor, bg.fk_barguestcat_id
+		                 FROM $tbl_barguest bg
+						 LEFT JOIN $tbl_bookingcat bc ON bg.fk_bookingcat_id = bc.pk_bookingcat_id
+						 WHERE ISNULL(bg.deleted_date) AND bg.fk_barguestcat_id = $bgcatid
+						 ORDER BY bg.groupcolor, bg.lastname, bg.firstname  ";
+        $result = MetabaseQuery($gDatabase2, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Barguest::getall()', $query);
+        } else {
+            $row = 0;
+            for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase2, $result)) == 0; ++$row) {
+                if ($row % 3 == 0) {
+                    $newline = "true";
+                } else {
+                    $newline = "false";
+                } 
+                if (($row + 1) % 3 == 0) {
+                    $endline = "true";
+                } else {
+                    $endline = "false";
+                } 
+                $guest[$row] = array ('guestid' => MetabaseFetchResult($gDatabase2, $result, $row, 0),
+                    'firstname' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
+                    'lastname' => MetabaseFetchResult($gDatabase2, $result, $row, 2),
+                    'newline' => $newline,
+                    'endline' => $endline,
+                    'sum' => $this->getSum(MetabaseFetchResult($gDatabase2, $result, $row, 0)),
+                    'bookingcat' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
+                    'bccolor' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
+                    'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 5),
+                    'barguestcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 6)
+                    );
+            } while ($row % 3 !== 0) {
+                if (($row + 1) % 3 == 0) {
+                    $endline = "true";
+                } else {
+                    $endline = "false";
+                } 
+                $guest[$row] = array ('guestid' => "0",
+                    'firstname' => "",
+                    'lastname' => "",
+                    'newline' => "false",
+                    'endline' => $endline
+                    );
+                $row++;
+            } 
+            /*
+			while ($row % $namerows <> 0) {
+                $guest[$row] = array ('guestid' => "0",
+                    'firstname' => "",
+                    'lastname' => "",
+                    'newline' => "false"
+                    );
+                $row++;
+            } // while
+*/
+        } 
+        return $guest;
+    }     
+    
     /**
     * Barguest::getlist()
     * 
@@ -269,7 +348,7 @@ class Barguest {
     {
         global $gDatabase2, $tbl_barguest, $request, $errorhandler;
         $guestName = "";
-        $query = "SELECT firstname, lastname, fk_bookingcat_id, groupcolor
+        $query = "SELECT firstname, lastname, fk_bookingcat_id, groupcolor, fk_barguestcat_id
 		                 FROM $tbl_barguest
 						 WHERE pk_barguest_id = " . $guestid;
 
@@ -282,7 +361,8 @@ class Barguest {
             $guestName = array ('firstname' => MetabaseFetchResult($gDatabase2, $result, $row, 0),
                 'lastname' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
 				'bookingcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 2),
-				'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 3)
+				'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
+				'barguestcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 4)
                 );
         } 
         return $guestName;
@@ -336,15 +416,16 @@ class Barguest {
         $name = "zvs_pk_barguest_id";
         $sequence = MetabaseGetSequenceNextValue($gDatabase, $name, &$barguestid);
         $query = sprintf("INSERT INTO $tbl_barguest
-			                  (pk_barguest_id, fk_bookingcat_id, firstname, lastname, groupcolor, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
-							  VALUES (%s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
+			                  (pk_barguest_id, fk_bookingcat_id, firstname, lastname, groupcolor, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id, fk_barguestcat_id)
+							  VALUES (%s, %s, %s, %s, %s, NOW(), %s, NOW(), %s, %s )",
             $barguestid,
 			$request->GetVar('frm_bookingcat', 'post'),
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_firstname', 'post')),
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_lastname', 'post')),
 	    MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_gcolor', 'post')),
             $request->GetVar('uid', 'session'),
-            $request->GetVar('uid', 'session')
+            $request->GetVar('uid', 'session'),
+            $request->GetVar('frm_bgcat', 'post')
             );
 
         $result = MetabaseQuery($gDatabase, $query);
@@ -365,11 +446,12 @@ class Barguest {
     * @param string $lastname lastname
 		* @param integer $bookingcat booking category id
 		* @param string $gcolor group color
+		* @param integer $barguestcatid bar guest category id
     * @access public 
     * @since 2004-01-12
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function update($guestid, $firstname, $lastname, $bookingcat, $gcolor)
+    function update($guestid, $firstname, $lastname, $bookingcat, $gcolor, $barguestcatid)
     {
         global $gDatabase, $request, $tbl_barguest, $errorhandler;
 
@@ -379,13 +461,15 @@ class Barguest {
 							  fk_bookingcat_id = %s,
 							  updated_date = NOW(),
 							  fk_updated_user_id = %s,
-							  groupcolor = %s
+							  groupcolor = %s,
+							  fk_barguestcat_id = %s
 						 WHERE pk_barguest_id = %s",
             MetabaseGetTextFieldValue($gDatabase, $firstname),
             MetabaseGetTextFieldValue($gDatabase, $lastname),
 			$bookingcat,
             $request->GetVar('uid', 'session'),
             MetabaseGetTextFieldValue($gDatabase, $gcolor),
+            $barguestcatid,
             $guestid
             );
 

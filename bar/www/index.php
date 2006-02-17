@@ -37,6 +37,9 @@ include_once("../includes/default.inc.php");
 $auth->is_authenticated();
 include_once("barguestclass.inc.php");
 $barguest = new Barguest;
+include_once("barguestcatclass.inc.php");
+$cls_barguestcat = new barguestcat;
+
 $theguestid = -1;
 $theguest = "";
 $thebookingcat = "";
@@ -47,12 +50,19 @@ $statistics = New Statistics;
 include_once('articlecatclass.inc.php');
 $articlecat = New articlecat;
 
+$barguestcat = $cls_barguestcat->getall();
+
 $cats = $articlecat->getall();
+
+for ($i=0; $i< count($cats); $i++){
+	$cats[$i]['rownum'] = count($barguestcat) + $i;
+}
+
 
 for ($i=0; $i< count($cats); $i++){
   $selectedcats[$i] = $cats[$i]['articlecatid'];
 }
-$smarty->assign('tpl_nextnum', count($cats)+1);
+$smarty->assign('tpl_nextnum', count($cats)+count($barguestcat));
 
 $smarty->assign('tpl_showlast', 'false');
 
@@ -130,9 +140,16 @@ $smarty->assign('tpl_cat', $cats);
 $smarty->assign('tpl_thecat', $cat);
 $smarty->assign('tpl_selectedcat', $selectedcats);
 
+for ($i=0; $i < count($barguestcat); $i++) {
+	$barguestcat[$i]['guests'] = $barguest->getallbycat($barguestcat[$i]['barguestcatid']);
+}
+$smarty->assign('tpl_barguestcat', $barguestcat);
+
+/*
 $barguests = $barguest->getAll();
 
 $smarty->assign('tpl_barguests', $barguests);
+*/
 $smarty->assign('tpl_theguestid', $theguestid);
 $smarty->assign('tpl_thebookingcat', $thebookingcat);
 $smarty->assign('tpl_theguest', $theguest);
