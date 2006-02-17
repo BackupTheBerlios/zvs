@@ -29,6 +29,12 @@ function submit_onkeypress()
       check();
     }
 }
+
+    function openWindow(){
+    F1 = window.open('<%$wwwroot%>colorchooser.php','colorchooser','width=308,height=203,left=0,top=0');
+    F1.focus();
+    }
+    
 //-->
 </script>
 <%strip%>
@@ -48,6 +54,8 @@ function submit_onkeypress()
         <p class="SubheadlineYellow">Gast editieren</p>
 		<form name="addguest" id="addguest" method="post" action="<%$SCRIPT_NAME%>">
 		<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%$tpl_guestid%>">
+		<input type="hidden" name="frm_field" id="frm_field" value="frm_gcolor">
+		<input type="hidden" name="frm_form" id="frm_form" value="addguest">
 		<table border="0">
 			<tr>
 				<td><b>Vorname:</b></td>
@@ -65,6 +73,9 @@ function submit_onkeypress()
 					<%/section%>
 				    </select></td>
 			</tr>
+			<tr>
+				<td><b>Gruppenfarbe</b></td>
+				<td><input type="text" name="frm_gcolor" id="frm_gcolor" size="7" maxlength="7" value="<%$tpl_barguest.groupcolor%>"/><a href="javascript:openWindow();"><img src="<%$wwwroot%>img/button_colorchooser.gif" width="16" height="15" border="0"></a></td>
 			<tr>
 				<td colspan="2" align="right"><a href="javascript:check();"><img src="<%$wwwroot%>img/button_weiter.gif" width="73" height="24" border="0"></a></td>
 			</tr>		

@@ -26,7 +26,7 @@
 */
 
 /**
-* View "receipt" as HTML (for POS-Printer)
+* View "voucher" as HTML (for POS-Printer)
 * 
 * 
 * 11/19/2005 by Christian Ehret chris@uffbasse.de
@@ -57,7 +57,15 @@ if ($request->GetVar('frm_guestid', 'post') !== $request->undefined) {
     $theguestid = $request->GetVar('frm_guestid', 'post');
     $guestarticles = $kassacls->getBon($theguestid, $cats, $items);
 }
+/*
+for ($i=0; $i <= count($guestarticles); $i++) {
+	if (!in_array($guestarticles[$i]['boughtid'], $items) && $guestarticles[$i]['articleid'] !== 0) {
+	  unset($guestarticles[$i]);
+	}
+}
 
+$guestarticles = array_values($guestarticles);
+*/
 $sum = 0.00;
 $tax = array();
 for ($i=0; $i < count($guestarticles)-1; $i++) {
@@ -79,13 +87,13 @@ foreach ($tax as $key => $val) {
 }
 
 
-//$guestarticles[count($guestarticles)+1]['total'] = number_format($sum, 2, '.', '');
+//$guestarticles[$i]['total'] = number_format($sum, 2, '.', '');
 
 $smarty -> assign("tpl_logo", 'logo.gif');
 $smarty -> assign('tpl_name', $barguest->getName($theguestid));
 $smarty -> assign('tpl_date', date("d.m.Y"));
 $smarty -> assign("tpl_receipt", $guestarticles);
 $smarty -> assign ('tpl_tax', $tpl_tax);
-$smarty -> display('receipt_html.tpl');
+$smarty -> display('voucher.tpl');
 
 ?>

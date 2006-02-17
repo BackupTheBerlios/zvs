@@ -76,6 +76,7 @@ if ($request->GetVar('frm_articleid', 'post') !== $request->undefined) {
 if ($request->GetVar('guestid', 'get') !== $request->undefined) {
     $theguestid = $request->GetVar('guestid', 'get');
     $theguest = $barguest->getName($theguestid);
+    $thegroupcolor = $barguest->getGroupColor($theguestid);
 	$thebookingcat = $barguest->getBookingcat($theguestid);
     include_once("articleclass.inc.php");
     $articlecls = New Article;
@@ -91,9 +92,9 @@ if ($request->GetVar('guestid', 'get') !== $request->undefined) {
         $payids = $request->getVar('payid', 'post');
         for ($i = 0; $i < count($payids); ++$i) {
             $kassacls->pay($payids[$i]);
+        } 
 			$cat = "abrechnung";
 			$selectedcats = $request->GetVar('frm_selectedcat','post');
-        } 
         if ($request->GetVar('frm_setinactive', 'post') == "true") {
             $kassacls->checkout($theguestid, $request->GetVar('frm_setinactive', 'post'));
         } 
@@ -103,6 +104,14 @@ if ($request->GetVar('guestid', 'get') !== $request->undefined) {
         $kassacls->storno($request->GetVar('frm_boughtid', 'post'));
 		$cat = "abrechnung";
     } 
+    if ($request->GetVar('frm_multiple_storno', 'post') == "true") {
+				$selectedcats = $request->GetVar('frm_selectedcat','post');
+		    $payids = $request->getVar('payid', 'post');
+        for ($i = 0; $i < count($payids); ++$i) {
+        	$kassacls->storno($payids[$i]);
+        }
+		$cat = "abrechnung";
+    }     
     if ($request->GetVar('frm_pay', 'post') == "true") {
 		$selectedcats = $request->GetVar('frm_selectedcat','post');
         $kassacls->pay($request->GetVar('frm_boughtid', 'post'));
@@ -127,6 +136,7 @@ $smarty->assign('tpl_barguests', $barguests);
 $smarty->assign('tpl_theguestid', $theguestid);
 $smarty->assign('tpl_thebookingcat', $thebookingcat);
 $smarty->assign('tpl_theguest', $theguest);
+$smarty->assign('tpl_thegroupcolor', $thegroupcolor);
 
 $smarty->assign("tpl_title", "ZVS Barinterface");
 $smarty->assign("tpl_nav", "sell");

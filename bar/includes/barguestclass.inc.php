@@ -34,7 +34,7 @@
 * 
 * @since 2004-01-06
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: barguestclass.inc.php,v 1.6 2004/12/14 18:58:59 ehret Exp $
+* @version $Id: barguestclass.inc.php,v 1.7 2006/02/17 14:57:57 ehret Exp $
 */
 class Barguest {
     /**
@@ -89,11 +89,11 @@ class Barguest {
 
         $guest = array();
         $query = "SELECT bg.pk_barguest_id, bg.firstname, bg.lastname,
-						 bc.bookingcat, bc.color
+						 bc.bookingcat, bc.color, bg.groupcolor
 		                 FROM $tbl_barguest bg
 						 LEFT JOIN $tbl_bookingcat bc ON bg.fk_bookingcat_id = bc.pk_bookingcat_id
 						 WHERE ISNULL(bg.deleted_date)
-						 ORDER BY bg.lastname, bg.firstname  ";
+						 ORDER BY bg.groupcolor, bg.lastname, bg.firstname  ";
         $result = MetabaseQuery($gDatabase2, $query);
         if (!$result) {
             $errorhandler->display('SQL', 'Barguest::getall()', $query);
@@ -117,7 +117,8 @@ class Barguest {
                     'endline' => $endline,
                     'sum' => $this->getSum(MetabaseFetchResult($gDatabase2, $result, $row, 0)),
                     'bookingcat' => MetabaseFetchResult($gDatabase2, $result, $row, 3),
-                    'bccolor' => MetabaseFetchResult($gDatabase2, $result, $row, 4)
+                    'bccolor' => MetabaseFetchResult($gDatabase2, $result, $row, 4),
+                    'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 5)
                     );
             } while ($row % 3 !== 0) {
                 if (($row + 1) % 3 == 0) {
@@ -268,7 +269,7 @@ class Barguest {
     {
         global $gDatabase2, $tbl_barguest, $request, $errorhandler;
         $guestName = "";
-        $query = "SELECT firstname, lastname, fk_bookingcat_id
+        $query = "SELECT firstname, lastname, fk_bookingcat_id, groupcolor
 		                 FROM $tbl_barguest
 						 WHERE pk_barguest_id = " . $guestid;
 
@@ -280,10 +281,42 @@ class Barguest {
             $guestName = array();
             $guestName = array ('firstname' => MetabaseFetchResult($gDatabase2, $result, $row, 0),
                 'lastname' => MetabaseFetchResult($gDatabase2, $result, $row, 1),
-				'bookingcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 2)
+				'bookingcatid' => MetabaseFetchResult($gDatabase2, $result, $row, 2),
+				'groupcolor' => MetabaseFetchResult($gDatabase2, $result, $row, 3)
                 );
         } 
         return $guestName;
+    } 
+
+
+
+    /**
+    * Barguest::getGroupColor()
+    * 
+    * This function returns the group color of a guest.
+    * 
+    * @param  $guestid guest id
+    * @return string group color
+    * @access public 
+    * @since 2006-02-10
+    * @author Christian Ehret <chris@uffbasse.de> 
+    */
+    function getGroupColor($guestid)
+    {
+        global $gDatabase2, $tbl_barguest, $request, $errorhandler;
+        $guestName = "";
+        $query = "SELECT groupcolor
+		                 FROM $tbl_barguest
+						 WHERE pk_barguest_id = " . $guestid;
+
+        $result = MetabaseQuery($gDatabase2, $query);
+        if (!$result) {
+            $errorhandler->display('SQL', 'Barguest::getName()', $query);
+        } else {
+            $row = 0;
+            $groupColor = MetabaseFetchResult($gDatabase2, $result, $row, 0);
+        } 
+        return $groupColor;
     } 
 
     /**
@@ -303,12 +336,13 @@ class Barguest {
         $name = "zvs_pk_barguest_id";
         $sequence = MetabaseGetSequenceNextValue($gDatabase, $name, &$barguestid);
         $query = sprintf("INSERT INTO $tbl_barguest
-			                  (pk_barguest_id, fk_bookingcat_id, firstname, lastname, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
-							  VALUES (%s, %s, %s, %s,  NOW(), %s, NOW(), %s )",
+			                  (pk_barguest_id, fk_bookingcat_id, firstname, lastname, groupcolor, inserted_date, fk_inserted_user_id, updated_date, fk_updated_user_id)
+							  VALUES (%s, %s, %s, %s, %s, NOW(), %s, NOW(), %s )",
             $barguestid,
 			$request->GetVar('frm_bookingcat', 'post'),
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_firstname', 'post')),
             MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_lastname', 'post')),
+	    MetabaseGetTextFieldValue($gDatabase, $request->GetVar('frm_gcolor', 'post')),
             $request->GetVar('uid', 'session'),
             $request->GetVar('uid', 'session')
             );
@@ -329,12 +363,13 @@ class Barguest {
     * @param number $guestid guest id
     * @param string $firstname firstname
     * @param string $lastname lastname
-	* @param integer $bookingcat booking category id
+		* @param integer $bookingcat booking category id
+		* @param string $gcolor group color
     * @access public 
     * @since 2004-01-12
     * @author Christian Ehret <chris@uffbasse.de> 
     */
-    function update($guestid, $firstname, $lastname, $bookingcat)
+    function update($guestid, $firstname, $lastname, $bookingcat, $gcolor)
     {
         global $gDatabase, $request, $tbl_barguest, $errorhandler;
 
@@ -343,12 +378,14 @@ class Barguest {
 						      lastname = %s,
 							  fk_bookingcat_id = %s,
 							  updated_date = NOW(),
-							  fk_updated_user_id = %s
+							  fk_updated_user_id = %s,
+							  groupcolor = %s
 						 WHERE pk_barguest_id = %s",
             MetabaseGetTextFieldValue($gDatabase, $firstname),
             MetabaseGetTextFieldValue($gDatabase, $lastname),
 			$bookingcat,
             $request->GetVar('uid', 'session'),
+            MetabaseGetTextFieldValue($gDatabase, $gcolor),
             $guestid
             );
 
