@@ -95,6 +95,7 @@
              <tr>
                <td valign="top" class="<%if $tpl_subnav eq "editarticle"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>editarticle.php" class="<%if $tpl_subnav eq "editarticle"%>NavActive<%else%>NavInactive<%/if%>">Artikel verwalten</a></td>
 			   <td valign="top" class="<%if $tpl_subnav eq "editarticlecat"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>editarticlecat.php" class="<%if $tpl_subnav eq "editarticlecat"%>NavActive<%else%>NavInactive<%/if%>">Artikelkategorien verwalten</a></td>
+			   <td valign="top" class="<%if $tpl_subnav eq "editbarguestcat"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>editbarguestcat.php" class="<%if $tpl_subnav eq "editbarguestcat"%>NavActive<%else%>NavInactive<%/if%>">Bargästekategorien verwalten</a></td>
                <td valign="top" class="<%if $tpl_subnav eq "edituser"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>edituser.php" class="<%if $tpl_subnav eq "edituser"%>NavActive<%else%>NavInactive<%/if%>">Benutzer verwalten</a></td>
 			   <td valign="top" class="<%if $tpl_subnav eq "backup"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>database.php" class="<%if $tpl_subnav eq "backup"%>NavActive<%else%>NavInactive<%/if%>">Datensicherung</a></td>
 			   <td valign="top" class="<%if $tpl_subnav eq "archive"%>NavActive<%else%>NavInactive<%/if%>"><a href="<%$wwwroot%>archivedb.php" class="<%if $tpl_subnav eq "archive"%>NavActive<%else%>NavInactive<%/if%>">Archivieren</a></td>			   

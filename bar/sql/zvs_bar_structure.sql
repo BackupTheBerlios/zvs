@@ -1,4 +1,4 @@
-
+SET FOREIGN_KEY_CHECKS = 0;
 # --------------------------------------------------------
 
 #
@@ -63,6 +63,20 @@ CREATE TABLE _sequence_zvs_pk_period_id (
 #
 DROP TABLE IF EXISTS _sequence_zvs_pk_barbookingcat_id;
 CREATE TABLE _sequence_zvs_pk_barbookingcat_id (
+  sequence                   INT(11)             NOT NULL AUTO_INCREMENT,
+
+  PRIMARY KEY  (sequence)
+
+) TYPE=InnoDB CHECKSUM = 1;
+
+
+
+# --------------------------------------------------------
+#
+# TABLE structure for TABLE _sequence_zvs_pk_barguestcat_id
+#
+DROP TABLE IF EXISTS _sequence_zvs_pk_barguestcat_id;
+CREATE TABLE _sequence_zvs_pk_barguestcat_id (
   sequence                   INT(11)             NOT NULL AUTO_INCREMENT,
 
   PRIMARY KEY  (sequence)
@@ -187,6 +201,41 @@ CREATE TABLE zvs_bookingcat (
 ) TYPE=InnoDB CHECKSUM = 1;
 
 
+
+
+# --------------------------------------------------------
+#
+# TABLE structure for TABLE zvs_barguestcat
+#
+DROP TABLE IF EXISTS zvs_barguestcat;
+CREATE TABLE zvs_barguestcat (
+  pk_barguestcat_id           INT(11)             NOT NULL,
+  barguestcat                 VARCHAR(80)         NOT NULL,
+  inserted_date              DATETIME            NOT NULL,
+  fk_inserted_user_id        INT(11)             NOT NULL,
+  updated_date datetime default NULL,
+  fk_updated_user_id int(11) default NULL,
+  deleted_date datetime default NULL,
+  fk_deleted_user_id int(11) default NULL,
+
+  PRIMARY KEY  (pk_barguestcat_id),
+
+  UNIQUE KEY                 barguestcat                                   (barguestcat),
+  
+  KEY idx_fk_inserted_user_id (fk_inserted_user_id),
+  KEY idx_fk_updated_user_id (fk_updated_user_id),
+  KEY idx_fk_deleted_user_id (fk_deleted_user_id),    
+    
+  FOREIGN KEY                (fk_inserted_user_id) references zvs_system_bar.zvs_user        (pk_user_id),
+  FOREIGN KEY (fk_updated_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id),
+  FOREIGN KEY (fk_deleted_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id)
+
+) TYPE=InnoDB CHECKSUM = 1;
+
+
+
+
+
 # --------------------------------------------------------
 
 #
@@ -197,6 +246,7 @@ CREATE TABLE zvs_barguest (
   pk_barguest_id int(11) NOT NULL default '0',
   fk_zvsguest_id INT(11) default NULL,
   fk_bookingcat_id INT(11) NOT NULL default '0',
+  fk_barguestcat_id INT(11) NOT NULL default '1',
   firstname varchar(50) default NULL,
   lastname varchar(50) NOT NULL default '',
   inserted_date datetime NOT NULL default '0000-00-00 00:00:00',
@@ -211,10 +261,12 @@ CREATE TABLE zvs_barguest (
   KEY idx_fk_deleted_user_id (fk_deleted_user_id),
   KEY idx_fk_zvsguest_id (fk_zvsguest_id),
   KEY idx_fk_bookingcat_id (fk_bookingcat_id),
+  KEY idx_fk_barguestcat_id (fk_barguestcat_id),
   FOREIGN KEY (fk_inserted_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id),
   FOREIGN KEY (fk_updated_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id),
   FOREIGN KEY (fk_deleted_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id),
-  FOREIGN KEY (fk_bookingcat_id) REFERENCES zvs_barbookingcat (pk_bookingcat_id)
+  FOREIGN KEY (fk_bookingcat_id) REFERENCES zvs_barbookingcat (pk_bookingcat_id),
+  FOREIGN KEY (fk_barguestcat_id) REFERENCES zvs_barguestcat (pk_barguestcat_id)
 ) TYPE=InnoDB CHECKSUM=1;
 
 # --------------------------------------------------------
@@ -246,3 +298,4 @@ CREATE TABLE zvs_bought (
   FOREIGN KEY (fk_updated_user_id) REFERENCES zvs_system_bar.zvs_user (pk_user_id)
 ) TYPE=InnoDB CHECKSUM=1;
 
+SET FOREIGN_KEY_CHECKS = 1;

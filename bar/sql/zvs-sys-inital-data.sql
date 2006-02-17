@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS = 0;
 #
 # Dumping data for TABLE zvs_salutation
 #
@@ -35,13 +36,13 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AR', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AM', 'Armenien', 'ARMENIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AW', 'Aruba', 'ARUBA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AU', 'Australien', 'AUSTRALIA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AT', 'Österreich', 'AUSTRIA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AT', 'Ã–sterreich', 'AUSTRIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AZ', 'Aserbaidschan', 'AZERBAIJAN');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BS', 'Bahamas', 'BAHAMAS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BH', 'Bahrain', 'BAHRAIN');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BD', 'Bangladesh', 'BANGLADESH');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BB', 'Barbados', 'BARBADOS');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BY', 'Weißrussland', 'BELARUS');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BY', 'WeiÃŸrussland', 'BELARUS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BE', 'Belgien', 'BELGIUM');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BZ', 'Belize', 'BELIZE');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('BJ', 'Benin', 'BENIN');
@@ -79,25 +80,25 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('HR', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('CU', 'Kuba', 'CUBA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('CY', 'Zypern', 'CYPRUS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('CZ', 'Tschechische Republik', 'CZECH REPUBLIC');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DK', 'Dänemark', 'DENMARK');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DK', 'DÃ¤nemark', 'DENMARK');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DJ', 'Djibouti', 'DJIBOUTI');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DM', 'Dominica', 'DOMINICA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DO', 'Dominican Republic', 'DOMINICAN REPUBLIC');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TP', 'Ost Timor', 'EAST TIMOR');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('EC', 'Ecuador', 'ECUADOR');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('EG', 'Ägypten', 'EGYPT');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('EG', 'Ã„gypten', 'EGYPT');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SV', 'El Salvador', 'EL SALVADOR');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GQ', 'Equatorial Guinea', 'EQUATORIAL GUINEA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ER', 'Eritrea', 'ERITREA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('EE', 'Estland', 'ESTONIA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ET', 'Äthiopien', 'ETHIOPIA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ET', 'Ã„thiopien', 'ETHIOPIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('FK', 'Falkland Inseln', 'FALKLAND ISLANDS (MALVINAS)');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('FO', 'Faroe Islands', 'FAROE ISLANDS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('FJ', 'Fidschi', 'FIJI');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('FI', 'Finnland', 'FINLAND');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('FR', 'Frankreich', 'FRANCE');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GF', 'Französisch Guinea', 'FRENCH GUIANA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('PF', 'Französisch Polynesien', 'FRENCH POLYNESIA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GF', 'FranzÃ¶sisch Guinea', 'FRENCH GUIANA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('PF', 'FranzÃ¶sisch Polynesien', 'FRENCH POLYNESIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TF', 'French Southern Territories', 'FRENCH SOUTHERN TERRITORIES');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GA', 'Gabon', 'GABON');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GM', 'Gambia', 'GAMBIA');
@@ -106,7 +107,7 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('DE', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GH', 'Ghana', 'GHANA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GI', 'Gibraltar', 'GIBRALTAR');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GR', 'Griechenland', 'GREECE');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GL', 'Grönland', 'GREENLAND');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GL', 'GrÃ¶nland', 'GREENLAND');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GD', 'Grenada', 'GRENADA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GP', 'Guadeloupe', 'GUADELOUPE');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GU', 'Guam', 'GUAM');
@@ -173,7 +174,7 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NA', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NR', 'Nauru', 'NAURU');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NP', 'Nepal', 'NEPAL');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NL', 'Niederlande', 'NETHERLANDS');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AN', 'Niederländische Antillen', 'NETHERLANDS ANTILLES');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AN', 'NiederlÃ¤ndische Antillen', 'NETHERLANDS ANTILLES');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NC', 'Neu Kaledonien', 'NEW CALEDONIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NZ', 'Neuseeland', 'NEW ZEALAND');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('NI', 'Nikaragua', 'NICARAGUA');
@@ -198,8 +199,8 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('PT', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('PR', 'Puerto Rico', 'PUERTO RICO');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('QA', 'Katar', 'QATAR');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RE', 'Reunion', 'REUNION');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RO', 'Rumänien', 'ROMANIA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RU', 'Russische Föderation', 'RUSSIAN FEDERATION');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RO', 'RumÃ¤nien', 'ROMANIA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RU', 'Russische FÃ¶deration', 'RUSSIAN FEDERATION');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('RW', 'Ruanda', 'RWANDA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SH', 'Sankt Helena', 'SAINT HELENA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('KN', 'Sankt Kitts und Nevis', 'SAINT KITTS AND NEVIS');
@@ -218,7 +219,7 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SK', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SI', 'Slowenien', 'SLOVENIA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SB', 'Solomon Islands', 'SOLOMON ISLANDS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('SO', 'Somalia', 'SOMALIA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ZA', 'Südafrika', 'SOUTH AFRICA');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ZA', 'SÃ¼dafrika', 'SOUTH AFRICA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GS', 'South Georgia and the South Sandwich Islands', 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ES', 'Spanien', 'SPAIN');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('LK', 'Sri Lanka', 'SRI LANKA');
@@ -238,14 +239,14 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TK', '
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TO', 'Tonga', 'TONGA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TT', 'Trinidad und Tobago', 'TRINIDAD AND TOBAGO');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TN', 'Tunesien', 'TUNISIA');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TR', 'Türkei', 'TURKEY');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TR', 'TÃ¼rkei', 'TURKEY');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TM', 'Turkmenistan', 'TURKMENISTAN');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TC', 'Turks und Caicos Islands', 'TURKS AND CAICOS ISLANDS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('TV', 'Tuvalu', 'TUVALU');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('UG', 'Uganda', 'UGANDA');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('UA', 'Ukraine', 'UKRAINE');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('AE', 'Vereinigte Arabische Emirate', 'UNITED ARAB EMIRATES');
-INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GB', 'Großbritannien', 'UNITED KINGDOM');
+INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('GB', 'GroÃŸbritannien', 'UNITED KINGDOM');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('US', 'USA', 'UNITED STATES');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('UM', 'United States Minor Outlying Islands', 'UNITED STATES MINOR OUTLYING ISLANDS');
 INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('UY', 'Uruguay', 'URUGUAY');
@@ -268,7 +269,7 @@ INSERT INTO zvs_country (pk_country_id, country_de, country_com) VALUES ('ZW', '
 # Dumping data for TABLE zvs_tax
 #
 INSERT INTO zvs_tax ( pk_tax_id , fk_country_id , tax , description ) VALUES ('1', 'DE', 'allgemeiner Mehrwertsteuersatz', 'allgemeiner Mehrwertsteuersatz');
-INSERT INTO zvs_tax ( pk_tax_id , fk_country_id , tax , description ) VALUES ('2', 'DE', 'ermäßigter Mehrwertsteuersatz', 'ermäßigter Mehrwertsteuersatz, z.B. für "außer Haus" Artikel');
+INSERT INTO zvs_tax ( pk_tax_id , fk_country_id , tax , description ) VALUES ('2', 'DE', 'ermÃ¤ÃŸigter Mehrwertsteuersatz', 'ermÃ¤ÃŸigter Mehrwertsteuersatz, z.B. fÃ¼r "auÃŸer Haus" Artikel');
 INSERT INTO zvs_tax ( pk_tax_id , fk_country_id , tax , description ) VALUES ('3', 'AT', 'allgemeiner Mehrwertsteuersatz', 'allgemeiner Mehrwertsteuersatz');
 INSERT INTO zvs_tax ( pk_tax_id , fk_country_id , tax , description ) VALUES ('4', 'IT', 'allgemeiner Mehrwertsteuersatz', 'allgemeiner Mehrwertsteuersatz');
 INSERT INTO _sequence_zvs_pk_tax_id (sequence) VALUES (4);
@@ -284,7 +285,7 @@ INSERT INTO zvs_tax_period (pk_tax_period_id, fk_tax_id, percentage, start_date,
 INSERT INTO _sequence_zvs_pk_tax_period_id (sequence) VALUES (4);
 
 #
-# Daten für Tabelle zvs_hotel
+# Daten fÃ¼r Tabelle zvs_hotel
 #
 INSERT INTO zvs_hotel (pk_hotel_id, hotel, hotel_code, description, database_schema) VALUES (1, 'ZVS', 'ZVS', NULL, 'zvs_hotel01');
 INSERT INTO _sequence_zvs_pk_hotel_id (sequence) VALUES (1);
@@ -308,23 +309,24 @@ INSERT INTO _sequence_zvs_pk_user_id (sequence) VALUES (2);
 # Dumping data for TABLE zvs_default
 #
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (1, 'hotel_name', 'Hotel Name', 'string', 'Hotelname', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (2, 'img_hotel_pdfimage', 'Bilddatei für PDFs', 'file', 'logopdf.png', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (3, 'hotel_street', 'Hotel Straße', 'string', 'Straße', NULL, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (2, 'img_hotel_pdfimage', 'Bilddatei fÃ¼r PDFs', 'file', 'logopdf.png', NULL, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (3, 'hotel_street', 'Hotel StraÃŸe', 'string', 'StraÃŸe', NULL, NULL, NULL, 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (4, 'hotel_zip', 'Hotel PLZ', 'int', NULL, 12345, NULL, NULL, 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (5, 'hotel_city', 'Hotel Ort', 'string', 'Ort', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (6, 'colorP', 'Farbe für abgerechnete Buchungen', 'color', '#0033CC', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (7, 'colorR', 'Farbe für Reservierungen', 'color', '#FFFF00', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (8, 'colorB', 'Farbe für Buchungen', 'color', '#339966', NULL, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (9, 'defaultreservationduration', 'Standardwert für die Haltbarkeit einer Reservierung in Tagen', 'string', NULL, 14, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (6, 'colorP', 'Farbe fÃ¼r abgerechnete Buchungen', 'color', '#0033CC', NULL, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (7, 'colorR', 'Farbe fÃ¼r Reservierungen', 'color', '#FFFF00', NULL, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (8, 'colorB', 'Farbe fÃ¼r Buchungen', 'color', '#339966', NULL, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (9, 'defaultreservationduration', 'Standardwert fÃ¼r die Haltbarkeit einer Reservierung in Tagen', 'string', NULL, 14, NULL, NULL, 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (10, 'hotel_webpage', 'Hotel Webseite', 'string', 'http://www.hotel.de', NULL, '2003-08-04 20:38:39', NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (11, 'vcard_version', 'VCard Version (\'2\' für 2.1 oder \'3\' für 3.0)', 'int', NULL, 2, NULL, NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (12, 'length_short_stay', 'Anzahl der Tage für Kurzaufenthalt', 'int', NULL , '3', '2004-02-22 14:33:00', NULL , 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (13, 'mwst_room', 'MwSt.-Satz für Zimmer', 'int', NULL , '10.00', '2004-02-23 21:10:44', NULL , 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (11, 'vcard_version', 'VCard Version (\'2\' fÃ¼r 2.1 oder \'3\' fÃ¼r 3.0)', 'int', NULL, 2, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (12, 'length_short_stay', 'Anzahl der Tage fÃ¼r Kurzaufenthalt', 'int', NULL , '3', '2004-02-22 14:33:00', NULL , 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (13, 'mwst_room', 'MwSt.-Satz fÃ¼r Zimmer', 'int', NULL , '10.00', '2004-02-23 21:10:44', NULL , 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (14, 'children1', 'Kinder1', 'string', 'Kinder bis 3' , NULL, '2004-02-23 21:10:44', NULL , 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (15, 'children2', 'Kinder2', 'string', 'Kinder bis 12' , NULL, '2004-02-23 21:10:44', NULL , 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (16, 'children3', 'Kinder3', 'string', 'Kinder bis 16' , NULL, '2004-02-23 21:10:44', NULL , 'Y');
 INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (17, 'hotel_email', 'Hotel eMail', 'string', 'wiesenhof@tirol.com', NULL, '2004-07-10 20:23:53', NULL, 'Y');
-INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (18, 'birthday_days', 'Anzahl der Tage für Geburtstagserinnerung', 'int', NULL, 5, NULL, NULL, 'Y');
+INSERT INTO zvs_default (pk_default_id, default_name, description, fieldtype, string_value, integer_value, datetime_value, boolean_value, editable) VALUES (18, 'birthday_days', 'Anzahl der Tage fÃ¼r Geburtstagserinnerung', 'int', NULL, 5, NULL, NULL, 'Y');
 INSERT INTO _sequence_zvs_pk_default_id (sequence) VALUES (18);
 
 INSERT INTO zvs_barbookingcat (pk_bookingcat_id, fk_zvsbookingcat_id, bookingcat, color, inserted_date, fk_inserted_user_id) VALUES (0, 0, 'nicht zugeordnet', '#FFFFFF', NOW(), 1);
+SET FOREIGN_KEY_CHECKS = 1;

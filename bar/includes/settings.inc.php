@@ -109,7 +109,7 @@ if ($error != '') {
 function setHotelDB()
 {
     global $errorhandler, $gDatasource, $gDatabase, $request, $tbl_bookingcat;
-    global $tbl_bararticle, $tbl_barguest, $tbl_bought, $tbl_bararticlecat, $tbl_period;
+    global $tbl_bararticle, $tbl_barguest, $tbl_bought, $tbl_bararticlecat, $tbl_period, $tbl_barguestcat;
 
     $hoteltable = $request->GetVar('schema', 'session') . "_bar";
 
@@ -129,6 +129,7 @@ function setHotelDB()
     $tbl_bararticlecat = $hoteltable . '.zvs_bararticlecat';
     $tbl_period = $hoteltable . '.zvs_period';
 	$tbl_bookingcat = $hoteltable . '.zvs_barbookingcat';
+	$tbl_barguestcat = $hoteltable . '.zvs_barguestcat';
 } 
 
 function setZVSHotelDB()

@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 # --------------------------------------------------------
 #
 # TABLE structure for TABLE _sequence_zvs_pk_hotel_id
@@ -266,7 +268,7 @@ CREATE TABLE zvs_group (
 
   PRIMARY KEY                (pk_group_id),
 
-  UNIQUE KEY                 fk_hotel_id_login                            (fk_hotel_id, login),
+  UNIQUE KEY                 name                          							  (fk_hotel_id, name),
 
   INDEX                      idx_fk_hotel_id                              (fk_hotel_id),
   INDEX                      idx_fk_inserted_user_id                      (fk_inserted_user_id),
@@ -461,3 +463,5 @@ CREATE TABLE zvs_hotel_default (
   FOREIGN KEY                (fk_deleted_user_id) references zvs_user     (pk_user_id)
 
 ) TYPE=InnoDB CHECKSUM = 1;
+
+SET FOREIGN_KEY_CHECKS = 1;
