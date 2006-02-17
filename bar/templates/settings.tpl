@@ -13,6 +13,8 @@
 		<a href="<%$wwwroot%>editarticle.php">Artikel verwalten</a>
 		<br>
 		<a href="<%$wwwroot%>editarticlecat.php">Artikelkategorien verwalten</a>
+		<br>
+		<a href="<%$wwwroot%>editbarguestcat.php">Bargästekategorien verwalten</a>		
 		<br>		
 		<a href="<%$wwwroot%>edituser.php">Benutzer verwalten</a>
 		<br>
