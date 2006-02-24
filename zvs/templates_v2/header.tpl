@@ -12,10 +12,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 	<meta name="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css" media="screen">@import "<%$wwwroot%>css/global_v2.css";</style>
-	<%if $tpl_type eq "editgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" || $tpl_type eq "roomcat"%>
+	<%if $tpl_type eq "showgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" || $tpl_type eq "roomcat"%>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
 	<%/if%>
-	<%if $tpl_type eq "editgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime"%>
+	<%if $tpl_type eq "showgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime"%>
 		<link href="<%$wwwroot%>css/dynCalendar.css" rel="stylesheet" type="text/css">
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/dynCalendar.js"></script>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/confirmleave.js"></script>
@@ -35,7 +35,7 @@
 	<%$tpl_ajaxjs%>
 </head>
 <%strip%>
-<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_subnav eq "hauptgast"%>switchLayer('add_private');<%/if%><%if $tpl_type eq "editgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "editgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
+<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_subnav eq "hauptgast"%>switchLayer('add_private');switchLayer2('<%if $tpl_editmode%>edit<%else%>show<%/if%>');<%/if%><%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
 
 	<div id="body">
 	  <div id="header">
@@ -68,7 +68,7 @@
           <%if $tpl_nav eq "gast"%>
 			<%if $tpl_gast.guestid neq ""%>
 			<ul>
-				<li <%if $tpl_subnav eq "hauptgast"%>class="current"<%/if%>><a href="<%$wwwroot%>editgast.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##MAIN_GUEST##</a><%if $tpl_gast.guestid neq ""%><span>|</span><%/if%></li>
+				<li <%if $tpl_subnav eq "hauptgast"%>class="current"<%/if%>><a href="<%$wwwroot%>guestdetail.php/edit.true<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##MAIN_GUEST##</a><%if $tpl_gast.guestid neq ""%><span>|</span><%/if%></li>
 				<li <%if $tpl_subnav eq "escort"%>class="current"<%/if%>><a href="<%$wwwroot%>showescort.php/guestid.<%$tpl_gast.guestid%>/type.edit">##ESCORTS##</a><span>|</span></li>
 				<li <%if $tpl_subnav eq "editinfo"%>class="current"<%/if%>><a href="<%$wwwroot%>editinfo.php/guestid.<%$tpl_gast.guestid%>">##NOTICE##</a><span>|</span></li>
 			    <li <%if $tpl_subnav eq "cat"%>class="current"<%/if%>><a href="<%$wwwroot%>editcat.php/guestid.<%$tpl_gast.guestid%>">##CATEGORIES##</a><span>|</span></li>
@@ -86,14 +86,25 @@
 			</ul>			
 			<%/if%>
 		  <%elseif $tpl_nav eq "showgast"%>
+		  <%if $tpl_gast.guestid neq ""%>
 			<ul>
-              <li <%if $tpl_subnav eq "hauptgast"%>class="current"<%/if%>><a href="<%$wwwroot%>showgast.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##MAIN_GUEST##</a><span>|</span></li>
+              <li <%if $tpl_subnav eq "hauptgast"%>class="current"<%/if%>><a href="<%$wwwroot%>guestdetail.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##MAIN_GUEST##</a><span>|</span></li>
             <li <%if $tpl_subnav eq "escort"%>class="current"<%/if%>><a href="<%$wwwroot%>showescort.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>/type.show">##ESCORTS##</a><span>|</span></li>
             <li <%if $tpl_subnav eq "showinfo"%>class="current"<%/if%>><a href="<%$wwwroot%>showinfo.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##NOTICE##</a><span>|</span></li>
             <li <%if $tpl_subnav eq "cat"%>class="current"<%/if%>><a href="<%$wwwroot%>showcat.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>">##CATEGORIES##</a><span>|</span></li>
             <li <%if $tpl_subnav eq "documents"%>class="current"<%/if%>><a href="<%$wwwroot%>showguestdocuments.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>/type.show">##DOCUMENTS##</a><span>|</span></li>
 	    	<li <%if $tpl_subnav eq "account"%>class="current"<%/if%>><a href="<%$wwwroot%>account.php<%if $tpl_gast.guestid neq ""%>/guestid.<%$tpl_gast.guestid%><%/if%>/type.show">##PAYMENT_ENTRY##</a></li>			   
 			</ul>	
+			<%else%>
+			<ul>
+				<li>##MAIN_GUEST##</a><span>|</span></li>
+				<li>##ESCORTS##</a><span>|</span></li>
+				<li>##NOTICE##</a><span>|</span></li>
+			    <li>##CATEGORIES##</a><span>|</span></li>
+				<li>##DOCUMENTS##</a><span>|</span></li>
+			    <li>##PAYMENT_ENTRY##</a></li>
+			</ul>			
+			<%/if%>			
 		  <%elseif $tpl_nav eq "lists"%>
 		    <ul>
 	         <li <%if $tpl_subnav eq "receipt"%>class="current"<%/if%>><a href="<%$wwwroot%>list_receipt.php">##BILLS##</a><span>|</span></li>

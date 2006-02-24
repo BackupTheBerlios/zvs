@@ -33,7 +33,7 @@
 				<td><%$tpl_guests[guest].birthday%></td>			
 				<td><%$tpl_guests[guest].lastname%>, <%$tpl_guests[guest].firstname%></td>		
 				<td><%$tpl_guests[guest].age%></td>	
-				<td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_guests[guest].guestid%>" class="dotted">##SHOW##</a>&nbsp;&raquo;</td>									
+				<td><a href="<%$wwwroot%>guestdetail.php/guestid.<%$tpl_guests[guest].guestid%>" class="dotted">##SHOW##</a>&nbsp;&raquo;</td>									
 			</tr>
 			<%sectionelse%>
 			<tr>

@@ -6,7 +6,7 @@
 	<p style="text-align: center;"><%if $tpl_numoldres > 0%><a href="javascript:openWindow2('<%$wwwroot%>oldreservations.php','reservation');"><span class="button"><%$tpl_numoldres%>&nbsp;<%if $tpl_numoldres > 1%>##EXPIRED_BOOKINGS##<%else%>##EXPIRED_BOOKING##<%/if%></span></a><%/if%></p>
         <table style="width:100%; border:0px;">
         <tr>
-          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" onmouseover="popup('##HOLE_MONTH_BACK##');" onmouseout="kill();"><img src="<%$wwwroot%>img/button_prev.png" style="border:0px; height:24px; width:28px;" alt="##HOLE_MONTH_BACK##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" onmouseover="popup('##HALF_MONTH_BACK##');" onmouseout="kill();"><img src="<%$wwwroot%>img/button_halfprev.png" style="border:0px; height:24px; width:28px;" alt="##HALF_MONTH_BACK##"></a></td>
+          <td><a href="<%$wwwroot%>index.php<%$tpl_prev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_prev.png" style="border:0px; height:24px; width:28px;" alt="##HOLE_MONTH_BACK##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_halfprev%>/direction.prev<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfprev.png" style="border:0px; height:24px; width:28px;" alt="##HALF_MONTH_BACK##"></a></td>
           <td align="center">
              <select name="month" id="month" onChange="javascript:document.choosedate.submit();">
                <option value="1" <%if $tpl_dropdownmonth eq "Januar"%>selected<%/if%>>##JANUARY##</option>
@@ -28,7 +28,7 @@
                <%/section%>
             </select>
           </td>
-          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" onmouseover="popup('##HALF_MONTH_NEXT##');" onmouseout="kill();"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="##HALF_MONTH_NEXT##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" onmouseover="popup('##HOLE_MONTH_NEXT##');" onmouseout="kill();"><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="##HOLE_MONTH_NEXT##"></a></td>
+          <td align="right"><a href="<%$wwwroot%>index.php<%$tpl_halfnext%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>"><img src="<%$wwwroot%>img/button_halfnext.png" border="0" height="24" width="28" alt="##HALF_MONTH_NEXT##"></a>&nbsp;<a href="<%$wwwroot%>index.php<%$tpl_next%>/direction.next<%if $tpl_view neq ""%>/view.<%$tpl_view%><%/if%>" ><img src="<%$wwwroot%>img/button_next.png" border="0" height="24" width="28" alt="##HOLE_MONTH_NEXT##"></a></td>
         </tr>
         </table>
 
@@ -41,18 +41,18 @@
           </tr>
         <%section name=room loop=$tpl_room%>
         <tr>
-           <td class="CalendarL<%$tpl_room[room].color%>Left" onmouseover="popup('<%$tpl_room[room].infotxt|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill()"><%$tpl_room[room].name%></td>
+           <td class="CalendarL<%$tpl_room[room].color%>Left" onmouseover="popup('<%$tpl_room[room].infotxt|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill()"><%$tpl_room[room].name%></td>
             <%section name=cal loop=$tpl_roomcal[room]%>
             <%if $tpl_roomcal[room][cal].firstday neq 'true' and $tpl_roomcal[room][cal].lastday neq 'true'%>
-                 <td colspan="2" class="<%if $tpl_roomcal[room][cal].color neq ""%>CalendarRoom<%$tpl_room[room].color%><%else%>CalendarL<%$tpl_room[room].color%><%/if%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" <%if $tpl_roomcal[room][cal].infotxt neq ""%>onmouseover="popup('<%$tpl_roomcal[room][cal].infotxt|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill();"<%/if%> <%if $tpl_roomcal[room][cal].infotxt eq ""%><%/if%>>&nbsp;</td>
+                 <td colspan="2" class="<%if $tpl_roomcal[room][cal].color neq ""%>CalendarRoom<%$tpl_room[room].color%><%else%>CalendarL<%$tpl_room[room].color%><%/if%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" <%if $tpl_roomcal[room][cal].infotxt neq ""%>onmouseover="popup('<%$tpl_roomcal[room][cal].infotxt|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill();"<%/if%> <%if $tpl_roomcal[room][cal].infotxt eq ""%><%/if%>>&nbsp;</td>
             <%else%>
                 <%if $tpl_roomcal[room][cal].lastday eq 'true'%>
-                     <td class="CalendarRoom<%$tpl_room[room].color%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].lastdaydata.bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].lastdaydata.color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].lastdaydata.bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].lastdaydata.bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].lastdaydata.bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" onmouseover="popup('<%$tpl_roomcal[room][cal].lastdaydata.infotxt|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill();">&nbsp;</td>
+                     <td class="CalendarRoom<%$tpl_room[room].color%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].lastdaydata.bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].lastdaydata.color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].lastdaydata.bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].lastdaydata.bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].lastdaydata.bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" onmouseover="popup('<%$tpl_roomcal[room][cal].lastdaydata.infotxt|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill();">&nbsp;</td>
                 <%else%>
                       <td class="CalendarL<%$tpl_room[room].color%>">&nbsp;</td>
                 <%/if%>
                 <%if $tpl_roomcal[room][cal].firstday eq 'true'%>
-                     <td class="CalendarRoom<%$tpl_room[room].color%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" onmouseover="popup('<%$tpl_roomcal[room][cal].infotxt|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill();">&nbsp;</td>
+                     <td class="CalendarRoom<%$tpl_room[room].color%>" style="background-color:<%if $tpl_view eq 'type'%><%$tpl_roomcal[room][cal].bookingtypecolor%><%else%><%$tpl_roomcal[room][cal].color%><%/if%>;" onclick="openWindow('<%$wwwroot%><%if $tpl_roomcal[room][cal].bookid neq ""%>editbook.php/bookid.<%$tpl_roomcal[room][cal].bookid%>/bookingdetailid.<%$tpl_roomcal[room][cal].bookingdetailid%><%else%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%><%/if%>');" onmouseover="popup('<%$tpl_roomcal[room][cal].infotxt|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill();">&nbsp;</td>
                 <%else%>
                      <td class="CalendarL<%$tpl_room[room].color%>" onclick="openWindow('<%$wwwroot%>book.php/start.<%$tpl_roomcal[room][cal].linkDate%>/room.<%$tpl_room[room].roomid%>');">&nbsp;</td>
                 <%/if%>
@@ -76,8 +76,8 @@
             <td>&nbsp;</td>
         <%else%>
             <%section name=bcat loop=$tpl_bcat%>
-            <td class="colorchooser" style="background-color:<%$tpl_bcat[bcat].catcolor%>;" onmouseover="popup('<%$tpl_bcat[bcat].description|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill()">&nbsp;</a></td>
-            <td <%if $tpl_bcat[bcat].description neq ""%> onmouseover="popup('<%$tpl_bcat[bcat].description|strip|escape:"html"%>','<%$wwwroot%>');" onmouseout="kill()"<%/if%>><%$tpl_bcat[bcat].name%></td>
+            <td class="colorchooser" style="background-color:<%$tpl_bcat[bcat].catcolor%>;" onmouseover="popup('<%$tpl_bcat[bcat].description|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill()">&nbsp;</a></td>
+            <td <%if $tpl_bcat[bcat].description neq ""%> onmouseover="popup('<%$tpl_bcat[bcat].description|strip|escape:"quotes"|replace:'"':'&#34;'%>','<%$wwwroot%>');" onmouseout="kill()"<%/if%>><%$tpl_bcat[bcat].name%></td>
             <td>&nbsp;</td>
             <%/section%>
         <%/if%>
