@@ -35,58 +35,22 @@
 */
 
 
-function searchGuestByLastName($lastname)
-{
-    global $gDatabase2, $tbl_guest, $errorhandler; 
-    $objResponse = new xajaxResponse();
-    $ret = "";
-    $query = "SELECT lastname, firstname FROM $tbl_guest WHERE lastname LIKE '$lastname%' AND ISNULL(deleted_date)";
-    $result = MetabaseQuery($gDatabase2, $query);
-    if (!$result) {
-        $errorhandler->display('SQL', 'guest.php.searchGuestByLastName()', $query);
-    } else {
-        for ($row = 0; ($eor = MetabaseEndOfResult($gDatabase2, $result)) == 0; ++$row) {
-/*
-            $ret .= '<div class="sr" onmouseover="gsc_mouseover(\'search-results\', \'fq\', 0)" onmouseout="gsc_mouseout(\'search-results\', 0)" onclick="gsc_mouseclick(\'search-results\', \'fq\', 0)">';
-			$ret .= '<span class="srt">'.MetabaseFetchResult($gDatabase2, $result, $row, 0).'</span>';
-			$ret .= '<span class="src">'.MetabaseFetchResult($gDatabase2, $result, $row, 1).'</span>';
-			$ret .= '</div>';
-
-*/
- 			$ret .= MetabaseFetchResult($gDatabase2, $result, $row, 0) .'<br/>';
-        } 
-    } 
-    $objResponse->addAssign("search-results", "innerHTML", $ret); 
-    return $objResponse->getXML();
-} 
-
-
 $smartyType = "www";
 include_once("../includes/default.inc.php");
 $auth -> is_authenticated();
 include_once('guestclass.inc.php');
 $guest = New Guest;
-
-require_once('searchguest.inc.php');
-$ajax = new SearchGuest();
-$ajax->handleRequest();
-
-/*
-$ajax->getSuggestions('aö', $arr);
-print '<pre>';
-print_r($arr);
-print '</pre>';
-*/
-$smarty->assign('tpl_ajaxjs', $ajax->loadJsCore(true));
-$smarty->assign('tpl_widgets', $ajax->attachWidgets(array('query'   => 'frm_lastname',
-                                       					  'results' => 'search-results')));
-$smarty->assign('tpl_loadapp', $ajax->loadJsApp(true));
-
 $smarty -> assign("tpl_title", "Gast bearbeiten/anlegen");
 $smarty -> assign('tpl_nav', 'gast');
+$smarty -> assign('tpl_type', 'guestsearch');
 
 if ($request -> GetVar('frm_firstname', 'post') !== $request -> undefined) {
     $guests = $guest -> easysearch($request -> GetVar('frm_firstname', 'post'), $request -> GetVar('frm_lastname', 'post'));
+    if (count($guests) == 1) {
+    	$url = $wwwroot . 'guestdetail.php/guestid.'.$guests[0]['guestid'].'/guestdetail.php';
+  		header("Location: $url");
+  		exit;  	
+    }
     $smarty -> assign('tpl_numresult', sizeof($guests));
     $smarty -> assign('tpl_isresult', 'true');
     $smarty -> assign('tpl_firstname', $request -> GetVar('frm_firstname', 'post'));
