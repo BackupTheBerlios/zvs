@@ -279,21 +279,21 @@ label.left{
 	text-align: left;
 }
 #search-results {
-	margin-top: -3px;
-   margin-left: 172px; 
-   display : none; 
-	position: absolute;
-	width: 251px; 
-	border: 1px dotted #000;
-	background: #FFFFFF;
-	float: left; 
-	z-index: 5000;
-	}
- * html div#search-results { 
- 		margin-top: -4px;	
-      margin-left: 0px;  
- 		width : 252px; 
-	} /* box model hack */ 
+ background: #FFFFFF;
+ border: 1px dotted #000000;
+}
+	
+#search-results li {
+	list-style: none; 
+	background: #ffffff; 
+	border-bottom: 1px solid #eee; 
+	padding: 2px;
+}
+
+#search-results li.selected {
+	background: #2E5DAF; 
+	color: #FFFFFF;
+}
 	
 a span.button {
 	border:1px solid;
@@ -517,7 +517,7 @@ table.mainaddress td {
 	border-top: 0px;
 	border-left: 0px;
 	border-right: 0px;
-	border-bottom: 1px dashed #666666 !important;
+	border-bottom: 1px dashed #E6E6E6 !important;
 	padding: 4px;
 	height: 22px;
 }
@@ -532,7 +532,7 @@ table.address td {
 	border-top: 0px;
 	border-left: 0px;
 	border-right: 0px;
-	border-bottom: 1px dashed #666666 !important;
+	border-bottom: 1px dashed #E6E6E6 !important;
 	padding: 4px;
 	height: 22px;
 }
