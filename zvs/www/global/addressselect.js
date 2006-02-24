@@ -27,71 +27,35 @@
 * Javascript functions to switch between the several address types
 * 
 * @since 2003-09-17
-* @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: addressselect.js,v 1.2 2006/02/24 01:47:56 ehret Exp $
+* @author Christian Ehret <chris@ehret.name> 
+* @version $Id: addressselect.js,v 1.3 2006/02/24 21:46:13 ehret Exp $
 */
-var isIE, isDOM;
-isIE = (document.all ? true : false);
-isDOM = (document.getElementById ? true : false);
-
 
 function switchLayer(layername)
 {
-	if (isIE)
-	{
-		element1 = document.all.add_private;
-		element2 = document.all.add_business;
-		element3 = document.all.add_other;
-		element4 = document.all.e_add_private;
-		element5 = document.all.e_add_business;
-		element6 = document.all.e_add_other;
-		myelement = eval('document.all.'+layername);
-		if (layername.charAt(0) == 'e') {
-			myelement2 = eval('document.all.'+layername.substr(2));
-		} else {
-			myelement2 = eval('document.all.e_'+layername);
-		}
+	element1 = $("add_private");		
+	element2 = $("add_business");
+	element3 = $("add_other");
+	element4 = $("e_add_private");		
+	element5 = $("e_add_business");
+	element6 = $("e_add_other");
+	myelement = $(layername);
+	if (layername.charAt(0) == 'e') {
+		myelement2 =  $(layername.substr(2));
 	} else {
-		element1 = document.getElementById("add_private");		
-		element2 = document.getElementById("add_business");
-		element3 = document.getElementById("add_other");
-		element4 = document.getElementById("e_add_private");		
-		element5 = document.getElementById("e_add_business");
-		element6 = document.getElementById("e_add_other");
-		myelement = document.getElementById(layername);
-		if (layername.charAt(0) == 'e') {
-			myelement2 =  document.getElementById(layername.substr(2));
-		} else {
-			myelement2 =  document.getElementById('e_'+layername);
-		}		
-	}	
-
-	element1.style.display = 'none';
-	element2.style.display = 'none';
-	element3.style.display = 'none';
-	element4.style.display = 'none';
-	element5.style.display = 'none';
-	element6.style.display = 'none';	
-	myelement.style.display = '';
-	myelement2.style.display = '';
+		myelement2 =  $('e_'+layername);
+	}		
+	Element.hide(element1, element2, element3, element4, element5, element6);
+	Element.show(myelement, myelement2);
 	checkUnload = true;
 }
 
 function switchLayer2(layername)
 {
-	if (isIE)
-	{
-		element1 = document.all.show;
-		element2 = document.all.edit;
-		myelement = eval('document.all.'+layername);
-	} else {
-		element1 = document.getElementById("show");		
-		element2 = document.getElementById("edit");
-		myelement = document.getElementById(layername);
-	}	
-
-	element1.style.display = 'none';
-	element2.style.display = 'none';
-	myelement.style.display = '';
+	element1 = $("show");		
+	element2 = $("edit");
+	myelement = $(layername);	
+	Element.hide(element1, element2);
+	Element.show(myelement);
 	checkUnload = true;
 }

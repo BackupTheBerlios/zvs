@@ -1,7 +1,8 @@
 <%strip%>
 <%include file=header.tpl%>
 	<h1><span><%if $tpl_gast.lastname neq ""%><%$tpl_gast.lastname%>, <%$tpl_gast.firstname%><%/if%>&nbsp;</span></h1>
-<div id="show" name="show" style="visibility:visible">	
+<%if not $tpl_editmode%>
+<div id="show" name="show">	
 	<div class="toolbar"><%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>exportvcard.php/guestid.<%$tpl_gast.guestid%>/lastname.<%$tpl_gast.lastname%>/firstname.<%$tpl_gast.firstname%>" class="toolbar">##VCARD_EXPORT##</a><%/if%> <a href="javascript:switchLayer2('edit');" class="toolbar">##EDIT##</a></div>
 	
 			<table class="mainaddress">
@@ -80,7 +81,7 @@
       </table>
 <br/>
 
-<div id="add_private" name="add_private" style="visibility:visible">
+<div id="add_private" name="add_private">
    &nbsp;<div class="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>
       <h3>##PRIVAT_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.privateAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"/> ##POSTAL_ADRESS##
@@ -130,7 +131,7 @@
              </tr>
 			</table>
 </div>
-<div id="add_business" name="add_business" style="visibility:visible">
+<div id="add_business" name="add_business" style="display:none;">
 		&nbsp;<div class="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      
 		<h3>##BUSINESS_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.businessAddress.defaultaddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"/> Postanschrift
@@ -181,7 +182,7 @@
              </tr>
 			</table>
 </div>
-<div id="add_other" name="add_other" style="visibility:visible">
+<div id="add_other" name="add_other" style="display:none;">
 &nbsp;<div class="toolbar"><a href="javascript:switchLayer('add_private');" class="dotted">##PRIVATE##</a> | <a href="javascript:switchLayer('add_business');" class="dotted">##BUSINESS##</a> | <a href="javascript:switchLayer('add_other');" class="dotted">##OTHER##</a></div>      
 			<h3>##ANOTHER_ADRESS##</h3>
 			<input type="checkbox" <%if $tpl_gast.otherAddress.otherAddress eq "1" or $tpl_gast.guestid eq ""%>checked="checked"<%/if%> disabled="disabled"/> Postanschrift
@@ -232,7 +233,8 @@
 			</table>
 </div>
 </div>
-<div id="edit" name="edit" style="visibility:none">	
+<%/if%>
+<div id="edit" name="edit" <%if not $tpl_editmode%>style="display:none;"<%/if%>>	
 
 <form accept-charset="utf-8" id="save" name="save" action="<%$SCRIPT_NAME%>" method="post">
 	<input type="hidden" name="frm_guestid" id="frm_guestid" value="<%if $tpl_gast.guestid neq ""%><%$tpl_gast.guestid%><%else%>0<%/if%>"/>
@@ -256,7 +258,7 @@
                <td align="right"><strong>##TITLE##</strong></td>
                <td><input name="frm_academictitle" type="text" id="frm_academictitle" size="30" value="<%$tpl_gast.academic_title%>"></td>
                <td align="right"><strong>##GENDER##</strong></td>
-               <td><select name="frm_gender" id="frm_gender">
+               <td><select name="frm_gender" id="frm_gender" style="width:4em;">
                    <option value="M" <%if $tpl_gast.gender eq "M"%>selected<%/if%>>##MALE_SHORT##</option>
                    <option value="F" <%if $tpl_gast.gender eq "F"%>selected<%/if%>>##FEMALE_SHORT##</option>
                  </select></td>
@@ -267,7 +269,7 @@
                <td align="right"><strong>##LASTNAME##</strong></td>
                <td><input name="frm_lastname" type="text" id="frm_lastname" size="30" value="<%$tpl_gast.lastname%>"/></td>
                <td align="right"><strong>##LANGUAGE##</strong></td>
-               <td><select name="frm_language" id="frm_language">
+               <td><select name="frm_language" id="frm_language" style="width:4em;">
                    <option value="2" <%if $tpl_gast.language_id eq "2"%>selected<%/if%>>##GERMAN_SHORT##</option>
                    <option value="3" <%if $tpl_gast.language_id eq "3"%>selected<%/if%>>##ENGLISH_SHORT##</option>
                    <option value="4" <%if $tpl_gast.language_id eq "4"%>selected<%/if%>>##ITALIAN_SHORT##</option>
@@ -279,7 +281,7 @@
                <td align="right"><strong>##COMPANY##</strong></td>
                <td><input name="frm_company" type="text" id="frm_company" size="30" value="<%$tpl_gast.company%>"/></td>
                <td align="right"><strong>##FORMAL_GREETING##</strong></td>
-               <td><select name="frm_formal_greeting" id="frm_formal_greeting">
+               <td><select name="frm_formal_greeting" id="frm_formal_greeting" style="width:4em;">
                    <option value="N" <%if $tpl_gast.formal_greeting eq "N"%>selected<%/if%>>##YOU_PERSONAL##</option>
                    <option value="Y" <%if $tpl_gast.formal_greeting eq "Y"%>selected<%/if%>>##YOU_UNPERSONAL##</option>
                  </select></td>
@@ -333,7 +335,7 @@
 			  </tr>		
 			  <tr>
 				<td><strong>##DOCUMENT_OF_IDENTITY##</strong></td>
-				<td><select name="frm_identification" id="frm_identification">
+				<td><select name="frm_identification" id="frm_identification" style="width:10em;">
            <option value="P" <%if $tpl_gast.identification eq "P"%>selected<%/if%>>##IDENTITY_CARD##</option>	
            <option value="R" <%if $tpl_gast.identification eq "R"%>selected<%/if%>>##PASSPORT##</option>
            <option value="F" <%if $tpl_gast.identification eq "F"%>selected<%/if%>>##DRIVING_LICENSE##</option>                   
@@ -398,7 +400,7 @@
       </table>
 <br/>
 
-<div id="e_add_private" name="e_add_private" style="visibility:visible">
+<div id="e_add_private" name="e_add_private">
 	<input type="hidden" name="frm_private_addressid" id="frm_private_addressid" value="<%if $tpl_gast.privateAddress.addressid neq ""%><%$tpl_gast.privateAddress.addressid%><%else%>0<%/if%>"/>
    &nbsp;<div class="toolbar"><a href="javascript:switchLayer('e_add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('e_add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('e_add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 	 &nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.private/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%> | <%if $tpl_gast.privateAddress.count gt 1%><input type="checkbox" name="frm_private_copy" id="frm_private_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS##<%else%><input type="checkbox" name="frm_private_copy2" id="frm_private_copy2" value="true" diabled="disabled"/>##ADDRESS_NOT_SHARED##<%/if%></div>
@@ -454,7 +456,7 @@
              </tr>
 			</table>
 </div>
-<div id="e_add_business" name="e_add_business" style="visibility:visible">
+<div id="e_add_business" name="e_add_business" style="display:none;">
 <input type="hidden" name="frm_business_addressid" id="frm_business_addressid" value="<%if $tpl_gast.businessAddress.addressid neq ""%><%$tpl_gast.businessAddress.addressid%><%else%>0<%/if%>"/>
 		&nbsp;<div class="toolbar"><a href="javascript:switchLayer('e_add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('e_add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('e_add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 		&nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.business/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%> | <%if $tpl_gast.businessAddress.count gt 1%><input type="checkbox" name="frm_business_copy" id="frm_business_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS##<%else%><input type="checkbox" name="frm_business_copy2" id="frm_business_copy2" value="true" disabled="disabled"/> ##ADDRESS_NOT_SHARED##<%/if%>
@@ -512,7 +514,7 @@
              </tr>
 			</table>
 </div>
-<div id="e_add_other" name="e_add_other" style="visibility:visible">
+<div id="e_add_other" name="e_add_other" style="display:none;">
 <input type="hidden" name="frm_other_addressid" id="frm_other_addressid" value="<%if $tpl_gast.otherAddress.addressid neq ""%><%$tpl_gast.otherAddress.addressid%><%else%>0<%/if%>"/>
 &nbsp;<div class="toolbar"><a href="javascript:switchLayer('e_add_private');" class="dotted" onClick="bypassCheck();">##PRIVATE##</a> | <a href="javascript:switchLayer('e_add_business');" class="dotted" onClick="bypassCheck();">##BUSINESS##</a> | <a href="javascript:switchLayer('e_add_other');" class="dotted" onClick="bypassCheck();">##OTHER##</a> | 
 &nbsp;&nbsp;<%if $tpl_gast.guestid neq ""%><a href="<%$wwwroot%>shareaddress.php/guestid.<%$tpl_gast.guestid%>/type.other/shareaddress.php" class="dotted">##SHARE_ADDRESS##</a><%/if%> | <%if $tpl_gast.otherAddress.count gt 1%><input type="checkbox" name="frm_other_copy" id="frm_other_copy" value="true"/> ##DO_NOT_SHARE_ADDRESS## <%else%><input type="checkbox" name="frm_other_copy2" id="frm_other_copy2" value="true" disabled="disabled"/>  ##ADDRESS_NOT_SHARED##<%/if%>

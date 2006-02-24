@@ -12,6 +12,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 	<meta name="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css" media="screen">@import "<%$wwwroot%>css/global_v2.css";</style>
+	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/prototype.js"></script>
+	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/scriptaculous.js"></script>
+	<%if $tpl_type eq "guestsearch"%>
+	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/autocomplete.js"></script>	
+	<%/if%>
 	<%if $tpl_type eq "showgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" || $tpl_type eq "roomcat"%>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
 	<%/if%>
@@ -32,10 +37,9 @@
 	<%if $tpl_title eq "Login"%>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/md5.js"></script> 
 	<%/if%>
-	<%$tpl_ajaxjs%>
 </head>
 <%strip%>
-<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_subnav eq "hauptgast"%>switchLayer('add_private');switchLayer2('<%if $tpl_editmode%>edit<%else%>show<%/if%>');<%/if%><%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
+<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
 
 	<div id="body">
 	  <div id="header">

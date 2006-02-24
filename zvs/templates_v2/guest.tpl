@@ -7,16 +7,14 @@
   	<label for="frm_lastname">##LASTNAME##</label>
 	<input name="frm_lastname" type="text" id="frm_lastname" value="<%$tpl_lastname%>" class="text" autocomplete="off" tabindex="1"/>
 	<br/>
-	<div id="search-results" name="search-results"></div> 
+	<div id="search-results" name="search-results"></div>
 	<label for="frm_firstname">##FIRSTNAME##</label>
 	<input name="frm_firstname" type="text" id="frm_firstname"  value="<%$tpl_firstname%>" class="text" autocomplete="off" tabindex="2"/>
 	<br/>
+
 	<label for="submitbutton1"></label>
 	<input type="submit" name="submitbutton1" id="submitbutton1" value="##SEARCH## &raquo;" class="button_right" onmouseover="document.search.submitbutton1.className='button_right_hover'" onmouseout="document.search.submitbutton1.className='button_right'"/></p>
-	
- 	<%$tpl_widgets%>
-	<%$tpl_loadapp%>
-</div>	
+</div>	<script language="javascript" type="text/javascript">autocomplete_guestsearch_lastname(); autocomplete_guestsearch_firstname();</script> 
 	<%if $tpl_isresult eq 'true'%>
     <p><%$tpl_numresult%>&nbsp;<%if $tpl_numresult eq 1%>Eintrag<%else%>Eintr&auml;ge<%/if%>&nbsp;gefunden</p>
    		<table class="list">
