@@ -47,7 +47,7 @@
          <td><%$tpl_laststays[stay].start_date%></td>
 		 		 <td><%$tpl_laststays[stay].end_date%></td>
 		 		 <td><%$tpl_laststays[stay].reference_id%></td>
-		 		 <td><a href="<%$wwwroot%>showgast.php/guestid.<%$tpl_laststays[stay].thisguestid%>" class="dotted" title="##SHOW##"><%$tpl_laststays[stay].lastname%>, <%$tpl_laststays[stay].firstname%></a></td>
+		 		 <td><a href="<%$wwwroot%>guestdetail.php/guestid.<%$tpl_laststays[stay].thisguestid%>" class="dotted" title="##SHOW##"><%$tpl_laststays[stay].lastname%>, <%$tpl_laststays[stay].firstname%></a></td>
        </tr>
      <%sectionelse%>
        <tr class="ListL0" onMouseOver="this.className='ListHighlight'" onMouseOut="this.className='ListL0'">

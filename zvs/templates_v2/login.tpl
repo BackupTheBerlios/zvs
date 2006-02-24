@@ -1,23 +1,24 @@
 <%include file=header.tpl%>
 <%strip%>
 <div class="box400">
-		<h2><span>##LOGIN##</span></h2>
-<p>
+		<h1><span>##LOGIN##</span></h2>
+
 <form accept-charset="utf-8" id="login" name="login" action="<%$tpl_url%>" method="post" onSubmit="doChallengeResponse(); return false;">
 <%$tpl_hiddenfields%>
 <input type="hidden" id="challenge" name="challenge" value="<%$tpl_challenge%>"/>
 <input type="hidden" id="response" name="response"  value=""/>	
+	<%if $tpl_issetuname eq "true" %>
+		<span class="error">##LOGIN_ERROR##</span><br/>
+	<%/if%>
 	<label for="username">##LOGINNAME##</label>
 	<input type="text" id="username" name="username" maxlength="128" value="<%$tpl_login%>" onKeyPress="next_onkeypress();" class="text" tabindex="1"/>
 	<br/> 
 	<label for="password">##PASSWORD##</label>
 	<input type="password" id="password" name="password" maxlength="32" onKeyPress="login_onkeypress();" value="" class="text" tabindex="2"/><br/> 
-	<%if $tpl_issetuname eq "true" %>
-		<span class="error">##LOGIN_ERROR##</span>
-	<%/if%>
-	<p class="right"><input type="submit" value="##LOGIN## &raquo;" class="right"/></p>
+	<label for="submitbutton1"></label>
+	<input type="submit" name="submitbutton1" id="submitbutton1" value="##LOGIN## &raquo;" class="button_right" onmouseover="document.login.submitbutton1.className='button_right_hover'" onmouseout="document.login.submitbutton1.className='button_right'"/> 
 	</form>
-	</p>
+	
 </div>
 
 <%/strip%>

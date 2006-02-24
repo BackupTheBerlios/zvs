@@ -58,7 +58,7 @@ function gsc_addresult(elt, qElt, q, c, sel)
          +  ' onmouseover="gsc_mouseover(\'' + elt.id + '\', \'' + qElt.id + '\', ' + idx + ')"'
          +  ' onmouseout="gsc_mouseout(\'' + elt.id + '\', ' + idx + ')"'
          +  ' onclick="gsc_mouseclick(\'' + elt.id + '\', \'' + qElt.id + '\', ' + idx + ',\'' + c + '\')">';
-    _res += '<span class="srt">' + q + '</span>';
+    _res += '<span class="srt">' + q + ',</span>';
     if (c.length > 0)
         _res += '<span class="src">' + c + '</span>';
     _res += '</div>';

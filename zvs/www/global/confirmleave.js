@@ -29,7 +29,7 @@
 * 
 * @since 2003-09-17
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: confirmleave.js,v 1.1 2004/11/03 15:05:42 ehret Exp $
+* @version $Id: confirmleave.js,v 1.2 2006/02/24 01:47:56 ehret Exp $
 */
 
 var altered = false;
@@ -126,7 +126,7 @@ function returnvalue()
    	{
    		if (altered)
    		{
-	   		event.returnValue = "Die Änderungen wurden nicht gespeichert! Trotzdem diese Seite verlassen?";
+	   		event.returnValue = "Die Ã„nderungen wurden nicht gespeichert! Trotzdem diese Seite verlassen?";
 		}
 		
 	}
@@ -141,7 +141,7 @@ function confirmNSLeave()
 		if (getAltered())
 		{
 
-			if (!confirm('Die Änderungen wurden nicht gespeichert! Trotzdem diese Seite verlassen?'))
+			if (!confirm('Die Ã„nderungen wurden nicht gespeichert! Trotzdem diese Seite verlassen?'))
 			{
 				return true;
   			}
