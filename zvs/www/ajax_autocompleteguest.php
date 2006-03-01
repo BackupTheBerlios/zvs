@@ -36,8 +36,8 @@
 
 include_once("../includes/default.inc.php");
 $auth -> is_authenticated();
-if ($_POST['autocomplete']) {
-  $entry = $_POST['autocomplete'];
+if ($request->GetVar('autocomplete', 'post')) {
+  $entry = $request->GetVar('autocomplete', 'post');
 	echo '<ul>';
 	$query = sprintf("SELECT lastname, firstname, pk_guest_id FROM $tbl_guest 
 		  WHERE lastname LIKE '%s%%' AND ISNULL(deleted_date)

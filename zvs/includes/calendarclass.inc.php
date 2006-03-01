@@ -34,7 +34,7 @@
 * 
 * @since 2003-07-24
 * @author Christian Ehret <chris@uffbasse.de> 
-* @version $Id: calendarclass.inc.php,v 1.4 2005/05/05 10:03:20 ehret Exp $
+* @version $Id: calendarclass.inc.php,v 1.5 2006/03/01 13:10:37 ehret Exp $
 */
 class Calendar {
     /**
@@ -167,12 +167,16 @@ class Calendar {
     */
     function getMonth($year, $month, $roomid)
     {
+        global $time;
+        
         global $tbl_booking_detail, $tbl_booking, $tbl_bookingcat, $tbl_guest, $gDatabase, $request, $errorhandler;
+                
         $first_of_month = mktime (8, 0, 0, $month, 1, $year);
         $maxdays = date('t', $first_of_month);
         $date_info = getdate($first_of_month);
         $month = $date_info['mon'];
         $year = $date_info['year'];
+
 
         if ($roomid <> 0) {
             $booked = array();
@@ -195,6 +199,8 @@ class Calendar {
 					  ORDER BY $tbl_booking_detail.start_date";
 
             $result = MetabaseQuery($gDatabase, $query);
+            
+            
             if (!$result) {
                 $errorhandler->display('SQL', 'Calendar::getMonth()', $query);
             } else {
@@ -226,7 +232,7 @@ class Calendar {
                         'firstname' => MetabaseFetchResult($gDatabase, $result, $row, 7),
                         'cat' => MetabaseFetchResult($gDatabase, $result, $row, 8),
                         'persons' => MetabaseFetchResult($gDatabase, $result, $row, 9),
-						'children0' => MetabaseFetchResult($gDatabase, $result, $row, 19),
+												'children0' => MetabaseFetchResult($gDatabase, $result, $row, 19),
                         'children' => MetabaseFetchResult($gDatabase, $result, $row, 10),
                         'children2' => MetabaseFetchResult($gDatabase, $result, $row, 17),
                         'children3' => MetabaseFetchResult($gDatabase, $result, $row, 18),
@@ -252,6 +258,8 @@ class Calendar {
             $lastday = "";
             $lastdaydata = array();
             $linkDate = mktime (8, 0, 0, $month, $day, $year);
+            $bookingdetailid = "";
+            $bookingtypecolor = "";
 
             $bookid = "";
             $color = "";
@@ -316,7 +324,6 @@ class Calendar {
                     } 
                 } 
             } 
-
             $monthArray[$day-1] = array ('date' => $day,
                 'linkDate' => $linkDate,
                 'weekday' => $this->returnDayName($weekday),
