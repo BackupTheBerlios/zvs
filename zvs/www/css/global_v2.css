@@ -568,13 +568,11 @@ td.annotation {
 * html #overlay{
   height: expression(document.body.clientHeight - 81 +"px");	
   background-color: #333;
- back\ground-color: transparent;
+  back\ground-color: transparent;
   background-image: url(blank.gif); 
-background-color: black;
-    opacity:.80;
-    /*filter: alpha(opacity=80);
-	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%$wwwroot%>css/overlay.png', sizingMethod='scale');
-	 */
+/* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://muli/zvs/www/css/overlay.png', sizingMethod='scale');
+   opacity:.80;*/
+    /*filter: alpha(opacity=80);*/	 
 }
 
 #center{

@@ -14,8 +14,12 @@
 	<style type="text/css" media="screen">@import "<%$wwwroot%>css/global_v2.css";</style>
 	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/prototype.js"></script>
 	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/scriptaculous.js"></script>
+	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/effects.js"></script>	
 	<%if $tpl_type eq "guestsearch"%>
 	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/autocomplete.js"></script>	
+	<%/if%>
+	<%if $tpl_type eq "calendar"%>
+	<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/calendar.js"></script>		
 	<%/if%>
 	<%if $tpl_type eq "showgast" || $tpl_type eq "season" || $tpl_type eq "price" || $tpl_type eq "lists" || $tpl_subnav eq "account" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" || $tpl_type eq "roomcat"%>
 		<script language="javascript" type="text/javascript" src="<%$wwwroot%>global/browserSniffer.js"></script>
@@ -39,7 +43,7 @@
 	<%/if%>
 </head>
 <%strip%>
-<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%>>
+<body <%if ($tpl_type eq "editgast" || $tpl_type eq "showgast") || $tpl_type eq "price" || $tpl_type eq "newsletter"%>onLoad="<%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter" || $tpl_type eq "listemployeetime" %>addonchangeevents();<%/if%>"<%/if%> <%if $tpl_type eq "showgast" || $tpl_type eq "price" || $tpl_type eq "newsletter"%> onbeforeunload="javascript:returnvalue();"<%/if%> <%if $tpl_type eq "calendar"%>onload="displayCalendar('<%$wwwroot%>','<%$tpl_navmonth%>','<%$tpl_navyear%>','<%$tpl_view%>');"<%/if%>>
 
 	<div id="body">
 	  <div id="header">
