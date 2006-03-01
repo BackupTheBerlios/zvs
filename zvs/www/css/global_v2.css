@@ -552,3 +552,50 @@ table.city td {
 td.annotation {
 	font-size: smaller;
 }
+
+#overlay{ 
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  top: 81px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+	background-image: url(overlay.png); 
+}
+
+* html #overlay{
+  height: expression(document.body.clientHeight - 81 +"px");	
+  background-color: #333;
+ back\ground-color: transparent;
+  background-image: url(blank.gif); 
+background-color: black;
+    opacity:.80;
+    /*filter: alpha(opacity=80);
+	 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%$wwwroot%>css/overlay.png', sizingMethod='scale');
+	 */
+}
+
+#center{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  height: 1px;
+  overflow: visible;
+}
+
+
+#loading{
+	text-align: left;
+	border: 1px dashed black;
+	margin-left: -200px;
+	position: absolute;
+	top: -75px;
+	left: 50%;
+	width: 400px;
+	height: 150px;
+	padding: 15px;
+}
